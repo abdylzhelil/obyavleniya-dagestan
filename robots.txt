@@ -1,0 +1,6 @@
+# robots.txt — публичные страницы, стили, скрипты и картинки открыты для индексации
+User-agent: *
+Allow: /
+
+# Карта сайта:
+Sitemap: https://obyavleniya-dagestan.ru/sitemap.xml

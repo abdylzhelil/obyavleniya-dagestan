@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Карта сайта. В списке только страницы, которые должны индексироваться:
+  главная и группы со статусом "open" (в данных GROUPS в script.js).
+  Заполненные группы (status "full") в карту не входят — у них noindex.
+  Адреса записаны для домена https://obyavleniya-dagestan.ru. При смене статуса группы обновите этот список вручную.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://obyavleniya-dagestan.ru/</loc>
+  </url>
+  <url>
+    <loc>https://obyavleniya-dagestan.ru/group.html?id=telegram-main</loc>
+  </url>
+  <url>
+    <loc>https://obyavleniya-dagestan.ru/group.html?id=whatsapp-2</loc>
+  </url>
+</urlset>
