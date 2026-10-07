@@ -26,7 +26,7 @@ const SITE = {
   groupPageUrl: "group.html", /* страница группы: groupPageUrl + "?id=<id группы>" */
 
   /* Картинки для SEO (пути от корня сайта; абсолютные адреса собираются из baseUrl) */
-  ogImage: "assets/images/og-image.jpg",
+  ogImage: "assets/images/og-image-v2.jpg",
   logo: "assets/images/logo-hero.jpg",
 
   adContacts: {

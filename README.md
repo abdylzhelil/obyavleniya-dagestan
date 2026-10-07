@@ -19,7 +19,7 @@ obyavleniya-dagestan/
 ├── README.md
 ├── .gitignore        список файлов, которые не нужно загружать в GitHub
 └── assets/
-    ├── images/       logo.jpg, logo-hero.jpg, logo-telegram.jpg, hero-bg.jpg, og-image.jpg
+    ├── images/       logo.jpg, logo-hero.jpg, logo-telegram.jpg, hero-bg.jpg, og-image-v2.jpg
     └── icons/        sprite.svg (иконки WhatsApp, Telegram, меню, категорий)
 ```
 
@@ -93,7 +93,7 @@ python3 -m http.server 8000
 
 - Главная открывается, мобильное меню работает, кнопки ведут в нужные группы.
 - `…/group.html?id=telegram-main` и `…/group.html?id=whatsapp-2` открываются; `…/group.html?id=nope` показывает «Группа не найдена».
-- `…/robots.txt`, `…/sitemap.xml`, `…/favicon.svg`, `…/assets/images/og-image.jpg` отдаются без ошибок.
+- `…/robots.txt`, `…/sitemap.xml`, `…/favicon.svg`, `…/assets/images/og-image-v2.jpg` отдаются без ошибок.
 - Несуществующий адрес показывает `404.html`.
 - В исходном коде главной (Ctrl+U) видны canonical, Open Graph и JSON-LD с вашим адресом.
 - Структурированные данные главной можно проверить в валидаторе микроразметки Яндекса или Google.
@@ -108,7 +108,7 @@ python3 -m http.server 8000
 | assets/images/logo-hero.jpg | 20 256 | c12d9535090dec253979c12b12a5ce6a433fba1bc89a804dff43c7df0e1e74cc |
 | assets/images/logo-telegram.jpg | 7 985 | 20bea29d0301c560e6520c5ab75fb25673ba5c6f745cf170f4c587f2dd5d6740 |
 | assets/images/hero-bg.jpg | 123 891 | 1d82bfe7c2136b5bf658b081430ca1f282b3f12128050d0ca17cb3d0db5f65e1 |
-| assets/images/og-image.jpg | 134 937 | 39eebe0fd1d841a99d65c6eb4d5d08106ca8bd06cc27beabec6f17cfa8e5c53c |
+| assets/images/og-image-v2.jpg | 130 813 | 86a4663db050fba703bd53ddb09edbb2d03a242010971c0f43a2ccf1f7dddcc0 |
 | assets/icons/sprite.svg | 3 116 | 30b8beddac919b9b6bfcd5dc6c8098963fbd0f4ffde5dd1ecb7fc52621311cf7 |
 | favicon.svg | 637 | 54d0cef1467a998407d3191fdb85da60f352b9a75cc3278362dd46b0bb637c5f |
 
