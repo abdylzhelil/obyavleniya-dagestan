@@ -601,3 +601,128 @@ header > *{pointer-events:auto;}
   .cta-dock,.cta-dock.is-visible{transition:none;}
   .cat-card:hover,.group-card:hover{transform:none;}
 }
+
+/* ---------- 14. Liquid Glass: кнопки и блоки (доработка) ---------- */
+
+/* Кнопки: выше и мягче, «линза» с бликом сверху, цветное свечение, перелив при наведении */
+.btn{
+  min-height:50px; padding:14px 28px; overflow:hidden; isolation:isolate; letter-spacing:.1px;
+  border:1px solid rgba(255,255,255,.35);
+}
+.btn-sm{min-height:42px; padding:10px 18px;}
+.btn::before{ /* блик-линза в верхней половине */
+  content:''; position:absolute; left:8%; right:8%; top:1px; height:52%; border-radius:100px; z-index:-1;
+  background:linear-gradient(180deg, rgba(255,255,255,.42), rgba(255,255,255,0));
+  opacity:.6; pointer-events:none; filter:blur(1px);
+}
+.btn::after{ /* перелив, пробегающий по кнопке при наведении */
+  content:''; position:absolute; top:0; bottom:0; left:-60%; width:45%; z-index:-1; pointer-events:none;
+  background:linear-gradient(100deg, transparent, rgba(255,255,255,.45), transparent);
+  transform:skewX(-20deg); transition:left .7s ease;
+}
+.btn:hover::after{left:120%;}
+.btn-wa{
+  background:linear-gradient(180deg, #5CF08E 0%, var(--wa) 55%, #1DB954 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.7), inset 0 -4px 10px rgba(0,60,25,.25), 0 10px 26px -10px rgba(37,211,102,.75), 0 2px 6px rgba(0,0,0,.25);
+}
+.btn-tg{
+  background:linear-gradient(180deg, #6CCBFA 0%, var(--tg) 55%, #1C93D6 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.7), inset 0 -4px 10px rgba(0,40,80,.25), 0 10px 26px -10px rgba(42,171,238,.75), 0 2px 6px rgba(0,0,0,.25);
+}
+.btn-wa:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.75), inset 0 -4px 10px rgba(0,60,25,.25), 0 14px 34px -8px rgba(37,211,102,.9), 0 2px 6px rgba(0,0,0,.25);}
+.btn-tg:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.75), inset 0 -4px 10px rgba(0,40,80,.25), 0 14px 34px -8px rgba(42,171,238,.9), 0 2px 6px rgba(0,0,0,.25);}
+.btn-ghost,.btn-disabled{border:1px solid rgba(255,255,255,.28); box-shadow:inset 0 1px 0 rgba(255,255,255,.35), 0 8px 20px -12px rgba(0,0,0,.6);}
+.btn-disabled::before{opacity:.25;} .btn-disabled::after{display:none;}
+.btn-ic{width:26px; height:26px; border-radius:9px; background:rgba(255,255,255,.38); box-shadow:inset 0 1px 0 rgba(255,255,255,.7), 0 2px 6px -2px rgba(0,0,0,.3);}
+.btn-ic svg{width:15px; height:15px;}
+
+/* Блоки: мягкий световой блик в левом верхнем углу (как отражение на стекле) */
+.cat-card,.why-card,.rules-card,.wa-card,.group-card,.ad-teaser,.promo-card,.faq details,.legal-card{
+  background:
+    radial-gradient(120% 80% at 0% 0%, rgba(255,255,255,.16), rgba(255,255,255,0) 55%),
+    var(--lg-fill);
+  transition:transform .35s cubic-bezier(.3,1.4,.5,1), box-shadow .3s ease;
+}
+.wa-card,.group-card,.ad-teaser,.promo-card{
+  background:
+    radial-gradient(120% 80% at 0% 0%, rgba(255,255,255,.20), rgba(255,255,255,0) 55%),
+    var(--lg-fill-strong);
+}
+.wa-card,.group-card,.promo-card,.ad-teaser,.rules-card,.legal-card{border-radius:30px;}
+.cat-card,.why-card,.faq details{border-radius:22px;}
+
+/* Карточки групп подсвечены цветом своей платформы */
+.group-card:has(.group-badge.tg){
+  background:radial-gradient(90% 70% at 100% 0%, rgba(42,171,238,.28), transparent 60%), radial-gradient(120% 80% at 0% 0%, rgba(255,255,255,.18), transparent 55%), var(--lg-fill-strong);
+  box-shadow:var(--shadow-lg), 0 24px 60px -30px rgba(42,171,238,.55), var(--lg-inner);
+}
+.group-card:has(.group-badge.wa){
+  background:radial-gradient(90% 70% at 100% 0%, rgba(37,211,102,.26), transparent 60%), radial-gradient(120% 80% at 0% 0%, rgba(255,255,255,.18), transparent 55%), var(--lg-fill-strong);
+  box-shadow:var(--shadow-lg), 0 24px 60px -30px rgba(37,211,102,.55), var(--lg-inner);
+}
+.wa-card.is-open{
+  background:radial-gradient(90% 70% at 100% 0%, rgba(63,224,124,.30), transparent 60%), radial-gradient(120% 80% at 0% 0%, rgba(255,255,255,.18), transparent 55%), var(--lg-fill-strong);
+  box-shadow:var(--shadow-lg), 0 24px 60px -28px rgba(63,224,124,.6), var(--lg-inner);
+}
+.group-badge,.promo-avatar{box-shadow:0 10px 24px -10px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.5); border:1px solid rgba(255,255,255,.35);}
+
+/* Наведение: блок слегка «всплывает» */
+@media (hover:hover){
+  .why-card:hover,.wa-card:hover{transform:translateY(-4px);}
+  .group-card:hover,.cat-card:hover{transform:translateY(-5px) scale(1.012);}
+}
+
+/* Иконки категорий — цветные стеклянные плитки */
+.cat-card .ic{
+  width:56px; height:56px; border-radius:18px;
+  background:linear-gradient(160deg, rgba(63,224,124,.38), rgba(63,224,124,.10) 60%, rgba(79,195,224,.18));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.55), inset 0 -6px 12px -6px rgba(0,0,0,.25), 0 10px 22px -10px rgba(63,224,124,.55);
+  border:1px solid rgba(255,255,255,.22);
+}
+.cat-card .ic svg{color:#D8FFE6; width:28px; height:28px; filter:drop-shadow(0 1px 2px rgba(0,0,0,.35));}
+.cat-card span{font-size:14px;}
+
+/* «Почему мы» — номер-капсула не нужен, но верхняя цветная кромка оживляет карточку */
+.why-card{padding:26px 24px 24px;}
+.why-card h3{font-size:16.5px;}
+.why-card::before{
+  content:''; position:absolute; left:24px; top:0; width:44px; height:3px; border-radius:0 0 3px 3px;
+  background:linear-gradient(90deg, var(--mint), var(--sky));
+  box-shadow:0 0 14px rgba(63,224,124,.7);
+}
+
+/* Шаги — номер как стеклянная капля */
+.step-num{
+  width:54px; height:54px; font-size:20px;
+  background:radial-gradient(circle at 35% 28%, rgba(255,255,255,.75), rgba(255,255,255,0) 42%), linear-gradient(135deg,var(--mint),var(--amber));
+  box-shadow:inset 0 -4px 10px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.8), 0 14px 30px -10px rgba(63,224,124,.6);
+}
+
+/* Правила — номера-капли */
+.rules-list li::before{
+  width:30px; height:30px;
+  background:linear-gradient(160deg, rgba(63,224,124,.40), rgba(63,224,124,.12));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.45); color:#CFFFE0;
+}
+
+/* Частые вопросы — плюсик-капсула справа */
+.faq summary{list-style:none; display:flex; align-items:center; justify-content:space-between; gap:12px;}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary::after{
+  content:'+'; flex-shrink:0; width:30px; height:30px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center; font-size:19px; font-weight:600; color:var(--ink);
+  background:linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.06));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.45); transition:transform .3s ease;
+}
+.faq details[open] summary::after{transform:rotate(45deg);}
+
+/* Статусы — стеклянные капсулы с ободком */
+.wa-status{border:1px solid rgba(255,255,255,.18); padding:6px 13px;}
+.wa-status.open{background:linear-gradient(180deg, rgba(63,224,124,.30), rgba(63,224,124,.14));}
+.wa-status.full{background:linear-gradient(180deg, rgba(255,193,94,.26), rgba(255,193,94,.12));}
+.group-cats span{background:linear-gradient(180deg, rgba(63,224,124,.24), rgba(63,224,124,.10)); border:1px solid rgba(255,255,255,.12);}
+
+@media (prefers-reduced-motion:reduce){
+  .btn::after{display:none;}
+  .why-card:hover,.wa-card:hover,.group-card:hover,.cat-card:hover{transform:none;}
+}
