@@ -695,6 +695,34 @@ function initCookieReset() {
   });
 }
 
+/* ---------- 8а. Плавающая панель «Вступить» (только телефоны, только главная) ----------
+   Видна, когда кнопки первого экрана прокручены вверх и подвал ещё не показался. */
+function initDock() {
+  const dock = document.getElementById("cta-dock");
+  const heroCtas = document.querySelector(".hero .hero-ctas");
+  const footer = document.querySelector("footer");
+  if (!dock || !heroCtas || !footer || !("IntersectionObserver" in window)) return;
+
+  document.body.classList.add("has-dock");
+  let heroVisible = true;
+  let footerVisible = false;
+
+  function update() {
+    const show = !heroVisible && !footerVisible;
+    dock.classList.toggle("is-visible", show);
+  }
+  /* кнопки первого экрана считаются видимыми, если на экране больше половины их блока;
+     на низких экранах, где они не помещаются, панель видна сразу */
+  new IntersectionObserver(function (entries) {
+    heroVisible = entries[0].intersectionRatio > 0.5;
+    update();
+  }, { threshold: [0, 0.25, 0.5, 0.75, 1] }).observe(heroCtas);
+  new IntersectionObserver(function (entries) {
+    footerVisible = entries[0].isIntersecting;
+    update();
+  }).observe(footer);
+}
+
 /* ---------- 9. Запуск ---------- */
 
 function initApp() {
@@ -710,6 +738,7 @@ function initApp() {
   initAnalytics();
   initCookieNotice();
   initCookieReset();
+  initDock();
 }
 
 document.addEventListener("DOMContentLoaded", initApp);
