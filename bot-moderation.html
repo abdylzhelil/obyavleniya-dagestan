@@ -22,8 +22,8 @@
 <link rel="canonical" href="https://obyavleniya-dagestan.ru/bot-moderation.html">
 <meta property="og:url" content="https://obyavleniya-dagestan.ru/bot-moderation.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:image" content="https://obyavleniya-dagestan.ru/assets/images/og-image-v2.jpg">
-<meta name="twitter:image" content="https://obyavleniya-dagestan.ru/assets/images/og-image-v2.jpg">
+<meta property="og:image" content="https://obyavleniya-dagestan.ru/assets/images/og-bot-moderation.jpg">
+<meta name="twitter:image" content="https://obyavleniya-dagestan.ru/assets/images/og-bot-moderation.jpg">
 <script>document.documentElement.classList.add("js");</script>
 <script>try{window.cookieDeclined=window.localStorage.getItem("cookie-consent")==="no";}catch(e){}</script>
 <!-- Яндекс Метрика -->
@@ -44,6 +44,46 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
 <link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Бот бесплатный?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Первая группа работает бесплатно навсегда с базовыми функциями. Дополнительные модули — по подписке или единоразовому выкупу."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Нужно ли быть создателем группы?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Да, бот проверяет, что подключает группу её создатель. Остальным админам можно дать доступ как помощникам: менеджер или модератор."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Как оплатить тариф?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Оплата по чеку прямо в боте: «🔑 Лицензия» → «Оплатить тариф». После подтверждения тариф включается сразу."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Что будет, если подписка закончилась?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "За 3 дня бот напомнит о продлении. После окончания платные функции отключаются, настройки сохраняются."
+   }
+  }
+ ]
+}
+</script>
 </head>
 <body>
 
@@ -99,6 +139,30 @@
 
   <section class="promo-section">
     <div class="wrap">
+      <div class="section-head"><div class="eyebrow">Для кого</div><h2>Кому подойдёт</h2></div>
+      <div class="audience-grid">
+        <div class="why-card"><h3>Админам групп и каналов</h3><p>Нужна защита от спама и рутинная модерация без круглосуточного дежурства.</p></div>
+        <div class="why-card"><h3>Владельцам площадок объявлений</h3><p>Принимайте платную рекламу по схеме «заявка → чек → публикация» без комиссии.</p></div>
+        <div class="why-card"><h3>Тем, кто растит сообщество</h3><p>Автопостинг по расписанию, приветствие новичков и статистика в одном месте.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="promo-section">
+    <div class="wrap">
+      <div class="section-head"><div class="eyebrow">Тарифы</div><h2>Сколько это стоит</h2></div>
+      <div class="tariff-grid">
+        <div class="tariff-card"><h3>Бесплатный</h3><div class="tariff-price">0 ₽<small></small></div><p>Первая группа навсегда: капча, антифлуд, ссылки, мат-фильтр, приветствие.</p></div>
+        <div class="tariff-card"><h3>Пробный период</h3><div class="tariff-price">7 дней<small></small></div><p>Все основные модули на одной группе. Один раз на аккаунт.</p></div>
+        <div class="tariff-card is-popular"><span class="tariff-badge">Популярный</span><h3>Подписка</h3><div class="tariff-price">250 ₽<small> / месяц</small></div><p>До 3 групп и каналов. Продление в боте.</p></div>
+        <div class="tariff-card"><h3>Выкуп</h3><div class="tariff-price">4900 ₽<small> один раз</small></div><p>Навсегда, до 10 групп и каналов.</p></div>
+      </div>
+      <p style="color:var(--ink-soft);font-size:14px;margin-top:16px">Актуальные цены и оплата — в разделе «🔑 Лицензия» внутри бота.</p>
+    </div>
+  </section>
+
+  <section class="promo-section">
+    <div class="wrap">
       <div class="promo-card">
         <div class="promo-row">
           <h3>Как подключить группу</h3>
@@ -109,20 +173,22 @@
           <li><span>Откройте «📋 Мои группы» и включите нужные модули.</span></li>
           </ol>
         </div>
-        <div class="promo-row">
-          <h3>Тарифы</h3>
-          <ol class="rules-list">
-          <li><span><strong>Бесплатно навсегда</strong> — первая группа: капча, антифлуд, ссылки, мат-фильтр, приветствие.</span></li>
-          <li><span><strong>Пробный период 7 дней</strong> — все основные модули на одной группе.</span></li>
-          <li><span><strong>Подписка 250 ₽ в месяц</strong> — до 3 групп и каналов.</span></li>
-          <li><span><strong>Выкуп 4900 ₽ один раз</strong> — навсегда, до 10 групп и каналов.</span></li>
-          </ol>
-          <p>Актуальные цены и оплата — в разделе «🔑 Лицензия» внутри бота.</p>
-        </div>
         <div class="promo-row is-last">
           <a class="btn btn-tg btn-block" href="https://t.me/ModexaGuardBot" rel="noopener" target="_blank" data-goal="bot_moderation_open">Подключить группу</a>
           <a class="btn btn-ghost btn-block" href="bot-crm.html">Смотреть бота-менеджера продаж</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="promo-section">
+    <div class="wrap">
+      <div class="section-head"><div class="eyebrow">Вопросы</div><h2>Частые вопросы</h2></div>
+      <div class="faq bot-faq">
+        <details><summary>Бот бесплатный?</summary><p>Первая группа работает бесплатно навсегда с базовыми функциями. Дополнительные модули — по подписке или единоразовому выкупу.</p></details>
+        <details><summary>Нужно ли быть создателем группы?</summary><p>Да, бот проверяет, что подключает группу её создатель. Остальным админам можно дать доступ как помощникам: менеджер или модератор.</p></details>
+        <details><summary>Как оплатить тариф?</summary><p>Оплата по чеку прямо в боте: «🔑 Лицензия» → «Оплатить тариф». После подтверждения тариф включается сразу.</p></details>
+        <details><summary>Что будет, если подписка закончилась?</summary><p>За 3 дня бот напомнит о продлении. После окончания платные функции отключаются, настройки сохраняются.</p></details>
       </div>
     </div>
   </section>
