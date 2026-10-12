@@ -848,3 +848,30 @@ header > *{pointer-events:auto;}
   .nav-dd>a{display:block; width:100%;}
   .dd-menu a{display:block;}
 }
+
+/* ---------- Анимации и плавные переходы между страницами ---------- */
+@view-transition{navigation:auto;}
+::view-transition-old(root){animation:vtOut .22s ease both;}
+::view-transition-new(root){animation:vtIn .34s cubic-bezier(.2,.7,.2,1) both;}
+::view-transition-group(hdr){animation-duration:.3s;}
+@keyframes vtOut{to{opacity:0; transform:translateY(-6px);}}
+@keyframes vtIn{from{opacity:0; transform:translateY(10px);}}
+@keyframes rise{from{opacity:0; transform:translateY(22px);}}
+.no-vt body{animation:pageIn .4s ease both;}
+.no-vt.leaving body{opacity:0; transform:translateY(-6px); transition:opacity .2s ease, transform .2s ease;}
+@keyframes pageIn{from{opacity:0;}}
+header{view-transition-name:hdr;}
+/* Первый экран: элементы появляются по очереди */
+.hero .wrap>*{animation:rise .7s cubic-bezier(.2,.7,.2,1) both;}
+.hero .wrap>*:nth-child(2){animation-delay:.07s;} .hero .wrap>*:nth-child(3){animation-delay:.14s;}
+.hero .wrap>*:nth-child(4){animation-delay:.21s;} .hero .wrap>*:nth-child(5){animation-delay:.28s;}
+.hero .wrap>*:nth-child(6){animation-delay:.35s;}
+/* Блик на главных кнопках первого экрана */
+.hero-ctas .btn{position:relative; overflow:hidden;}
+.hero-ctas .btn::after{content:""; position:absolute; top:0; left:-70%; width:40%; height:100%; background:linear-gradient(100deg,transparent,rgba(255,255,255,.4),transparent); transform:skewX(-20deg); animation:shine 5s ease-in-out infinite; pointer-events:none;}
+@keyframes shine{0%,62%{left:-70%;}100%{left:140%;}}
+@media (prefers-reduced-motion:reduce){
+  @view-transition{navigation:none;}
+  .hero .wrap>*,.hero-ctas .btn::after,.no-vt body{animation:none !important;}
+  .no-vt.leaving body{transition:none; opacity:1; transform:none;}
+}
