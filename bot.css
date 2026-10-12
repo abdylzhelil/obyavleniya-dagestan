@@ -168,3 +168,23 @@ section{padding:56px 0;}
 @media (max-width:420px){.bh .wrap{gap:10px;} .bh-brand{font-size:16px;} .bh .btn-sm{padding:9px 12px; font-size:13px;}}
 @media (max-width:380px){.bh .wrap{padding:0 14px; gap:8px;} .bh-brand{font-size:15px; gap:8px;} .bh-brand img,.bh-brand .ic{width:30px!important; height:30px!important;} .bh .btn-sm{padding:8px 10px; font-size:12.5px; gap:6px;} .bh .btn svg{width:15px; height:15px;}}
 @media (max-width:340px){.bh-brand span{display:none;}}
+
+
+/* навигация между страницами */
+.bh-sep{width:1px; height:18px; background:var(--line); align-self:center;}
+.bh-nav a[href="index.html"],.bh-nav a[href^="bot-"]{color:var(--ink);}
+.bh-burger{display:none; width:42px; height:42px; align-items:center; justify-content:center; background:var(--card); border:1px solid var(--line); border-radius:12px; color:var(--ink); cursor:pointer;}
+.bh-menu{position:absolute; left:0; right:0; top:100%; background:#050F0C; border-bottom:1px solid var(--line); box-shadow:0 24px 40px -16px rgba(0,0,0,.8);}
+.bh-menu[hidden]{display:none;}
+.bh-menu a{display:block; padding:14px 0; border-bottom:1px solid var(--line); color:var(--soft); font-weight:600;}
+.bh-menu a:first-child{color:var(--ink);}
+.bh-menu a:last-child{border-bottom:none;}
+@media (max-width:900px){.bh-burger{display:inline-flex;} .bh .btn{margin-left:auto;}}
+@media (min-width:1021px){.bh-menu{display:none !important;}}
+@media (max-width:380px){.bh-burger{width:36px; height:36px;}}
+@media (max-width:340px){.bh .btn-sm{display:none;} .bh-burger{margin-left:auto;}}
+.bh .bh-menu .wrap{display:block; height:auto; padding-top:4px; padding-bottom:8px;}
+@media (max-width:1020px){.bh-nav{display:none;} .bh-burger{display:inline-flex;} .bh .btn{margin-left:auto;}}
+@media (max-width:1020px) and (min-width:901px){.bh-menu{display:block;} .bh-menu[hidden]{display:none;}}
+@media (max-width:420px){.bh .wrap{gap:8px;} .bh-brand{font-size:15px; gap:8px;} .bh .btn-sm{padding:8px 10px; font-size:12.5px; gap:6px;} .bh .btn svg{width:15px; height:15px;} .bh-burger{width:38px; height:38px;}}
+@media (max-width:380px){.bh-brand{font-size:14px; gap:6px;} .bh .btn-sm{padding:8px 9px; font-size:12px;} .bh-brand img,.bh-brand .ic{width:28px !important; height:28px !important;}}
