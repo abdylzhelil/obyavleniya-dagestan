@@ -89,9 +89,16 @@
 <a class="skip-link" href="#main">К содержимому</a>
 <header class="bh"><div class="wrap">
   <a class="bh-brand" href="bot-moderation.html"><img src="assets/images/modexa-logo.jpg" alt="" width="34" height="34"><span>Modexa</span></a>
-  <nav class="bh-nav" aria-label="Разделы страницы"><a href="#features">Возможности</a><a href="#screens">Скриншоты</a><a href="#start">Как начать</a><a href="#tariffs">Тарифы</a><a href="#faq">Вопросы</a></nav>
+  <nav class="bh-nav" aria-label="Разделы страницы"><a href="#features">Возможности</a><a href="#screens">Скриншоты</a><a href="#start">Как начать</a><a href="#tariffs">Тарифы</a><a href="#faq">Вопросы</a><span class="bh-sep" aria-hidden="true"></span><a href="index.html">← На сайт</a><a href="bot-crm.html">Клиент Радар</a></nav>
   <a class="btn btn-primary btn-sm" href="https://t.me/ModexaGuardBot" rel="noopener" target="_blank" data-goal="bot_moderation_open"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.1 2.8 11.5c-1 .4-1 1.3-.2 1.6l4.8 1.5 1.9 5.6c.2.6.4.8.9.8.4 0 .6-.2.9-.5l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8L23.5 5.4c.3-1.3-.5-1.8-1.6-1.3zM8.7 13.6l9.4-5.9c.4-.3.8-.1.5.2l-7.9 7.1-.3 3.4-1.7-4.8z"/></svg>Открыть в Telegram</a>
-</div></header>
+  <button class="bh-burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="bh-menu"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+</div>
+<div class="bh-menu" id="bh-menu" hidden><div class="wrap">
+  <a href="index.html">← На сайт «Объявления Дагестана»</a>
+  <a href="bot-crm.html">Клиент Радар — другой бот</a>
+  <a href="#features">Возможности</a><a href="#screens">Скриншоты</a><a href="#start">Как начать</a><a href="#tariffs">Тарифы</a><a href="#faq">Вопросы</a>
+</div></div>
+</header>
 <main id="main">
 <section class="hero"><div class="wrap">
   <div>
@@ -138,6 +145,7 @@
   <a href="bot-crm.html">Клиент Радар — заявки от клиентов</a>
   <a class="sp" href="privacy.html">Политика конфиденциальности</a>
 </div></footer>
+<script>(function(){var b=document.querySelector('.bh-burger'),m=document.getElementById('bh-menu');if(!b||!m)return;function s(o){m.hidden=!o;b.setAttribute('aria-expanded',o?'true':'false');}b.addEventListener('click',function(){s(m.hidden);});m.addEventListener('click',function(e){if(e.target.closest('a'))s(false);});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){s(false);b.focus();}});})();</script>
 <script src="script.js" defer></script>
 </body>
 </html>
