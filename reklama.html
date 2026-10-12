@@ -179,12 +179,15 @@
   if(!box||!window.fetch)return;
   fetch('data/stats.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():Promise.reject();}).then(function(d){
     if(!d||!d.telegram_members)return;
-    document.getElementById('members').textContent=Number(d.telegram_members).toLocaleString('ru-RU');
+    var el=document.getElementById('members'),n=Number(d.telegram_members);
+    if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){el.textContent=n.toLocaleString('ru-RU');}
+    else{var t0=null;(function step(t){if(t0===null)t0=t;var k=Math.min((t-t0)/1200,1),e=1-Math.pow(1-k,3);el.textContent=Math.round(n*e).toLocaleString('ru-RU');if(k<1)requestAnimationFrame(step);})(performance.now());}
     if(d.updated){var p=d.updated.split('-');if(p.length===3)document.getElementById('members-date').textContent=' (на '+p[2]+'.'+p[1]+'.'+p[0]+')';}
     box.hidden=false;
   }).catch(function(){});
 })();
 </script>
 <script src="script.js" defer></script>
+<script src="page.js" defer></script>
 </body>
 </html>
