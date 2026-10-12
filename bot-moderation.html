@@ -51,34 +51,74 @@
  "mainEntity": [
   {
    "@type": "Question",
-   "name": "Бот бесплатный?",
+   "name": "Это правда бесплатно?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Первая группа работает бесплатно навсегда с базовыми функциями. Дополнительные модули — по подписке или единоразовому выкупу."
+    "text": "Да, одна группа бесплатно навсегда: капча, ссылки, мат, спам о заработке, антифлуд, приветствие. В приветствии будет маленькая подпись бота."
    }
   },
   {
    "@type": "Question",
-   "name": "Нужно ли быть создателем группы?",
+   "name": "Бот будет удалять обычные сообщения?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Да, бот проверяет, что подключает группу её создатель. Остальным админам можно дать доступ как помощникам: менеджер или модератор."
+    "text": "Нет. Каждый фильтр включается отдельно, админов бот не трогает, а надёжных участников можно добавить в белый список командой /trust."
    }
   },
   {
    "@type": "Question",
-   "name": "Как оплатить тариф?",
+   "name": "Нужно ли что-то устанавливать?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Оплата по чеку прямо в боте: «🔑 Лицензия» → «Оплатить тариф». После подтверждения тариф включается сразу."
+    "text": "Нет, всё работает в Telegram: меню бота и веб-панель внутри Telegram."
    }
   },
   {
    "@type": "Question",
-   "name": "Что будет, если подписка закончилась?",
+   "name": "Как оплатить?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "За 3 дня бот напомнит о продлении. После окончания платные функции отключаются, настройки сохраняются."
+    "text": "Переводом по реквизитам в боте. Пришлите скриншот чека, и тариф включится."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Подходит для каналов?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Да: автопостинг и платная реклама работают и в каналах. Модерация нужна в группах и в обсуждениях канала."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Можно дать доступ помощнику?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Да, с ролью «Менеджер» (все настройки) или «Модератор» (только модерация)."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Сколько групп можно подключить?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Бесплатно — 1, по подписке — до 3, навсегда — до 10."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Бот берёт процент с рекламы?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Нет. Рекламодатель платит вам напрямую."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Кто может подключить группу?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Только её создатель. Если бота добавил другой админ, создатель пишет в группе /connect."
    }
   }
  ]
@@ -102,41 +142,42 @@
 <main id="main">
 <section class="hero"><div class="wrap">
   <div>
-    <div class="pill"><i></i>Telegram-бот для админов</div>
-    <h1>Умная модерация <span class="grad">групп и каналов</span></h1>
-    <p class="lead">Modexa защищает группу от спама и рутины: капча, антифлуд, фильтр ссылок и мата, приветствие, автопостинг и приём платной рекламы — в одном боте на русском языке.</p>
-    <div class="hero-ctas"><a class="btn btn-primary" href="https://t.me/ModexaGuardBot" rel="noopener" target="_blank" data-goal="bot_moderation_open"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.1 2.8 11.5c-1 .4-1 1.3-.2 1.6l4.8 1.5 1.9 5.6c.2.6.4.8.9.8.4 0 .6-.2.9-.5l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8L23.5 5.4c.3-1.3-.5-1.8-1.6-1.3zM8.7 13.6l9.4-5.9c.4-.3.8-.1.5.2l-7.9 7.1-.3 3.4-1.7-4.8z"/></svg>Открыть @ModexaGuardBot</a><a class="btn btn-line" href="#features">Что умеет бот</a></div>
+    <div class="pill"><i></i>Telegram-бот для админов групп и каналов</div>
+    <h1>Бот, который сам чистит группу <span class="grad">от спама</span> и помогает зарабатывать на рекламе</h1>
+    <p class="lead">Капча, антиспам, приветствие, автопостинг и приём рекламы с оплатой по чеку. На русском. 1 группа — бесплатно навсегда.</p>
+    <div class="hero-ctas"><a class="btn btn-primary" href="https://t.me/ModexaGuardBot" rel="noopener" target="_blank" data-goal="bot_moderation_open"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.1 2.8 11.5c-1 .4-1 1.3-.2 1.6l4.8 1.5 1.9 5.6c.2.6.4.8.9.8.4 0 .6-.2.9-.5l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8L23.5 5.4c.3-1.3-.5-1.8-1.6-1.3zM8.7 13.6l9.4-5.9c.4-.3.8-.1.5.2l-7.9 7.1-.3 3.4-1.7-4.8z"/></svg>Подключить бесплатно</a><a class="btn btn-line" href="#features">Что умеет бот</a></div>
     <p class="hero-note"><b>1 группа — бесплатно навсегда.</b> Подключение занимает пару минут.</p>
   </div>
   <div class="hero-visual"><div class="phone"><img src="assets/images/modexa-about.jpg" alt="Бот Modexa в Telegram: описание и возможности" width="560" height="862"></div></div>
 </div></section>
 <section id="features"><div class="wrap">
   <div class="sec-head"><div class="eyebrow">Возможности</div><h2>Что умеет бот</h2></div>
-  <div class="grid g4"><div class="card"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><h3>Антиспам</h3><p>Капча для новичков, ссылки, мат, спам о заработке, флуд, дубли, ночной режим и общая база спамеров.</p></div><div class="card"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><h3>Приветствие и правила</h3><p>Бот встречает новичков и напоминает правила группы.</p></div><div class="card"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><h3>Автопостинг</h3><p>Публикации по расписанию — без ручной работы.</p></div><div class="card"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></span><h3>Платная реклама</h3><p>Заявка, чек, публикация. Без комиссии: деньги получает владелец группы.</p></div><div class="card"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="7.5" cy="15.5" r="4.5"/><path d="M21 2l-9.6 9.6M15.5 7.5l3 3L22 7l-3-3"/></svg></span><h3>Доступ за приглашения</h3><p>Открывайте группу за приглашения друзей или по подписке.</p></div><div class="card"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></span><h3>Статистика и веб-панель</h3><p>Отчёты по группе и удобные настройки в Telegram Mini App.</p></div><div class="card"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg></span><h3>Помощники</h3><p>Дайте доступ менеджеру или модератору с нужными правами.</p></div><div class="card"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="4"/><path d="M12 8v13M19 12v9H5v-9M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg></span><h3>Рассылки и рефералы</h3><p>Бонусные дни за приглашённых владельцев групп.</p></div></div>
+  <div class="grid g4"><div class="card"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><h3>Защита от спама</h3><p>Капча для новичков, удаление ссылок, мат-фильтр, антифлуд. Спам о заработке («подработка», «ищем курьеров», казино) бот ловит сам по признакам, без списка слов.</p></div><div class="card"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></span><h3>Дубли и лимит объявлений</h3><p>Одно объявление повторно не пройдёт, и не больше N объявлений в сутки от человека. Полезно для барахолок. Платные тарифы.</p></div><div class="card"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg></span><h3>Новички и защита от наплыва</h3><p>Первые сутки новичку нельзя ссылки, фото и пересылки. Если за минуту вступает толпа ботов, новички временно не могут писать, а вам приходит сообщение. Платные тарифы.</p></div><div class="card"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 3H2l8 9.5V19l4 2v-8.5L22 3z"/></svg></span><h3>Общая база спамеров</h3><p>Кого бот забанил за спам в одной группе, того не пустят и в другие группы с этой опцией. Платные тарифы.</p></div><div class="card"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><h3>Приветствие и правила</h3><p>Приветствие новичку с картинкой и кнопками-ссылками, правила по команде /rules, закреплённый пост.</p></div><div class="card"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><h3>Автопостинг</h3><p>Посты по расписанию: текст, фото, видео, альбомы, кнопки. Закреп после публикации и удаление через X часов. Платные тарифы.</p></div><div class="card"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></span><h3>Платная реклама без комиссии</h3><p>Рекламодатель присылает пост и чек, вы нажимаете «Оплата получена» — бот публикует, закрепляет и сам убирает пост. Деньги идут напрямую вам. Платные тарифы.</p></div><div class="card"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="7.5" cy="15.5" r="4.5"/><path d="M21 2l-9.6 9.6M15.5 7.5l3 3L22 7l-3-3"/></svg></span><h3>Доступ за приглашения</h3><p>Писать в группе можно только после приглашения друзей или подписки на ваш канал. Платные тарифы.</p></div><div class="card"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></svg></span><h3>Жалобы, наказания и журнал</h3><p>Участник отвечает /report, вам приходит жалоба с кнопками «Удалить» и «Забанить». Наказания: удалить, предупреждение, мут, кик, бан или «лестница». Журнал с кнопкой «Снять».</p></div><div class="card"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></span><h3>Быстрая настройка</h3><p>Одна кнопка: «Барахолка», «Обычный чат», «Строгий режим» или «Обсуждение канала». Можно перенести настройки из группы в группу.</p></div><div class="card"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></span><h3>Статистика и веб-панель</h3><p>Участники, рост, сообщения, нарушения, реклама. Отчёт владельцу по понедельникам и веб-панель прямо в Telegram (Mini App).</p></div><div class="card"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg></span><h3>Помощники</h3><p>Доступ к настройкам другому человеку: «Менеджер» (все настройки) или «Модератор» (только модерация).</p></div></div>
 </div></section>
 <section id="screens"><div class="wrap">
 <div class="sec-head"><div class="eyebrow">Скриншоты</div><h2>Как выглядит бот</h2></div>
 <div class="shots"><figure class="shot"><div class="phone"><img src="assets/images/modexa-about.jpg" alt="Скриншот бота Modexa: знакомство с ботом" width="560" height="862" loading="lazy"></div><figcaption><strong>Знакомство с ботом</strong>Описание и кнопка «Старт» — бот сразу объясняет, что умеет.</figcaption></figure><figure class="shot"><div class="phone"><img src="assets/images/modexa-groups.jpg" alt="Скриншот бота Modexa: мои группы и каналы" width="560" height="862" loading="lazy"></div><figcaption><strong>Мои группы и каналы</strong>Все подключённые группы в одном списке: ✅ — лицензия активна.</figcaption></figure><figure class="shot"><div class="phone"><img src="assets/images/modexa-stats.jpg" alt="Скриншот бота Modexa: статистика группы" width="560" height="862" loading="lazy"></div><figcaption><strong>Статистика группы</strong>Участники, вступившие и вышедшие, сообщения и нарушения по дням.</figcaption></figure><figure class="shot"><div class="phone"><img src="assets/images/modexa-ads.jpg" alt="Скриншот бота Modexa: приём рекламы" width="560" height="554" loading="lazy"></div><figcaption><strong>Приём рекламы</strong>Цена, условия, заявки и закрепление рекламы — без комиссии.</figcaption></figure></div></div></section>
+<section><div class="wrap"><div class="sec-head"><div class="eyebrow">Преимущества</div><h2>Почему Modexa</h2></div><div class="grid g4"><div class="card"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></span><h3>Всё в одном боте</h3><p>Модерация, приветствие, автопостинг, реклама и статистика — не нужно подключать пять разных ботов.</p></div><div class="card"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="7.5" cy="15.5" r="4.5"/><path d="M21 2l-9.6 9.6M15.5 7.5l3 3L22 7l-3-3"/></svg></span><h3>Тариф на несколько групп</h3><p>250 ₽ в месяц за до 3 групп или 4900 ₽ один раз за до 10 — цена не за каждый чат отдельно.</p></div><div class="card"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></span><h3>Реклама без комиссии</h3><p>Рекламодатель платит вам напрямую, бот процент не берёт.</p></div><div class="card"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><h3>На русском и надёжно</h3><p>Бот работает на своём сервере, база копируется каждый день, посты по расписанию не теряются при перезапуске.</p></div></div></div></section>
 <section id="start"><div class="wrap">
-  <div class="sec-head"><div class="eyebrow">Как начать</div><h2>Четыре шага до результата</h2></div>
-  <ol class="steps"><li class="step"><p>Откройте <a href="https://t.me/ModexaGuardBot" rel="noopener" target="_blank">@ModexaGuardBot</a> и нажмите «Старт».</p></li><li class="step"><p>Нажмите «➕ Группа» или «➕ Канал» и выберите свой чат.</p></li><li class="step"><p>Подтвердите права администратора — бот проверит, что вы создатель чата.</p></li><li class="step"><p>Откройте «📋 Мои группы» и включите нужные модули.</p></li></ol>
+  <div class="sec-head"><div class="eyebrow">Как начать</div><h2>Три шага до защиты группы</h2></div>
+  <ol class="steps"><li class="step"><p>Откройте <a href="https://t.me/ModexaGuardBot" rel="noopener" target="_blank">@ModexaGuardBot</a> и нажмите «Старт».</p></li><li class="step"><p>Нажмите «➕ Группа», выберите свою группу и дайте боту права администратора: удаление сообщений и блокировка участников.</p></li><li class="step"><p>Готово: группа сразу получает бесплатный тариф. Включите защиту одной кнопкой «⚡ Быстрая настройка».</p></li></ol>
 </div></section>
 <section><div class="wrap">
   <div class="sec-head"><div class="eyebrow">Для кого</div><h2>Кому подойдёт</h2></div>
-  <div class="grid g3"><div class="card"><h3>Админам групп и каналов</h3><p>Нужна защита от спама и рутинная модерация без круглосуточного дежурства.</p></div><div class="card"><h3>Владельцам площадок объявлений</h3><p>Принимайте платную рекламу по схеме «заявка → чек → публикация» без комиссии.</p></div><div class="card"><h3>Тем, кто растит сообщество</h3><p>Автопостинг по расписанию, приветствие новичков и статистика в одном месте.</p></div></div>
+  <div class="grid g3"><div class="card"><h3>Барахолки и доски объявлений</h3><p>Дубли, лимит объявлений, спам о заработке и платная реклама без комиссии.</p></div><div class="card"><h3>Городские и районные чаты</h3><p>Капча для новичков, антиспам, приветствие и правила без круглосуточного дежурства.</p></div><div class="card"><h3>Каналы и сообщества</h3><p>Автопостинг, обсуждения канала, доступ за приглашения и статистика роста.</p></div></div>
 </div></section>
 <section id="tariffs"><div class="wrap">
   <div class="sec-head"><div class="eyebrow">Тарифы</div><h2>Сколько это стоит</h2></div>
-  <div class="tariffs "><div class="tariff"><h3>Бесплатный</h3><div class="price">0 ₽<small></small></div><p>Первая группа навсегда: капча, антифлуд, ссылки, мат-фильтр, приветствие.</p></div><div class="tariff"><h3>Пробный период</h3><div class="price">7 дней<small></small></div><p>Все основные модули на одной группе. Один раз на аккаунт.</p></div><div class="tariff pop"><span class="badge">Популярный</span><h3>Подписка</h3><div class="price">250 ₽<small> / месяц</small></div><p>До 3 групп и каналов. Продление в боте.</p></div><div class="tariff"><h3>Выкуп</h3><div class="price">4900 ₽<small> один раз</small></div><p>Навсегда, до 10 групп и каналов.</p></div></div>
-  <p class="note">Актуальные цены и оплата — в разделе «🔑 Лицензия» внутри бота.</p>
+  <div class="tariffs "><div class="tariff"><h3>Бесплатный</h3><div class="price">0 ₽<small> навсегда</small></div><p>1 группа: капча, ссылки, антифлуд, мат, спам о заработке, приветствие (с подписью бота).</p></div><div class="tariff"><h3>Пробный</h3><div class="price">7 дней<small></small></div><p>1 группа, один раз: вся модерация, приветствие и статистика.</p></div><div class="tariff pop"><span class="badge">Популярный</span><h3>Подписка</h3><div class="price">250 ₽<small> / месяц</small></div><p>До 3 групп и каналов. Все функции, без подписи бота.</p></div><div class="tariff"><h3>Навсегда</h3><div class="price">4900 ₽<small> один раз</small></div><p>До 10 групп и каналов. Все функции, без ежемесячной оплаты.</p></div></div>
+  <p class="note">Автопостинг, платная реклама, доступ за приглашения, общая база спамеров и фильтры «стоп-слова», «пересылки», «новички», «ночной режим», «наплыв», «жалобы», «дубли» и «лимит объявлений» работают только на платных тарифах. Оплата — переводом по реквизитам прямо в боте: пришлите скриншот чека, тариф включится после проверки. Промокоды вводятся в боте. За приглашённого друга, который купит тариф, вы получаете +7 дней подписки.</p>
 </div></section>
 <section id="faq"><div class="wrap">
   <div class="sec-head"><div class="eyebrow">Вопросы</div><h2>Частые вопросы</h2></div>
-  <div class="faq"><details><summary>Бот бесплатный?</summary><p>Первая группа работает бесплатно навсегда с базовыми функциями. Дополнительные модули — по подписке или единоразовому выкупу.</p></details><details><summary>Нужно ли быть создателем группы?</summary><p>Да, бот проверяет, что подключает группу её создатель. Остальным админам можно дать доступ как помощникам: менеджер или модератор.</p></details><details><summary>Как оплатить тариф?</summary><p>Оплата по чеку прямо в боте: «🔑 Лицензия» → «Оплатить тариф». После подтверждения тариф включается сразу.</p></details><details><summary>Что будет, если подписка закончилась?</summary><p>За 3 дня бот напомнит о продлении. После окончания платные функции отключаются, настройки сохраняются.</p></details></div>
+  <div class="faq"><details><summary>Это правда бесплатно?</summary><p>Да, одна группа бесплатно навсегда: капча, ссылки, мат, спам о заработке, антифлуд, приветствие. В приветствии будет маленькая подпись бота.</p></details><details><summary>Бот будет удалять обычные сообщения?</summary><p>Нет. Каждый фильтр включается отдельно, админов бот не трогает, а надёжных участников можно добавить в белый список командой /trust.</p></details><details><summary>Нужно ли что-то устанавливать?</summary><p>Нет, всё работает в Telegram: меню бота и веб-панель внутри Telegram.</p></details><details><summary>Как оплатить?</summary><p>Переводом по реквизитам в боте. Пришлите скриншот чека, и тариф включится.</p></details><details><summary>Подходит для каналов?</summary><p>Да: автопостинг и платная реклама работают и в каналах. Модерация нужна в группах и в обсуждениях канала.</p></details><details><summary>Можно дать доступ помощнику?</summary><p>Да, с ролью «Менеджер» (все настройки) или «Модератор» (только модерация).</p></details><details><summary>Сколько групп можно подключить?</summary><p>Бесплатно — 1, по подписке — до 3, навсегда — до 10.</p></details><details><summary>Бот берёт процент с рекламы?</summary><p>Нет. Рекламодатель платит вам напрямую.</p></details><details><summary>Кто может подключить группу?</summary><p>Только её создатель. Если бота добавил другой админ, создатель пишет в группе /connect.</p></details></div>
 </div></section>
 <div class="wrap"><div class="final">
   <h2>Подключите группу за пару минут</h2><p>Первая группа — бесплатно навсегда. Без карты и сложной настройки.</p>
-  <div class="hero-ctas"><a class="btn btn-primary" href="https://t.me/ModexaGuardBot" rel="noopener" target="_blank" data-goal="bot_moderation_open"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.1 2.8 11.5c-1 .4-1 1.3-.2 1.6l4.8 1.5 1.9 5.6c.2.6.4.8.9.8.4 0 .6-.2.9-.5l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8L23.5 5.4c.3-1.3-.5-1.8-1.6-1.3zM8.7 13.6l9.4-5.9c.4-.3.8-.1.5.2l-7.9 7.1-.3 3.4-1.7-4.8z"/></svg>Открыть @ModexaGuardBot</a><a class="btn btn-line" href="bot-crm.html">Клиент Радар — заявки от клиентов</a></div>
+  <div class="hero-ctas"><a class="btn btn-primary" href="https://t.me/ModexaGuardBot" rel="noopener" target="_blank" data-goal="bot_moderation_open"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.1 2.8 11.5c-1 .4-1 1.3-.2 1.6l4.8 1.5 1.9 5.6c.2.6.4.8.9.8.4 0 .6-.2.9-.5l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8L23.5 5.4c.3-1.3-.5-1.8-1.6-1.3zM8.7 13.6l9.4-5.9c.4-.3.8-.1.5.2l-7.9 7.1-.3 3.4-1.7-4.8z"/></svg>Подключить бесплатно</a><a class="btn btn-line" href="bot-crm.html">Клиент Радар — заявки от клиентов</a></div>
 </div></div>
 </main>
 <footer class="bf"><div class="wrap">
