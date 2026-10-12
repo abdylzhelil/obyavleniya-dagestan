@@ -780,3 +780,16 @@ header > *{pointer-events:auto;}
 .crumbs a{color:var(--mint);}
 .audience-grid .rules-list li{padding:10px 0; font-size:14.5px;}
 @media (max-width:900px){.audience-grid[style]{grid-template-columns:1fr !important;}}
+
+
+/* Скриншоты бота и логотип на странице бота */
+.bot-logo{width:96px; height:96px; border-radius:50%; margin:0 auto 14px; display:block; box-shadow:0 8px 24px -8px rgba(0,0,0,.6); border:2px solid var(--glass-border);}
+.shots{display:grid; grid-template-columns:repeat(4,1fr); gap:18px; align-items:start;}
+.shot{margin:0;}
+.shot img{width:100%; height:auto; border-radius:20px; border:1px solid var(--glass-border); box-shadow:var(--shadow-md); background:var(--bg-deep);}
+.shot figcaption{margin-top:10px; font-size:13.5px; color:var(--ink-soft);}
+.shot figcaption strong{display:block; color:var(--ink); font-size:14.5px; margin-bottom:2px;}
+@media (max-width:900px){
+  .shots{display:flex; overflow-x:auto; scroll-snap-type:x mandatory; gap:14px; margin:0 -20px; padding:4px 20px 14px; -webkit-overflow-scrolling:touch;}
+  .shot{flex:0 0 70%; max-width:300px; scroll-snap-align:center;}
+}
