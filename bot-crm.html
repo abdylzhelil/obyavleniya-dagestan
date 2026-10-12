@@ -22,8 +22,8 @@
 <link rel="canonical" href="https://obyavleniya-dagestan.ru/bot-crm.html">
 <meta property="og:url" content="https://obyavleniya-dagestan.ru/bot-crm.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:image" content="https://obyavleniya-dagestan.ru/assets/images/og-image-v2.jpg">
-<meta name="twitter:image" content="https://obyavleniya-dagestan.ru/assets/images/og-image-v2.jpg">
+<meta property="og:image" content="https://obyavleniya-dagestan.ru/assets/images/og-bot-crm.jpg">
+<meta name="twitter:image" content="https://obyavleniya-dagestan.ru/assets/images/og-bot-crm.jpg">
 <script>document.documentElement.classList.add("js");</script>
 <script>try{window.cookieDeclined=window.localStorage.getItem("cookie-consent")==="no";}catch(e){}</script>
 <!-- Яндекс Метрика -->
@@ -44,6 +44,46 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
 <link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Откуда берутся заявки?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Из открытых Telegram-групп и каналов, которые читает бот. В закрытые переписки он не заходит и в группах ничего не пишет."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Бот собирает данные людей?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Нет. Бот работает только с открытыми группами и публичными сообщениями, не собирает номера и личные данные."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Как выбрать, какие заявки получать?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "При старте вы выбираете ниши и город. Слова, минус-слова и режим тишины можно настроить в боте."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Можно ли передать заявку коллеге?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Да, кнопка «📨 Коллеге» на карточке заявки отправляет её другому пользователю бота."
+   }
+  }
+ ]
+}
+</script>
 </head>
 <body>
 
@@ -99,6 +139,28 @@
 
   <section class="promo-section">
     <div class="wrap">
+      <div class="section-head"><div class="eyebrow">Для кого</div><h2>Кому подойдёт</h2></div>
+      <div class="audience-grid">
+        <div class="why-card"><h3>Мастера и специалисты</h3><p>Электрики, мастера по ремонту, репетиторы, фотографы — те, кому нужны новые клиенты.</p></div>
+        <div class="why-card"><h3>Агентства и студии</h3><p>Недвижимость, сайты, реклама, юристы: ловите запросы в момент, когда человек ищет исполнителя.</p></div>
+        <div class="why-card"><h3>Магазины и небольшой бизнес</h3><p>Находите покупателей в городских группах и ведите их до оплаты в одной CRM.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="promo-section">
+    <div class="wrap">
+      <div class="section-head"><div class="eyebrow">Тарифы</div><h2>Сколько это стоит</h2></div>
+      <div class="tariff-grid">
+        <div class="tariff-card"><h3>Бесплатный</h3><div class="tariff-price">0 ₽<small></small></div><p>До 5 заявок в день с небольшой задержкой. Своя CRM, ниши и город.</p></div>
+        <div class="tariff-card is-popular"><span class="tariff-badge">Популярный</span><h3>Полный 💎</h3><div class="tariff-price">Дни за бонусы<small></small></div><p>Заявки сразу и без дневного лимита. Дни — за приглашения и свои группы или покупкой в боте.</p></div>
+      </div>
+      <p style="color:var(--ink-soft);font-size:14px;margin-top:16px">Условия могут меняться — актуальная информация в боте.</p>
+    </div>
+  </section>
+
+  <section class="promo-section">
+    <div class="wrap">
       <div class="promo-card">
         <div class="promo-row">
           <h3>Как начать</h3>
@@ -109,17 +171,22 @@
           <li><span>Ведите клиентов в CRM: заметки, этапы, напоминания.</span></li>
           </ol>
         </div>
-        <div class="promo-row">
-          <h3>Тарифы</h3>
-          <ol class="rules-list">
-          <li><span><strong>Бесплатный</strong> — до 5 заявок в день, с небольшой задержкой.</span></li>
-          <li><span><strong>Полный 💎</strong> — заявки сразу и без дневного лимита. Дни можно получить за приглашения и за свои группы в каталоге или оплатить в боте.</span></li>
-          </ol>
-        </div>
         <div class="promo-row is-last">
           <a class="btn btn-tg btn-block" href="https://t.me/klientradarbot" rel="noopener" target="_blank" data-goal="bot_crm_open">Начать получать заявки</a>
           <a class="btn btn-ghost btn-block" href="bot-moderation.html">Бот модерации для вашей группы</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="promo-section">
+    <div class="wrap">
+      <div class="section-head"><div class="eyebrow">Вопросы</div><h2>Частые вопросы</h2></div>
+      <div class="faq bot-faq">
+        <details><summary>Откуда берутся заявки?</summary><p>Из открытых Telegram-групп и каналов, которые читает бот. В закрытые переписки он не заходит и в группах ничего не пишет.</p></details>
+        <details><summary>Бот собирает данные людей?</summary><p>Нет. Бот работает только с открытыми группами и публичными сообщениями, не собирает номера и личные данные.</p></details>
+        <details><summary>Как выбрать, какие заявки получать?</summary><p>При старте вы выбираете ниши и город. Слова, минус-слова и режим тишины можно настроить в боте.</p></details>
+        <details><summary>Можно ли передать заявку коллеге?</summary><p>Да, кнопка «📨 Коллеге» на карточке заявки отправляет её другому пользователю бота.</p></details>
       </div>
     </div>
   </section>
