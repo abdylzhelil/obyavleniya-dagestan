@@ -793,3 +793,28 @@ header > *{pointer-events:auto;}
   .shots{display:flex; overflow-x:auto; scroll-snap-type:x mandatory; gap:14px; margin:0 -20px; padding:4px 20px 14px; -webkit-overflow-scrolling:touch;}
   .shot{flex:0 0 70%; max-width:300px; scroll-snap-align:center;}
 }
+
+
+/* Карточки ботов на главной: в тон страницам ботов (тёмный неон) */
+.bot-card{
+  --acc:#27E0A8; --acc2:#12B886; --glow:rgba(39,224,168,.32); --on:#03140E;
+  position:relative; overflow:hidden; gap:14px; padding:26px; border-radius:24px;
+  background:linear-gradient(160deg,#0B1D17,#050F0C); border:1px solid rgba(255,255,255,.1);
+  box-shadow:0 24px 50px -24px rgba(0,0,0,.8);
+  transition:border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.bot-card::before{content:""; position:absolute; width:260px; height:260px; right:-90px; top:-110px; border-radius:50%; background:radial-gradient(closest-side,var(--glow),transparent); pointer-events:none;}
+.bot-card>*{position:relative;}
+.bot-card.bot-radar{--acc:#4CC3FF; --acc2:#3B82F6; --glow:rgba(76,195,255,.32); --on:#031321;}
+@media (hover:hover){.bot-card:hover{border-color:var(--acc); transform:translateY(-3px); box-shadow:0 28px 56px -22px var(--glow);}}
+.bot-head{display:flex; align-items:center; gap:14px;}
+.bot-head h3{font-size:21px; margin:0;}
+.bot-sub{display:block; font-size:13.5px; color:var(--acc); font-weight:700;}
+.bot-ava{width:56px; height:56px; border-radius:50%; flex:none; border:1px solid rgba(255,255,255,.14); box-shadow:0 0 24px -6px var(--glow);}
+.bot-ava-radar{display:grid; place-items:center; background:linear-gradient(135deg,#4CC3FF,#3B82F6); color:#031321;}
+.bot-tags{display:flex; flex-wrap:wrap; gap:8px; margin:0; padding:0; list-style:none;}
+.bot-tags li{font-size:12.5px; font-weight:700; color:var(--acc); padding:4px 11px; border-radius:999px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.04);}
+.btn-bot{background:linear-gradient(135deg,var(--acc),var(--acc2)); color:var(--on); box-shadow:0 10px 26px -10px var(--glow);}
+.bot-card .btn-ghost{border:1px solid rgba(255,255,255,.18); color:#F3FBF7; gap:8px;}
+.bot-card .btn-ghost svg{width:16px; height:16px;}
+.bot-card .btn-ghost:hover{border-color:var(--acc); color:var(--acc);}
