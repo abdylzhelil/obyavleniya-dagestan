@@ -767,3 +767,16 @@ header > *{pointer-events:auto;}
   .cookie-actions .btn{padding:8px 12px; font-size:13px;}
   .with-cookie-notice{padding-bottom:120px;}
 }
+
+
+/* Мобильное меню: пунктов много — список прокручивается, если не помещается на экране */
+@media (max-width:860px){
+  .nav-links.open{max-height:calc(100vh - 110px); max-height:calc(100dvh - 110px); overflow-y:auto; overscroll-behavior:contain; -webkit-overflow-scrolling:touch;}
+  .nav-links a{padding:14px 20px;}
+}
+
+/* Страницы категорий */
+.crumbs{font-size:13.5px; color:var(--ink-soft); margin-bottom:14px;}
+.crumbs a{color:var(--mint);}
+.audience-grid .rules-list li{padding:10px 0; font-size:14.5px;}
+@media (max-width:900px){.audience-grid[style]{grid-template-columns:1fr !important;}}
