@@ -43,7 +43,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="bot.css">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -85,138 +85,61 @@
 }
 </script>
 </head>
-<body>
-
+<body class="theme-radar">
 <a class="skip-link" href="#main">К содержимому</a>
-
-<header>
-  <div class="wrap topbar">
-    <a class="brand-mark" href="index.html">
-      <span class="logo-badge"><img src="assets/images/logo.jpg" alt="Логотип «Объявления Дагестана»" width="34" height="34"></span>
-      <span class="brand">ОБЪЯВЛЕНИЯ ДАГЕСТАНА</span>
-    </a>
-    <nav class="nav-links" id="site-nav" aria-label="Разделы сайта">
-      <a href="index.html">Главная</a>
-      <a href="index.html#groups">Наши группы</a>
-      <a href="index.html#rules">Правила</a>
-      <a href="index.html#advertising">Реклама</a>
-      <a href="bot-moderation.html">Modexa</a>
-      <a href="bot-crm.html">Клиент Радар</a>
-      <a href="#contact">Контакты</a>
-    </nav>
-    <button class="menu-toggle" type="button" aria-label="Меню" aria-expanded="false" aria-controls="site-nav"><svg aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-menu"></use></svg></button>
-  </div>
-  <div class="flag-stripe" aria-hidden="true"><span class="g1"></span><span class="g2"></span><span class="g3"></span></div>
-</header>
-
+<header class="bh"><div class="wrap">
+  <a class="bh-brand" href="bot-crm.html"><span class="ic" style="width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#4CC3FF,#3B82F6);color:#031321"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 12l6-6"/></svg></span><span>Клиент Радар</span></a>
+  <nav class="bh-nav" aria-label="Разделы страницы"><a href="#features">Возможности</a><a href="#start">Как начать</a><a href="#tariffs">Тарифы</a><a href="#faq">Вопросы</a></nav>
+  <a class="btn btn-primary btn-sm" href="https://t.me/klientradarbot" rel="noopener" target="_blank" data-goal="bot_crm_open"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.1 2.8 11.5c-1 .4-1 1.3-.2 1.6l4.8 1.5 1.9 5.6c.2.6.4.8.9.8.4 0 .6-.2.9-.5l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8L23.5 5.4c.3-1.3-.5-1.8-1.6-1.3zM8.7 13.6l9.4-5.9c.4-.3.8-.1.5.2l-7.9 7.1-.3 3.4-1.7-4.8z"/></svg>Открыть в Telegram</a>
+</div></header>
 <main id="main">
-  <section class="hero" style="padding-bottom:40px">
-    <div class="wrap">
-      <div class="eyebrow">Telegram-бот</div>
-      <h1>Клиент Радар — заявки от клиентов из Telegram</h1>
-      <p class="lead">Находит людей, которые ищут ваши услуги в открытых Telegram-группах, присылает заявки и помогает вести клиентов — от первого сообщения до оплаты.</p>
-      <div class="hero-ctas">
-        <a class="btn btn-tg" href="https://t.me/klientradarbot" rel="noopener" target="_blank" data-goal="bot_crm_open"><span class="btn-ic"><svg aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-telegram"></use></svg></span>Открыть @klientradarbot</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="promo-section">
-    <div class="wrap">
-      <div class="section-head"><div class="eyebrow">Возможности</div><h2>Что умеет бот</h2></div>
-      <div class="why-grid">
-      <div class="why-card"><h3>Заявки по вашим нишам</h3><p>Выберите ниши и город — бот пришлёт сообщения людей, которым нужна ваша услуга или товар.</p></div>
-      <div class="why-card"><h3>Только открытые группы</h3><p>Бот читает открытые группы и каналы и ничего в них не пишет. Закрытые переписки не затрагиваются.</p></div>
-      <div class="why-card"><h3>Защита от спама</h3><p>Оценка сообщений, общий чёрный список и антидубли — вы получаете меньше мусора.</p></div>
-      <div class="why-card"><h3>Своя CRM</h3><p>Карточки клиентов, этапы сделки, заметки, бюджет, напоминания и поиск.</p></div>
-      <div class="why-card"><h3>Быстрые действия</h3><p>«Ответить», «В работу», «Отложить», «Отказ» — прямо под заявкой.</p></div>
-      <div class="why-card"><h3>Каталог групп</h3><p>Добавьте свою группу в каталог и получайте бонусные дни за заявки из неё.</p></div>
-      <div class="why-card"><h3>Приглашения</h3><p>Позовите коллег: бонусные дни получают оба, заявки можно передавать коллеге.</p></div>
-      <div class="why-card"><h3>Статистика</h3><p>Отчёты по заявкам и работе, рейтинг и уровни активных пользователей.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="promo-section">
-    <div class="wrap">
-      <div class="section-head"><div class="eyebrow">Для кого</div><h2>Кому подойдёт</h2></div>
-      <div class="audience-grid">
-        <div class="why-card"><h3>Мастера и специалисты</h3><p>Электрики, мастера по ремонту, репетиторы, фотографы — те, кому нужны новые клиенты.</p></div>
-        <div class="why-card"><h3>Агентства и студии</h3><p>Недвижимость, сайты, реклама, юристы: ловите запросы в момент, когда человек ищет исполнителя.</p></div>
-        <div class="why-card"><h3>Магазины и небольшой бизнес</h3><p>Находите покупателей в городских группах и ведите их до оплаты в одной CRM.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="promo-section">
-    <div class="wrap">
-      <div class="section-head"><div class="eyebrow">Тарифы</div><h2>Сколько это стоит</h2></div>
-      <div class="tariff-grid">
-        <div class="tariff-card"><h3>Бесплатный</h3><div class="tariff-price">0 ₽<small></small></div><p>До 5 заявок в день с небольшой задержкой. Своя CRM, ниши и город.</p></div>
-        <div class="tariff-card is-popular"><span class="tariff-badge">Популярный</span><h3>Полный 💎</h3><div class="tariff-price">Дни за бонусы<small></small></div><p>Заявки сразу и без дневного лимита. Дни — за приглашения и свои группы или покупкой в боте.</p></div>
-      </div>
-      <p style="color:var(--ink-soft);font-size:14px;margin-top:16px">Условия могут меняться — актуальная информация в боте.</p>
-    </div>
-  </section>
-
-  <section class="promo-section">
-    <div class="wrap">
-      <div class="promo-card">
-        <div class="promo-row">
-          <h3>Как начать</h3>
-          <ol class="rules-list">
-          <li><span>Откройте бота и нажмите «Старт».</span></li>
-          <li><span>Выберите ниши, затем город.</span></li>
-          <li><span>Сразу получите заявки за последние сутки.</span></li>
-          <li><span>Ведите клиентов в CRM: заметки, этапы, напоминания.</span></li>
-          </ol>
-        </div>
-        <div class="promo-row is-last">
-          <a class="btn btn-tg btn-block" href="https://t.me/klientradarbot" rel="noopener" target="_blank" data-goal="bot_crm_open">Начать получать заявки</a>
-          <a class="btn btn-ghost btn-block" href="bot-moderation.html">Modexa — модерация для вашей группы</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="promo-section">
-    <div class="wrap">
-      <div class="section-head"><div class="eyebrow">Вопросы</div><h2>Частые вопросы</h2></div>
-      <div class="faq bot-faq">
-        <details><summary>Откуда берутся заявки?</summary><p>Из открытых Telegram-групп и каналов, которые читает бот. В закрытые переписки он не заходит и в группах ничего не пишет.</p></details>
-        <details><summary>Бот собирает данные людей?</summary><p>Нет. Бот работает только с открытыми группами и публичными сообщениями, не собирает номера и личные данные.</p></details>
-        <details><summary>Как выбрать, какие заявки получать?</summary><p>При старте вы выбираете ниши и город. Слова, минус-слова и режим тишины можно настроить в боте.</p></details>
-        <details><summary>Можно ли передать заявку коллеге?</summary><p>Да, кнопка «📨 Коллеге» на карточке заявки отправляет её другому пользователю бота.</p></details>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer id="contact">
-  <div class="wrap">
-    <div class="footer-grid">
-      <div>
-        <div class="brand-mark"><span class="logo-badge"><img src="assets/images/logo.jpg" alt="" width="34" height="34"></span><span class="brand">ОБЪЯВЛЕНИЯ ДАГЕСТАНА</span></div>
-        <div class="footer-tag">Покупка • Продажа • Услуги • Работа</div>
-      </div>
-      <nav class="footer-links" aria-label="Ссылки в подвале">
-        <a href="index.html">Главная</a>
-        <a href="index.html#groups">Наши группы</a>
-        <a href="index.html#rules">Правила</a>
-        <a href="index.html#advertising">Реклама</a>
-        <a href="bot-moderation.html">Modexa</a>
-        <a href="bot-crm.html">Клиент Радар</a>
-        <a href="#contact" data-contact="telegram" data-goal="ad_contact_telegram">Контакты</a>
-      </nav>
-      <div class="footer-ctas">
-        <a class="btn btn-wa btn-sm" href="index.html#groups" data-join="whatsapp" data-goal="join_whatsapp">WhatsApp</a>
-        <a class="btn btn-tg btn-sm" href="index.html#groups" data-join="telegram" data-goal="join_telegram">Telegram</a>
-      </div>
-    </div>
-    <div class="footer-bottom">© ОБЪЯВЛЕНИЯ ДАГЕСТАНА · <a href="privacy.html">Политика конфиденциальности</a></div>
+<section class="hero"><div class="wrap">
+  <div>
+    <div class="pill"><i></i>Telegram-бот для продаж</div>
+    <h1>Находит <span class="grad">заявки от клиентов</span> в Telegram</h1>
+    <p class="lead">Клиент Радар ищет людей, которым нужна ваша услуга, в открытых Telegram-группах, присылает заявки и помогает вести клиентов — от первого сообщения до оплаты.</p>
+    <div class="hero-ctas"><a class="btn btn-primary" href="https://t.me/klientradarbot" rel="noopener" target="_blank" data-goal="bot_crm_open"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.1 2.8 11.5c-1 .4-1 1.3-.2 1.6l4.8 1.5 1.9 5.6c.2.6.4.8.9.8.4 0 .6-.2.9-.5l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8L23.5 5.4c.3-1.3-.5-1.8-1.6-1.3zM8.7 13.6l9.4-5.9c.4-.3.8-.1.5.2l-7.9 7.1-.3 3.4-1.7-4.8z"/></svg>Открыть @klientradarbot</a><a class="btn btn-line" href="#features">Что умеет бот</a></div>
+    <p class="hero-note"><b>Бесплатный тариф:</b> до 5 заявок в день. Выберите ниши и город — и сразу получите заявки за сутки.</p>
   </div>
-</footer>
+  <div class="hero-visual"><div class="radar"><svg viewBox="0 0 200 200" role="img" aria-label="Радар заявок"><defs><linearGradient id="sw" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#4CC3FF" stop-opacity="0"/><stop offset="1" stop-color="#4CC3FF" stop-opacity=".55"/></linearGradient></defs>
+<circle class="ring" cx="100" cy="100" r="96"/><circle class="ring" cx="100" cy="100" r="66"/><circle class="ring" cx="100" cy="100" r="36"/>
+<path class="ring" d="M100 4v192M4 100h192"/>
+<g class="sweep"><path d="M100 100 L100 4 A96 96 0 0 1 168 32 Z" fill="url(#sw)"/></g>
+<circle class="blip" cx="140" cy="62" r="4"/><circle class="blip" style="animation-delay:-1.6s" cx="62" cy="128" r="4"/><circle class="blip" style="animation-delay:-3.2s" cx="126" cy="146" r="4"/><circle cx="100" cy="100" r="5" fill="#4CC3FF"/></svg></div></div>
+</div></section>
+<section id="features"><div class="wrap">
+  <div class="sec-head"><div class="eyebrow">Возможности</div><h2>Что умеет бот</h2></div>
+  <div class="grid g4"><div class="card"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span><h3>Заявки по вашим нишам</h3><p>Выберите ниши и город — бот пришлёт сообщения людей, которым нужна ваша услуга или товар.</p></div><div class="card"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><h3>Только открытые группы</h3><p>Бот читает открытые группы и каналы и ничего в них не пишет. Закрытые переписки не затрагиваются.</p></div><div class="card"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 3H2l8 9.5V19l4 2v-8.5L22 3z"/></svg></span><h3>Защита от спама</h3><p>Оценка сообщений, общий чёрный список и антидубли — вы получаете меньше мусора.</p></div><div class="card"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></span><h3>Своя CRM</h3><p>Карточки клиентов, этапы сделки, заметки, бюджет, напоминания и поиск.</p></div><div class="card"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></span><h3>Быстрые действия</h3><p>«Ответить», «В работу», «Отложить», «Отказ» — прямо под заявкой.</p></div><div class="card"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><h3>Каталог групп</h3><p>Добавьте свою группу в каталог и получайте бонусные дни за заявки из неё.</p></div><div class="card"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg></span><h3>Приглашения</h3><p>Позовите коллег: бонусные дни получают оба, заявки можно передавать коллеге.</p></div><div class="card"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></span><h3>Статистика</h3><p>Отчёты по заявкам и работе, рейтинг и уровни активных пользователей.</p></div></div>
+</div></section>
 
+<section id="start"><div class="wrap">
+  <div class="sec-head"><div class="eyebrow">Как начать</div><h2>Четыре шага до результата</h2></div>
+  <ol class="steps"><li class="step"><p>Откройте <a href="https://t.me/klientradarbot" rel="noopener" target="_blank">@klientradarbot</a> и нажмите «Старт».</p></li><li class="step"><p>Выберите ниши, затем город.</p></li><li class="step"><p>Сразу получите заявки за последние сутки.</p></li><li class="step"><p>Ведите клиентов в CRM: заметки, этапы, напоминания.</p></li></ol>
+</div></section>
+<section><div class="wrap">
+  <div class="sec-head"><div class="eyebrow">Для кого</div><h2>Кому подойдёт</h2></div>
+  <div class="grid g3"><div class="card"><h3>Мастера и специалисты</h3><p>Электрики, мастера по ремонту, репетиторы, фотографы — те, кому нужны новые клиенты.</p></div><div class="card"><h3>Агентства и студии</h3><p>Недвижимость, сайты, реклама, юристы: ловите запросы в момент, когда человек ищет исполнителя.</p></div><div class="card"><h3>Магазины и небольшой бизнес</h3><p>Находите покупателей в городских группах и ведите их до оплаты в одной CRM.</p></div></div>
+</div></section>
+<section id="tariffs"><div class="wrap">
+  <div class="sec-head"><div class="eyebrow">Тарифы</div><h2>Сколько это стоит</h2></div>
+  <div class="tariffs t2"><div class="tariff"><h3>Бесплатный</h3><div class="price">0 ₽<small></small></div><p>До 5 заявок в день с небольшой задержкой. Своя CRM, ниши и город.</p></div><div class="tariff pop"><span class="badge">Популярный</span><h3>Полный 💎</h3><div class="price">Дни за бонусы<small></small></div><p>Заявки сразу и без дневного лимита. Дни — за приглашения и свои группы или покупкой в боте.</p></div></div>
+  <p class="note">Условия могут меняться — актуальная информация в боте.</p>
+</div></section>
+<section id="faq"><div class="wrap">
+  <div class="sec-head"><div class="eyebrow">Вопросы</div><h2>Частые вопросы</h2></div>
+  <div class="faq"><details><summary>Откуда берутся заявки?</summary><p>Из открытых Telegram-групп и каналов, которые читает бот. В закрытые переписки он не заходит и в группах ничего не пишет.</p></details><details><summary>Бот собирает данные людей?</summary><p>Нет. Бот работает только с открытыми группами и публичными сообщениями, не собирает номера и личные данные.</p></details><details><summary>Как выбрать, какие заявки получать?</summary><p>При старте вы выбираете ниши и город. Слова, минус-слова и режим тишины можно настроить в боте.</p></details><details><summary>Можно ли передать заявку коллеге?</summary><p>Да, кнопка «📨 Коллеге» на карточке заявки отправляет её другому пользователю бота.</p></details></div>
+</div></section>
+<div class="wrap"><div class="final">
+  <h2>Начните получать заявки</h2><p>Выберите ниши и город — первые заявки придут сразу.</p>
+  <div class="hero-ctas"><a class="btn btn-primary" href="https://t.me/klientradarbot" rel="noopener" target="_blank" data-goal="bot_crm_open"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.1 2.8 11.5c-1 .4-1 1.3-.2 1.6l4.8 1.5 1.9 5.6c.2.6.4.8.9.8.4 0 .6-.2.9-.5l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8L23.5 5.4c.3-1.3-.5-1.8-1.6-1.3zM8.7 13.6l9.4-5.9c.4-.3.8-.1.5.2l-7.9 7.1-.3 3.4-1.7-4.8z"/></svg>Открыть @klientradarbot</a><a class="btn btn-line" href="bot-moderation.html">Modexa — модерация для вашей группы</a></div>
+</div></div>
+</main>
+<footer class="bf"><div class="wrap">
+  <a class="bh-brand" href="bot-crm.html"><span class="ic" style="width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#4CC3FF,#3B82F6);color:#031321"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 12l6-6"/></svg></span><span>Клиент Радар</span></a>
+  <a href="index.html">← ОБЪЯВЛЕНИЯ ДАГЕСТАНА</a>
+  <a href="bot-moderation.html">Modexa — модерация для вашей группы</a>
+  <a class="sp" href="privacy.html">Политика конфиденциальности</a>
+</div></footer>
 <script src="script.js" defer></script>
 </body>
 </html>
