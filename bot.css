@@ -230,3 +230,5 @@ section{padding:56px 0;}
 }
 
 .btn-soon{opacity:.75; cursor:default; border-style:dashed; pointer-events:none;}
+
+.bh-brand .brand-logo{width:40px; height:40px; flex:none; display:block;}
