@@ -9,13 +9,14 @@
 obyavleniya-dagestan/
 ├── index.html              главная страница (посадочная для рекламы)
 ├── group.html              одна страница на все группы: group.html?id=<id группы>
-├── avto-dagestan.html      страницы категорий под поисковые запросы (7 штук):
+├── avto-dagestan.html      страницы категорий под поисковые запросы (8 штук):
 ├── nedvizhimost-dagestan.html   авто, недвижимость, техника, одежда,
-├── tehnika-dagestan.html        услуги, работа, товары
+├── tehnika-dagestan.html        услуги, работа, товары, разное
 ├── odezhda-dagestan.html
 ├── uslugi-dagestan.html
 ├── rabota-dagestan.html
 ├── tovary-dagestan.html
+├── raznoe-dagestan.html
 ├── reklama.html            реклама в группе: цена, условия, как заказать (число участников обновляется само)
 ├── bot-moderation.html     страница бота Modexa (@ModexaGuardBot)
 ├── bot-crm.html            страница бота КлиентРадар (@klientradarbot)
