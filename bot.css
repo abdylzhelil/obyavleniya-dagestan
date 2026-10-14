@@ -232,3 +232,6 @@ section{padding:56px 0;}
 .btn-soon{opacity:.75; cursor:default; border-style:dashed; pointer-events:none;}
 
 .bh-brand .brand-logo{width:40px; height:40px; flex:none; display:block;}
+
+/* шапка на телефоне: у кнопки «Открыть в Telegram» только текст, без мелкого значка */
+@media (max-width:560px){.bh .btn svg{display:none;}}
