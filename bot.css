@@ -243,3 +243,7 @@ section{padding:56px 0;}
 @keyframes rdBlip{0%{opacity:1;} 12%{opacity:.95;} 55%{opacity:.3;} 100%{opacity:.22;}}
 @keyframes rdPing{0%{opacity:.8; transform:scale(1);} 18%{opacity:0; transform:scale(3.2);} 100%{opacity:0; transform:scale(3.2);}}
 @media (prefers-reduced-motion:reduce){.rd-blip{animation:none; opacity:.85;} .rd-ping{animation:none; opacity:0;}}
+
+/* лента скриншотов: без серого ползунка прокрутки (следующая карточка и так выглядывает справа) */
+.shots{scrollbar-width:none; -ms-overflow-style:none;}
+.shots::-webkit-scrollbar{display:none; width:0; height:0;}
