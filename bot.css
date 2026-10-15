@@ -235,3 +235,11 @@ section{padding:56px 0;}
 
 /* шапка на телефоне: у кнопки «Открыть в Telegram» только текст, без мелкого значка */
 @media (max-width:560px){.bh .btn svg{display:none;}}
+
+/* радар на первом экране КлиентРадар: цели вспыхивают, когда по ним проходит луч */
+.radar .tick{stroke-opacity:.2;}
+.rd-blip{fill:#7BD8FF; opacity:.22; animation:rdBlip 5s linear infinite;}
+.rd-ping{fill:none; stroke:#7BD8FF; stroke-width:1.2; opacity:0; transform-box:fill-box; transform-origin:center; animation:rdPing 5s ease-out infinite;}
+@keyframes rdBlip{0%{opacity:1;} 12%{opacity:.95;} 55%{opacity:.3;} 100%{opacity:.22;}}
+@keyframes rdPing{0%{opacity:.8; transform:scale(1);} 18%{opacity:0; transform:scale(3.2);} 100%{opacity:0; transform:scale(3.2);}}
+@media (prefers-reduced-motion:reduce){.rd-blip{animation:none; opacity:.85;} .rd-ping{animation:none; opacity:0;}}
