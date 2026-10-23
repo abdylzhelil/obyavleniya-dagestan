@@ -344,3 +344,9 @@ section{padding:56px 0;}
 .hero-visual .vidbox{animation:none;}
 @media (max-width:900px){.tp-grid .vidbox{position:static; max-width:240px; margin:0 auto;}}
 .head-vid .vidbox{max-width:300px;}
+
+/* видео в разделе «Как выглядит бот» */
+.sub-h{font-weight:800; color:var(--soft); font-size:14px; letter-spacing:.08em; text-transform:uppercase; margin:6px 0 14px;}
+.shots-v{margin-bottom:34px;}
+.shots-v .vidbox{max-width:none;}
+.shots-v .vid{max-width:none;}
