@@ -256,3 +256,19 @@ section{padding:56px 0;}
 .tariffs.t3{grid-template-columns:repeat(3,1fr);}
 @media (max-width:900px){.tariffs.t3{grid-template-columns:repeat(2,1fr);}}
 @media (max-width:560px){.tariffs.t3{grid-template-columns:1fr;}}
+
+/* Видео Modexa */
+.vid{position:relative; width:100%; max-width:300px; aspect-ratio:9/16; border-radius:28px; overflow:hidden; background:#04110c; box-shadow:0 30px 60px -28px rgba(0,0,0,.8),0 0 0 1px var(--line); justify-self:center;}
+.vid video{width:100%; height:100%; object-fit:cover; display:block;}
+.snd{position:absolute; right:10px; bottom:10px; display:inline-flex; align-items:center; border:0; cursor:pointer; padding:10px 14px; border-radius:999px; background:rgba(2,17,12,.8); color:#fff; font-weight:600; font-size:13px; line-height:1; font-family:inherit; backdrop-filter:blur(6px);}
+.snd:focus-visible{outline:3px solid var(--accent); outline-offset:2px;}
+.hero-visual .vid{animation:floatY 6s ease-in-out infinite;}
+.head-vid{display:grid; grid-template-columns:1fr 300px; gap:48px; align-items:start; margin-bottom:8px;}
+.head-vid>*{min-width:0;}
+.sec-lead{color:var(--soft); max-width:62ch; margin:0;}
+.facts{background:rgba(255,255,255,.03); border-block:1px solid var(--line);}
+.facts .wrap{display:grid; grid-template-columns:repeat(4,1fr); gap:24px; padding-block:26px;}
+.fact b{display:block; font-size:26px; line-height:1.1; color:var(--accent);}
+.fact span{font-size:14px; color:var(--soft);}
+@media (max-width:900px){.head-vid{grid-template-columns:1fr; gap:28px;} .facts .wrap{grid-template-columns:repeat(2,1fr);}}
+@media (prefers-reduced-motion:reduce){.hero-visual .vid{animation:none;}}
