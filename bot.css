@@ -331,3 +331,5 @@ section{padding:56px 0;}
 @keyframes mfstrike{0%,12%{text-decoration:none; opacity:1;}16%,86%{text-decoration:line-through; text-decoration-color:#ff8a7e; text-decoration-thickness:2px; opacity:.5;}100%{opacity:.5;}}
 @keyframes mftag{0%,12%{opacity:0;}16%,86%{opacity:1;}94%,100%{opacity:0;}}
 @media (prefers-reduced-motion:reduce){.mfeed,.mf-shield::after{animation:none;} .mf-msg{animation:none; opacity:1;} .mf-spam span{animation:none; text-decoration:line-through; opacity:.5;} .mf-spam u{animation:none; opacity:1;} .tabpanel,.acc p{animation:none;}}
+.chips{display:flex; flex-wrap:wrap; gap:10px; max-width:820px;}
+.chips li{background:var(--card); border:1px solid var(--line); border-radius:999px; padding:10px 16px; font-size:14.5px; color:var(--soft);}
