@@ -360,3 +360,26 @@ section{padding:56px 0;}
 .faq details{padding:0;}
 .faq summary{padding:16px 20px; min-height:48px; align-items:center;}
 .faq p{margin-top:0; padding:0 20px 16px;}
+
+/* ===== Компактнее на телефоне ===== */
+@media (max-width:560px){
+  .grid.g3,.grid.g4{grid-template-columns:1fr 1fr; gap:10px;}
+  .grid.g3 .card,.grid.g4 .card{padding:14px;}
+  .grid.g3 .card .ic,.grid.g4 .card .ic{width:34px; height:34px; margin-bottom:10px;}
+  .grid.g3 .card h3,.grid.g4 .card h3{font-size:15px; margin-bottom:4px;}
+  .grid.g3 .card p,.grid.g4 .card p{font-size:13px; line-height:1.45;}
+  section{padding:40px 0;}
+  .sec-head{margin-bottom:22px;}
+  .facts .wrap{gap:14px; padding-block:18px;}
+  .fact b{font-size:22px;}
+  .fact span{font-size:13px;}
+  .hero-points{margin-top:14px; gap:6px; font-size:14px;}
+  .mf-body{min-height:290px; padding:12px; gap:8px;}
+  .mf-msg{font-size:13px; padding:8px 11px;}
+  .shots-v .shot{flex-basis:56%; max-width:230px;}
+  .tariff{padding:18px;}
+  .steps{gap:10px;}
+}
+@media (max-width:360px){
+  .grid.g3,.grid.g4{grid-template-columns:1fr;}
+}
