@@ -124,6 +124,19 @@ def page(cfg):
         mt=a(f['meta']).replace('"','&quot;')
         for nm in ('<meta name="description" content="','<meta property="og:description" content="','<meta name="twitter:description" content="'):
             head=re.sub('('+re.escape(nm)+')[^"]*',lambda m:m.group(1)+mt,head)
+    if f.get('ogtitle'):
+        _t=a(f['ogtitle']).replace('"','&quot;')
+        head=re.sub(r'<title>.*?</title>','<title>%s</title>'%_t,head,count=1)
+        for nm in ('<meta property="og:title" content="','<meta name="twitter:title" content="'):
+            head=re.sub('('+re.escape(nm)+')[^"]*',lambda m:m.group(1)+_t,head)
+    if f.get('ogimg'):
+        _u='https://obyavleniya-dagestan.ru/assets/images/'+f['ogimg']
+        for nm in ('<meta property="og:image" content="','<meta name="twitter:image" content="'):
+            head=re.sub('('+re.escape(nm)+')[^"]*',lambda m:m.group(1)+_u,head)
+    if f.get('ogalt'):
+        _a=a(f['ogalt']).replace('"','&quot;')
+        for nm in ('<meta property="og:image:alt" content="','<meta name="twitter:image:alt" content="'):
+            head=re.sub('('+re.escape(nm)+')[^"]*',lambda m:m.group(1)+_a,head)
     body='''<body class="theme-%(theme)s">
 <a class="skip-link" href="#main">К содержимому</a>
 <header class="bh"><div class="wrap">
@@ -206,6 +219,7 @@ OFER='https://telegra.ph/Publichnaya-oferta-na-ispolzovanie-Telegram-bota-Modexa
 POLIT='https://telegra.ph/Politika-konfidencialnosti-Modexa-10-15'
 mod=dict(file='bot-moderation.html',theme='modexa',name='Modexa',handle='@ModexaGuardBot',tg=TGL,goal='bot_moderation_open',
  cta='Подключить бесплатно',sh='Три шага до защиты группы',
+ ogtitle='Modexa — бот для барахолок и групп | ОБЪЯВЛЕНИЯ ДАГЕСТАНА',ogimg='og-bot-moderation-v2.jpg',ogalt='Modexa: чистит барахолку от спама и мошенников. 1 группа — бесплатно навсегда',
  meta='Telegram-бот Modexa для админов барахолок и групп: антиспам с ИИ, объявления через бота, рейтинг продавцов, реклама без комиссии. 1 группа — бесплатно навсегда.',
  logo='<img src="assets/images/modexa-logo.jpg" alt="" width="34" height="34">',
  pill='Telegram-бот для админов барахолок и групп',
