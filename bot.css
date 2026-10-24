@@ -351,3 +351,12 @@ section{padding:56px 0;}
 .shots-v .vidbox{max-width:none;}
 .shots-v .vid{max-width:none;}
 .more-v>.shots{margin-top:6px;}
+
+/* Зоны нажатия не меньше ~40–44 px */
+.btn,.btn-sm{min-height:44px;}
+.bh-burger{min-width:44px; min-height:44px;}
+.bh-brand{min-height:44px; display:inline-flex; align-items:center;}
+.bf a{display:inline-flex; align-items:center; min-height:40px;}
+.faq details{padding:0;}
+.faq summary{padding:16px 20px; min-height:48px; align-items:center;}
+.faq p{margin-top:0; padding:0 20px 16px;}

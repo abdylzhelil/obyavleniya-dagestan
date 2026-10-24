@@ -875,3 +875,14 @@ header{view-transition-name:hdr;}
   .hero .wrap>*,.hero-ctas .btn::after,.no-vt body{animation:none !important;}
   .no-vt.leaving body{transition:none; opacity:1; transform:none;}
 }
+
+/* Зоны нажатия не меньше ~40–44 px (удобно пальцем на телефоне) */
+.brand-mark{min-height:44px;}
+.footer-links a,.footer-cats a,.nf-links a{display:inline-flex; align-items:center; min-height:40px;}
+.footer-links{gap:0 20px;}
+.footer-cats{gap:0 16px;}
+.promo-link{display:inline-block; padding:8px 0;}
+.faq details{padding:0;}
+.faq summary{padding:16px 20px; min-height:48px;}
+.faq details p{margin-top:0; padding:0 20px 16px;}
+.crumbs a{display:inline-block; padding:10px 6px 10px 0;}
