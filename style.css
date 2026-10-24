@@ -886,3 +886,39 @@ header{view-transition-name:hdr;}
 .faq summary{padding:16px 20px; min-height:48px;}
 .faq details p{margin-top:0; padding:0 20px 16px;}
 .crumbs a{display:inline-block; padding:10px 6px 10px 0;}
+
+/* ===== Дополнения: компактный баннер cookie, мягкая анимация на главной ===== */
+@media (max-width:860px){
+  .cookie-notice{left:8px; right:8px; bottom:8px; padding:10px 12px; gap:8px;}
+  .cookie-notice p{flex:1 1 100%; font-size:12.5px; line-height:1.4;}
+  .cookie-actions .btn{padding:8px 12px; font-size:13.5px; min-height:40px;}
+  .with-cookie-notice{padding-bottom:130px;}
+}
+/* карточки появляются друг за другом, а не все сразу */
+.bot-grid .reveal:nth-child(2),.wa-grid .reveal:nth-child(2){transition-delay:.12s;}
+.group-card.reveal:nth-child(2){transition-delay:.08s;}
+.group-card.reveal:nth-child(3){transition-delay:.16s;}
+/* значок группы в первом экране слегка «дышит» */
+.logo-badge-lg{animation:badgeFloat 6s ease-in-out infinite;}
+@keyframes badgeFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+/* мини-лента в карточке Modexa: спам вычёркивается */
+.mini-feed{display:grid; gap:6px; margin:2px 0 4px; padding:10px; border-radius:14px; background:rgba(0,0,0,.22); border:1px solid rgba(255,255,255,.08);}
+.mf2{display:flex; align-items:center; gap:8px; font-size:13px; line-height:1.3; color:var(--ink-soft); padding:6px 10px; border-radius:10px; background:rgba(255,255,255,.05); opacity:0; animation:mf2in 9s ease-in-out infinite;}
+.mf2 i{font-style:normal; color:var(--mint); width:16px; text-align:center; flex:none;}
+.mf2-spam{background:rgba(240,90,80,.12); border:1px solid rgba(240,90,80,.3);}
+.mf2-spam i{color:#ff8a7e;}
+.mf2-spam span{animation:mf2strike 9s ease-in-out infinite; animation-delay:.7s;}
+.mf2-spam u{margin-left:auto; text-decoration:none; font-size:11px; font-weight:800; letter-spacing:.04em; text-transform:uppercase; color:#ff8a7e; opacity:0; animation:mf2tag 9s ease-in-out infinite; animation-delay:.7s;}
+.a1{animation-delay:0s;} .a2{animation-delay:.7s;} .a3{animation-delay:2.2s;}
+@keyframes mf2in{0%{opacity:0; transform:translateY(8px);}6%,86%{opacity:1; transform:none;}94%,100%{opacity:0;}}
+@keyframes mf2strike{0%,14%{text-decoration:none; opacity:1;}20%,86%{text-decoration:line-through; text-decoration-color:#ff8a7e; opacity:.5;}100%{opacity:.5;}}
+@keyframes mf2tag{0%,14%{opacity:0;}20%,86%{opacity:1;}94%,100%{opacity:0;}}
+/* вращающийся луч радара у значка КлиентРадара */
+.bot-ava-radar{position:relative; overflow:hidden;}
+.bot-ava-radar::after{content:""; position:absolute; inset:0; border-radius:50%; background:conic-gradient(from 0deg,rgba(255,255,255,0) 0deg,rgba(255,255,255,.55) 40deg,rgba(255,255,255,0) 41deg); animation:radarSweep 3.6s linear infinite;}
+@keyframes radarSweep{to{transform:rotate(360deg);}}
+@media (prefers-reduced-motion:reduce){
+  .logo-badge-lg,.bot-ava-radar::after{animation:none;}
+  .mf2,.mf2-spam span,.mf2-spam u{animation:none; opacity:1;}
+  .mf2-spam span{text-decoration:line-through; opacity:.5;}
+}
