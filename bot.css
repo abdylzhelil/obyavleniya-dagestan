@@ -383,3 +383,9 @@ section{padding:56px 0;}
 @media (max-width:360px){
   .grid.g3,.grid.g4{grid-template-columns:1fr;}
 }
+.steps:has(.step:nth-child(3):last-child){grid-template-columns:repeat(3,1fr);}
+@media (max-width:900px){.steps:has(.step:nth-child(3):last-child){grid-template-columns:1fr;}}
+@media (max-width:560px){
+  .step{display:grid; grid-template-columns:40px 1fr; gap:12px; align-items:start; padding:16px;}
+  .step::before{margin:0; font-size:32px; line-height:1;}
+}
