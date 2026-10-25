@@ -389,3 +389,4 @@ section{padding:56px 0;}
   .step{display:grid; grid-template-columns:40px 1fr; gap:12px; align-items:start; padding:16px;}
   .step::before{margin:0; font-size:32px; line-height:1;}
 }
+.guarantee{margin-top:22px; max-width:760px; padding:16px 20px; border-radius:16px; border:1px solid var(--accent); background:rgba(255,255,255,.04); color:var(--ink); font-size:15.5px; line-height:1.5;}
