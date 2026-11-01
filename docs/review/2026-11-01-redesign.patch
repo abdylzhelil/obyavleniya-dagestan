@@ -1,0 +1,564 @@
+diff --git a/assets/brand/mark.svg b/assets/brand/mark.svg
+new file mode 100644
+index 0000000..9abbc27
+--- /dev/null
++++ b/assets/brand/mark.svg
+@@ -0,0 +1 @@
++<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 64"><path fill="#55d3a1" d="M3 56 35 15l17 21 12-16 33 36H76L64 43 52 57 35 36 19 56z"/><path fill="#f2f7f4" d="m26 23 13-17 31 35-14-6L39 18z"/></svg>
+\ No newline at end of file
+diff --git a/brand-assets.html b/brand-assets.html
+new file mode 100644
+index 0000000..9f67995
+--- /dev/null
++++ b/brand-assets.html
+@@ -0,0 +1 @@
++<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><title>Новые аватары групп — Объявления Дагестана</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="redesign.css"></head><body class="rd-home"><main id="main"><section><div class="wrap"><a href="index.html">← На главную</a><div class="section-head" style="margin-top:32px"><div><div class="eyebrow">Новый образ сообщества</div><h1>Аватары Telegram и WhatsApp</h1></div></div><p style="margin-bottom:28px;max-width:650px">Готовые изображения для оформления групп. Скачайте квадратный оригинал и установите его в настройках нужной группы. Круглый вид ниже показывает, как аватар будет выглядеть в приложении.</p><div class="group-grid"><article class="group-card" style="padding:24px"><img src="assets/brand/telegram.webp" alt="Новый аватар Telegram с эмблемой гор" width="1024" height="1024" style="width:100%;height:auto;border-radius:50%;margin-bottom:24px"><h2 style="font-size:28px;margin-bottom:16px">Telegram</h2><a class="btn btn-block btn-tg" href="assets/brand/telegram.png" download="Obyavleniya-Dagestana-telegram.png">Скачать аватар PNG ↓</a></article><article class="group-card" style="padding:24px"><img src="assets/brand/whatsapp.webp" alt="Новый аватар WhatsApp с эмблемой гор" width="1024" height="1024" style="width:100%;height:auto;border-radius:50%;margin-bottom:24px"><h2 style="font-size:28px;margin-bottom:16px">WhatsApp</h2><a class="btn btn-block btn-wa" href="assets/brand/whatsapp.png" download="Obyavleniya-Dagestana-whatsapp.png">Скачать аватар PNG ↓</a></article></div><p style="margin-top:24px;color:var(--ink-soft)">Иллюстрации созданы для оформления проекта. Аватары внутри Telegram и WhatsApp автоматически не менялись.</p></div></section></main></body></html>
+\ No newline at end of file
+diff --git a/group.html b/group.html
+index 7f35311..c1e2f8b 100644
+--- a/group.html
++++ b/group.html
+@@ -44,15 +44,16 @@
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
+ <link rel="stylesheet" href="style.css">
++<link rel="stylesheet" href="redesign.css">
+ </head>
+-<body>
++<body class="rd-group">
+ 
+ <a class="skip-link" href="#main">К содержимому</a>
+ 
+ <header>
+   <div class="wrap topbar">
+     <a class="brand-mark" href="index.html">
+-      <span class="logo-badge"><img src="assets/images/logo.jpg" alt="Логотип «Объявления Дагестана»" width="34" height="34"></span>
++      <span class="logo-badge"><img src="assets/brand/mark.svg" alt="Логотип «Объявления Дагестана»" width="34" height="34"></span>
+       <span class="brand">ОБЪЯВЛЕНИЯ ДАГЕСТАНА</span>
+     </a>
+     <nav class="nav-links" id="site-nav" aria-label="Разделы сайта">
+@@ -87,7 +88,7 @@
+   <div class="wrap">
+     <div class="footer-grid">
+       <div>
+-        <div class="brand-mark"><span class="logo-badge"><img src="assets/images/logo.jpg" alt="" width="34" height="34"></span><span class="brand">ОБЪЯВЛЕНИЯ ДАГЕСТАНА</span></div>
++        <div class="brand-mark"><span class="logo-badge"><img src="assets/brand/mark.svg" alt="" width="34" height="34"></span><span class="brand">ОБЪЯВЛЕНИЯ ДАГЕСТАНА</span></div>
+         <div class="footer-tag">Покупка • Продажа • Услуги • Работа</div>
+       </div>
+       <nav class="footer-links" aria-label="Ссылки в подвале">
+diff --git a/index.html b/index.html
+index 49fa580..8a1f9f4 100644
+--- a/index.html
++++ b/index.html
+@@ -125,26 +125,20 @@
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
+ <link rel="stylesheet" href="style.css">
++<link rel="stylesheet" href="redesign.css">
++<link rel="preload" href="assets/brand/hero.webp" as="image">
+ </head>
+-<body>
++<body class="rd-home">
+ 
+ <a class="skip-link" href="#main">К содержимому</a>
+ 
+ <header>
+   <div class="wrap topbar">
+     <a class="brand-mark" href="index.html">
+-      <span class="logo-badge"><img src="assets/images/logo.jpg" alt="Логотип «Объявления Дагестана»" width="34" height="34"></span>
++      <span class="logo-badge"><img src="assets/brand/mark.svg" alt="Логотип «Объявления Дагестана»" width="34" height="34"></span>
+       <span class="brand">ОБЪЯВЛЕНИЯ ДАГЕСТАНА</span>
+     </a>
+-    <nav class="nav-links" id="site-nav" aria-label="Разделы сайта">
+-      <a href="index.html">Главная</a>
+-      <a href="#groups">Наши группы</a>
+-      <div class="nav-dd dd-cats"><a href="#categories">Категории</a><div class="dd-menu"><a href="avto-dagestan.html">Автомобили</a><a href="nedvizhimost-dagestan.html">Недвижимость</a><a href="tehnika-dagestan.html">Техника</a><a href="odezhda-dagestan.html">Одежда</a><a href="uslugi-dagestan.html">Услуги</a><a href="rabota-dagestan.html">Работа</a><a href="tovary-dagestan.html">Товары</a><a href="raznoe-dagestan.html">Разное</a></div></div>
+-      <a href="#rules">Правила</a>
+-      <a href="#advertising">Реклама</a>
+-      <div class="nav-dd dd-bots"><a href="#bots">Боты</a><div class="dd-menu"><a href="bot-moderation.html">Modexa</a><a href="bot-crm.html">КлиентРадар</a></div></div>
+-      <a href="#contact">Контакты</a>
+-        </nav>
++    <nav class="nav-links" id="site-nav" aria-label="Разделы сайта"><a href="#groups">Группы</a><a href="#categories">Категории</a><a href="reklama.html">Реклама</a><a href="#bots">Боты</a><a href="#contact" data-contact="telegram" data-goal="ad_contact_telegram">Связаться с нами</a></nav>
+     <button class="menu-toggle" type="button" aria-label="Меню" aria-expanded="false" aria-controls="site-nav"><svg aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-menu"></use></svg></button>
+   </div>
+   <div class="flag-stripe" aria-hidden="true"><span class="g1"></span><span class="g2"></span><span class="g3"></span></div>
+@@ -152,50 +146,31 @@
+ 
+ <main id="main">
+ 
+-<section class="hero">
+-  <div class="wrap">
+-    <div class="logo-badge-lg"><img src="assets/images/logo-hero.jpg" alt="Логотип «Объявления Дагестана»" width="96" height="96"></div>
+-    <h1>ОБЪЯВЛЕНИЯ ДАГЕСТАНА</h1>
+-    <div class="tagline">Покупка • Продажа • Услуги • Работа</div>
+-    <div class="subtagline">Будь в курсе всего нужного!</div>
+-    <p class="lead">Площадка объявлений для жителей Дагестана. Находите нужные товары и услуги или размещайте свои предложения.</p>
+-    <div class="hero-ctas">
+-      <a class="btn btn-wa" href="#groups" data-join="whatsapp" data-goal="join_whatsapp"><span class="btn-ic"><svg aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-whatsapp"></use></svg></span>Вступить в WhatsApp</a>
+-      <a class="btn btn-tg" href="#groups" data-join="telegram" data-goal="join_telegram"><span class="btn-ic"><svg aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-telegram"></use></svg></span>Перейти в Telegram</a>
+-    </div>
+-  </div>
+-  <div class="mountains" aria-hidden="true"></div>
+-</section>
+-
+-<!-- Две группы в WhatsApp: карточки и подпись подставляет script.js из данных GROUPS -->
+-<section class="wa-block" id="wa-groups">
+-  <div class="wrap">
+-    <div class="section-head reveal">
+-      <div class="eyebrow">WhatsApp</div>
+-      <h2>Две группы в WhatsApp</h2>
+-      <p id="wa-groups-lead"></p>
+-    </div>
+-    <div class="wa-grid" id="wa-groups-grid"></div>
+-  </div>
+-</section>
+-
+-<!-- Наши группы: карточки подставляет script.js из данных GROUPS -->
+-<section class="groups-section" id="groups">
+-  <div class="wrap">
+-    <div class="section-head reveal">
+-      <div class="eyebrow">Площадки</div>
+-      <h2>Наши группы</h2>
+-      <p>Выберите удобную площадку и присоединяйтесь к «ОБЪЯВЛЕНИЯМ ДАГЕСТАНА».</p>
+-    </div>
+-    <div class="group-grid" id="groups-grid"></div>
+-  </div>
++<section class="rd-hero" aria-labelledby="home-title">
++ <div class="wrap"><div class="rd-hero-surface">
++  <img class="rd-landscape" src="assets/brand/hero.webp" alt="" width="1536" height="1024" fetchpriority="high">
++  <div class="rd-hero-content"><div class="eyebrow">Покупка · Продажа · Услуги · Работа</div>
++   <h1 id="home-title">Объявления<br><span>Дагестана</span></h1>
++   <p>Покупайте, продавайте и находите услуги рядом.</p>
++   <div class="hero-ctas">
++    <a class="btn btn-wa" href="#groups" data-join="whatsapp" data-goal="join_whatsapp"><span class="btn-ic"><svg aria-hidden="true"><use href="assets/icons/sprite.svg#i-whatsapp"></use></svg></span>Группы WhatsApp </a>
++    <a class="btn btn-tg" href="#groups" data-join="telegram" data-goal="join_telegram"><span class="btn-ic"><svg aria-hidden="true"><use href="assets/icons/sprite.svg#i-telegram"></use></svg></span>Группа Telegram </a>
++   </div>
++   <p class="rd-hero-footnote">Объявления участников — бесплатно.<br>Реклама для бизнеса — по <a href="reklama.html">отдельным тарифам</a>.</p>
++  </div><span class="rd-landscape-caption" aria-hidden="true">ДАГЕСТАН<br>БЛИЖЕ, ЧЕМ КАЖЕТСЯ</span>
++ </div></div>
+ </section>
++<section class="groups-section" id="groups"><div class="wrap">
++ <div class="section-head"><div><div class="eyebrow">Наше сообщество</div><h2>Выберите свою группу</h2></div><p>Удобная площадка.<br>Объявления рядом с вами.</p></div>
++ <div class="group-grid" id="groups-grid"></div>
++ <noscript><p>Выберите группу: <a href="https://t.me/AvitoDag05_reklama_group">Telegram</a> или <a href="https://chat.whatsapp.com/EisxSK0qarkJzyrlt9v1fx">WhatsApp №2</a>.</p></noscript>
++</div></section>
+ 
+ <section id="categories">
+   <div class="wrap">
+     <div class="section-head reveal">
+       <div class="eyebrow">Категории</div>
+-      <h2>Что можно найти</h2>
++      <h2>Что вы ищете?</h2>
+     </div>
+     <ul class="cat-grid">
+       <li class="cat-card reveal"><a href="avto-dagestan.html"><div class="ic"><svg aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-cat-auto"></use></svg></div><span>Автомобили</span></a></li>
+@@ -210,44 +185,16 @@
+   </div>
+ </section>
+ 
+-<section id="why">
+-  <div class="wrap">
+-    <div class="section-head reveal">
+-      <div class="eyebrow">Проект</div>
+-      <h2>Почему ОБЪЯВЛЕНИЯ ДАГЕСТАНА</h2>
+-    </div>
+-    <div class="why-grid">
+-      <div class="why-card reveal"><h3>Аудитория из Дагестана</h3><p>Проект ориентирован на реальных жителей, покупателей и продавцов из Республики Дагестан.</p></div>
+-      <div class="why-card reveal"><h3>Быстрое размещение</h3><p>Группа активна ежедневно с 08:00 до 22:00 — объявления публикуются оперативно.</p></div>
+-      <div class="why-card reveal"><h3>Продвижение товаров и услуг</h3><p>Есть платные форматы, чтобы выделить объявление среди остальных.</p></div>
+-      <div class="why-card reveal"><h3>Дополнительные услуги</h3><p>Рассылка по другим активным группам и усиленное продвижение — по договорённости с администрацией.</p></div>
+-    </div>
+-  </div>
+-</section>
+-
+-<section id="how">
+-  <div class="wrap">
+-    <div class="section-head reveal">
+-      <div class="eyebrow">Как начать</div>
+-      <h2>Как это работает</h2>
+-    </div>
+-    <ol class="steps-grid">
+-      <li class="step-card reveal"><div class="step-num">1</div><h3>Выберите площадку</h3><p>WhatsApp или Telegram.</p></li>
+-      <li class="step-card reveal"><div class="step-num">2</div><h3>Вступите в группу</h3><p>Откройте подходящую площадку.</p></li>
+-      <li class="step-card reveal"><div class="step-num">3</div><h3>Находите или размещайте объявления</h3><p>Покупайте, продавайте, находите услуги и предложения.</p></li>
+-    </ol>
+-  </div>
+-</section>
+-
+-<!-- Правила: список подставляет script.js из данных RULES -->
+-<section id="rules">
++<section id="advertising">
+   <div class="wrap">
+-    <div class="section-head reveal">
+-      <div class="eyebrow">Правила</div>
+-      <h2>Правила группы</h2>
+-    </div>
+-    <div class="rules-card reveal">
+-      <ul class="rules-list" id="rules-list"></ul>
++    <div class="ad-teaser reveal">
++      <h2>Хотите разместить рекламу?</h2>
++      <p>Реклама в Telegram и WhatsApp: статус — 450 ₽, группы — 850 ₽, рассылка по 1 000 контактам — от 1 000 ₽, пост в Telegram — 500 ₽.</p>
++      <div class="hero-ctas">
++        <a class="btn btn-ghost" href="reklama.html" data-goal="ad_prices">Цены и условия</a>
++        <a class="btn btn-tg" href="#contact" data-contact="telegram" data-goal="ad_contact_telegram"><span class="btn-ic"><svg aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-telegram"></use></svg></span>Написать в Telegram</a>
++        <a class="btn btn-wa" href="#contact" data-contact="whatsapp" data-goal="ad_contact_whatsapp"><span class="btn-ic"><svg aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-whatsapp"></use></svg></span>Написать в WhatsApp</a>
++      </div>
+     </div>
+   </div>
+ </section>
+@@ -293,29 +240,14 @@
+   </div>
+ </section>
+ 
+-<section id="advertising">
+-  <div class="wrap">
+-    <div class="ad-teaser reveal">
+-      <h2>Хотите разместить рекламу?</h2>
+-      <p>Реклама в Telegram и WhatsApp: статус — 450 ₽, группы — 850 ₽, рассылка по 1 000 контактам — от 1 000 ₽, пост в Telegram — 500 ₽.</p>
+-      <div class="hero-ctas">
+-        <a class="btn btn-ghost" href="reklama.html" data-goal="ad_prices">Цены и условия</a>
+-        <a class="btn btn-tg" href="#contact" data-contact="telegram" data-goal="ad_contact_telegram"><span class="btn-ic"><svg aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-telegram"></use></svg></span>Написать в Telegram</a>
+-        <a class="btn btn-wa" href="#contact" data-contact="whatsapp" data-goal="ad_contact_whatsapp"><span class="btn-ic"><svg aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-whatsapp"></use></svg></span>Написать в WhatsApp</a>
+-      </div>
+-    </div>
+-  </div>
+-</section>
+-
+-<section id="about">
++<section id="rules">
+   <div class="wrap">
+-    <div class="section-head">
+-      <div class="eyebrow">О проекте</div>
+-      <h2>Объявления Дагестана: покупка, продажа, услуги и работа</h2>
++    <div class="section-head reveal">
++      <div class="eyebrow">Правила</div>
++      <h2>Правила группы</h2>
+     </div>
+-    <div class="seo-text">
+-      <p>«Объявления Дагестана» — площадка в WhatsApp и Telegram для жителей Республики Дагестан. Здесь публикуют объявления о продаже и покупке автомобилей, недвижимости, техники и одежды, предлагают услуги и ищут работу.</p>
+-      <p>Обычные объявления участников размещаются бесплатно в часы работы группы — с 08:00 до 22:00. Для бизнеса доступна платная реклама товаров, услуг, каналов и сайтов.</p>
++    <div class="rules-card reveal">
++      <ul class="rules-list" id="rules-list"></ul>
+     </div>
+   </div>
+ </section>
+@@ -336,7 +268,6 @@
+     </div>
+   </div>
+ </section>
+-
+ </main>
+ 
+ <!-- Плавающая панель «Вступить» для телефонов: показывает script.js (initDock), ссылки подставляет applyLinks -->
+@@ -349,7 +280,7 @@
+   <div class="wrap">
+     <div class="footer-grid">
+       <div>
+-        <div class="brand-mark"><span class="logo-badge"><img src="assets/images/logo.jpg" alt="" width="34" height="34"></span><span class="brand">ОБЪЯВЛЕНИЯ ДАГЕСТАНА</span></div>
++        <div class="brand-mark"><span class="logo-badge"><img src="assets/brand/mark.svg" alt="" width="34" height="34"></span><span class="brand">ОБЪЯВЛЕНИЯ ДАГЕСТАНА</span></div>
+         <div class="footer-tag">Покупка • Продажа • Услуги • Работа</div>
+       </div>
+       <nav class="footer-links" aria-label="Ссылки в подвале">
+@@ -367,7 +298,7 @@
+       </div>
+     </div>
+     <nav class="footer-cats" aria-label="Категории объявлений"><span>Категории:</span><a href="avto-dagestan.html">Автомобили</a><a href="nedvizhimost-dagestan.html">Недвижимость</a><a href="tehnika-dagestan.html">Техника</a><a href="odezhda-dagestan.html">Одежда</a><a href="uslugi-dagestan.html">Услуги</a><a href="rabota-dagestan.html">Работа</a><a href="tovary-dagestan.html">Товары</a><a href="raznoe-dagestan.html">Разное</a></nav>
+-    <div class="footer-bottom">© ОБЪЯВЛЕНИЯ ДАГЕСТАНА · <a href="privacy.html">Политика конфиденциальности</a></div>
++    <div class="footer-bottom">© ОБЪЯВЛЕНИЯ ДАГЕСТАНА · <a href="privacy.html">Политика конфиденциальности</a> · <a href="brand-assets.html">Аватары групп</a></div>
+   </div>
+ </footer>
+ 
+diff --git a/redesign.css b/redesign.css
+new file mode 100644
+index 0000000..2c6e743
+--- /dev/null
++++ b/redesign.css
+@@ -0,0 +1,152 @@
++/* Approved concept 1: photographic landscapes, quiet forest palette. */
++.rd-home,.rd-group{background:#081715;color:#f2f5ef;--ink:#f2f5ef;--ink-soft:#b5c3bd;--mint:#65d8b0;--glass-border:rgba(181,207,194,.2);background-image:none;}
++.rd-home::before,.rd-home::after,.rd-group::before,.rd-group::after{display:none;}
++.rd-home .wrap,.rd-group .wrap{max-width:1280px;width:calc(100% - 72px);}
++.rd-home header,.rd-group header{background:#081715ed;border-bottom:1px solid #c1dcc51a;box-shadow:none;backdrop-filter:blur(12px);}
++.rd-home .topbar,.rd-group .topbar{min-height:86px;gap:24px;}
++.rd-home .flag-stripe,.rd-group .flag-stripe{display:none;}
++.rd-home .logo-badge,.rd-group .logo-badge{width:58px;height:46px;background:none;border:0;box-shadow:none;border-radius:0;}
++.rd-home .logo-badge img,.rd-group .logo-badge img{width:58px;height:46px;border-radius:0;object-fit:contain;}
++.rd-home .brand,.rd-group .brand{max-width:185px;font-size:13px;line-height:1.35;letter-spacing:.06em;white-space:normal;}
++.rd-home .nav-links,.rd-group .nav-links{gap:30px;}
++.rd-home .nav-links>a,.rd-group .nav-links>a{font-size:13px;font-weight:500;}
++.rd-home section{padding:54px 0;}
++.rd-home h2,.rd-group h1{font-family:Georgia,'Times New Roman',serif;font-weight:600;letter-spacing:-.035em;line-height:1.1;}
++.rd-home h2{font-size:clamp(30px,3vw,44px);}
++.rd-home .eyebrow{color:#94b4a4;font-size:10px;letter-spacing:.2em;margin-bottom:12px;}
++.rd-home .section-head{display:flex;align-items:flex-end;justify-content:space-between;text-align:left;margin-bottom:26px;gap:24px;}
++.rd-home .section-head>p{margin:0;max-width:310px;text-align:right;font-size:13px;color:#92aaa0;}
++.rd-home .btn,.rd-group .btn{border-radius:8px;box-shadow:none;text-shadow:none;font-size:13px;min-height:48px;padding:13px 20px;gap:12px;transition:background .2s,transform .2s;}
++.rd-home .btn::after,.rd-group .btn::after{display:none;}
++.rd-home .btn-wa,.rd-group .btn-wa{background:#00a66e;color:#fff;border:1px solid #24c889;}
++.rd-home .btn-tg,.rd-group .btn-tg{background:#009ac9;color:#fff;border:1px solid #26b4e0;}
++.rd-home .btn:hover,.rd-group .btn:hover{filter:brightness(1.12);transform:translateY(-1px);}
++.rd-home .btn-ghost,.rd-group .btn-ghost{background:#ffffff06;border:1px solid #afc8bb40;color:#deebe3;}
++.rd-home .reveal{opacity:1;transform:none;}
++.rd-home section.rd-hero{padding:24px 0 0;}
++.rd-hero-surface{position:relative;isolation:isolate;min-height:480px;overflow:hidden;border-radius:12px;border:1px solid #becfbe22;background:#0a1b17;}
++.rd-landscape{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:center 54%;}
++.rd-hero-surface::after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(5,20,17,.96),rgba(5,20,17,.67) 38%,rgba(5,20,17,.05) 78%),linear-gradient(0deg,rgba(5,20,17,.45),transparent 40%);}
++.rd-hero-content{padding:62px 42px;max-width:730px;}
++.rd-hero-content h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(58px,7vw,94px);line-height:.98;letter-spacing:-.045em;font-weight:600;text-transform:none;margin:0 0 22px;color:#fff;max-width:none;text-shadow:none;}
++.rd-hero-content h1 span{color:#b8dccd;}
++.rd-hero-content>p{font-size:21px;line-height:1.5;max-width:390px;color:#d2dfd8;margin-bottom:26px;}
++.rd-home .hero-ctas{justify-content:flex-start;gap:12px;}
++.rd-hero-content p.rd-hero-footnote{font-size:11px;line-height:1.7;color:#9bb6a9;margin:22px 0 0;}
++.rd-hero-footnote a{text-decoration:underline;text-underline-offset:3px;}
++.rd-landscape-caption{position:absolute;right:28px;bottom:28px;font-size:9px;line-height:1.8;letter-spacing:.3em;color:#dcebe0;}
++.rd-home .groups-section{padding:38px 0 0;}
++.rd-home .group-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;}
++.rd-home .group-card{display:block;position:relative;background:#0c1e1a;border:1px solid #b4ccb72e;border-radius:10px;box-shadow:none;overflow:hidden;padding:0;transform:none;}
++.rd-home .group-card::before,.rd-home .group-card::after{display:none;}
++.rd-home .group-card:hover{transform:none;border-color:#afc8ba70;}
++.rd-card-cover{height:148px;position:relative;overflow:hidden;background:#142f2b;}
++.rd-card-cover>img{width:100%;height:100%;object-fit:cover;object-position:60% 60%;}
++.is-tg .rd-card-cover>img{filter:hue-rotate(30deg) saturate(.75);object-position:85% 70%;}
++.is-full .rd-card-cover>img{filter:saturate(.3);}
++.rd-card-cover::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,#0c1e1a,transparent 90%);}
++.rd-home .wa-status{position:absolute;right:12px;top:12px;z-index:1;background:#081715d9;border:1px solid #c5e2cb30;border-radius:6px;font-size:10px;font-weight:500;padding:5px 8px;color:#ecf5ee;}
++.rd-home .wa-status::before{content:'●';margin-right:5px;color:#44d17d;font-size:12px;}
++.rd-home .wa-status.full::before{color:#92a59c;}
++.rd-card-body{padding:0 20px 20px;position:relative;}
++.rd-card-identity{display:flex;flex-direction:column;align-items:flex-start;gap:12px;font-size:12px;font-weight:600;letter-spacing:.04em;color:#8ad6ed;}
++.rd-card-identity img{margin-top:-50px;z-index:1;width:76px;height:76px;border-radius:50%;object-fit:cover;border:2px solid #f0f5ee;box-shadow:0 0 0 5px #0c1e1a;}
++.is-wa .rd-card-identity{color:#88d8b4;}
++.rd-home .rd-card-body h3{font-size:18px;margin:8px 0 8px;letter-spacing:-.02em;line-height:1.3;}
++.rd-card-body>p{font-size:12px;line-height:1.6;color:#a4bbb0;min-height:38px;margin-bottom:18px;}
++.rd-home .group-card.is-full{background:#0a1916;}
++.rd-home .group-card.is-full .rd-card-identity img{filter:saturate(.3);}
++.rd-home #categories{padding-top:42px;}
++.rd-home .cat-grid{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:0;}
++.rd-home .cat-card{background:none;border:0;border-right:1px solid #b4ccb721;box-shadow:none;border-radius:0;padding:0;}
++.rd-home .cat-card::after{display:none;}
++.rd-home .cat-card:last-child{border-right:0;}
++.rd-home .cat-card a{padding:12px 4px;}
++.rd-home .cat-card .ic{background:none;border:0;box-shadow:none;color:#a4e3cc;width:40px;height:40px;margin:0 auto 12px;}
++.rd-home .cat-card .ic svg{width:27px;height:27px;}
++.rd-home .cat-card span{font-size:11px;font-weight:500;}
++.rd-home #advertising .ad-teaser{background:linear-gradient(110deg,#143c2e,#0c211c);border:1px solid #729c7d40;border-radius:12px;padding:34px 38px;text-align:left;box-shadow:none;}
++.rd-home #advertising .ad-teaser p{font-size:14px;max-width:620px;margin:16px 0 22px;}
++.rd-home #advertising .ad-teaser::before,.rd-home #advertising .ad-teaser::after{display:none;}
++.rd-home .bot-card{background:#0d201b;box-shadow:none;border:1px solid #91b7a52a;border-radius:12px;}
++.rd-home .bot-card::before,.rd-home .bot-card::after{display:none;}
++.rd-home .bot-mini-feed{display:none;}
++.rd-home .bot-head h3{font-size:21px;}
++.rd-home .bot-tags li{border:0;background:#86a79813;}
++.rd-home .rules-card,.rd-home .faq details{background:#0d201b;border:1px solid #91b7a52a;box-shadow:none;border-radius:9px;}
++.rd-home .rules-card::after,.rd-home .faq details::after{display:none;}
++.rd-home #rules{padding-bottom:24px;}
++.rd-home #rules .rules-list li{font-size:13px;}
++.rd-home footer,.rd-group footer{background:#071410;border-top:1px solid #9abb9a20;}
++.rd-home .footer-bottom,.rd-group .footer-bottom{font-size:11px;}
++.rd-group .promo-section{padding-top:28px;}
++.rd-group .promo-hero{position:relative;isolation:isolate;overflow:hidden;padding:48px 40px;text-align:left;max-width:none;margin:0 0 28px;border-radius:12px;border:1px solid #8fb69e30;}
++.rd-group-cover{position:absolute;z-index:-2;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;}
++.rd-group-hero::after{content:'';position:absolute;z-index:-1;inset:0;background:linear-gradient(90deg,#061b17f2,#061b17b8 60%,#061b1722);}
++.rd-group .promo-avatar{width:94px;height:94px;background:none;border:2px solid #d0e4d6;box-shadow:none;margin:0 0 20px;border-radius:50%;overflow:hidden;}
++.rd-group .promo-avatar img{width:100%;height:100%;object-fit:cover;}
++.rd-group .promo-platform{font-size:11px;color:#9bdfc3;letter-spacing:.16em;margin:0 0 14px;}
++.rd-group .promo-hero h1{font-size:clamp(32px,4vw,56px);max-width:800px;text-transform:none;margin:0 0 20px;}
++.rd-group-intro{max-width:620px;font-size:15px;color:#c1d5c9;line-height:1.7;}
++.rd-group-hero .promo-row{border:0;padding:0;max-width:350px;margin:26px 0 0;}
++.rd-group .promo-card{background:#0c211b;border:1px solid #aac5ae30;box-shadow:none;}
++.rd-home .cta-dock{box-shadow:none;background:#091c16f2;}
++.rd-home :focus-visible,.rd-group :focus-visible{outline:3px solid #b2ebcb;outline-offset:4px;}
++@media(min-width:1025px){.rd-home .nav-links>a:last-child{margin-left:45px;color:#8cd9ed;}}
++@media(max-width:1024px){.rd-home .nav-links{gap:18px;}.rd-home .brand{max-width:160px;}.rd-hero-content{padding:52px 30px;}.rd-home .wrap,.rd-group .wrap{width:calc(100% - 40px);}.rd-home .cat-grid{grid-template-columns:repeat(4,1fr);row-gap:20px;}.rd-home .cat-card:nth-child(4){border-right:0;}}
++@media(max-width:760px){
++ .rd-home .wrap,.rd-group .wrap{width:calc(100% - 32px);}
++ .rd-home .topbar,.rd-group .topbar{min-height:72px;gap:12px;}
++ .rd-home .brand,.rd-group .brand{font-size:10px;max-width:150px;letter-spacing:.07em;}
++ .rd-home .logo-badge,.rd-group .logo-badge,.rd-home .logo-badge img,.rd-group .logo-badge img{width:44px;height:34px;}
++ .rd-home .nav-links.open,.rd-group .nav-links.open{background:#0b211b;gap:0;}
++ .rd-home .nav-links.open>a,.rd-group .nav-links.open>a{padding:14px;}
++ .rd-home section{padding:34px 0;}.rd-home section.rd-hero{padding-top:12px;}
++ .rd-hero-surface{min-height:506px;border-radius:10px;}
++ .rd-landscape{object-position:72% center;}
++ .rd-hero-surface::after{background:linear-gradient(180deg,#061914b8 0%,#06191450 28%,#061914dd 65%,#061914 100%);}
++ .rd-hero-content{padding:32px 22px 26px;max-width:none;}
++ .rd-hero-content h1{font-size:clamp(39px,11.8vw,68px);margin:0 0 18px;}
++ .rd-hero-content>.eyebrow{font-size:8px;letter-spacing:.09em;margin-bottom:16px;}
++ .rd-hero-content>p{font-size:16px;max-width:280px;margin-bottom:76px;}
++ .rd-home .rd-hero-content .hero-ctas{display:flex;flex-direction:column;gap:10px;}
++ .rd-home .hero-ctas .btn{width:100%;font-size:12px;justify-content:center;}
++ .rd-home .rd-hero-footnote{margin-top:18px;font-size:10px;}
++ .rd-landscape-caption{display:none;}
++ .rd-home .groups-section{padding-top:30px;}
++ .rd-home .section-head{display:block;margin-bottom:20px;}
++ .rd-home .section-head>p{display:none;}
++ .rd-home h2{font-size:31px;}
++ .rd-home .group-grid{grid-template-columns:1fr;gap:20px;}
++ .rd-card-cover{height:156px;}
++ .rd-card-body{padding:0 20px 22px;}
++ .rd-home .rd-card-body h3{font-size:20px;}
++ .rd-card-body>p{font-size:13px;min-height:0;}
++ .rd-home .group-card.is-full .rd-card-cover{height:100px;}
++ .rd-home .cat-card span{font-size:10px;}
++ .rd-home .cat-card a{padding:8px 0;}
++ .rd-home #categories{padding-top:34px;}
++ .rd-home #advertising .ad-teaser{padding:28px 22px;}
++ .rd-home .bot-grid{grid-template-columns:1fr;}
++ .rd-group .promo-hero{padding:28px 22px;}
++ .rd-group .promo-hero h1{font-size:34px;overflow-wrap:anywhere;}
++ .rd-group .promo-row{grid-template-columns:1fr;}
++ .rd-group .promo-card{padding:24px 20px;}
++}
++/* Final hierarchy and navigation adjustments. */
++.rd-home .section-head{display:block;}
++.rd-home .section-head>p{text-align:left;margin-top:14px;max-width:660px;}
++.rd-home .groups-section .section-head{display:flex;}
++.rd-home .groups-section .section-head>p{text-align:right;margin:0;}
++.rd-home .mini-feed{display:none;}
++.rd-home .bot-card>p{font-size:14px;line-height:1.7;}
++.rd-home .topbar,.rd-group .topbar{background:none;border:0;border-radius:0;box-shadow:none;}
++@media(max-width:760px){.rd-home .groups-section .section-head{display:block;}}
++.rd-home .section-head{max-width:none;width:100%;}
++.rd-home .groups-section .section-head>div{flex:1;}
++.rd-home .groups-section .section-head h2{max-width:none;}
++.rd-home .groups-section .section-head>p{max-width:250px;flex-shrink:0;}
++.rd-home .topbar::before,.rd-home .topbar::after,.rd-group .topbar::before,.rd-group .topbar::after,.rd-home .btn::before,.rd-group .btn::before{display:none;}
++.rd-group .promo-card{border-radius:12px;}
++.rd-group .group-cats span{background:#8ec9a811;border:1px solid #a3c9b626;box-shadow:none;border-radius:5px;color:#bad9c7;font-weight:500;}
++@media(min-width:761px){.rd-home .groups-section .section-head h2{white-space:nowrap;}}
+diff --git a/script.js b/script.js
+index a44dd32..4060648 100644
+--- a/script.js
++++ b/script.js
+@@ -27,7 +27,7 @@ const SITE = {
+ 
+   /* Картинки для SEO (пути от корня сайта; абсолютные адреса собираются из baseUrl) */
+   ogImage: "assets/images/og-image-v2.jpg",
+-  logo: "assets/images/logo-hero.jpg",
++  logo: "assets/brand/whatsapp.webp",
+ 
+   adContacts: {
+     telegram: "@Abdylzhelil05",
+@@ -60,7 +60,7 @@ const GROUPS = [
+     whatIsPosted: "Объявления и реклама по Республике Дагестан: покупка, продажа, услуги и другие предложения участников.",
+     admin: { contact: "@Abdylzhelil05" },
+     link: "https://t.me/AvitoDag05_reklama_group",
+-    logo: "assets/images/logo-telegram.jpg"
++    logo: "assets/brand/telegram.webp"
+   },
+   {
+     id: "whatsapp-main",
+@@ -76,7 +76,7 @@ const GROUPS = [
+     whatIsPosted: "Обычные объявления участников (бесплатно в часы работы группы) и платная реклама — каналы, соцсети, сайты и сторонние площадки.",
+     admin: { name: "Главный администратор", contact: "+79637968587" },
+     link: "https://chat.whatsapp.com/KA9KJ5Gt9W4Lb0HZkn7VvT?s=cl&p=a&mlu=4&ilr=4",
+-    logo: "assets/images/logo.jpg"
++    logo: "assets/brand/whatsapp.webp"
+   },
+   {
+     id: "whatsapp-2",
+@@ -92,7 +92,7 @@ const GROUPS = [
+     whatIsPosted: "Обычные объявления участников и платная реклама — по правилам группы.",
+     admin: { name: "Главный администратор", contact: "+79637968587" },
+     link: "https://chat.whatsapp.com/EisxSK0qarkJzyrlt9v1fx",
+-    logo: "assets/images/logo.jpg"
++    logo: "assets/brand/whatsapp.webp"
+   }
+ ];
+ 
+@@ -116,7 +116,7 @@ function getGroupById(id) {
+ function getGroupsByPlatform(platform) {
+   return GROUPS
+     .filter(function (g) { return g.platform === platform; })
+-    .sort(function (a, b) { return a.order - b.order; });
++    .sort(function (a, b) { return (a.status === "full") - (b.status === "full") || a.order - b.order; });
+ }
+ 
+ /* Первая группа платформы, в которую сейчас идёт набор */
+@@ -245,25 +245,22 @@ function createWhatsAppCard(group) {
+ 
+ /* Карточка в разделе «Наши группы» */
+ function createGroupCard(group) {
+-  const isTelegram = group.platform === "telegram";
+-  const card = el("a", {
+-    cls: "group-card reveal",
+-    attrs: { href: getGroupPageHref(group.id), "data-goal": "open_group_page" }
+-  });
+-
+-  /* Бейдж статуса показывается только у пронумерованных групп */
+-  if (group.number != null) card.appendChild(createStatusBadge(group.status, "group-status"));
+-
+-  const badge = el("div", { cls: "group-badge " + (isTelegram ? "tg" : "wa") });
+-  badge.appendChild(el("img", { attrs: { src: group.logo, alt: "", width: "52", height: "52", loading: "lazy" } }));
+-  card.appendChild(badge);
+-
+-  card.appendChild(el("h3", { text: group.name }));
+-  card.appendChild(el("div", { cls: "members", text: group.membersLabel }));
+-  card.appendChild(el("p", { cls: "desc", text: group.description }));
+-  card.appendChild(createCategoryChips(group.categories));
+-  card.appendChild(el("span", { cls: "btn btn-sm btn-block " + (isTelegram ? "btn-tg" : "btn-wa"), text: isTelegram ? "Открыть Telegram" : "Открыть WhatsApp" }));
+-  return card;
++  const tg = group.platform === "telegram", open = group.status === "open";
++  const card = el("article", { cls: "group-card rd-community " + (tg ? "is-tg" : "is-wa") + (open ? "" : " is-full") });
++  const cover = el("div", { cls: "rd-card-cover", attrs: { "aria-hidden": "true" } });
++  cover.appendChild(el("img", { attrs: { src: "assets/brand/hero.webp", alt: "", width: "1536", height: "1024", loading: "lazy" } }));
++  cover.appendChild(createStatusBadge(group.status));
++  card.appendChild(cover);
++  const body = el("div", { cls: "rd-card-body" });
++  const identity = el("a", { cls: "rd-card-identity", attrs: { href: getGroupPageHref(group.id), "data-goal": "open_group_page" } });
++  identity.appendChild(el("img", { attrs: { src: group.logo, alt: "", width: "76", height: "76", loading: "lazy" } }));
++  identity.appendChild(el("span", { text: tg ? "Telegram" : "WhatsApp · группа №" + group.number }));
++  body.appendChild(identity);
++  const title = el("h3");title.appendChild(el("a", { text: "Объявления Дагестана", attrs: { href: getGroupPageHref(group.id), "data-goal": "open_group_page" } }));body.appendChild(title);
++  body.appendChild(el("p", { text: open ? (tg ? "Покупка, продажа, услуги и работа в Telegram." : "Новая группа: вступайте и размещайте объявления.") : "Набор закрыт. Выберите группу, в которой есть места." }));
++  if(open){const join=el("a", {cls:"btn btn-block "+(tg?"btn-tg":"btn-wa"),text:"Вступить в группу",attrs:{"data-goal":tg?"join_telegram":"join_whatsapp"}});setExternal(join,group.link);body.appendChild(join);}
++  else{const alternative=getOpenGroup(group.platform);body.appendChild(el("a",{cls:"btn btn-ghost btn-block",text:"Выбрать другую группу",attrs:{href:alternative?getGroupPageHref(alternative.id):SITE.homeUrl+"#groups"}}));}
++  card.appendChild(body);return card;
+ }
+ 
+ function createCategoryChips(categories) {
+@@ -292,8 +289,8 @@ function renderGroups() {
+   if (!grid) return;
+   grid.textContent = "";
+   GROUPS
+-    .filter(function (g) { return g.status !== "full"; })
+-    .sort(function (a, b) { return a.order - b.order; })
++    .filter(function (g) { return true; })
++    .sort(function (a, b) { return (a.status === "full") - (b.status === "full") || a.order - b.order; })
+     .forEach(function (group) { grid.appendChild(createGroupCard(group)); });
+ }
+ 
+@@ -323,12 +320,15 @@ function createPromoPage(group) {
+   const isTelegram = group.platform === "telegram";
+   const fragment = document.createDocumentFragment();
+ 
+-  const hero = el("div", { cls: "promo-hero" });
++  const hero = el("div", { cls: "promo-hero rd-group-hero" });
++  hero.appendChild(el("img", { cls: "rd-group-cover", attrs: { src: "assets/brand/hero.webp", alt: "", width: "1536", height: "1024" } }));
+   const avatar = el("div", { cls: "promo-avatar " + (isTelegram ? "tg" : "wa") });
+   avatar.appendChild(el("img", { attrs: { src: group.logo, alt: "Логотип группы «" + group.name + "»", width: "84", height: "84" } }));
+   hero.appendChild(avatar);
+   hero.appendChild(el("div", { cls: "promo-platform", text: PLATFORM_NAMES[group.platform] }));
+   hero.appendChild(el("h1", { text: group.name }));
++  hero.appendChild(el("p", { cls: "rd-group-intro", text: group.description }));
++  hero.appendChild(createJoinRow(group));
+   fragment.appendChild(hero);
+ 
+   const card = el("div", { cls: "promo-card" });
+@@ -416,6 +416,7 @@ function setMetaTag(attrName, attrValue, content) {
+ }
+ 
+ function setRobots(value) {
++  if (document.documentElement.dataset.preview === "true") value = "noindex, nofollow";
+   setMetaTag("name", "robots", value);
+ }
+ 
+@@ -547,7 +548,7 @@ function updateStructuredData() {
+ 
+ /* SEO главной страницы */
+ function applyHomeSeo() {
+-  if (!document.getElementById("wa-groups")) return;
++  if (!document.body.classList.contains("rd-home") && !document.getElementById("wa-groups")) return;
+   setPageUrls("");
+   updateStructuredData();
+ }
