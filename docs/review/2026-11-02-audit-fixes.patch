@@ -1,0 +1,1585 @@
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+index 0000000..7a60b85
+--- /dev/null
++++ b/.gitignore
+@@ -0,0 +1,2 @@
++__pycache__/
++*.pyc
+diff --git a/404.html b/404.html
+index 10a68bb..1d4a2e9 100644
+--- a/404.html
++++ b/404.html
+@@ -7,15 +7,14 @@
+ <meta name="robots" content="noindex">
+ <meta name="theme-color" content="#0A1F16">
+ <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+-<link rel="preconnect" href="https://fonts.googleapis.com">
+-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
++<link rel="stylesheet" href="fonts.css">
+ <!-- Пути абсолютные от корня сайта: страница 404 открывается по любому адресу -->
+ <link rel="stylesheet" href="/style.css">
+ <link rel="stylesheet" href="/redesign.css">
+ <link rel="stylesheet" href="/site-pages.css">
+ </head>
+ <body class="rd-page error-page">
++<a class="skip-link" href="#main">К содержимому</a>
+ 
+ <header>
+   <div class="wrap topbar">
+@@ -37,7 +36,7 @@
+   <div class="flag-stripe" aria-hidden="true"><span class="g1"></span><span class="g2"></span><span class="g3"></span></div>
+ </header>
+ 
+-<a class="skip-link" href="#main">К содержимому</a>
++
+ <main id="main">
+   <section class="promo-section">
+     <div class="wrap">
+diff --git a/README.md b/README.md
+index 8641dc5..9e90549 100644
+--- a/README.md
++++ b/README.md
+@@ -176,3 +176,22 @@ python3 -m http.server 8000
+ - Для favicon есть только `favicon.svg`. Отдельных `.ico` и иконки для iOS (apple-touch-icon) нет.
+ - Контраст текста приведён к WCAG AA (не ниже 4,5:1): на кнопках WhatsApp и Telegram тёмный текст на фирменных цветах, серые тексты светлее прежних. Цвета задаются в `style.css` (`--wa`, `--tg`, `--ink-soft`, `--ink-faint`, `.btn-wa`, `.btn-tg`).
+ 
++
++
++## Сборка после аудита 2 ноября 2026
++
++Данные и разметка групп берутся из `script.js`. После изменения групп выполните:
++
++```sh
++node scripts/build_group_pages.cjs
++```
++
++Создаются три готовые страницы `group-*.html`; sitemap автоматически включает только открытые группы. Старые адреса `group.html?id=...` поддерживаются. Генератор использует те же функции разметки, что и браузер, без внешних JS-пакетов.
++
++Общее меню: `scripts/templates/site-nav.html`, затем `python scripts/update_nav.py`. Боты: `python scripts/build_bot_pages.py modexa crm` (нужен Pillow). Новый радар хранится в `scripts/templates/client-radar.html`; навигация и доступность галерей — в `scripts/site_components.py`. Категории: `python scripts/build_category_pages.py` из корня. При необходимости пересобирайте группы после этих команд.
++
++`consent.js` должен загружаться до аналитики на каждой странице. Старое согласие без актуальной версии не включает Метрику; отказ сохраняется. Менять версию следует при существенном изменении обработки данных, а не при изменении цен. Шрифты и лицензии находятся в `assets/fonts`; внешние Google Fonts не используются.
++
++Закрытая копия: `python scripts/build_review.py` создаёт `dist` с `noindex` и запретом в robots. Это сборка только для просмотра, не для основного домена. Для основного сайта используются исходные HTML/JS/CSS и assets после отдельного утверждения владельцем. Не переносите preview-noindex на основной домен.
++
++Картинка отправки ссылок: `assets/brand/og-community.jpg` (1200×630); исходная композиция — `scripts/templates/social-card.html`. После её изменения изображение требуется заново экспортировать.
+diff --git a/assets/fonts/golostext-OFL.txt b/assets/fonts/golostext-OFL.txt
+new file mode 100644
+index 0000000..4db2dc9
+--- /dev/null
++++ b/assets/fonts/golostext-OFL.txt
+@@ -0,0 +1,93 @@
++Copyright 2019 The Golos Text Project Authors (https://github.com/googlefonts/golos-text)
++
++This Font Software is licensed under the SIL Open Font License, Version 1.1.
++This license is copied below, and is also available with a FAQ at:
++https://scripts.sil.org/OFL
++
++
++-----------------------------------------------------------
++SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
++-----------------------------------------------------------
++
++PREAMBLE
++The goals of the Open Font License (OFL) are to stimulate worldwide
++development of collaborative font projects, to support the font creation
++efforts of academic and linguistic communities, and to provide a free and
++open framework in which fonts may be shared and improved in partnership
++with others.
++
++The OFL allows the licensed fonts to be used, studied, modified and
++redistributed freely as long as they are not sold by themselves. The
++fonts, including any derivative works, can be bundled, embedded, 
++redistributed and/or sold with any software provided that any reserved
++names are not used by derivative works. The fonts and derivatives,
++however, cannot be released under any other type of license. The
++requirement for fonts to remain under this license does not apply
++to any document created using the fonts or their derivatives.
++
++DEFINITIONS
++"Font Software" refers to the set of files released by the Copyright
++Holder(s) under this license and clearly marked as such. This may
++include source files, build scripts and documentation.
++
++"Reserved Font Name" refers to any names specified as such after the
++copyright statement(s).
++
++"Original Version" refers to the collection of Font Software components as
++distributed by the Copyright Holder(s).
++
++"Modified Version" refers to any derivative made by adding to, deleting,
++or substituting -- in part or in whole -- any of the components of the
++Original Version, by changing formats or by porting the Font Software to a
++new environment.
++
++"Author" refers to any designer, engineer, programmer, technical
++writer or other person who contributed to the Font Software.
++
++PERMISSION & CONDITIONS
++Permission is hereby granted, free of charge, to any person obtaining
++a copy of the Font Software, to use, study, copy, merge, embed, modify,
++redistribute, and sell modified and unmodified copies of the Font
++Software, subject to the following conditions:
++
++1) Neither the Font Software nor any of its individual components,
++in Original or Modified Versions, may be sold by itself.
++
++2) Original or Modified Versions of the Font Software may be bundled,
++redistributed and/or sold with any software, provided that each copy
++contains the above copyright notice and this license. These can be
++included either as stand-alone text files, human-readable headers or
++in the appropriate machine-readable metadata fields within text or
++binary files as long as those fields can be easily viewed by the user.
++
++3) No Modified Version of the Font Software may use the Reserved Font
++Name(s) unless explicit written permission is granted by the corresponding
++Copyright Holder. This restriction only applies to the primary font name as
++presented to the users.
++
++4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
++Software shall not be used to promote, endorse or advertise any
++Modified Version, except to acknowledge the contribution(s) of the
++Copyright Holder(s) and the Author(s) or with their explicit written
++permission.
++
++5) The Font Software, modified or unmodified, in part or in whole,
++must be distributed entirely under this license, and must not be
++distributed under any other license. The requirement for fonts to
++remain under this license does not apply to any document created
++using the Font Software.
++
++TERMINATION
++This license becomes null and void if any of the above conditions are
++not met.
++
++DISCLAIMER
++THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
++EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
++MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
++OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
++COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
++INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
++DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
++FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
++OTHER DEALINGS IN THE FONT SOFTWARE.
+diff --git a/assets/fonts/manrope-OFL.txt b/assets/fonts/manrope-OFL.txt
+new file mode 100644
+index 0000000..e271172
+--- /dev/null
++++ b/assets/fonts/manrope-OFL.txt
+@@ -0,0 +1,93 @@
++Copyright 2018 The Manrope Project Authors (https://github.com/googlefonts/manrope)
++
++This Font Software is licensed under the SIL Open Font License, Version 1.1.
++This license is copied below, and is also available with a FAQ at:
++http://scripts.sil.org/OFL
++
++
++-----------------------------------------------------------
++SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
++-----------------------------------------------------------
++
++PREAMBLE
++The goals of the Open Font License (OFL) are to stimulate worldwide
++development of collaborative font projects, to support the font creation
++efforts of academic and linguistic communities, and to provide a free and
++open framework in which fonts may be shared and improved in partnership
++with others.
++
++The OFL allows the licensed fonts to be used, studied, modified and
++redistributed freely as long as they are not sold by themselves. The
++fonts, including any derivative works, can be bundled, embedded, 
++redistributed and/or sold with any software provided that any reserved
++names are not used by derivative works. The fonts and derivatives,
++however, cannot be released under any other type of license. The
++requirement for fonts to remain under this license does not apply
++to any document created using the fonts or their derivatives.
++
++DEFINITIONS
++"Font Software" refers to the set of files released by the Copyright
++Holder(s) under this license and clearly marked as such. This may
++include source files, build scripts and documentation.
++
++"Reserved Font Name" refers to any names specified as such after the
++copyright statement(s).
++
++"Original Version" refers to the collection of Font Software components as
++distributed by the Copyright Holder(s).
++
++"Modified Version" refers to any derivative made by adding to, deleting,
++or substituting -- in part or in whole -- any of the components of the
++Original Version, by changing formats or by porting the Font Software to a
++new environment.
++
++"Author" refers to any designer, engineer, programmer, technical
++writer or other person who contributed to the Font Software.
++
++PERMISSION & CONDITIONS
++Permission is hereby granted, free of charge, to any person obtaining
++a copy of the Font Software, to use, study, copy, merge, embed, modify,
++redistribute, and sell modified and unmodified copies of the Font
++Software, subject to the following conditions:
++
++1) Neither the Font Software nor any of its individual components,
++in Original or Modified Versions, may be sold by itself.
++
++2) Original or Modified Versions of the Font Software may be bundled,
++redistributed and/or sold with any software, provided that each copy
++contains the above copyright notice and this license. These can be
++included either as stand-alone text files, human-readable headers or
++in the appropriate machine-readable metadata fields within text or
++binary files as long as those fields can be easily viewed by the user.
++
++3) No Modified Version of the Font Software may use the Reserved Font
++Name(s) unless explicit written permission is granted by the corresponding
++Copyright Holder. This restriction only applies to the primary font name as
++presented to the users.
++
++4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
++Software shall not be used to promote, endorse or advertise any
++Modified Version, except to acknowledge the contribution(s) of the
++Copyright Holder(s) and the Author(s) or with their explicit written
++permission.
++
++5) The Font Software, modified or unmodified, in part or in whole,
++must be distributed entirely under this license, and must not be
++distributed under any other license. The requirement for fonts to
++remain under this license does not apply to any document created
++using the Font Software.
++
++TERMINATION
++This license becomes null and void if any of the above conditions are
++not met.
++
++DISCLAIMER
++THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
++EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
++MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
++OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
++COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
++INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
++DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
++FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
++OTHER DEALINGS IN THE FONT SOFTWARE.
+diff --git a/avto-dagestan.html b/avto-dagestan.html
+index bbd25cb..7b532dd 100644
+--- a/avto-dagestan.html
++++ b/avto-dagestan.html
+@@ -22,10 +22,10 @@
+ <link rel="canonical" href="https://obyavleniya-dagestan.ru/avto-dagestan.html">
+ <meta property="og:url" content="https://obyavleniya-dagestan.ru/avto-dagestan.html">
+ <link rel="icon" href="favicon.svg" type="image/svg+xml">
+-<meta property="og:image" content="https://obyavleniya-dagestan.ru/assets/images/og-image-v2.jpg">
+-<meta name="twitter:image" content="https://obyavleniya-dagestan.ru/assets/images/og-image-v2.jpg">
++<meta property="og:image" content="https://obyavleniya-dagestan.ru/assets/brand/og-community.jpg">
++<meta name="twitter:image" content="https://obyavleniya-dagestan.ru/assets/brand/og-community.jpg">
+ <script>document.documentElement.classList.add("js");</script>
+-<script>window.cookieAccepted=false;try{window.cookieAccepted=window.localStorage.getItem("cookie-consent")==="yes";}catch(e){}</script>
++<script src="consent.js"></script>
+ <!-- Яндекс Метрика -->
+ <script>
+     if (window.cookieAccepted) {
+@@ -40,9 +40,7 @@
+     }
+ </script>
+ <!-- /Яндекс Метрика -->
+-<link rel="preconnect" href="https://fonts.googleapis.com">
+-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
++<link rel="stylesheet" href="fonts.css">
+ <link rel="stylesheet" href="style.css">
+ <script type="application/ld+json">
+ {
+diff --git a/bot-crm.html b/bot-crm.html
+index 1709fd2..a1f4297 100644
+--- a/bot-crm.html
++++ b/bot-crm.html
+@@ -25,7 +25,7 @@
+ <meta property="og:image" content="https://obyavleniya-dagestan.ru/assets/images/og-bot-crm.jpg">
+ <meta name="twitter:image" content="https://obyavleniya-dagestan.ru/assets/images/og-bot-crm.jpg">
+ <script>document.documentElement.classList.add("js");</script>
+-<script>window.cookieAccepted=false;try{window.cookieAccepted=window.localStorage.getItem("cookie-consent")==="yes";}catch(e){}</script>
++<script src="consent.js"></script>
+ <!-- Яндекс Метрика -->
+ <script>
+     if (window.cookieAccepted) {
+@@ -40,9 +40,7 @@
+     }
+ </script>
+ <!-- /Яндекс Метрика -->
+-<link rel="preconnect" href="https://fonts.googleapis.com">
+-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
++<link rel="stylesheet" href="fonts.css">
+ <link rel="stylesheet" href="bot.css?v=20261024">
+ <script type="application/ld+json">
+ {
+@@ -138,7 +136,7 @@
+   <a href="index.html">← На сайт «Объявления Дагестана»</a>
+   <a href="bot-moderation.html">Modexa — другой бот</a>
+   <a href="#features">Возможности</a><a href="#screens">Скриншоты</a><a href="#start">Как работает</a><a href="#tariffs">Тарифы</a><a href="#faq">Вопросы</a>
+-</div></div>
++<div class="bh-site-sections"><a href="index.html#groups">Наши группы</a><details><summary>Категории</summary><a href="avto-dagestan.html">Автомобили</a><a href="nedvizhimost-dagestan.html">Недвижимость</a><a href="tehnika-dagestan.html">Техника</a><a href="odezhda-dagestan.html">Одежда</a><a href="uslugi-dagestan.html">Услуги</a><a href="rabota-dagestan.html">Работа</a><a href="tovary-dagestan.html">Товары</a><a href="raznoe-dagestan.html">Разное</a></details><a href="reklama.html">Реклама и цены</a><a href="index.html#rules">Правила групп</a><a href="index.html#contact">Контакты администратора</a></div></div></div>
+ </header>
+ <main id="main">
+ <section class="hero"><div class="wrap">
+@@ -169,7 +167,7 @@
+ </div></section><section id="features"><div class="wrap"><div class="sec-head rv"><div class="eyebrow">Возможности</div><h2>Что внутри</h2></div><div class="grid g4"><div class="card rv"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span><h3>75 готовых ниш</h3><p>И поиск ниши по слову. Выберите свою нишу и город — остальное бот сделает сам.</p></div><div class="card rv"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 3H2l8 9.5V19l4 2v-8.5L22 3z"/></svg></span><h3>Без лишнего мусора</h3><p>Бот сам отсеивает рекламу мастеров, вакансии и спам.</p></div><div class="card rv"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><h3>Подсказка о схеме</h3><p>Просят предоплату, перевод, крипту, код из СМС или зовут на чужой сайт — бот пишет «⚠️ Осторожно, возможна схема». Помогает заметить обман, но не гарантирует защиту.</p></div><div class="card rv"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></span><h3>Заявки по одной</h3><p>Выберите нишу и место (Дагестан, Махачкала, Москва…) и листайте «Предыдущая / Следующая».</p></div><div class="card rv"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></span><h3>Ответ в один клик</h3><p>Скопируйте готовый текст с вашими ценами и ответьте в группе. Бот сам клиентам не пишет — пишете вы.</p></div><div class="card rv"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></span><h3>Мини-CRM</h3><p>Этапы сделки, заметки и напоминания — чтобы не терять клиентов.</p></div><div class="card rv"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></svg></span><h3>«Не беспокоить» и «Тишина»</h3><p>Паузу на час, день или неделю можно включить в любой момент, а ночью бот молчит. Заявки не пропадают.</p></div><div class="card rv"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg></span><h3>Приглашения</h3><p>Друг заходит по вашей ссылке — вам обоим +7 дней полного тарифа.</p></div><div class="card rv"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><h3>«Сообщить о проблеме»</h3><p>Кнопка прямо в боте: если что-то не так, напишите, и вам ответят.</p></div></div></div></section>
+ <section id="screens"><div class="wrap">
+ <div class="sec-head rv"><div class="eyebrow">Видео и скриншоты</div><h2>Как выглядит бот</h2></div>
+-<div class="sub-h">Видео</div><div class="shots shots-v"><figure class="shot rv"><div class="vidbox"><div class="vid"><video src="assets/video/radar-how.mp4" poster="assets/images/radar-vid-1.jpg" muted loop playsinline preload="none" aria-label="Видео: как работает КлиентРадар"></video></div><button class="snd" type="button">🔊 Включить звук</button></div><figcaption><strong>Как это работает</strong>Ниша и город → бот находит заявку → вы отвечаете первым.</figcaption></figure><figure class="shot rv"><div class="vidbox"><div class="vid"><video src="assets/video/radar-admins.mp4" poster="assets/images/radar-vid-2.jpg" muted loop playsinline preload="none" aria-label="Видео: КлиентРадар для админов групп"></video></div><button class="snd" type="button">🔊 Включить звук</button></div><figcaption><strong>Для админов групп</strong>Рейтинг заявок в закрепе и 20% кредитами с оплат участников.</figcaption></figure><figure class="shot rv"><div class="vidbox"><div class="vid"><video src="assets/video/radar-scam.mp4" poster="assets/images/radar-vid-3.jpg" muted loop playsinline preload="none" aria-label="Видео: подсказка о возможной схеме"></video></div><button class="snd" type="button">🔊 Включить звук</button></div><figcaption><strong>Подсказка о схеме</strong>Бот помогает заметить признаки обмана в заявке.</figcaption></figure><figure class="shot rv"><div class="vidbox"><div class="vid"><video src="assets/video/radar-tariff.mp4" poster="assets/images/radar-vid-4.jpg" muted loop playsinline preload="none" aria-label="Видео: тариф и гарантия КлиентРадара"></video></div><button class="snd" type="button">🔊 Включить звук</button></div><figcaption><strong>Тариф и гарантия</strong>Бесплатно, полный тариф, 3 дня бесплатно и гарантия.</figcaption></figure></div><div class="sub-h">Скриншоты</div><div class="shots"><figure class="shot rv"><div class="phone"><img src="assets/images/radar-card-v2.jpg" alt="Скриншот бота КлиентРадар: карточка заявки" width="560" height="1073" loading="lazy"></div><figcaption><strong>Карточка заявки</strong>Кто ищет, что нужно, место и бюджет — и кнопки: ответить, шаблон, в работу, отложить.</figcaption></figure><figure class="shot rv"><div class="phone"><img src="assets/images/radar-onebyone.jpg" alt="Скриншот бота КлиентРадар: все кнопки под заявкой" width="560" height="552" loading="lazy"></div><figcaption><strong>Все кнопки под заявкой</strong>«Ответить в группе», «Черновик ответа», «Спам / схема», «Следующая» и выбор ниши и места.</figcaption></figure><figure class="shot rv"><div class="phone"><img src="assets/images/radar-tariff-v2.jpg" alt="Скриншот бота КлиентРадар: тариф" width="560" height="997" loading="lazy"></div><figcaption><strong>Тариф</strong>Цены 490 / 1290 / 3990 ₽ и оплата прямо в Telegram — картой или по СБП.</figcaption></figure><figure class="shot rv"><div class="phone"><img src="assets/images/radar-pin.jpg" alt="Скриншот бота КлиентРадар: рейтинг в закрепе группы" width="560" height="1130" loading="lazy"></div><figcaption><strong>Рейтинг в закрепе группы</strong>Бот закрепляет в группе рейтинг заявок по нишам и кнопки ниш — участники выбирают свою.</figcaption></figure><figure class="shot rv"><div class="phone"><img src="assets/images/radar-cabinet-v2.jpg" alt="Скриншот бота КлиентРадар: кабинет в telegram" width="560" height="1118" loading="lazy"></div><figcaption><strong>Кабинет в Telegram</strong>Заявки за сутки, клиенты, тариф, кредиты и «Сообщить о проблеме» — в одном окне. Вход без пароля.</figcaption></figure><figure class="shot rv"><div class="phone"><img src="assets/images/radar-credits.jpg" alt="Скриншот бота КлиентРадар: кредиты для админов групп" width="560" height="554" loading="lazy"></div><figcaption><strong>Кредиты для админов групп</strong>1 кредит = 1 ₽ внутри бота: обмен на дни 💎 или на бота модерации для вашей группы.</figcaption></figure><figure class="shot rv"><div class="phone"><img src="assets/images/radar-stages.jpg" alt="Скриншот бота КлиентРадар: crm: этапы сделки" width="560" height="207" loading="lazy"></div><figcaption><strong>CRM: этапы сделки</strong>Новый, в переговорах, думает, оплата, выполнено, отказ — клиенты по этапам, поиск и добавление.</figcaption></figure><figure class="shot rv"><div class="phone"><img src="assets/images/radar-catalog.jpg" alt="Скриншот бота КлиентРадар: каталог групп" width="560" height="738" loading="lazy"></div><figcaption><strong>Каталог групп</strong>Добавьте свою группу: бонусные дни за заявки из неё, уровни и рейтинг.</figcaption></figure></div></div></section>
++<div class="sub-h">Видео</div><div class="shots shots-v"><figure class="shot rv"><div class="vidbox"><div class="vid"><video src="assets/video/radar-how.mp4" poster="assets/images/radar-vid-1.jpg" muted loop playsinline preload="none" aria-label="Видео: как работает КлиентРадар"></video></div><button class="snd" type="button">🔊 Включить звук</button></div><figcaption><strong>Как это работает</strong>Ниша и город → бот находит заявку → вы отвечаете первым.</figcaption></figure><figure class="shot rv"><div class="vidbox"><div class="vid"><video src="assets/video/radar-admins.mp4" poster="assets/images/radar-vid-2.jpg" muted loop playsinline preload="none" aria-label="Видео: КлиентРадар для админов групп"></video></div><button class="snd" type="button">🔊 Включить звук</button></div><figcaption><strong>Для админов групп</strong>Рейтинг заявок в закрепе и 20% кредитами с оплат участников.</figcaption></figure><figure class="shot rv"><div class="vidbox"><div class="vid"><video src="assets/video/radar-scam.mp4" poster="assets/images/radar-vid-3.jpg" muted loop playsinline preload="none" aria-label="Видео: подсказка о возможной схеме"></video></div><button class="snd" type="button">🔊 Включить звук</button></div><figcaption><strong>Подсказка о схеме</strong>Бот помогает заметить признаки обмана в заявке.</figcaption></figure><figure class="shot rv"><div class="vidbox"><div class="vid"><video src="assets/video/radar-tariff.mp4" poster="assets/images/radar-vid-4.jpg" muted loop playsinline preload="none" aria-label="Видео: тариф и гарантия КлиентРадара"></video></div><button class="snd" type="button">🔊 Включить звук</button></div><figcaption><strong>Тариф и гарантия</strong>Бесплатно, полный тариф, 3 дня бесплатно и гарантия.</figcaption></figure></div><div class="sub-h">Скриншоты</div><div class="shots" tabindex="0" role="region" aria-label="Скриншоты бота. Прокрутка клавишами влево и вправо"><figure class="shot rv"><div class="phone"><img src="assets/images/radar-card-v2.jpg" alt="Скриншот бота КлиентРадар: карточка заявки" width="560" height="1073" loading="lazy"></div><figcaption><strong>Карточка заявки</strong>Кто ищет, что нужно, место и бюджет — и кнопки: ответить, шаблон, в работу, отложить.</figcaption></figure><figure class="shot rv"><div class="phone"><img src="assets/images/radar-onebyone.jpg" alt="Скриншот бота КлиентРадар: все кнопки под заявкой" width="560" height="552" loading="lazy"></div><figcaption><strong>Все кнопки под заявкой</strong>«Ответить в группе», «Черновик ответа», «Спам / схема», «Следующая» и выбор ниши и места.</figcaption></figure><figure class="shot rv"><div class="phone"><img src="assets/images/radar-tariff-v2.jpg" alt="Скриншот бота КлиентРадар: тариф" width="560" height="997" loading="lazy"></div><figcaption><strong>Тариф</strong>Цены 490 / 1290 / 3990 ₽ и оплата прямо в Telegram — картой или по СБП.</figcaption></figure><figure class="shot rv"><div class="phone"><img src="assets/images/radar-pin.jpg" alt="Скриншот бота КлиентРадар: рейтинг в закрепе группы" width="560" height="1130" loading="lazy"></div><figcaption><strong>Рейтинг в закрепе группы</strong>Бот закрепляет в группе рейтинг заявок по нишам и кнопки ниш — участники выбирают свою.</figcaption></figure><figure class="shot rv"><div class="phone"><img src="assets/images/radar-cabinet-v2.jpg" alt="Скриншот бота КлиентРадар: кабинет в telegram" width="560" height="1118" loading="lazy"></div><figcaption><strong>Кабинет в Telegram</strong>Заявки за сутки, клиенты, тариф, кредиты и «Сообщить о проблеме» — в одном окне. Вход без пароля.</figcaption></figure><figure class="shot rv"><div class="phone"><img src="assets/images/radar-credits.jpg" alt="Скриншот бота КлиентРадар: кредиты для админов групп" width="560" height="554" loading="lazy"></div><figcaption><strong>Кредиты для админов групп</strong>1 кредит = 1 ₽ внутри бота: обмен на дни 💎 или на бота модерации для вашей группы.</figcaption></figure><figure class="shot rv"><div class="phone"><img src="assets/images/radar-stages.jpg" alt="Скриншот бота КлиентРадар: crm: этапы сделки" width="560" height="207" loading="lazy"></div><figcaption><strong>CRM: этапы сделки</strong>Новый, в переговорах, думает, оплата, выполнено, отказ — клиенты по этапам, поиск и добавление.</figcaption></figure><figure class="shot rv"><div class="phone"><img src="assets/images/radar-catalog.jpg" alt="Скриншот бота КлиентРадар: каталог групп" width="560" height="738" loading="lazy"></div><figcaption><strong>Каталог групп</strong>Добавьте свою группу: бонусные дни за заявки из неё, уровни и рейтинг.</figcaption></figure></div></div></section>
+ 
+ 
+ 
+@@ -196,7 +194,7 @@
+   <a href="bot-moderation.html">Modexa — модерация для вашей группы</a>
+   <span>Контакты: <a href="https://t.me/Abdylzhelil05" rel="noopener" target="_blank">@Abdylzhelil05</a> · <a href="mailto:abdulzelilradzabov879@gmail.com">abdulzelilradzabov879@gmail.com</a></span><a class="sp" href="privacy.html">Политика конфиденциальности</a>
+ </div></footer>
+-<script>(function(){var b=document.querySelector('.bh-burger'),m=document.getElementById('bh-menu');if(!b||!m)return;function s(o){m.hidden=!o;b.setAttribute('aria-expanded',o?'true':'false');}b.addEventListener('click',function(){s(m.hidden);});m.addEventListener('click',function(e){if(e.target.closest('a'))s(false);});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){s(false);b.focus();}});})();</script>
++<script>(function(){var b=document.querySelector('.bh-burger'),m=document.getElementById('bh-menu');if(!b||!m)return;function s(o){m.hidden=!o;document.documentElement.style.setProperty('--bot-menu-top',Math.ceil(b.closest('header').getBoundingClientRect().bottom)+'px');b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?'Закрыть меню':'Меню');if(o)m.scrollTop=0;}b.addEventListener('click',function(){s(m.hidden);});m.addEventListener('click',function(e){if(e.target.closest('a'))s(false);});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){s(false);b.focus();}});})();</script>
+ <script src="script.js?v=20261024" defer></script>
+ <script src="page.js?v=20261024" defer></script>
+ <script>(function(){var vs=[].slice.call(document.querySelectorAll('.vid video'));if(!vs.length)return;var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+diff --git a/bot-moderation.html b/bot-moderation.html
+index 5bd00e9..383bdb7 100644
+--- a/bot-moderation.html
++++ b/bot-moderation.html
+@@ -25,7 +25,7 @@
+ <meta property="og:image" content="https://obyavleniya-dagestan.ru/assets/images/og-bot-moderation-v3.jpg">
+ <meta name="twitter:image" content="https://obyavleniya-dagestan.ru/assets/images/og-bot-moderation-v3.jpg">
+ <script>document.documentElement.classList.add("js");</script>
+-<script>window.cookieAccepted=false;try{window.cookieAccepted=window.localStorage.getItem("cookie-consent")==="yes";}catch(e){}</script>
++<script src="consent.js"></script>
+ <!-- Яндекс Метрика -->
+ <script>
+     if (window.cookieAccepted) {
+@@ -40,9 +40,7 @@
+     }
+ </script>
+ <!-- /Яндекс Метрика -->
+-<link rel="preconnect" href="https://fonts.googleapis.com">
+-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
++<link rel="stylesheet" href="fonts.css">
+ <link rel="stylesheet" href="bot.css?v=20261024">
+ <script type="application/ld+json">
+ {
+@@ -161,7 +159,7 @@
+   <a href="index.html">← На сайт «Объявления Дагестана»</a>
+   <a href="bot-crm.html">КлиентРадар — другой бот</a>
+   <a href="#features">Возможности</a><a href="#screens">Скриншоты</a><a href="#start">Как начать</a><a href="#tariffs">Тарифы</a><a href="#faq">Вопросы</a>
+-</div></div>
++<div class="bh-site-sections"><a href="index.html#groups">Наши группы</a><details><summary>Категории</summary><a href="avto-dagestan.html">Автомобили</a><a href="nedvizhimost-dagestan.html">Недвижимость</a><a href="tehnika-dagestan.html">Техника</a><a href="odezhda-dagestan.html">Одежда</a><a href="uslugi-dagestan.html">Услуги</a><a href="rabota-dagestan.html">Работа</a><a href="tovary-dagestan.html">Товары</a><a href="raznoe-dagestan.html">Разное</a></details><a href="reklama.html">Реклама и цены</a><a href="index.html#rules">Правила групп</a><a href="index.html#contact">Контакты администратора</a></div></div></div>
+ </header>
+ <main id="main">
+ <section class="hero"><div class="wrap">
+@@ -186,7 +184,7 @@
+ <div class="facts"><div class="wrap"><div class="fact"><b>0 ₽</b><span>1 группа, навсегда</span></div><div class="fact"><b>0%</b><span>комиссии с рекламы</span></div><div class="fact"><b>7 дней</b><span>гарантия возврата</span></div><div class="fact"><b>1 кнопка</b><span>«Быстрая настройка»</span></div></div></div><section id="features"><div class="wrap"><div class="sec-head rv"><div class="eyebrow">Возможности</div><h2>Что умеет бот</h2></div><div class="tabs" role="tablist" aria-label="Разделы возможностей"><button class="tab" role="tab" type="button" id="t-0" aria-controls="p-0" aria-selected="true">🛡 Защита</button><button class="tab" role="tab" type="button" id="t-1" aria-controls="p-1" aria-selected="false">📝 Предложка</button><button class="tab" role="tab" type="button" id="t-2" aria-controls="p-2" aria-selected="false">💰 Реклама</button><button class="tab" role="tab" type="button" id="t-3" aria-controls="p-3" aria-selected="false">📢 Каналы</button><button class="tab" role="tab" type="button" id="t-4" aria-controls="p-4" aria-selected="false">⚙️ Ещё</button></div><div class="tabpanel" role="tabpanel" id="p-0" aria-labelledby="t-0"><div class="tp-grid"><div class="tp-body"><div class="acc-list"><details class="acc"><summary><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><span class="acc-t">Капча для новичков</span></summary><p>Кнопка «Я не бот» или пример «7 + 9 = ?».</p></details><details class="acc"><summary><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4V2M15 16v-2M8 9h2M20 9h2M17.8 11.8 19 13M15 9h.01M17.8 6.2 19 5M3 21l9-9M12.2 6.2 11 5"/></svg></span><span class="acc-t">Спам о заработке</span></summary><p>«Подработка, пишите в личку», «курьеры до 6000 ₽», казино ловятся сами, без списков слов — по признакам. Бот читает и текст на картинках у новичков.</p></details><details class="acc"><summary><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></span><span class="acc-t">Ссылки на чужие сайты и каналы</span></summary><p>Удаляются в том числе ссылки, спрятанные в QR-код на картинке. Свои сайты можно разрешить.</p></details><details class="acc"><summary><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg></span><span class="acc-t">ИИ-модерация на русском</span></summary><p>Работает на российских сервисах GigaChat и Yandex. Вы выбираете, что удалять: работа «в личку», казино, крипта, реклама каналов, 18+, мошенничество, наркотики, оскорбления. Можно своими словами дописать, что ещё запрещено и что разрешено. Обычные объявления «продам, пишите в лс» и настоящие вакансии ИИ не трогает.</p></details><details class="acc"><summary><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 2A3.5 3.5 0 0 0 6 5.5v.3A3.5 3.5 0 0 0 4 9a3.5 3.5 0 0 0 1 2.4A3.5 3.5 0 0 0 6 17.5 3.5 3.5 0 0 0 9.5 22H12V2ZM14.5 2A3.5 3.5 0 0 1 18 5.5v.3A3.5 3.5 0 0 1 20 9a3.5 3.5 0 0 1-1 2.4A3.5 3.5 0 0 1 18 17.5a3.5 3.5 0 0 1-3.5 4.5H12"/></svg></span><span class="acc-t">Память спама</span></summary><p>Бот учится на подтверждённом спаме всех групп Modexa и сразу удаляет похожие сообщения, даже если слова поменяли.</p></details><details class="acc"><summary><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span><span class="acc-t">Общая база мошенников</span></summary><p>Отмеченный в одной группе мошенник получает предупреждение или бан в других.</p></details><details class="acc"><summary><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 3H2l8 9.5V19l4 2v-8.5L22 3z"/></svg></span><span class="acc-t">Остальные фильтры</span></summary><p>Общая база спамеров, защита от ботов, мат, антифлуд, дубли и лимит объявлений в сутки, ограничения для новичков, защита от наплыва ботов, ночной режим, жалобы /report, стоп-слова.</p></details><details class="acc"><summary><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg></span><span class="acc-t">«Это не спам»</span></summary><p>Если бот ошибся, одна кнопка возвращает сообщение, а бот запоминает исключение.</p></details><details class="acc"><summary><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></svg></span><span class="acc-t">Наказания и журнал</span></summary><p>Удалить, предупреждение, мут, кик, бан или «лестница» (предупреждения → мут → бан). Журнал наказаний с кнопкой «Снять».</p></details><details class="acc"><summary><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></span><span class="acc-t">Быстрая настройка в одну кнопку</span></summary><p>«Барахолка», «Обычный чат», «Строгий режим», «Обсуждение канала».</p></details><details class="acc"><summary><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4V2M15 16v-2M8 9h2M20 9h2M17.8 11.8 19 13M15 9h.01M17.8 6.2 19 5M3 21l9-9M12.2 6.2 11 5"/></svg></span><span class="acc-t">Настроить словами</span></summary><p>Напишите боту как помощнику: «удаляй ссылки и мат, ночью закрывай группу с 0 до 7». Бот покажет, что поменяет, и поменяет после кнопки «Применить».</p></details></div></div></div></div><div class="tabpanel" role="tabpanel" id="p-1" aria-labelledby="t-1"><div class="tp-grid"><div class="tp-body"><p class="tp-intro">Главная фишка для групп с объявлениями: объявления только через бота. Группу можно закрыть — писать в ней может только бот, и спамерам негде писать.</p><div class="acc-list"><details class="acc"><summary><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span><span class="acc-t">1. Подать объявление</span></summary><p>Участник нажимает «📝 Подать объявление», бот спрашивает по шагам: описание и фото, цена, город.</p></details><details class="acc"><summary><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg></span><span class="acc-t">2. Улучшить текст</span></summary><p>По желанию ИИ улучшит текст объявления («✨ Улучшить текст»), продавец может вернуть свой вариант.</p></details><details class="acc"><summary><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 3H2l8 9.5V19l4 2v-8.5L22 3z"/></svg></span><span class="acc-t">3. Проверка</span></summary><p>Бот проверяет объявление фильтрами и базами мошенников и спамеров.</p></details><details class="acc"><summary><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></span><span class="acc-t">4. Публикация</span></summary><p>Сразу или после проверки админом — красиво, с кнопкой «💬 Написать продавцу».</p></details><details class="acc"><summary><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><span class="acc-t">Группу можно закрыть</span></summary><p>Писать в ней может только бот.</p></details><details class="acc"><summary><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span><span class="acc-t">Поиск по объявлениям</span></summary><p>Поиск по объявлениям за 2 недели.</p></details><details class="acc"><summary><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></span><span class="acc-t">Лимит в сутки</span></summary><p>Лимит бесплатных объявлений в сутки; сверх лимита — платное размещение.</p></details><details class="acc"><summary><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></span><span class="acc-t">Платное автоподнятие</span></summary><p>Продавец платит админу (например, 100 ₽), бот каждый день поднимает объявление наверх. Цену и срок задаёт админ, деньги идут админу.</p></details></div></div></div></div><div class="tabpanel" role="tabpanel" id="p-2" aria-labelledby="t-2"><div class="tp-grid"><div class="tp-body"><p class="tp-intro">Рекламодатель открывает вашу ссылку, видит цену, присылает пост и чек. Вы жмёте одну кнопку «Оплата получена» — бот публикует, закрепляет, сам открепляет и удаляет по сроку.</p><div class="acc-list"><details class="acc"><summary><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></span><span class="acc-t">Как проходит реклама</span></summary><p>Рекламодатель по ссылке видит цену и условия, присылает пост, выбирает время, платит по реквизитам админа и присылает чек. Админ жмёт «✅ Оплата получена — опубликовать». Бот публикует в нужное время, закрепляет, сам открепляет и удаляет по сроку, рекламодателю присылает ссылку и через сутки отчёт.</p></details><details class="acc"><summary><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="4"/><path d="M12 8v13M19 12v9H5v-9M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg></span><span class="acc-t">Деньги — вам, комиссии нет</span></summary><p>Деньги идут напрямую админу, бот комиссию не берёт (на биржах вроде Telega.in она около 20%).</p></details><details class="acc"><summary><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></span><span class="acc-t">Каталог для рекламодателей</span></summary><p>Одна ссылка на все группы админа — рекламодатель выбирает несколько и платит одним чеком.</p></details><details class="acc"><summary><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span><span class="acc-t">Рейтинг продавцов</span></summary><p>После сделки покупатель отвечает продавцу /rep + или /rep -; под сообщениями и объявлениями видно «👍 12 сделок, жалоб 0». Рейтинг общий для всех групп Modexa, защищён от накрутки.</p></details><details class="acc"><summary><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg></span><span class="acc-t">Продвижение групп и каналов — бесплатно</span></summary><p>Каталог Modexa — группу или канал находят по теме и городу.</p></details><details class="acc"><summary><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></span><span class="acc-t">Взаимопиар</span></summary><p>Раз в неделю группы и каналы одной темы и города показывают друг друга.</p></details></div></div></div></div><div class="tabpanel" role="tabpanel" id="p-3" aria-labelledby="t-3"><div class="tp-grid"><div class="tp-body"><p class="tp-intro">Для каналов и закрытых групп.</p><div class="acc-list"><details class="acc"><summary><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><span class="acc-t">🚪 Заявки на вступление</span></summary><p>Бот одобряет заявки сразу или после кнопки «Я не бот» в личке (боты её не нажимают), отказывает людям из баз спамеров и мошенников и пишет новичку приветствие в личку.</p></details><details class="acc"><summary><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span><span class="acc-t">✍️ Автоподпись</span></summary><p>К каждому посту канала бот сам дописывает подпись и кнопки («Подписаться», «Реклама»).</p></details><details class="acc"><summary><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span class="acc-t">Автопостинг и реклама в каналах</span></summary><p>Автопостинг и реклама без комиссии работают и в каналах.</p></details></div></div></div></div><div class="tabpanel" role="tabpanel" id="p-4" aria-labelledby="t-4"><div class="tp-grid"><div class="tp-body"><div class="acc-list"><ul class="chips"><li>Приветствие и /rules</li><li>Автоответы</li><li>Автопостинг</li><li>Доступ за приглашение</li><li>Статистика и отчёт по понедельникам</li><li>Веб-панель в Telegram</li><li>Помощники «Менеджер» и «Модератор»</li><li>Перенос настроек между группами</li><li>«Настроим за вас»</li><li>Копии базы каждый день</li></ul></div></div></div></div></div></section>
+ <section id="screens"><div class="wrap">
+ <div class="sec-head rv"><div class="eyebrow">Видео и скриншоты</div><h2>Как выглядит бот</h2></div>
+-<div class="sub-h">Видео</div><div class="shots shots-v"><figure class="shot rv"><div class="vidbox"><div class="vid"><video src="assets/video/modexa-spam.mp4" poster="assets/images/modexa-vid-1.jpg" muted loop playsinline preload="none" aria-label="Видео: бот удаляет спам в группе объявлений"></video></div><button class="snd" type="button">🔊 Включить звук</button></div><figcaption><strong>Бот удаляет спам</strong>Спам в группе удаляется сам, обычные объявления остаются.</figcaption></figure><figure class="shot rv"><div class="vidbox"><div class="vid"><video src="assets/video/modexa-predlozhka.mp4" poster="assets/images/modexa-vid-2.jpg" muted loop playsinline preload="none" aria-label="Видео: подача объявления через бота"></video></div><button class="snd" type="button">🔊 Включить звук</button></div><figcaption><strong>Предложка</strong>Как участник подаёт объявление через бота.</figcaption></figure><figure class="shot rv"><div class="vidbox"><div class="vid"><video src="assets/video/modexa-reklama.mp4" poster="assets/images/modexa-vid-3.jpg" muted loop playsinline preload="none" aria-label="Видео: приём платной рекламы без комиссии"></video></div><button class="snd" type="button">🔊 Включить звук</button></div><figcaption><strong>Реклама без комиссии</strong>Заявка, чек и публикация одной кнопкой.</figcaption></figure><figure class="shot rv"><div class="vidbox"><div class="vid"><video src="assets/video/modexa-podklyuchenie.mp4" poster="assets/images/modexa-vid-4.jpg" muted loop playsinline preload="none" aria-label="Видео: подключение бота за три шага"></video></div><button class="snd" type="button">🔊 Включить звук</button></div><figcaption><strong>Подключение</strong>Три шага: «Старт», «Группа», «Барахолка».</figcaption></figure></div><details class="more more-v"><summary class="btn btn-line">Ещё видео</summary><div class="shots shots-v"><figure class="shot rv"><div class="vidbox"><div class="vid"><video src="assets/video/modexa-nastroyka.mp4" poster="assets/images/modexa-vid-5.jpg" muted loop playsinline preload="none" aria-label="Видео: быстрая настройка в одну кнопку"></video></div><button class="snd" type="button">🔊 Включить звук</button></div><figcaption><strong>Быстрая настройка</strong>Одна кнопка — и защита включена.</figcaption></figure><figure class="shot rv"><div class="vidbox"><div class="vid"><video src="assets/video/modexa-ii.mp4" poster="assets/images/modexa-vid-6.jpg" muted loop playsinline preload="none" aria-label="Видео: ИИ-модерация"></video></div><button class="snd" type="button">🔊 Включить звук</button></div><figcaption><strong>ИИ-модерация</strong>Вы выбираете, что удалять, ИИ читает сообщения на русском.</figcaption></figure><figure class="shot rv"><div class="vidbox"><div class="vid"><video src="assets/video/modexa-reyting.mp4" poster="assets/images/modexa-vid-7.jpg" muted loop playsinline preload="none" aria-label="Видео: рейтинг продавцов"></video></div><button class="snd" type="button">🔊 Включить звук</button></div><figcaption><strong>Рейтинг продавцов</strong>После сделки покупатель отвечает /rep +.</figcaption></figure><figure class="shot rv"><div class="vidbox"><div class="vid"><video src="assets/video/modexa-kanaly.mp4" poster="assets/images/modexa-vid-8.jpg" muted loop playsinline preload="none" aria-label="Видео: каналы и закрытые группы"></video></div><button class="snd" type="button">🔊 Включить звук</button></div><figcaption><strong>Каналы и закрытые группы</strong>Заявки на вступление и автоподпись под постами.</figcaption></figure><figure class="shot rv"><div class="vidbox"><div class="vid"><video src="assets/video/modexa-slovami.mp4" poster="assets/images/modexa-vid-9.jpg" muted loop playsinline preload="none" aria-label="Видео: настроить словами"></video></div><button class="snd" type="button">🔊 Включить звук</button></div><figcaption><strong>Настроить словами</strong>Напишите боту, что нужно, и нажмите «Применить».</figcaption></figure></div></details><div class="sub-h">Скриншоты</div><div class="shots"><figure class="shot rv"><div class="phone"><img src="assets/images/modexa-groups.jpg" alt="Скриншот бота Modexa: мои группы и каналы" width="560" height="862" loading="lazy"></div><figcaption><strong>Мои группы и каналы</strong>Все подключённые группы в одном списке: ✅ — лицензия активна.</figcaption></figure><figure class="shot rv"><div class="phone"><img src="assets/images/modexa-filters.jpg" alt="Скриншот бота Modexa: фильтры и наказания" width="560" height="862" loading="lazy"></div><figcaption><strong>Фильтры и наказания</strong>Каждый фильтр включается отдельно: ✅ — работает, ⏸ — выключен. У каждого своё наказание.</figcaption></figure><figure class="shot rv"><div class="phone"><img src="assets/images/modexa-panel-stats.jpg" alt="Скриншот бота Modexa: статистика в веб-панели" width="560" height="933" loading="lazy"></div><figcaption><strong>Статистика в веб-панели</strong>Участники, рост, вступившие и вышедшие, сообщения по дням.</figcaption></figure></div></div></section>
++<div class="sub-h">Видео</div><div class="shots shots-v"><figure class="shot rv"><div class="vidbox"><div class="vid"><video src="assets/video/modexa-spam.mp4" poster="assets/images/modexa-vid-1.jpg" muted loop playsinline preload="none" aria-label="Видео: бот удаляет спам в группе объявлений"></video></div><button class="snd" type="button">🔊 Включить звук</button></div><figcaption><strong>Бот удаляет спам</strong>Спам в группе удаляется сам, обычные объявления остаются.</figcaption></figure><figure class="shot rv"><div class="vidbox"><div class="vid"><video src="assets/video/modexa-predlozhka.mp4" poster="assets/images/modexa-vid-2.jpg" muted loop playsinline preload="none" aria-label="Видео: подача объявления через бота"></video></div><button class="snd" type="button">🔊 Включить звук</button></div><figcaption><strong>Предложка</strong>Как участник подаёт объявление через бота.</figcaption></figure><figure class="shot rv"><div class="vidbox"><div class="vid"><video src="assets/video/modexa-reklama.mp4" poster="assets/images/modexa-vid-3.jpg" muted loop playsinline preload="none" aria-label="Видео: приём платной рекламы без комиссии"></video></div><button class="snd" type="button">🔊 Включить звук</button></div><figcaption><strong>Реклама без комиссии</strong>Заявка, чек и публикация одной кнопкой.</figcaption></figure><figure class="shot rv"><div class="vidbox"><div class="vid"><video src="assets/video/modexa-podklyuchenie.mp4" poster="assets/images/modexa-vid-4.jpg" muted loop playsinline preload="none" aria-label="Видео: подключение бота за три шага"></video></div><button class="snd" type="button">🔊 Включить звук</button></div><figcaption><strong>Подключение</strong>Три шага: «Старт», «Группа», «Барахолка».</figcaption></figure></div><details class="more more-v"><summary class="btn btn-line">Ещё видео</summary><div class="shots shots-v"><figure class="shot rv"><div class="vidbox"><div class="vid"><video src="assets/video/modexa-nastroyka.mp4" poster="assets/images/modexa-vid-5.jpg" muted loop playsinline preload="none" aria-label="Видео: быстрая настройка в одну кнопку"></video></div><button class="snd" type="button">🔊 Включить звук</button></div><figcaption><strong>Быстрая настройка</strong>Одна кнопка — и защита включена.</figcaption></figure><figure class="shot rv"><div class="vidbox"><div class="vid"><video src="assets/video/modexa-ii.mp4" poster="assets/images/modexa-vid-6.jpg" muted loop playsinline preload="none" aria-label="Видео: ИИ-модерация"></video></div><button class="snd" type="button">🔊 Включить звук</button></div><figcaption><strong>ИИ-модерация</strong>Вы выбираете, что удалять, ИИ читает сообщения на русском.</figcaption></figure><figure class="shot rv"><div class="vidbox"><div class="vid"><video src="assets/video/modexa-reyting.mp4" poster="assets/images/modexa-vid-7.jpg" muted loop playsinline preload="none" aria-label="Видео: рейтинг продавцов"></video></div><button class="snd" type="button">🔊 Включить звук</button></div><figcaption><strong>Рейтинг продавцов</strong>После сделки покупатель отвечает /rep +.</figcaption></figure><figure class="shot rv"><div class="vidbox"><div class="vid"><video src="assets/video/modexa-kanaly.mp4" poster="assets/images/modexa-vid-8.jpg" muted loop playsinline preload="none" aria-label="Видео: каналы и закрытые группы"></video></div><button class="snd" type="button">🔊 Включить звук</button></div><figcaption><strong>Каналы и закрытые группы</strong>Заявки на вступление и автоподпись под постами.</figcaption></figure><figure class="shot rv"><div class="vidbox"><div class="vid"><video src="assets/video/modexa-slovami.mp4" poster="assets/images/modexa-vid-9.jpg" muted loop playsinline preload="none" aria-label="Видео: настроить словами"></video></div><button class="snd" type="button">🔊 Включить звук</button></div><figcaption><strong>Настроить словами</strong>Напишите боту, что нужно, и нажмите «Применить».</figcaption></figure></div></details><div class="sub-h">Скриншоты</div><div class="shots" tabindex="0" role="region" aria-label="Скриншоты бота. Прокрутка клавишами влево и вправо"><figure class="shot rv"><div class="phone"><img src="assets/images/modexa-groups.jpg" alt="Скриншот бота Modexa: мои группы и каналы" width="560" height="862" loading="lazy"></div><figcaption><strong>Мои группы и каналы</strong>Все подключённые группы в одном списке: ✅ — лицензия активна.</figcaption></figure><figure class="shot rv"><div class="phone"><img src="assets/images/modexa-filters.jpg" alt="Скриншот бота Modexa: фильтры и наказания" width="560" height="862" loading="lazy"></div><figcaption><strong>Фильтры и наказания</strong>Каждый фильтр включается отдельно: ✅ — работает, ⏸ — выключен. У каждого своё наказание.</figcaption></figure><figure class="shot rv"><div class="phone"><img src="assets/images/modexa-panel-stats.jpg" alt="Скриншот бота Modexa: статистика в веб-панели" width="560" height="933" loading="lazy"></div><figcaption><strong>Статистика в веб-панели</strong>Участники, рост, вступившие и вышедшие, сообщения по дням.</figcaption></figure></div></div></section>
+ 
+ <section><div class="wrap"><div class="sec-head rv"><div class="eyebrow">Преимущества</div><h2>Почему Modexa</h2></div><div class="grid g3"><div class="card rv"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg></span><h3>ИИ-модерация на русском</h3><p>Работает на российских сервисах GigaChat и Yandex.</p></div><div class="card rv"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span><h3>Предложка</h3><p>Объявления только через бота — по шаблону и с проверкой.</p></div><div class="card rv"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span><h3>Рейтинг продавцов</h3><p>Общий для групп Modexa, защищён от накрутки.</p></div><div class="card rv"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></span><h3>Реклама без комиссии</h3><p>Деньги идут напрямую админу, бот процент не берёт.</p></div><div class="card rv"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg></span><h3>Гарантия 7 дней</h3><p>Первую оплату вернём без объяснений.</p></div><div class="card rv"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="7.5" cy="15.5" r="4.5"/><path d="M21 2l-9.6 9.6M15.5 7.5l3 3L22 7l-3-3"/></svg></span><h3>3 группы за 250 ₽</h3><p>Тариф «Подписка»: до 3 групп за 250 ₽ в месяц.</p></div></div></div></section>
+ <section id="start"><div class="wrap">
+@@ -223,7 +221,7 @@
+   <a href="bot-crm.html">КлиентРадар — заявки от клиентов</a>
+   <span>Поддержка: <a href="https://t.me/Abdylzhelil05" rel="noopener" target="_blank">@Abdylzhelil05</a> · вопросы по оплате — команда /paysupport в боте</span><span>Документы Modexa: <a href="https://telegra.ph/Publichnaya-oferta-na-ispolzovanie-Telegram-bota-Modexa-10-15" rel="noopener" target="_blank">оферта</a> · <a href="https://telegra.ph/Politika-konfidencialnosti-Modexa-10-15" rel="noopener" target="_blank">политика</a></span><a class="sp" href="privacy.html">Политика конфиденциальности</a>
+ </div></footer>
+-<script>(function(){var b=document.querySelector('.bh-burger'),m=document.getElementById('bh-menu');if(!b||!m)return;function s(o){m.hidden=!o;b.setAttribute('aria-expanded',o?'true':'false');}b.addEventListener('click',function(){s(m.hidden);});m.addEventListener('click',function(e){if(e.target.closest('a'))s(false);});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){s(false);b.focus();}});})();</script>
++<script>(function(){var b=document.querySelector('.bh-burger'),m=document.getElementById('bh-menu');if(!b||!m)return;function s(o){m.hidden=!o;document.documentElement.style.setProperty('--bot-menu-top',Math.ceil(b.closest('header').getBoundingClientRect().bottom)+'px');b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?'Закрыть меню':'Меню');if(o)m.scrollTop=0;}b.addEventListener('click',function(){s(m.hidden);});m.addEventListener('click',function(e){if(e.target.closest('a'))s(false);});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){s(false);b.focus();}});})();</script>
+ <script src="script.js?v=20261024" defer></script>
+ <script src="page.js?v=20261024" defer></script>
+ <script>(function(){var tabs=[].slice.call(document.querySelectorAll('.tab'));if(!tabs.length)return;var panels=tabs.map(function(t){return document.getElementById(t.getAttribute('aria-controls'));});
+diff --git a/bot.css b/bot.css
+index ace2a1f..efab17a 100644
+--- a/bot.css
++++ b/bot.css
+@@ -390,3 +390,10 @@ section{padding:56px 0;}
+   .step::before{margin:0; font-size:32px; line-height:1;}
+ }
+ .guarantee{margin-top:22px; max-width:760px; padding:16px 20px; border-radius:16px; border:1px solid var(--accent); background:rgba(255,255,255,.04); color:var(--ink); font-size:15.5px; line-height:1.5;}
++
++/* Keep bot menus usable on short and landscape screens. */
++.bh-menu{max-height:calc(100dvh - var(--bot-menu-top,64px) - 8px);overflow-y:auto;overscroll-behavior:contain;}
++.shots[tabindex]:focus-visible{outline:2px solid var(--accent,#4cc3ff);outline-offset:5px;border-radius:8px;}
++.bh-menu .bh-site-sections{margin-top:8px;padding-top:8px;border-top:1px solid var(--line);}
++.bh-site-sections summary{padding:14px 0;cursor:pointer;font-weight:700;color:var(--ink);}
++.bh-site-sections details a{padding-left:16px;}
+diff --git a/brand-assets.html b/brand-assets.html
+index b0cba53..5c8f94e 100644
+--- a/brand-assets.html
++++ b/brand-assets.html
+@@ -1,5 +1,6 @@
+ <!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><title>Новые аватары групп — Объявления Дагестана</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="redesign.css"><link rel="stylesheet" href="site-pages.css">
+-</head><body class="rd-page brand-assets-page"><header>
++</head><body class="rd-page brand-assets-page">
++<a class="skip-link" href="#main">К содержимому</a><header>
+   <div class="wrap topbar">
+     <a class="brand-mark" href="index.html">
+       <span class="logo-badge"><img src="assets/brand/whatsapp.webp" alt="Логотип «Объявления Дагестана»" width="34" height="34"></span>
+@@ -18,7 +19,7 @@
+   </div>
+   <div class="flag-stripe" aria-hidden="true"><span class="g1"></span><span class="g2"></span><span class="g3"></span></div>
+ </header>
+-<a class="skip-link" href="#main">К содержимому</a>
++
+ <main id="main"><section><div class="wrap"><a href="index.html">← На главную</a><div class="section-head" style="margin-top:32px"><div><div class="eyebrow">Новый образ сообщества</div><h1>Аватары Telegram и WhatsApp</h1></div></div><p style="margin-bottom:28px;max-width:650px">Готовые изображения с названием «ОБЪЯВЛЕНИЯ ДАГЕСТАНА» для оформления групп. Скачайте квадратный оригинал и установите его в настройках нужной группы. Круглый вид ниже показывает, как аватар будет выглядеть в приложении.</p><div class="group-grid"><article class="group-card" style="padding:24px"><img src="assets/brand/telegram.webp" alt="Новый аватар Telegram с эмблемой гор" width="1024" height="1024" style="width:100%;height:auto;border-radius:50%;margin-bottom:24px"><h2 style="font-size:28px;margin-bottom:16px">Telegram</h2><a class="btn btn-block btn-tg" href="assets/brand/telegram.png" download="Obyavleniya-Dagestana-telegram.png">Скачать аватар PNG ↓</a></article><article class="group-card" style="padding:24px"><img src="assets/brand/whatsapp.webp" alt="Новый аватар WhatsApp с эмблемой гор" width="1024" height="1024" style="width:100%;height:auto;border-radius:50%;margin-bottom:24px"><h2 style="font-size:28px;margin-bottom:16px">WhatsApp</h2><a class="btn btn-block btn-wa" href="assets/brand/whatsapp.png" download="Obyavleniya-Dagestana-whatsapp.png">Скачать аватар PNG ↓</a></article></div><p style="margin-top:24px;color:var(--ink-soft)">Иллюстрации созданы для оформления проекта. Аватары внутри Telegram и WhatsApp автоматически не менялись.</p></div></section></main>
+ <footer id="contact">
+   <div class="wrap">
+diff --git a/consent.js b/consent.js
+new file mode 100644
+index 0000000..4589a1c
+--- /dev/null
++++ b/consent.js
+@@ -0,0 +1,9 @@
++/* Version changes only when data processing or consent wording changes. */
++(function(){
++ const VERSION='2026-11-02',KEY='cookie-consent',DETAILS='cookie-consent-details';
++ let memory=null;
++ function read(){try{const choice=localStorage.getItem(KEY);if(choice==='no')return 'no';const d=JSON.parse(localStorage.getItem(DETAILS)||'null');return choice==='yes'&&d&&d.version===VERSION&&d.choice==='yes'&&Number.isFinite(Date.parse(d.date))?'yes':null;}catch(e){return memory;}}
++ function write(choice){if(!['yes','no'].includes(choice))return;memory=choice;try{localStorage.setItem(KEY,choice);localStorage.setItem(DETAILS,JSON.stringify({choice:choice,version:VERSION,date:new Date().toISOString()}));}catch(e){}}
++ function clear(){memory=null;try{localStorage.removeItem(KEY);localStorage.removeItem(DETAILS);}catch(e){}}
++ window.SiteConsent={read:read,write:write,clear:clear,version:VERSION};window.cookieAccepted=read()==='yes';
++})();
+diff --git a/fonts.css b/fonts.css
+new file mode 100644
+index 0000000..edca20f
+--- /dev/null
++++ b/fonts.css
+@@ -0,0 +1,57 @@
++/* Self-hosted fonts, SIL Open Font License. See assets/fonts/. */
++@font-face {
++  font-family: 'Golos Text';
++  font-style: normal;
++  font-weight: 500;
++  font-display: swap;
++  src: url(assets/fonts/golos-text-500.ttf) format('truetype');
++}
++@font-face {
++  font-family: 'Golos Text';
++  font-style: normal;
++  font-weight: 600;
++  font-display: swap;
++  src: url(assets/fonts/golos-text-600.ttf) format('truetype');
++}
++@font-face {
++  font-family: 'Golos Text';
++  font-style: normal;
++  font-weight: 700;
++  font-display: swap;
++  src: url(assets/fonts/golos-text-700.ttf) format('truetype');
++}
++@font-face {
++  font-family: 'Golos Text';
++  font-style: normal;
++  font-weight: 800;
++  font-display: swap;
++  src: url(assets/fonts/golos-text-800.ttf) format('truetype');
++}
++@font-face {
++  font-family: 'Manrope';
++  font-style: normal;
++  font-weight: 400;
++  font-display: swap;
++  src: url(assets/fonts/manrope-400.ttf) format('truetype');
++}
++@font-face {
++  font-family: 'Manrope';
++  font-style: normal;
++  font-weight: 500;
++  font-display: swap;
++  src: url(assets/fonts/manrope-500.ttf) format('truetype');
++}
++@font-face {
++  font-family: 'Manrope';
++  font-style: normal;
++  font-weight: 600;
++  font-display: swap;
++  src: url(assets/fonts/manrope-600.ttf) format('truetype');
++}
++@font-face {
++  font-family: 'Manrope';
++  font-style: normal;
++  font-weight: 700;
++  font-display: swap;
++  src: url(assets/fonts/manrope-700.ttf) format('truetype');
++}
+diff --git a/group-telegram-main.html b/group-telegram-main.html
+new file mode 100644
+index 0000000..ac4c237
+--- /dev/null
++++ b/group-telegram-main.html
+@@ -0,0 +1,106 @@
++<!DOCTYPE html>
++<html lang="ru">
++<head>
++<meta charset="UTF-8">
++<meta name="viewport" content="width=device-width, initial-scale=1">
++<title>ОБЪЯВЛЕНИЯ ДАГЕСТАНА — Telegram | ОБЪЯВЛЕНИЯ ДАГЕСТАНА</title>
++<meta name="description" content="Объявления и реклама по Республике Дагестан. Пересылки, харам и сообщения не по теме запрещены. Из ссылок разрешены только конкретные товары или объявления на Авито. Реклама платная.">
++<meta name="theme-color" content="#0A1F16">
++<meta property="og:type" content="website">
++<meta property="og:site_name" content="ОБЪЯВЛЕНИЯ ДАГЕСТАНА">
++<meta property="og:locale" content="ru_RU">
++<meta property="og:title" content="ОБЪЯВЛЕНИЯ ДАГЕСТАНА — Telegram | ОБЪЯВЛЕНИЯ ДАГЕСТАНА">
++<meta property="og:description" content="Объявления и реклама по Республике Дагестан. Пересылки, харам и сообщения не по теме запрещены. Из ссылок разрешены только конкретные товары или объявления на Авито. Реклама платная.">
++<meta property="og:image:type" content="image/jpeg">
++<meta property="og:image:width" content="1200">
++<meta property="og:image:height" content="630">
++<meta property="og:image:alt" content="ОБЪЯВЛЕНИЯ ДАГЕСТАНА — покупка, продажа, услуги, работа">
++<meta name="twitter:card" content="summary_large_image">
++<meta name="twitter:title" content="ОБЪЯВЛЕНИЯ ДАГЕСТАНА — Telegram | ОБЪЯВЛЕНИЯ ДАГЕСТАНА">
++<meta name="twitter:description" content="Объявления и реклама по Республике Дагестан. Пересылки, харам и сообщения не по теме запрещены. Из ссылок разрешены только конкретные товары или объявления на Авито. Реклама платная.">
++<meta name="twitter:image:alt" content="ОБЪЯВЛЕНИЯ ДАГЕСТАНА — покупка, продажа, услуги, работа">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
++
++<meta property="og:image" content="https://obyavleniya-dagestan.ru/assets/brand/og-community.jpg">
++<meta name="twitter:image" content="https://obyavleniya-dagestan.ru/assets/brand/og-community.jpg">
++<script>document.documentElement.classList.add("js");</script>
++<script src="consent.js"></script>
++<!-- Яндекс Метрика -->
++<script>
++    if (window.cookieAccepted) {
++    (function(m,e,t,r,i,k,a){
++        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
++        m[i].l=1*new Date();
++        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
++        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
++    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=113403438', 'ym');
++
++    ym(113403438, 'init', {ssr:true, clickmap:false, referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
++    }
++</script>
++<!-- /Яндекс Метрика -->
++<link rel="stylesheet" href="fonts.css">
++<link rel="stylesheet" href="style.css">
++<link rel="stylesheet" href="redesign.css">
++<link rel="stylesheet" href="community-offers.css">
++<link rel="canonical" href="https://obyavleniya-dagestan.ru/group-telegram-main.html">
++<meta property="og:url" content="https://obyavleniya-dagestan.ru/group-telegram-main.html">
++<meta name="robots" content="index, follow">
++</head>
++<body class="rd-group">
++
++<a class="skip-link" href="#main">К содержимому</a>
++
++<header>
++  <div class="wrap topbar">
++    <a class="brand-mark" href="index.html">
++      <span class="logo-badge"><img src="assets/brand/whatsapp.webp" alt="Логотип «Объявления Дагестана»" width="34" height="34"></span>
++      <span class="brand">ОБЪЯВЛЕНИЯ ДАГЕСТАНА</span>
++    </a>
++    <nav class="nav-links rd-nav" id="site-nav" aria-label="Разделы сайта">
++ <div class="rd-nav-heading">Разделы сайта</div>
++ <a class="rd-nav-home" href="index.html">Главная</a>
++ <a href="index.html#groups">Наши группы</a>
++ <details class="rd-nav-section"><summary>Категории</summary><div class="rd-nav-sub"><a href="avto-dagestan.html">Автомобили</a><a href="nedvizhimost-dagestan.html">Недвижимость</a><a href="tehnika-dagestan.html">Техника</a><a href="odezhda-dagestan.html">Одежда</a><a href="uslugi-dagestan.html">Услуги</a><a href="rabota-dagestan.html">Работа</a><a href="tovary-dagestan.html">Товары</a><a href="raznoe-dagestan.html">Разное</a></div></details>
++ <a href="reklama.html">Реклама и цены</a>
++ <details class="rd-nav-section"><summary>Наши боты</summary><div class="rd-nav-sub"><a href="bot-moderation.html">Modexa — модерация групп</a><a href="bot-crm.html">КлиентРадар — заявки и CRM</a></div></details>
++ <a href="index.html#rules">Правила</a><a href="index.html#faq">Вопросы и ответы</a><a href="#contact">Контакты</a>
++ </nav>
++    <button class="menu-toggle" type="button" aria-label="Меню" aria-expanded="false" aria-controls="site-nav"><svg aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-menu"></use></svg></button>
++  </div>
++  <div class="flag-stripe" aria-hidden="true"><span class="g1"></span><span class="g2"></span><span class="g3"></span></div>
++</header>
++
++<main id="main"><section class="promo-section"><div class="wrap" id="group-root" data-static-group="telegram-main"><div class="promo-hero rd-group-hero"><img class="rd-group-cover" src="assets/brand/hero.webp" alt="" width="1536" height="1024"><div class="promo-avatar tg"><img src="assets/brand/telegram.webp" alt="Логотип группы «ОБЪЯВЛЕНИЯ ДАГЕСТАНА»" width="84" height="84"></div><div class="promo-platform">Telegram</div><h1>ОБЪЯВЛЕНИЯ ДАГЕСТАНА</h1><p class="rd-group-intro">Объявления и реклама по Республике Дагестан. Пересылки, харам и сообщения не по теме запрещены. Из ссылок разрешены только конкретные товары или объявления на Авито. Реклама платная.</p><div class="promo-row is-last"><a class="btn btn-block btn-tg" data-goal="join_telegram" href="https://t.me/AvitoDag05_reklama_group" target="_blank" rel="noopener noreferrer">Вступить в группу</a></div></div><div class="promo-card"><div class="promo-row"><h2>Участники</h2><p>менее 3 000 участников</p></div><div class="promo-row"><h2>Описание</h2><p>Объявления и реклама по Республике Дагестан. Пересылки, харам и сообщения не по теме запрещены. Из ссылок разрешены только конкретные товары или объявления на Авито. Реклама платная.</p></div><div class="promo-row"><h2>Категории объявлений</h2><div class="group-cats"><span>Автомобили</span><span>Недвижимость</span><span>Техника</span><span>Одежда</span><span>Услуги</span><span>Работа</span></div></div><div class="promo-row"><h2>Что публикуется</h2><p>Объявления и реклама по Республике Дагестан: покупка, продажа, услуги и другие предложения участников.</p></div><div class="promo-row"><h2>Правила</h2><ul class="rules-list"><li>Группа открывается в 08:00 и закрывается в 22:00.</li><li>Пересылки, харам и сообщения не по теме запрещены. Сторонние ссылки запрещены, кроме ссылок на конкретные товары или объявления на Авито.</li><li>Обычные объявления участников — бесплатно в часы работы группы.</li></ul></div><div class="promo-row"><h2>Администрация</h2><p>@Abdylzhelil05</p></div><div class="promo-row is-last"><a class="btn btn-block btn-tg" data-goal="join_telegram" href="https://t.me/AvitoDag05_reklama_group" target="_blank" rel="noopener noreferrer">Вступить в группу</a></div></div><section class="community-admin" id="category-admin"><div class="community-admin-heading"><h2>Стать админом категории</h2><p class="community-admin-price">850 ₽<span>/ месяц</span></p></div><p>Получите свою категорию в группе и занимайтесь её развитием.</p><ul><li>Админство своей категории.</li><li>Закрепление категории за вами на месяц.</li><li>Публикация своих объявлений в своей категории в течение месяца.</li><li>Удаление неактуальных и неподходящих объявлений.</li><li>Контроль порядка публикаций в своей категории.</li><li>Один статус группы в день — бесплатно для админа категории.</li><li>Дополнительное доверие участников группы.</li></ul><p class="community-admin-note">Группу, доступность категории и условия согласуйте с главным администратором перед оплатой.</p><div class="community-admin-actions"><a class="btn btn-wa" data-goal="ad_contact_whatsapp" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%81%D1%82%D0%B0%D1%82%D1%8C%20%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD%D0%BE%D0%BC%20%D0%BA%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D0%B8%20%D0%B2%20%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B5%20%C2%AB%D0%9E%D0%91%D0%AA%D0%AF%D0%92%D0%9B%D0%95%D0%9D%D0%98%D0%AF%20%D0%94%D0%90%D0%93%D0%95%D0%A1%D0%A2%D0%90%D0%9D%D0%90%C2%BB%20%D0%B7%D0%B0%20850%20%E2%82%BD%20%D0%B2%20%D0%BC%D0%B5%D1%81%D1%8F%D1%86.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%20%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D0%BD%D1%8B%D0%B5%20%D0%BA%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D0%B8%20%D0%B8%20%D1%83%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F." target="_blank" rel="noopener noreferrer">Обсудить категорию</a><a class="community-admin-details" href="reklama.html#category-admin">Полные условия админства</a></div></section></div></section></main>
++
++<footer id="contact">
++  <div class="wrap">
++    <div class="footer-grid">
++      <div>
++        <div class="brand-mark"><span class="logo-badge"><img src="assets/brand/whatsapp.webp" alt="" width="34" height="34"></span><span class="brand">ОБЪЯВЛЕНИЯ ДАГЕСТАНА</span></div>
++        <div class="footer-tag">Покупка • Продажа • Услуги • Работа</div>
++      </div>
++      <nav class="footer-links" aria-label="Ссылки в подвале">
++        <a href="index.html">Главная</a>
++        <a href="index.html#groups">Наши группы</a>
++        <a href="index.html#rules">Правила</a>
++        <a href="index.html#advertising">Реклама</a>
++        <a href="bot-moderation.html">Modexa</a>
++        <a href="bot-crm.html">КлиентРадар</a>
++        <a href="#contact" data-contact="telegram" data-goal="ad_contact_telegram">Контакты</a>
++      </nav>
++      <div class="footer-ctas">
++        <a class="btn btn-wa btn-sm" href="index.html#groups" data-join="whatsapp" data-goal="join_whatsapp">WhatsApp</a>
++        <a class="btn btn-tg btn-sm" href="index.html#groups" data-join="telegram" data-goal="join_telegram">Telegram</a>
++      </div>
++    </div>
++    <nav class="footer-cats" aria-label="Категории объявлений"><span>Категории:</span><a href="avto-dagestan.html">Автомобили</a><a href="nedvizhimost-dagestan.html">Недвижимость</a><a href="tehnika-dagestan.html">Техника</a><a href="odezhda-dagestan.html">Одежда</a><a href="uslugi-dagestan.html">Услуги</a><a href="rabota-dagestan.html">Работа</a><a href="tovary-dagestan.html">Товары</a><a href="raznoe-dagestan.html">Разное</a></nav>
++    <div class="footer-bottom">© ОБЪЯВЛЕНИЯ ДАГЕСТАНА · <a href="privacy.html">Политика конфиденциальности</a></div>
++  </div>
++</footer>
++
++<script src="script.js" defer></script>
++<script src="page.js" defer></script>
++</body>
++</html>
++
+diff --git a/group-whatsapp-2.html b/group-whatsapp-2.html
+new file mode 100644
+index 0000000..5ace86f
+--- /dev/null
++++ b/group-whatsapp-2.html
+@@ -0,0 +1,106 @@
++<!DOCTYPE html>
++<html lang="ru">
++<head>
++<meta charset="UTF-8">
++<meta name="viewport" content="width=device-width, initial-scale=1">
++<title>ОБЪЯВЛЕНИЯ ДАГЕСТАНА — группа №2 — WhatsApp | ОБЪЯВЛЕНИЯ ДАГЕСТАНА</title>
++<meta name="description" content="Новая группа в WhatsApp: идёт активный набор участников. Покупка, продажа, услуги и работа для жителей Дагестана.">
++<meta name="theme-color" content="#0A1F16">
++<meta property="og:type" content="website">
++<meta property="og:site_name" content="ОБЪЯВЛЕНИЯ ДАГЕСТАНА">
++<meta property="og:locale" content="ru_RU">
++<meta property="og:title" content="ОБЪЯВЛЕНИЯ ДАГЕСТАНА — группа №2 — WhatsApp | ОБЪЯВЛЕНИЯ ДАГЕСТАНА">
++<meta property="og:description" content="Новая группа в WhatsApp: идёт активный набор участников. Покупка, продажа, услуги и работа для жителей Дагестана.">
++<meta property="og:image:type" content="image/jpeg">
++<meta property="og:image:width" content="1200">
++<meta property="og:image:height" content="630">
++<meta property="og:image:alt" content="ОБЪЯВЛЕНИЯ ДАГЕСТАНА — покупка, продажа, услуги, работа">
++<meta name="twitter:card" content="summary_large_image">
++<meta name="twitter:title" content="ОБЪЯВЛЕНИЯ ДАГЕСТАНА — группа №2 — WhatsApp | ОБЪЯВЛЕНИЯ ДАГЕСТАНА">
++<meta name="twitter:description" content="Новая группа в WhatsApp: идёт активный набор участников. Покупка, продажа, услуги и работа для жителей Дагестана.">
++<meta name="twitter:image:alt" content="ОБЪЯВЛЕНИЯ ДАГЕСТАНА — покупка, продажа, услуги, работа">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
++
++<meta property="og:image" content="https://obyavleniya-dagestan.ru/assets/brand/og-community.jpg">
++<meta name="twitter:image" content="https://obyavleniya-dagestan.ru/assets/brand/og-community.jpg">
++<script>document.documentElement.classList.add("js");</script>
++<script src="consent.js"></script>
++<!-- Яндекс Метрика -->
++<script>
++    if (window.cookieAccepted) {
++    (function(m,e,t,r,i,k,a){
++        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
++        m[i].l=1*new Date();
++        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
++        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
++    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=113403438', 'ym');
++
++    ym(113403438, 'init', {ssr:true, clickmap:false, referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
++    }
++</script>
++<!-- /Яндекс Метрика -->
++<link rel="stylesheet" href="fonts.css">
++<link rel="stylesheet" href="style.css">
++<link rel="stylesheet" href="redesign.css">
++<link rel="stylesheet" href="community-offers.css">
++<link rel="canonical" href="https://obyavleniya-dagestan.ru/group-whatsapp-2.html">
++<meta property="og:url" content="https://obyavleniya-dagestan.ru/group-whatsapp-2.html">
++<meta name="robots" content="index, follow">
++</head>
++<body class="rd-group">
++
++<a class="skip-link" href="#main">К содержимому</a>
++
++<header>
++  <div class="wrap topbar">
++    <a class="brand-mark" href="index.html">
++      <span class="logo-badge"><img src="assets/brand/whatsapp.webp" alt="Логотип «Объявления Дагестана»" width="34" height="34"></span>
++      <span class="brand">ОБЪЯВЛЕНИЯ ДАГЕСТАНА</span>
++    </a>
++    <nav class="nav-links rd-nav" id="site-nav" aria-label="Разделы сайта">
++ <div class="rd-nav-heading">Разделы сайта</div>
++ <a class="rd-nav-home" href="index.html">Главная</a>
++ <a href="index.html#groups">Наши группы</a>
++ <details class="rd-nav-section"><summary>Категории</summary><div class="rd-nav-sub"><a href="avto-dagestan.html">Автомобили</a><a href="nedvizhimost-dagestan.html">Недвижимость</a><a href="tehnika-dagestan.html">Техника</a><a href="odezhda-dagestan.html">Одежда</a><a href="uslugi-dagestan.html">Услуги</a><a href="rabota-dagestan.html">Работа</a><a href="tovary-dagestan.html">Товары</a><a href="raznoe-dagestan.html">Разное</a></div></details>
++ <a href="reklama.html">Реклама и цены</a>
++ <details class="rd-nav-section"><summary>Наши боты</summary><div class="rd-nav-sub"><a href="bot-moderation.html">Modexa — модерация групп</a><a href="bot-crm.html">КлиентРадар — заявки и CRM</a></div></details>
++ <a href="index.html#rules">Правила</a><a href="index.html#faq">Вопросы и ответы</a><a href="#contact">Контакты</a>
++ </nav>
++    <button class="menu-toggle" type="button" aria-label="Меню" aria-expanded="false" aria-controls="site-nav"><svg aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-menu"></use></svg></button>
++  </div>
++  <div class="flag-stripe" aria-hidden="true"><span class="g1"></span><span class="g2"></span><span class="g3"></span></div>
++</header>
++
++<main id="main"><section class="promo-section"><div class="wrap" id="group-root" data-static-group="whatsapp-2"><div class="promo-hero rd-group-hero"><img class="rd-group-cover" src="assets/brand/whatsapp-cover.webp" alt="" width="1536" height="1024"><div class="promo-avatar wa"><img src="assets/brand/whatsapp.webp" alt="Логотип группы «ОБЪЯВЛЕНИЯ ДАГЕСТАНА — группа №2»" width="84" height="84"></div><div class="promo-platform">WhatsApp</div><h1>ОБЪЯВЛЕНИЯ ДАГЕСТАНА — группа №2</h1><p class="rd-group-intro">Новая группа в WhatsApp: идёт активный набор участников. Покупка, продажа, услуги и работа для жителей Дагестана.</p><div class="promo-row is-last"><a class="btn btn-block btn-wa" data-goal="join_whatsapp" href="https://chat.whatsapp.com/EisxSK0qarkJzyrlt9v1fx" target="_blank" rel="noopener noreferrer">Вступить в группу</a></div></div><div class="promo-card"><div class="promo-row"><h2>Участники</h2><p>Новая группа · идёт набор</p></div><div class="promo-row"><h2>Описание</h2><p>Новая группа в WhatsApp: идёт активный набор участников. Покупка, продажа, услуги и работа для жителей Дагестана.</p></div><div class="promo-row"><h2>Категории объявлений</h2><div class="group-cats"><span>Автомобили</span><span>Недвижимость</span><span>Техника</span><span>Одежда</span><span>Услуги</span><span>Работа</span></div></div><div class="promo-row"><h2>Что публикуется</h2><p>Обычные объявления участников и платная реклама — по правилам группы.</p></div><div class="promo-row"><h2>Правила</h2><ul class="rules-list"><li>Группа открывается в 08:00 и закрывается в 22:00.</li><li>Пересылки, харам и сообщения не по теме запрещены. Сторонние ссылки запрещены, кроме ссылок на конкретные товары или объявления на Авито.</li><li>Обычные объявления участников — бесплатно в часы работы группы.</li></ul></div><div class="promo-row"><h2>Администрация</h2><p>Главный администратор<br>+79637968587</p></div><div class="promo-row is-last"><a class="btn btn-block btn-wa" data-goal="join_whatsapp" href="https://chat.whatsapp.com/EisxSK0qarkJzyrlt9v1fx" target="_blank" rel="noopener noreferrer">Вступить в группу</a></div></div><section class="community-admin" id="category-admin"><div class="community-admin-heading"><h2>Стать админом категории</h2><p class="community-admin-price">850 ₽<span>/ месяц</span></p></div><p>Получите свою категорию в группе и занимайтесь её развитием.</p><ul><li>Админство своей категории.</li><li>Закрепление категории за вами на месяц.</li><li>Публикация своих объявлений в своей категории в течение месяца.</li><li>Удаление неактуальных и неподходящих объявлений.</li><li>Контроль порядка публикаций в своей категории.</li><li>Один статус группы в день — бесплатно для админа категории.</li><li>Дополнительное доверие участников группы.</li></ul><p class="community-admin-note">Группу, доступность категории и условия согласуйте с главным администратором перед оплатой.</p><div class="community-admin-actions"><a class="btn btn-wa" data-goal="ad_contact_whatsapp" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%81%D1%82%D0%B0%D1%82%D1%8C%20%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD%D0%BE%D0%BC%20%D0%BA%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D0%B8%20%D0%B2%20%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B5%20%C2%AB%D0%9E%D0%91%D0%AA%D0%AF%D0%92%D0%9B%D0%95%D0%9D%D0%98%D0%AF%20%D0%94%D0%90%D0%93%D0%95%D0%A1%D0%A2%D0%90%D0%9D%D0%90%20%E2%80%94%20%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B0%20%E2%84%962%C2%BB%20%D0%B7%D0%B0%20850%20%E2%82%BD%20%D0%B2%20%D0%BC%D0%B5%D1%81%D1%8F%D1%86.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%20%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D0%BD%D1%8B%D0%B5%20%D0%BA%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D0%B8%20%D0%B8%20%D1%83%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F." target="_blank" rel="noopener noreferrer">Обсудить категорию</a><a class="community-admin-details" href="reklama.html#category-admin">Полные условия админства</a></div></section></div></section></main>
++
++<footer id="contact">
++  <div class="wrap">
++    <div class="footer-grid">
++      <div>
++        <div class="brand-mark"><span class="logo-badge"><img src="assets/brand/whatsapp.webp" alt="" width="34" height="34"></span><span class="brand">ОБЪЯВЛЕНИЯ ДАГЕСТАНА</span></div>
++        <div class="footer-tag">Покупка • Продажа • Услуги • Работа</div>
++      </div>
++      <nav class="footer-links" aria-label="Ссылки в подвале">
++        <a href="index.html">Главная</a>
++        <a href="index.html#groups">Наши группы</a>
++        <a href="index.html#rules">Правила</a>
++        <a href="index.html#advertising">Реклама</a>
++        <a href="bot-moderation.html">Modexa</a>
++        <a href="bot-crm.html">КлиентРадар</a>
++        <a href="#contact" data-contact="telegram" data-goal="ad_contact_telegram">Контакты</a>
++      </nav>
++      <div class="footer-ctas">
++        <a class="btn btn-wa btn-sm" href="index.html#groups" data-join="whatsapp" data-goal="join_whatsapp">WhatsApp</a>
++        <a class="btn btn-tg btn-sm" href="index.html#groups" data-join="telegram" data-goal="join_telegram">Telegram</a>
++      </div>
++    </div>
++    <nav class="footer-cats" aria-label="Категории объявлений"><span>Категории:</span><a href="avto-dagestan.html">Автомобили</a><a href="nedvizhimost-dagestan.html">Недвижимость</a><a href="tehnika-dagestan.html">Техника</a><a href="odezhda-dagestan.html">Одежда</a><a href="uslugi-dagestan.html">Услуги</a><a href="rabota-dagestan.html">Работа</a><a href="tovary-dagestan.html">Товары</a><a href="raznoe-dagestan.html">Разное</a></nav>
++    <div class="footer-bottom">© ОБЪЯВЛЕНИЯ ДАГЕСТАНА · <a href="privacy.html">Политика конфиденциальности</a></div>
++  </div>
++</footer>
++
++<script src="script.js" defer></script>
++<script src="page.js" defer></script>
++</body>
++</html>
++
+diff --git a/group-whatsapp-main.html b/group-whatsapp-main.html
+new file mode 100644
+index 0000000..82ba678
+--- /dev/null
++++ b/group-whatsapp-main.html
+@@ -0,0 +1,106 @@
++<!DOCTYPE html>
++<html lang="ru">
++<head>
++<meta charset="UTF-8">
++<meta name="viewport" content="width=device-width, initial-scale=1">
++<title>ОБЪЯВЛЕНИЯ ДАГЕСТАНА — WhatsApp | ОБЪЯВЛЕНИЯ ДАГЕСТАНА</title>
++<meta name="description" content="Покупка, продажа, услуги и работа для жителей Дагестана. Группа работает с 08:00 до 22:00, обычные объявления участников — бесплатно.">
++<meta name="theme-color" content="#0A1F16">
++<meta property="og:type" content="website">
++<meta property="og:site_name" content="ОБЪЯВЛЕНИЯ ДАГЕСТАНА">
++<meta property="og:locale" content="ru_RU">
++<meta property="og:title" content="ОБЪЯВЛЕНИЯ ДАГЕСТАНА — WhatsApp | ОБЪЯВЛЕНИЯ ДАГЕСТАНА">
++<meta property="og:description" content="Покупка, продажа, услуги и работа для жителей Дагестана. Группа работает с 08:00 до 22:00, обычные объявления участников — бесплатно.">
++<meta property="og:image:type" content="image/jpeg">
++<meta property="og:image:width" content="1200">
++<meta property="og:image:height" content="630">
++<meta property="og:image:alt" content="ОБЪЯВЛЕНИЯ ДАГЕСТАНА — покупка, продажа, услуги, работа">
++<meta name="twitter:card" content="summary_large_image">
++<meta name="twitter:title" content="ОБЪЯВЛЕНИЯ ДАГЕСТАНА — WhatsApp | ОБЪЯВЛЕНИЯ ДАГЕСТАНА">
++<meta name="twitter:description" content="Покупка, продажа, услуги и работа для жителей Дагестана. Группа работает с 08:00 до 22:00, обычные объявления участников — бесплатно.">
++<meta name="twitter:image:alt" content="ОБЪЯВЛЕНИЯ ДАГЕСТАНА — покупка, продажа, услуги, работа">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
++
++<meta property="og:image" content="https://obyavleniya-dagestan.ru/assets/brand/og-community.jpg">
++<meta name="twitter:image" content="https://obyavleniya-dagestan.ru/assets/brand/og-community.jpg">
++<script>document.documentElement.classList.add("js");</script>
++<script src="consent.js"></script>
++<!-- Яндекс Метрика -->
++<script>
++    if (window.cookieAccepted) {
++    (function(m,e,t,r,i,k,a){
++        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
++        m[i].l=1*new Date();
++        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
++        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
++    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=113403438', 'ym');
++
++    ym(113403438, 'init', {ssr:true, clickmap:false, referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
++    }
++</script>
++<!-- /Яндекс Метрика -->
++<link rel="stylesheet" href="fonts.css">
++<link rel="stylesheet" href="style.css">
++<link rel="stylesheet" href="redesign.css">
++<link rel="stylesheet" href="community-offers.css">
++<link rel="canonical" href="https://obyavleniya-dagestan.ru/group-whatsapp-main.html">
++<meta property="og:url" content="https://obyavleniya-dagestan.ru/group-whatsapp-main.html">
++<meta name="robots" content="noindex, follow">
++</head>
++<body class="rd-group">
++
++<a class="skip-link" href="#main">К содержимому</a>
++
++<header>
++  <div class="wrap topbar">
++    <a class="brand-mark" href="index.html">
++      <span class="logo-badge"><img src="assets/brand/whatsapp.webp" alt="Логотип «Объявления Дагестана»" width="34" height="34"></span>
++      <span class="brand">ОБЪЯВЛЕНИЯ ДАГЕСТАНА</span>
++    </a>
++    <nav class="nav-links rd-nav" id="site-nav" aria-label="Разделы сайта">
++ <div class="rd-nav-heading">Разделы сайта</div>
++ <a class="rd-nav-home" href="index.html">Главная</a>
++ <a href="index.html#groups">Наши группы</a>
++ <details class="rd-nav-section"><summary>Категории</summary><div class="rd-nav-sub"><a href="avto-dagestan.html">Автомобили</a><a href="nedvizhimost-dagestan.html">Недвижимость</a><a href="tehnika-dagestan.html">Техника</a><a href="odezhda-dagestan.html">Одежда</a><a href="uslugi-dagestan.html">Услуги</a><a href="rabota-dagestan.html">Работа</a><a href="tovary-dagestan.html">Товары</a><a href="raznoe-dagestan.html">Разное</a></div></details>
++ <a href="reklama.html">Реклама и цены</a>
++ <details class="rd-nav-section"><summary>Наши боты</summary><div class="rd-nav-sub"><a href="bot-moderation.html">Modexa — модерация групп</a><a href="bot-crm.html">КлиентРадар — заявки и CRM</a></div></details>
++ <a href="index.html#rules">Правила</a><a href="index.html#faq">Вопросы и ответы</a><a href="#contact">Контакты</a>
++ </nav>
++    <button class="menu-toggle" type="button" aria-label="Меню" aria-expanded="false" aria-controls="site-nav"><svg aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-menu"></use></svg></button>
++  </div>
++  <div class="flag-stripe" aria-hidden="true"><span class="g1"></span><span class="g2"></span><span class="g3"></span></div>
++</header>
++
++<main id="main"><section class="promo-section"><div class="wrap" id="group-root" data-static-group="whatsapp-main"><div class="promo-hero rd-group-hero"><img class="rd-group-cover" src="assets/brand/whatsapp-cover.webp" alt="" width="1536" height="1024"><div class="promo-avatar wa"><img src="assets/brand/whatsapp.webp" alt="Логотип группы «ОБЪЯВЛЕНИЯ ДАГЕСТАНА»" width="84" height="84"></div><div class="promo-platform">WhatsApp</div><h1>ОБЪЯВЛЕНИЯ ДАГЕСТАНА</h1><p class="rd-group-intro">Покупка, продажа, услуги и работа для жителей Дагестана. Группа работает с 08:00 до 22:00, обычные объявления участников — бесплатно.</p><div class="promo-row is-last"><span class="btn btn-disabled btn-block" aria-disabled="true">Группа заполнена — набор закрыт</span><a class="btn btn-block btn-wa" data-goal="join_whatsapp" href="https://chat.whatsapp.com/EisxSK0qarkJzyrlt9v1fx" target="_blank" rel="noopener noreferrer">Вступить в новую группу №2</a></div></div><div class="promo-card"><div class="promo-row"><h2>Участники</h2><p>Группа заполнена</p></div><div class="promo-row"><h2>Описание</h2><p>Покупка, продажа, услуги и работа для жителей Дагестана. Группа работает с 08:00 до 22:00, обычные объявления участников — бесплатно.</p></div><div class="promo-row"><h2>Категории объявлений</h2><div class="group-cats"><span>Автомобили</span><span>Недвижимость</span><span>Техника</span><span>Одежда</span><span>Услуги</span><span>Работа</span></div></div><div class="promo-row"><h2>Что публикуется</h2><p>Обычные объявления участников (бесплатно в часы работы группы) и платная реклама — каналы, соцсети, сайты и сторонние площадки.</p></div><div class="promo-row"><h2>Правила</h2><ul class="rules-list"><li>Группа открывается в 08:00 и закрывается в 22:00.</li><li>Пересылки, харам и сообщения не по теме запрещены. Сторонние ссылки запрещены, кроме ссылок на конкретные товары или объявления на Авито.</li><li>Обычные объявления участников — бесплатно в часы работы группы.</li></ul></div><div class="promo-row"><h2>Администрация</h2><p>Главный администратор<br>+79637968587</p></div><div class="promo-row is-last"><span class="btn btn-disabled btn-block" aria-disabled="true">Группа заполнена — набор закрыт</span><a class="btn btn-block btn-wa" data-goal="join_whatsapp" href="https://chat.whatsapp.com/EisxSK0qarkJzyrlt9v1fx" target="_blank" rel="noopener noreferrer">Вступить в новую группу №2</a></div></div><section class="community-admin" id="category-admin"><div class="community-admin-heading"><h2>Стать админом категории</h2><p class="community-admin-price">850 ₽<span>/ месяц</span></p></div><p>Получите свою категорию в группе и занимайтесь её развитием.</p><ul><li>Админство своей категории.</li><li>Закрепление категории за вами на месяц.</li><li>Публикация своих объявлений в своей категории в течение месяца.</li><li>Удаление неактуальных и неподходящих объявлений.</li><li>Контроль порядка публикаций в своей категории.</li><li>Один статус группы в день — бесплатно для админа категории.</li><li>Дополнительное доверие участников группы.</li></ul><p class="community-admin-note">Группу, доступность категории и условия согласуйте с главным администратором перед оплатой.</p><div class="community-admin-actions"><a class="btn btn-wa" data-goal="ad_contact_whatsapp" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%81%D1%82%D0%B0%D1%82%D1%8C%20%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD%D0%BE%D0%BC%20%D0%BA%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D0%B8%20%D0%B2%20%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B5%20%C2%AB%D0%9E%D0%91%D0%AA%D0%AF%D0%92%D0%9B%D0%95%D0%9D%D0%98%D0%AF%20%D0%94%D0%90%D0%93%D0%95%D0%A1%D0%A2%D0%90%D0%9D%D0%90%C2%BB%20%D0%B7%D0%B0%20850%20%E2%82%BD%20%D0%B2%20%D0%BC%D0%B5%D1%81%D1%8F%D1%86.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%20%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D0%BD%D1%8B%D0%B5%20%D0%BA%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D0%B8%20%D0%B8%20%D1%83%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F." target="_blank" rel="noopener noreferrer">Обсудить категорию</a><a class="community-admin-details" href="reklama.html#category-admin">Полные условия админства</a></div></section></div></section></main>
++
++<footer id="contact">
++  <div class="wrap">
++    <div class="footer-grid">
++      <div>
++        <div class="brand-mark"><span class="logo-badge"><img src="assets/brand/whatsapp.webp" alt="" width="34" height="34"></span><span class="brand">ОБЪЯВЛЕНИЯ ДАГЕСТАНА</span></div>
++        <div class="footer-tag">Покупка • Продажа • Услуги • Работа</div>
++      </div>
++      <nav class="footer-links" aria-label="Ссылки в подвале">
++        <a href="index.html">Главная</a>
++        <a href="index.html#groups">Наши группы</a>
++        <a href="index.html#rules">Правила</a>
++        <a href="index.html#advertising">Реклама</a>
++        <a href="bot-moderation.html">Modexa</a>
++        <a href="bot-crm.html">КлиентРадар</a>
++        <a href="#contact" data-contact="telegram" data-goal="ad_contact_telegram">Контакты</a>
++      </nav>
++      <div class="footer-ctas">
++        <a class="btn btn-wa btn-sm" href="index.html#groups" data-join="whatsapp" data-goal="join_whatsapp">WhatsApp</a>
++        <a class="btn btn-tg btn-sm" href="index.html#groups" data-join="telegram" data-goal="join_telegram">Telegram</a>
++      </div>
++    </div>
++    <nav class="footer-cats" aria-label="Категории объявлений"><span>Категории:</span><a href="avto-dagestan.html">Автомобили</a><a href="nedvizhimost-dagestan.html">Недвижимость</a><a href="tehnika-dagestan.html">Техника</a><a href="odezhda-dagestan.html">Одежда</a><a href="uslugi-dagestan.html">Услуги</a><a href="rabota-dagestan.html">Работа</a><a href="tovary-dagestan.html">Товары</a><a href="raznoe-dagestan.html">Разное</a></nav>
++    <div class="footer-bottom">© ОБЪЯВЛЕНИЯ ДАГЕСТАНА · <a href="privacy.html">Политика конфиденциальности</a></div>
++  </div>
++</footer>
++
++<script src="script.js" defer></script>
++<script src="page.js" defer></script>
++</body>
++</html>
++
+diff --git a/group.html b/group.html
+index a8594fa..dc4c472 100644
+--- a/group.html
++++ b/group.html
+@@ -22,10 +22,10 @@
+ <link rel="icon" href="favicon.svg" type="image/svg+xml">
+ <!-- Общая картинка для всех групп записана статически. У страницы группы один HTML-файл на все id,
+      поэтому canonical, og:url, robots, название и описание конкретной группы выставляет script.js. -->
+-<meta property="og:image" content="https://obyavleniya-dagestan.ru/assets/images/og-image-v2.jpg">
+-<meta name="twitter:image" content="https://obyavleniya-dagestan.ru/assets/images/og-image-v2.jpg">
++<meta property="og:image" content="https://obyavleniya-dagestan.ru/assets/brand/og-community.jpg">
++<meta name="twitter:image" content="https://obyavleniya-dagestan.ru/assets/brand/og-community.jpg">
+ <script>document.documentElement.classList.add("js");</script>
+-<script>window.cookieAccepted=false;try{window.cookieAccepted=window.localStorage.getItem("cookie-consent")==="yes";}catch(e){}</script>
++<script src="consent.js"></script>
+ <!-- Яндекс Метрика -->
+ <script>
+     if (window.cookieAccepted) {
+@@ -40,9 +40,7 @@
+     }
+ </script>
+ <!-- /Яндекс Метрика -->
+-<link rel="preconnect" href="https://fonts.googleapis.com">
+-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
++<link rel="stylesheet" href="fonts.css">
+ <link rel="stylesheet" href="style.css">
+ <link rel="stylesheet" href="redesign.css">
+ <link rel="stylesheet" href="community-offers.css">
+@@ -77,7 +75,7 @@
+       <noscript>
+         <div class="promo-card promo-message">
+           <h1>Информация о группе</h1>
+-          <p>Для просмотра информации о группе включите JavaScript в браузере.</p>
++          <p>Выберите группу:</p><ul><li><a href="group-telegram-main.html">Telegram — Объявления Дагестана</a></li><li><a href="group-whatsapp-2.html">WhatsApp №2 — идёт набор</a></li><li><a href="group-whatsapp-main.html">WhatsApp №1 — группа заполнена</a></li></ul>
+           <p><a class="promo-link" href="index.html#groups">Перейти к списку групп</a></p>
+         </div>
+       </noscript>
+diff --git a/index.html b/index.html
+index d821cca..7d44619 100644
+--- a/index.html
++++ b/index.html
+@@ -14,8 +14,8 @@
+      Адрес сайта задан в SITE.baseUrl (script.js); при смене домена замените его во всех файлах (см. README.md). -->
+ <link rel="canonical" href="https://obyavleniya-dagestan.ru/">
+ <meta property="og:url" content="https://obyavleniya-dagestan.ru/">
+-<meta property="og:image" content="https://obyavleniya-dagestan.ru/assets/images/og-image-v2.jpg">
+-<meta name="twitter:image" content="https://obyavleniya-dagestan.ru/assets/images/og-image-v2.jpg">
++<meta property="og:image" content="https://obyavleniya-dagestan.ru/assets/brand/og-community.jpg">
++<meta name="twitter:image" content="https://obyavleniya-dagestan.ru/assets/brand/og-community.jpg">
+ 
+ <!-- Open Graph и Twitter Card -->
+ <meta property="og:type" content="website">
+@@ -122,7 +122,7 @@
+ }
+ </script>
+ <script>document.documentElement.classList.add("js");</script>
+-<script>window.cookieAccepted=false;try{window.cookieAccepted=window.localStorage.getItem("cookie-consent")==="yes";}catch(e){}</script>
++<script src="consent.js"></script>
+ <!-- Яндекс Метрика -->
+ <script>
+     if (window.cookieAccepted) {
+@@ -137,9 +137,7 @@
+     }
+ </script>
+ <!-- /Яндекс Метрика -->
+-<link rel="preconnect" href="https://fonts.googleapis.com">
+-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
++<link rel="stylesheet" href="fonts.css">
+ <link rel="stylesheet" href="style.css">
+ <link rel="stylesheet" href="redesign.css">
+ <link rel="preload" href="assets/brand/hero.webp" as="image">
+@@ -216,7 +214,7 @@
+   <div class="wrap">
+     <div class="ad-teaser reveal">
+       <h2>Хотите разместить рекламу?</h2>
+-      <div class="platform-prices"><section class="platform-price-block platform-telegram" id="home-telegram-prices"><div class="platform-price-heading"><span class="platform-price-icon" aria-hidden="true"><svg><use href="assets/icons/sprite.svg#i-telegram"></use></svg></span><h3>Реклама в Telegram</h3></div><dl class="rd-ad-prices"><div><dt>Пост + закреп<span>В Telegram-группе на 24 часа</span></dt><dd>500 ₽</dd></div></dl><a class="platform-price-link" href="reklama.html#telegram-prices">Условия рекламы в Telegram →</a></section><section class="platform-price-block platform-whatsapp" id="home-whatsapp-prices"><div class="platform-price-heading"><span class="platform-price-icon" aria-hidden="true"><svg><use href="assets/icons/sprite.svg#i-whatsapp"></use></svg></span><h3>Реклама в WhatsApp</h3></div><dl class="rd-ad-prices"><div><dt>Статус администратора<span>На 24 часа</span></dt><dd>450 ₽</dd></div><div><dt>Статус группы<span>В одной WhatsApp-группе на 24 часа</span></dt><dd>500 ₽</dd></div><div><dt>Пост + закреп<span>В WhatsApp-группе на 24 часа</span></dt><dd>500 ₽</dd></div><div><dt>Пост с закрепом + статус группы<span>В одной группе, оба размещения на 24 часа</span></dt><dd>850 ₽</dd></div><div><dt>Рассылка по группам<span>Только WhatsApp</span></dt><dd>850 ₽</dd></div><div><dt>Рассылка по 1 000 контактам<span>Только WhatsApp</span></dt><dd>1 000 ₽</dd></div></dl><p class="rd-ad-extra"><strong>+500 ₽</strong> к рассылке по 1 000 контактам — за просьбу поставить объявление в WhatsApp-статус. Итого: <strong>1 500 ₽</strong>.</p></section></div><p class="rd-ad-other">Реклама в других соцсетях — уточните условия у администратора.</p>
++      <div class="platform-prices"><section class="platform-price-block platform-telegram" id="home-telegram-prices"><div class="platform-price-heading"><span class="platform-price-icon" aria-hidden="true"><svg><use href="assets/icons/sprite.svg#i-telegram"></use></svg></span><h3>Реклама в Telegram</h3></div><dl class="rd-ad-prices"><div><dt>Пост + закреп<span>В Telegram-группе на 24 часа</span></dt><dd>500 ₽</dd></div></dl><a class="platform-price-link" href="reklama.html#telegram-prices">Условия рекламы в Telegram →</a></section><section class="platform-price-block platform-whatsapp" id="home-whatsapp-prices"><div class="platform-price-heading"><span class="platform-price-icon" aria-hidden="true"><svg><use href="assets/icons/sprite.svg#i-whatsapp"></use></svg></span><h3>Реклама в WhatsApp</h3></div><dl class="rd-ad-prices"><div><dt>Статус администратора<span>На 24 часа</span></dt><dd>450 ₽</dd></div><div><dt>Статус группы<span>В одной WhatsApp-группе на 24 часа</span></dt><dd>500 ₽</dd></div><div><dt>Пост + закреп<span>В WhatsApp-группе на 24 часа</span></dt><dd>500 ₽</dd></div><div><dt>Пост с закрепом + статус группы<span>В одной группе, оба размещения на 24 часа</span></dt><dd>850 ₽</dd></div></dl><details class="rd-mailing-details"><summary>Рассылки WhatsApp — от 850 ₽</summary><dl class="rd-ad-prices"><div><dt>Рассылка по группам<span>Только WhatsApp</span></dt><dd>850 ₽</dd></div><div><dt>Рассылка по 1 000 контактам<span>Только WhatsApp</span></dt><dd>1 000 ₽</dd></div></dl><p class="rd-ad-extra"><strong>+500 ₽</strong> к рассылке по 1 000 контактам — за просьбу поставить объявление в WhatsApp-статус. Итого: <strong>1 500 ₽</strong>.</p></details></section></div><p class="rd-ad-other">Реклама в других соцсетях — уточните условия у администратора.</p>
+       <p class="ad-contact-caption">Связаться с администратором по любому формату:</p><div class="hero-ctas">
+         <a class="btn btn-ghost" href="reklama.html" data-goal="ad_prices">Цены и условия</a>
+         <a class="btn btn-tg" href="#contact" data-contact="telegram" data-goal="ad_contact_telegram"><span class="btn-ic"><svg aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-telegram"></use></svg></span>Администратор в Telegram</a>
+diff --git a/nedvizhimost-dagestan.html b/nedvizhimost-dagestan.html
+index f02a3f9..cc4775e 100644
+--- a/nedvizhimost-dagestan.html
++++ b/nedvizhimost-dagestan.html
+@@ -22,10 +22,10 @@
+ <link rel="canonical" href="https://obyavleniya-dagestan.ru/nedvizhimost-dagestan.html">
+ <meta property="og:url" content="https://obyavleniya-dagestan.ru/nedvizhimost-dagestan.html">
+ <link rel="icon" href="favicon.svg" type="image/svg+xml">
+-<meta property="og:image" content="https://obyavleniya-dagestan.ru/assets/images/og-image-v2.jpg">
+-<meta name="twitter:image" content="https://obyavleniya-dagestan.ru/assets/images/og-image-v2.jpg">
++<meta property="og:image" content="https://obyavleniya-dagestan.ru/assets/brand/og-community.jpg">
++<meta name="twitter:image" content="https://obyavleniya-dagestan.ru/assets/brand/og-community.jpg">
+ <script>document.documentElement.classList.add("js");</script>
+-<script>window.cookieAccepted=false;try{window.cookieAccepted=window.localStorage.getItem("cookie-consent")==="yes";}catch(e){}</script>
++<script src="consent.js"></script>
+ <!-- Яндекс Метрика -->
+ <script>
+     if (window.cookieAccepted) {
+@@ -40,9 +40,7 @@
+     }
+ </script>
+ <!-- /Яндекс Метрика -->
+-<link rel="preconnect" href="https://fonts.googleapis.com">
+-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
++<link rel="stylesheet" href="fonts.css">
+ <link rel="stylesheet" href="style.css">
+ <script type="application/ld+json">
+ {
+diff --git a/odezhda-dagestan.html b/odezhda-dagestan.html
+index 9271e85..47fadbf 100644
+--- a/odezhda-dagestan.html
++++ b/odezhda-dagestan.html
+@@ -22,10 +22,10 @@
+ <link rel="canonical" href="https://obyavleniya-dagestan.ru/odezhda-dagestan.html">
+ <meta property="og:url" content="https://obyavleniya-dagestan.ru/odezhda-dagestan.html">
+ <link rel="icon" href="favicon.svg" type="image/svg+xml">
+-<meta property="og:image" content="https://obyavleniya-dagestan.ru/assets/images/og-image-v2.jpg">
+-<meta name="twitter:image" content="https://obyavleniya-dagestan.ru/assets/images/og-image-v2.jpg">
++<meta property="og:image" content="https://obyavleniya-dagestan.ru/assets/brand/og-community.jpg">
++<meta name="twitter:image" content="https://obyavleniya-dagestan.ru/assets/brand/og-community.jpg">
+ <script>document.documentElement.classList.add("js");</script>
+-<script>window.cookieAccepted=false;try{window.cookieAccepted=window.localStorage.getItem("cookie-consent")==="yes";}catch(e){}</script>
++<script src="consent.js"></script>
+ <!-- Яндекс Метрика -->
+ <script>
+     if (window.cookieAccepted) {
+@@ -40,9 +40,7 @@
+     }
+ </script>
+ <!-- /Яндекс Метрика -->
+-<link rel="preconnect" href="https://fonts.googleapis.com">
+-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
++<link rel="stylesheet" href="fonts.css">
+ <link rel="stylesheet" href="style.css">
+ <script type="application/ld+json">
+ {
+diff --git a/platform-prices.css b/platform-prices.css
+index afcb28c..f6d10e5 100644
+--- a/platform-prices.css
++++ b/platform-prices.css
+@@ -21,3 +21,7 @@
+ .platform-price-block a:focus-visible{outline:3px solid var(--platform-accent);outline-offset:4px;}
+ @media(max-width:1000px){.platform-prices{grid-template-columns:minmax(0,1fr);}.platform-price-block .ad-services{grid-template-columns:repeat(2,minmax(0,1fr));}.platform-telegram .ad-services{grid-template-columns:minmax(0,1fr);}}
+ @media(max-width:600px){.platform-price-block,.rd-home #advertising .platform-price-block{padding:20px 16px;}.platform-price-heading h2,.platform-price-heading h3{font-size:19px;}.platform-price-block .ad-services{grid-template-columns:minmax(0,1fr);}.rd-home .platform-price-block .rd-ad-prices dt{font-size:14px;}.platform-price-block .rd-ad-prices dd{font-size:16px;}.rd-home #advertising .platform-prices{margin-top:22px;}}
++
++.rd-mailing-details{margin-top:18px;border-top:1px solid #bedec32a;padding-top:16px;}
++.rd-mailing-details summary{cursor:pointer;color:#d9f4e4;font-weight:700;line-height:1.6;}
++.rd-mailing-details .rd-ad-prices{margin-top:8px;}
+diff --git a/privacy.html b/privacy.html
+index 60a152e..85b892f 100644
+--- a/privacy.html
++++ b/privacy.html
+@@ -15,7 +15,7 @@
+ <meta property="og:title" content="Политика конфиденциальности — ОБЪЯВЛЕНИЯ ДАГЕСТАНА">
+ <meta property="og:description" content="Какие данные обрабатываются на сайте, как используются cookie и Яндекс Метрика, права посетителей.">
+ <meta property="og:url" content="https://obyavleniya-dagestan.ru/privacy.html">
+-<meta property="og:image" content="https://obyavleniya-dagestan.ru/assets/images/og-image-v2.jpg">
++<meta property="og:image" content="https://obyavleniya-dagestan.ru/assets/brand/og-community.jpg">
+ <meta property="og:image:type" content="image/jpeg">
+ <meta property="og:image:width" content="1200">
+ <meta property="og:image:height" content="630">
+@@ -23,10 +23,10 @@
+ <meta name="twitter:card" content="summary_large_image">
+ <meta name="twitter:title" content="Политика конфиденциальности — ОБЪЯВЛЕНИЯ ДАГЕСТАНА">
+ <meta name="twitter:description" content="Какие данные обрабатываются на сайте, как используются cookie и Яндекс Метрика, права посетителей.">
+-<meta name="twitter:image" content="https://obyavleniya-dagestan.ru/assets/images/og-image-v2.jpg">
++<meta name="twitter:image" content="https://obyavleniya-dagestan.ru/assets/brand/og-community.jpg">
+ <meta name="twitter:image:alt" content="ОБЪЯВЛЕНИЯ ДАГЕСТАНА — покупка, продажа, услуги, работа">
+ <script>document.documentElement.classList.add("js");</script>
+-<script>window.cookieAccepted=false;try{window.cookieAccepted=window.localStorage.getItem("cookie-consent")==="yes";}catch(e){}</script>
++<script src="consent.js"></script>
+ <!-- Яндекс Метрика -->
+ <script>
+     if (window.cookieAccepted) {
+@@ -41,9 +41,7 @@
+     }
+ </script>
+ <!-- /Яндекс Метрика -->
+-<link rel="preconnect" href="https://fonts.googleapis.com">
+-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
++<link rel="stylesheet" href="fonts.css">
+ <link rel="stylesheet" href="style.css">
+ <link rel="stylesheet" href="redesign.css">
+ <link rel="stylesheet" href="site-pages.css">
+@@ -78,7 +76,7 @@
+       <article class="legal-card">
+         <h1>Политика конфиденциальности</h1>
+         <p class="legal-sub">Сайт «ОБЪЯВЛЕНИЯ ДАГЕСТАНА» — https://obyavleniya-dagestan.ru</p>
+-        <p class="legal-date">Редакция от 1 ноября 2026 года</p>
++        <p class="legal-date">Редакция от 2 ноября 2026 года</p>
+ 
+         <h2>1. Общие положения</h2>
+         <p>1.1. Эта политика описывает, какие данные обрабатываются при посещении сайта «ОБЪЯВЛЕНИЯ ДАГЕСТАНА», расположенного по адресу https://obyavleniya-dagestan.ru (далее — Сайт).</p>
+@@ -110,13 +108,13 @@
+         <h2>4. Сервисы и третьи лица</h2>
+         <p>4.1. «Яндекс Метрика» (ООО «Яндекс») — веб-аналитика. Сервис получает технические данные, перечисленные в п. 2.2, и использует cookie с названиями, начинающимися на «_ym». Функции «Вебвизор» и «Карта кликов» на Сайте не используются.</p>
+         <p>4.2. Хостинг GitHub Pages (GitHub, Inc., США) — публикация Сайта. В технических журналах сервера могут сохраняться IP-адрес и данные запросов.</p>
+-        <p>4.3. Google Fonts (Google LLC) — шрифты загружаются с серверов Google. При загрузке Google получает IP-адрес и технические данные браузера.</p>
++        <p>4.3. Шрифты хранятся вместе с файлами Сайта и загружаются с его домена. Запросов к Google Fonts при посещении Сайта нет.</p>
+         <p>4.4. Telegram и WhatsApp — при переходе по ссылкам на группы посетитель покидает Сайт. Дальнейшая обработка данных выполняется этими сервисами по их собственным правилам.</p>
+         <p>4.5. Иным лицам Оператор данные не передаёт и не продаёт.</p>
+ 
+         <h2>5. Cookie</h2>
+         <p>5.1. Cookie — небольшие файлы, которые сохраняются в браузере посетителя. Яндекс Метрика использует их для статистики посещаемости.</p>
+-        <p>5.2. Выбор посетителя («Принять» или «Отказаться») сохраняется в локальном хранилище браузера (localStorage) под названием «cookie-consent».</p>
++        <p>5.2. Выбор посетителя («Принять» или «Отказаться») сохраняется в локальном хранилище браузера (localStorage): «cookie-consent» — выбор, «cookie-consent-details» — выбор, дата и версия условий. Эти записи остаются в вашем браузере и сами по себе не отправляются Оператору. При существенном изменении условий прежнее согласие на аналитику не используется: Сайт снова предложит сделать выбор. Ранее сохранённый отказ сохраняет силу.</p>
+         <p>5.3. До нажатия «Принять» Яндекс Метрика не загружается. При отказе она остаётся отключённой. Уже сохранённые cookie можно удалить в настройках браузера. Отказ не мешает пользоваться Сайтом.</p>
+         <p>5.4. Изменить выбор можно в любой момент:</p>
+         <p class="legal-actions"><button class="btn btn-ghost btn-sm" type="button" id="cookie-reset">Изменить выбор по cookie</button></p>
+@@ -151,7 +149,7 @@
+         <p>10.6. <strong>Проверка текста ИИ.</strong> Текст сообщения (без имени, ника и ID автора) может проверяться ИИ-сервисом GigaChat (ПАО Сбербанк), чтобы отсеять рекламу, вакансии и спам.</p>
+ 
+         <h2>11. Изменение политики</h2>
+-        <p>Актуальная версия политики всегда размещена на этой странице. Дата редакции указана в начале документа. 14 октября 2026 года добавлен раздел 10 о боте «КлиентРадар», а в п. 4.2 исправлено название хостинга. 25 октября 2026 года в раздел 10 добавлен п. 10.6 о проверке текста заявок ИИ.</p>
++        <p>Актуальная версия политики всегда размещена на этой странице. 2 ноября 2026 года шрифты перенесены на домен Сайта, добавлены дата и версия выбора cookie. Дата редакции указана в начале документа. 14 октября 2026 года добавлен раздел 10 о боте «КлиентРадар», а в п. 4.2 исправлено название хостинга. 25 октября 2026 года в раздел 10 добавлен п. 10.6 о проверке текста заявок ИИ.</p>
+       </article>
+     </div>
+   </section>
+diff --git a/rabota-dagestan.html b/rabota-dagestan.html
+index 75c29e9..720a9a5 100644
+--- a/rabota-dagestan.html
++++ b/rabota-dagestan.html
+@@ -22,10 +22,10 @@
+ <link rel="canonical" href="https://obyavleniya-dagestan.ru/rabota-dagestan.html">
+ <meta property="og:url" content="https://obyavleniya-dagestan.ru/rabota-dagestan.html">
+ <link rel="icon" href="favicon.svg" type="image/svg+xml">
+-<meta property="og:image" content="https://obyavleniya-dagestan.ru/assets/images/og-image-v2.jpg">
+-<meta name="twitter:image" content="https://obyavleniya-dagestan.ru/assets/images/og-image-v2.jpg">
++<meta property="og:image" content="https://obyavleniya-dagestan.ru/assets/brand/og-community.jpg">
++<meta name="twitter:image" content="https://obyavleniya-dagestan.ru/assets/brand/og-community.jpg">
+ <script>document.documentElement.classList.add("js");</script>
+-<script>window.cookieAccepted=false;try{window.cookieAccepted=window.localStorage.getItem("cookie-consent")==="yes";}catch(e){}</script>
++<script src="consent.js"></script>
+ <!-- Яндекс Метрика -->
+ <script>
+     if (window.cookieAccepted) {
+@@ -40,9 +40,7 @@
+     }
+ </script>
+ <!-- /Яндекс Метрика -->
+-<link rel="preconnect" href="https://fonts.googleapis.com">
+-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
++<link rel="stylesheet" href="fonts.css">
+ <link rel="stylesheet" href="style.css">
+ <script type="application/ld+json">
+ {
+diff --git a/raznoe-dagestan.html b/raznoe-dagestan.html
+index 458be4e..0f958f0 100644
+--- a/raznoe-dagestan.html
++++ b/raznoe-dagestan.html
+@@ -22,10 +22,10 @@
+ <link rel="canonical" href="https://obyavleniya-dagestan.ru/raznoe-dagestan.html">
+ <meta property="og:url" content="https://obyavleniya-dagestan.ru/raznoe-dagestan.html">
+ <link rel="icon" href="favicon.svg" type="image/svg+xml">
+-<meta property="og:image" content="https://obyavleniya-dagestan.ru/assets/images/og-image-v2.jpg">
+-<meta name="twitter:image" content="https://obyavleniya-dagestan.ru/assets/images/og-image-v2.jpg">
++<meta property="og:image" content="https://obyavleniya-dagestan.ru/assets/brand/og-community.jpg">
++<meta name="twitter:image" content="https://obyavleniya-dagestan.ru/assets/brand/og-community.jpg">
+ <script>document.documentElement.classList.add("js");</script>
+-<script>window.cookieAccepted=false;try{window.cookieAccepted=window.localStorage.getItem("cookie-consent")==="yes";}catch(e){}</script>
++<script src="consent.js"></script>
+ <!-- Яндекс Метрика -->
+ <script>
+     if (window.cookieAccepted) {
+@@ -40,9 +40,7 @@
+     }
+ </script>
+ <!-- /Яндекс Метрика -->
+-<link rel="preconnect" href="https://fonts.googleapis.com">
+-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
++<link rel="stylesheet" href="fonts.css">
+ <link rel="stylesheet" href="style.css">
+ <script type="application/ld+json">
+ {
+diff --git a/reklama.html b/reklama.html
+index 0f68c1a..831b112 100644
+--- a/reklama.html
++++ b/reklama.html
+@@ -22,10 +22,10 @@
+ <link rel="canonical" href="https://obyavleniya-dagestan.ru/reklama.html">
+ <meta property="og:url" content="https://obyavleniya-dagestan.ru/reklama.html">
+ <link rel="icon" href="favicon.svg" type="image/svg+xml">
+-<meta property="og:image" content="https://obyavleniya-dagestan.ru/assets/images/og-image-v2.jpg">
+-<meta name="twitter:image" content="https://obyavleniya-dagestan.ru/assets/images/og-image-v2.jpg">
++<meta property="og:image" content="https://obyavleniya-dagestan.ru/assets/brand/og-community.jpg">
++<meta name="twitter:image" content="https://obyavleniya-dagestan.ru/assets/brand/og-community.jpg">
+ <script>document.documentElement.classList.add("js");</script>
+-<script>window.cookieAccepted=false;try{window.cookieAccepted=window.localStorage.getItem("cookie-consent")==="yes";}catch(e){}</script>
++<script src="consent.js"></script>
+ <!-- Яндекс Метрика -->
+ <script>
+     if (window.cookieAccepted) {
+@@ -40,9 +40,7 @@
+     }
+ </script>
+ <!-- /Яндекс Метрика -->
+-<link rel="preconnect" href="https://fonts.googleapis.com">
+-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
++<link rel="stylesheet" href="fonts.css">
+ <link rel="stylesheet" href="style.css">
+ <script type="application/ld+json">
+ {
+@@ -242,6 +240,7 @@
+       <p style="margin-top:24px;color:var(--ink-soft)">Свою группу или канал можно защитить и монетизировать так же: бот <a class="promo-link" href="bot-moderation.html">Modexa</a> принимает рекламу без комиссии.</p>
+     </div>
+   </section>
++<section class="ad-final-order wrap" aria-labelledby="ad-final-title"><h2 id="ad-final-title">Готовы разместить рекламу?</h2><p>Напишите администратору — согласуем формат, дату и текст.</p><div class="ad-ctas"><a class="btn btn-tg" href="https://t.me/Abdylzhelil05" target="_blank" rel="noopener noreferrer" data-goal="ad_contact_telegram">Администратор в Telegram</a><a class="btn btn-wa" href="https://wa.me/79637968587" target="_blank" rel="noopener noreferrer" data-goal="ad_contact_whatsapp">Администратор в WhatsApp</a></div></section>
+ </main>
+ 
+ <footer id="contact">
+diff --git a/script.js b/script.js
+index a3492e7..f598c04 100644
+--- a/script.js
++++ b/script.js
+@@ -23,10 +23,10 @@ const SITE = {
+ 
+   homeUrl: "index.html",
+   privacyUrl: "privacy.html", /* страница политики конфиденциальности */
+-  groupPageUrl: "group.html", /* страница группы: groupPageUrl + "?id=<id группы>" */
++  groupPageUrl: "group.html", /* совместимость со старыми ссылками ?id; новые адреса создаёт getGroupPageHref */
+ 
+   /* Картинки для SEO (пути от корня сайта; абсолютные адреса собираются из baseUrl) */
+-  ogImage: "assets/images/og-image-v2.jpg",
++  ogImage: "assets/brand/og-community.jpg",
+   logo: "assets/brand/whatsapp.webp",
+ 
+   adContacts: {
+@@ -136,7 +136,8 @@ function getOpenGroup(platform) {
+ 
+ /* Ссылка на страницу группы — единственное место, где собирается этот адрес */
+ function getGroupPageHref(id) {
+-  return SITE.groupPageUrl + "?id=" + encodeURIComponent(id);
++  const group = getGroupById(id);
++  return group ? "group-" + group.id + ".html" : SITE.groupPageUrl + "?id=" + encodeURIComponent(id);
+ }
+ 
+ /* Создание элемента. Текст вставляется через textContent — безопасно для любых данных.
+@@ -321,7 +322,7 @@ function renderFaqAnswers() {
+ 
+ function createPromoRow(title, content, extraClass) {
+   const row = el("div", { cls: "promo-row" + (extraClass ? " " + extraClass : "") });
+-  row.appendChild(el("h3", { text: title }));
++  row.appendChild(el("h2", { text: title }));
+   row.appendChild(content);
+   return row;
+ }
+@@ -580,6 +581,7 @@ function applyHomeSeo() {
+ }
+ 
+ function renderPromoPage() {
++  if (document.getElementById("group-root")?.dataset.staticGroup) return;
+   const root = document.getElementById("group-root");
+   if (!root) return;
+ 
+@@ -680,19 +682,11 @@ function initAnalytics() {
+ /* Выбор посетителя хранится в localStorage: "yes" — принято, "no" — отказ от Яндекс Метрики.
+    Скрипт в <head> запускает Метрику только при сохранённом "yes".
+    До выбора и при отказе запросов к Метрике нет. */
+-const CONSENT_KEY = "cookie-consent";
++function readConsent() { return window.SiteConsent ? SiteConsent.read() : null; }
+ 
+-function readConsent() {
+-  try { return window.localStorage.getItem(CONSENT_KEY); } catch (error) { return null; }
+-}
+-
+-function writeConsent(value) {
+-  try { window.localStorage.setItem(CONSENT_KEY, value); } catch (error) { /* хранилище недоступно */ }
+-}
++function writeConsent(value) { if(window.SiteConsent) SiteConsent.write(value); }
+ 
+-function clearConsent() {
+-  try { window.localStorage.removeItem(CONSENT_KEY); } catch (error) { /* хранилище недоступно */ }
+-}
++function clearConsent() { if(window.SiteConsent) SiteConsent.clear(); }
+ 
+ function initCookieNotice() {
+   if (["yes", "no"].includes(readConsent())) return;
+diff --git a/scripts/build_bot_pages.py b/scripts/build_bot_pages.py
+index b020c93..9b149a2 100644
+--- a/scripts/build_bot_pages.py
++++ b/scripts/build_bot_pages.py
+@@ -209,6 +209,10 @@ def page(cfg):
+         body=body.replace(a_,b_)
+     body=body.replace('<script src="script.js" defer></script>','<script src="script.js" defer></script>\n<script src="page.js" defer></script>'+('\n'+vidjs if vidjs else ''))
+     out=head+'\n'+body
++    if f['theme']=='radar' and 'src="demo-motion.js"' not in out:
++        out=out.replace('</body>','<script src="demo-motion.js" defer></script>\n</body>')
++    from site_components import enhance_bot
++    out=enhance_bot(out)
+     for fn in ('bot.css','page.js','script.js'):
+         out=out.replace('"'+fn+'"','"'+fn+'?v=20261024"')
+     open(cfg['file'],'w',encoding='utf-8').write(out)
+@@ -328,14 +332,7 @@ mod=dict(file='bot-moderation.html',theme='modexa',name='Modexa',handle='@Modexa
+  ft='Подключите группу бесплатно',fp='Первая группа — бесплатно навсегда. Гарантия 7 дней на первую оплату.',oshort='КлиентРадар',other=('bot-crm.html','КлиентРадар — заявки от клиентов'),
+  contacts='<span>Поддержка: <a href="https://t.me/Abdylzhelil05" rel="noopener" target="_blank">@Abdylzhelil05</a> · вопросы по оплате — команда /paysupport в боте</span><span>Документы Modexa: <a href="%s" rel="noopener" target="_blank">оферта</a> · <a href="%s" rel="noopener" target="_blank">политика</a></span>'%(OFER,POLIT))
+ 
+-SVG_RADAR='''<div class="radar"><svg viewBox="0 0 200 200" role="img" aria-label="Радар заявок"><defs><radialGradient id="rg" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#4CC3FF" stop-opacity=".22"/><stop offset="1" stop-color="#4CC3FF" stop-opacity="0"/></radialGradient><linearGradient id="sw" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#4CC3FF" stop-opacity="0"/><stop offset="1" stop-color="#4CC3FF" stop-opacity=".55"/></linearGradient></defs>
+-<circle cx="100" cy="100" r="95" fill="url(#rg)"/>
+-<circle class="ring" cx="100" cy="100" r="96"/><circle class="ring" cx="100" cy="100" r="66"/><circle class="ring" cx="100" cy="100" r="36"/>
+-<path class="ring" d="M100 4v192M4 100h192"/>
+-<path class="ring tick" d="M186.9 123.3L190.8 124.3M177.9 145.0L181.4 147.0M163.6 163.6L166.5 166.5M145.0 177.9L147.0 181.4M123.3 186.9L124.3 190.8M76.7 186.9L75.7 190.8M55.0 177.9L53.0 181.4M36.4 163.6L33.5 166.5M22.1 145.0L18.6 147.0M13.1 123.3L9.2 124.3M13.1 76.7L9.2 75.7M22.1 55.0L18.6 53.0M36.4 36.4L33.5 33.5M55.0 22.1L53.0 18.6M76.7 13.1L75.7 9.2M123.3 13.1L124.3 9.2M145.0 22.1L147.0 18.6M163.6 36.4L166.5 33.5M177.9 55.0L181.4 53.0M186.9 76.7L190.8 75.7"/>
+-<g class="sweep"><path d="M100 100L100 4A96 96 0 0 1 167.9 32.1Z" fill="url(#sw)"/><path d="M100 100L167.9 32.1" stroke="#7BD8FF" stroke-width="1.2" stroke-linecap="round" fill="none"/></g>
+-<circle class="rd-ping" cx="123.9" cy="55.0" r="5.2" style="animation-delay:-0.24s"/><circle class="rd-blip" cx="123.9" cy="55.0" r="4.2" style="animation-delay:-0.24s"/><circle class="rd-ping" cx="171.5" cy="62.0" r="4.4" style="animation-delay:-4.76s"/><circle class="rd-blip" cx="171.5" cy="62.0" r="3.4" style="animation-delay:-4.76s"/><circle class="rd-ping" cx="119.9" cy="109.3" r="4.2" style="animation-delay:-4.03s"/><circle class="rd-blip" cx="119.9" cy="109.3" r="3.2" style="animation-delay:-4.03s"/><circle class="rd-ping" cx="134.1" cy="137.9" r="5.2" style="animation-delay:-3.71s"/><circle class="rd-blip" cx="134.1" cy="137.9" r="4.2" style="animation-delay:-3.71s"/><circle class="rd-ping" cx="127.7" cy="176.1" r="4.4" style="animation-delay:-3.40s"/><circle class="rd-blip" cx="127.7" cy="176.1" r="3.4" style="animation-delay:-3.40s"/><circle class="rd-ping" cx="68.6" cy="140.2" r="4.8" style="animation-delay:-2.60s"/><circle class="rd-blip" cx="68.6" cy="140.2" r="3.8" style="animation-delay:-2.60s"/><circle class="rd-ping" cx="23.9" cy="127.7" r="5.0" style="animation-delay:-2.15s"/><circle class="rd-blip" cx="23.9" cy="127.7" r="4.0" style="animation-delay:-2.15s"/><circle class="rd-ping" cx="84.4" cy="84.4" r="4.2" style="animation-delay:-1.25s"/><circle class="rd-blip" cx="84.4" cy="84.4" r="3.2" style="animation-delay:-1.25s"/><circle class="rd-ping" cx="53.5" cy="33.6" r="4.6" style="animation-delay:-1.11s"/><circle class="rd-blip" cx="53.5" cy="33.6" r="3.6" style="animation-delay:-1.11s"/><circle class="rd-ping" cx="53.8" cy="78.4" r="4.4" style="animation-delay:-1.53s"/><circle class="rd-blip" cx="53.8" cy="78.4" r="3.4" style="animation-delay:-1.53s"/>
+-<circle cx="100" cy="100" r="5" fill="#4CC3FF"/><circle cx="100" cy="100" r="9" fill="none" stroke="#4CC3FF" stroke-opacity=".35"/></svg></div>'''
++SVG_RADAR=open('scripts/templates/client-radar.html',encoding='utf-8').read().strip()
+ crm=dict(file='bot-crm.html',theme='radar',name='КлиентРадар',handle='@klientradarbot',tg='https://t.me/klientradarbot?start=src_site',goal='bot_crm_open',
+  logo='<span class="ic" style="width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#4CC3FF,#3B82F6);color:#031321"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 12l6-6"/></svg></span>',
+  hlogo='<img class="brand-logo" src="assets/images/logo-klientradar.svg?v=2" alt="" width="40" height="40">',
+diff --git a/scripts/build_group_pages.cjs b/scripts/build_group_pages.cjs
+new file mode 100644
+index 0000000..f908e45
+--- /dev/null
++++ b/scripts/build_group_pages.cjs
+@@ -0,0 +1,27 @@
++/* Build static group pages from the same data/render functions as the browser.
++   No browser or npm dependency is needed: node scripts/build_group_pages.cjs */
++const fs=require('fs'),path=require('path'),vm=require('vm');
++const root=path.resolve(__dirname,'..');
++const escape=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
++class Node {
++ constructor(tag,text){this.tag=tag;this.attrs={};this.children=[];this.value=text||'';}
++ set className(v){this.attrs.class=v;} set textContent(v){this.children=[];this.value=String(v);} get textContent(){return this.value+this.children.map(x=>x.textContent).join('');}
++ setAttribute(k,v){this.attrs[k]=String(v);} appendChild(n){this.children.push(n);return n;}
++ toString(){if(!this.tag)return escape(this.value)+this.children.join('');let s='<'+this.tag+Object.entries(this.attrs).map(([k,v])=>' '+k+'="'+escape(v)+'"').join('')+'>';return s+(['img','br','hr','input'].includes(this.tag)?'':escape(this.value)+this.children.join('')+'</'+this.tag+'>');}
++}
++const doc={createElement:t=>new Node(t),createTextNode:t=>new Node(null,t),createDocumentFragment:()=>new Node(null),addEventListener:()=>{}};
++const context=vm.createContext({document:doc});
++const result=vm.runInContext(fs.readFileSync(path.join(root,'script.js'),'utf8')+'\nGROUPS.map(g=>({id:g.id,status:g.status,title:g.name+" — "+PLATFORM_NAMES[g.platform]+" | "+SITE.siteName,description:g.description,url:getAbsoluteUrl(getGroupPageHref(g.id)),html:String(createPromoPage(g))}))',context);
++const template=fs.readFileSync(path.join(root,'group.html'),'utf8');
++for(const g of result){
++ let html=template.replace(/<main id="main">[\s\S]*?<\/main>/,'<main id="main"><section class="promo-section"><div class="wrap" id="group-root" data-static-group="'+g.id+'">'+g.html+'</div></section></main>');
++ html=html.replace(/<title>[\s\S]*?<\/title>/,'<title>'+escape(g.title)+'</title>');
++ for(const [attr,name,value] of [['name','description',g.description],['property','og:title',g.title],['property','og:description',g.description],['name','twitter:title',g.title],['name','twitter:description',g.description]])html=html.replace(new RegExp('<meta '+attr+'="'+name+'"[^>]*>'),'<meta '+attr+'="'+name+'" content="'+escape(value)+'">');
++ html=html.replace(/<!-- Общая картинка[\s\S]*?-->/,'');
++ html=html.replace('</head>','<link rel="canonical" href="'+g.url+'">\n<meta property="og:url" content="'+g.url+'">\n<meta name="robots" content="'+(g.status==='open'?'index, follow':'noindex, follow')+'">\n</head>');
++ fs.writeFileSync(path.join(root,'group-'+g.id+'.html'),html);console.log('Static group:',g.id);
++}
++const sitemap=path.join(root,'sitemap.xml');let xml=fs.readFileSync(sitemap,'utf8');
++xml=xml.replace(/\s*<url>\s*<loc>[^<]*\/group(?:\.html\?id=[^<]*|-[-a-z0-9]+\.html)<\/loc>\s*<\/url>/g,'');
++const urls=result.filter(g=>g.status==='open').map(g=>'  <url>\n    <loc>'+g.url+'</loc>\n  </url>').join('\n');
++xml=xml.replace('</urlset>',urls+'\n</urlset>');fs.writeFileSync(sitemap,xml);
+diff --git a/scripts/build_review.py b/scripts/build_review.py
+new file mode 100644
+index 0000000..6932fbb
+--- /dev/null
++++ b/scripts/build_review.py
+@@ -0,0 +1,14 @@
++from pathlib import Path
++import shutil,re
++root=Path(__file__).resolve().parent.parent;dist=root/'dist'
++for p in list(root.iterdir()):
++ if p.name.startswith('.') or p.name in ['dist','CNAME','README.md','scripts']:continue
++ q=dist/p.name
++ if p.is_dir():shutil.copytree(p,q,dirs_exist_ok=True)
++ else:shutil.copy2(p,q)
++for p in dist.glob('*.html'):
++ s=p.read_text();s=re.sub(r'<meta name="robots"[^>]*>','',s)
++ if 'data-preview="true"' not in s:s=s.replace('<html lang="ru"','<html lang="ru" data-preview="true"',1)
++ s=s.replace('</head>','<meta name="robots" content="noindex, nofollow">\n</head>');p.write_text(s)
++(dist/'robots.txt').write_text('User-agent: *\nDisallow: /\n')
++print('Built private review copy')
+diff --git a/scripts/site_components.py b/scripts/site_components.py
+new file mode 100644
+index 0000000..c2f9e85
+--- /dev/null
++++ b/scripts/site_components.py
+@@ -0,0 +1,10 @@
++"""Shared accessible bot navigation and screenshot region."""
++CATS=[('avto','Автомобили'),('nedvizhimost','Недвижимость'),('tehnika','Техника'),('odezhda','Одежда'),('uslugi','Услуги'),('rabota','Работа'),('tovary','Товары'),('raznoe','Разное')]
++def enhance_bot(s):
++    s=s.replace('<div class="shots">','<div class="shots" tabindex="0" role="region" aria-label="Скриншоты бота. Прокрутка клавишами влево и вправо">')
++    if 'class="bh-site-sections"' not in s:
++        sections='<div class="bh-site-sections"><a href="index.html#groups">Наши группы</a><details><summary>Категории</summary>'+''.join('<a href="%s-dagestan.html">%s</a>'%(slug,name) for slug,name in CATS)+'</details><a href="reklama.html">Реклама и цены</a><a href="index.html#rules">Правила групп</a><a href="index.html#contact">Контакты администратора</a></div>'
++        s=s.replace('</div></div>\n</header>',sections+'</div></div>\n</header>',1)
++    s=s.replace("m.hidden=!o;b.setAttribute", "m.hidden=!o;document.documentElement.style.setProperty('--bot-menu-top',Math.ceil(b.closest('header').getBoundingClientRect().bottom)+'px');b.setAttribute")
++    if "b.setAttribute('aria-label',o?" not in s: s=s.replace("b.setAttribute('aria-expanded',o?'true':'false');","b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?'Закрыть меню':'Меню');if(o)m.scrollTop=0;")
++    return s
+diff --git a/scripts/templates/client-radar.html b/scripts/templates/client-radar.html
+new file mode 100644
+index 0000000..88ca478
+--- /dev/null
++++ b/scripts/templates/client-radar.html
+@@ -0,0 +1,11 @@
++<div class="radar-demo " id="client-radar" data-motion-demo>
++ <div class="radar"><svg viewBox="0 0 200 200" role="img" aria-label="Пример поиска заявок: луч радара подсвечивает найденные цели"><defs><radialGradient id="client-radar-bg"><stop stop-color="#193c54"/><stop offset="1" stop-color="#081d2d"/></radialGradient><linearGradient id="client-radar-beam" x1="0" x2="1"><stop stop-color="#4cc3ff" stop-opacity="0"/><stop offset="1" stop-color="#4cc3ff" stop-opacity=".38"/></linearGradient></defs>
++ <circle cx="100" cy="100" r="97" fill="url(#client-radar-bg)"/>
++ <g class="radar-ticks"><path d="M100.00 9.00L100.00 4.00"/><path d="M123.55 12.10L124.85 7.27"/><path d="M145.50 21.19L148.00 16.86"/><path d="M164.35 35.65L167.88 32.12"/><path d="M178.81 54.50L183.14 52.00"/><path d="M187.90 76.45L192.73 75.15"/><path d="M191.00 100.00L196.00 100.00"/><path d="M187.90 123.55L192.73 124.85"/><path d="M178.81 145.50L183.14 148.00"/><path d="M164.35 164.35L167.88 167.88"/><path d="M145.50 178.81L148.00 183.14"/><path d="M123.55 187.90L124.85 192.73"/><path d="M100.00 191.00L100.00 196.00"/><path d="M76.45 187.90L75.15 192.73"/><path d="M54.50 178.81L52.00 183.14"/><path d="M35.65 164.35L32.12 167.88"/><path d="M21.19 145.50L16.86 148.00"/><path d="M12.10 123.55L7.27 124.85"/><path d="M9.00 100.00L4.00 100.00"/><path d="M12.10 76.45L7.27 75.15"/><path d="M21.19 54.50L16.86 52.00"/><path d="M35.65 35.65L32.12 32.12"/><path d="M54.50 21.19L52.00 16.86"/><path d="M76.45 12.10L75.15 7.27"/></g><circle class="ring" cx="100" cy="100" r="96"/><circle class="ring" cx="100" cy="100" r="70"/><circle class="ring" cx="100" cy="100" r="43"/><circle class="ring" cx="100" cy="100" r="18"/>
++ <path class="radar-cross" d="M100 5v190M5 100h190"/>
++ <g class="sweep"><path d="M100 100L26.5 38.3A96 96 0 0 1 100 4Z" fill="url(#client-radar-beam)"/><path d="M100 100V4" stroke="#8ddfff" stroke-width="1.2"/></g>
++ <g class="radar-target" style="--hit:-7.28653s"><circle class="rd-ping" cx="132" cy="49" r="5"/><circle class="rd-blip" cx="132" cy="49" r="3.3"/></g><g class="radar-target" style="--hit:-6.17001s"><circle class="rd-ping" cx="167" cy="91" r="5"/><circle class="rd-blip" cx="167" cy="91" r="3.3"/></g><g class="radar-target" style="--hit:-4.61884s"><circle class="rd-ping" cx="128" cy="153" r="5"/><circle class="rd-blip" cx="128" cy="153" r="3.3"/></g><g class="radar-target" style="--hit:-2.83343s"><circle class="rd-ping" cx="57" cy="133" r="5"/><circle class="rd-blip" cx="57" cy="133" r="3.3"/></g><g class="radar-target" style="--hit:-0.96560s"><circle class="rd-ping" cx="64" cy="62" r="5"/><circle class="rd-blip" cx="64" cy="62" r="3.3"/></g><circle cx="100" cy="100" r="4" fill="#b9edff"/>
++ </svg></div>
++ <p class="radar-demo-caption">Пример поиска заявок</p>
++ <button type="button" class="motion-toggle" data-motion-for="client-radar" aria-pressed="false">Приостановить анимацию</button>
++ </div>
+diff --git a/scripts/templates/site-nav.html b/scripts/templates/site-nav.html
+new file mode 100644
+index 0000000..6601007
+--- /dev/null
++++ b/scripts/templates/site-nav.html
+@@ -0,0 +1,9 @@
++<nav class="nav-links rd-nav" id="site-nav" aria-label="Разделы сайта">
++ <div class="rd-nav-heading">Разделы сайта</div>
++ <a class="rd-nav-home" href="index.html">Главная</a>
++ <a href="index.html#groups">Наши группы</a>
++ <details class="rd-nav-section"><summary>Категории</summary><div class="rd-nav-sub"><a href="avto-dagestan.html">Автомобили</a><a href="nedvizhimost-dagestan.html">Недвижимость</a><a href="tehnika-dagestan.html">Техника</a><a href="odezhda-dagestan.html">Одежда</a><a href="uslugi-dagestan.html">Услуги</a><a href="rabota-dagestan.html">Работа</a><a href="tovary-dagestan.html">Товары</a><a href="raznoe-dagestan.html">Разное</a></div></details>
++ <a href="reklama.html">Реклама и цены</a>
++ <details class="rd-nav-section"><summary>Наши боты</summary><div class="rd-nav-sub"><a href="bot-moderation.html">Modexa — модерация групп</a><a href="bot-crm.html">КлиентРадар — заявки и CRM</a></div></details>
++ <a href="index.html#rules">Правила</a><a href="index.html#faq">Вопросы и ответы</a><a href="#contact">Контакты</a>
++ </nav>
+diff --git a/scripts/templates/social-card.html b/scripts/templates/social-card.html
+new file mode 100644
+index 0000000..2feb0e0
+--- /dev/null
++++ b/scripts/templates/social-card.html
+@@ -0,0 +1,2 @@
++<!doctype html><html lang="ru"><head><meta charset="utf-8"><link rel="stylesheet" href="../../fonts.css"><style>
++*{box-sizing:border-box}body{margin:0;width:1200px;height:630px;background:#071b14;color:#f4f3e9;font-family:Manrope,sans-serif;position:relative;overflow:hidden}.back{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.34}.shade{position:absolute;inset:0;background:linear-gradient(90deg,#061b15e6,#061b1530)}main{position:relative;padding:54px 64px}.brand{display:flex;gap:20px;align-items:center;letter-spacing:3px;text-transform:uppercase;font-size:17px;font-weight:700}.brand img{width:80px;height:80px;border-radius:50%}h1{font:600 88px/1.03 Georgia,serif;letter-spacing:-3px;margin:34px 0 22px;max-width:950px}p{font-size:25px;color:#d2e7d8;margin:0 0 30px}.platforms{display:flex;gap:14px}.platforms span{padding:14px 24px;border:1px solid #7ba48b88;border-radius:10px;font-size:20px;font-weight:700;background:#07553d}.platforms .tg{background:#005976}small{position:absolute;right:52px;bottom:36px;font-size:18px;color:#c6ddcb}</style></head><body><img class="back" src="../../assets/brand/hero.webp" alt=""><div class="shade"></div><main><div class="brand"><img src="../../assets/brand/whatsapp.webp" alt="">Ваше сообщество в Дагестане</div><h1>Объявления<br>Дагестана</h1><p>Покупка · Продажа · Услуги · Работа</p><div class="platforms"><span>WhatsApp</span><span class="tg">Telegram</span></div></main><small>obyavleniya-dagestan.ru</small></body></html>
+\ No newline at end of file
+diff --git a/scripts/update_nav.py b/scripts/update_nav.py
+index e1c92ec..001866a 100644
+--- a/scripts/update_nav.py
++++ b/scripts/update_nav.py
+@@ -1,37 +1,13 @@
+-"""Единое меню и подвал на всех страницах сайта (запуск из корня репозитория)."""
+-import re,glob
+-CATS=[('avto-dagestan','Автомобили'),('nedvizhimost-dagestan','Недвижимость'),('tehnika-dagestan','Техника'),('odezhda-dagestan','Одежда'),('uslugi-dagestan','Услуги'),('rabota-dagestan','Работа'),('tovary-dagestan','Товары'),('raznoe-dagestan','Разное')]
+-def nav_inner(home):
+-    p='' if home else 'index.html'
+-    cats=''.join('<a href="%s.html">%s</a>'%(s,n) for s,n in CATS)
+-    return f'''
+-      <a href="index.html">Главная</a>
+-      <a href="{p}#groups">Наши группы</a>
+-      <div class="nav-dd dd-cats"><a href="{p}#categories">Категории</a><div class="dd-menu">{cats}</div></div>
+-      <a href="{p}#rules">Правила</a>
+-      <a href="{p}#advertising">Реклама</a>
+-      <div class="nav-dd dd-bots"><a href="{p}#bots">Боты</a><div class="dd-menu"><a href="bot-moderation.html">Modexa</a><a href="bot-crm.html">КлиентРадар</a></div></div>
+-      <a href="#contact">Контакты</a>
+-    '''
+-def foot_cats():
+-    cats=''.join('<a href="%s.html">%s</a>'%(s,n) for s,n in CATS)
+-    return '    <nav class="footer-cats" aria-label="Категории объявлений"><span>Категории:</span>'+cats+'</nav>\n    '
+-pages=['index.html','group.html','privacy.html','reklama.html']+[s+'.html' for s,_ in CATS]
+-for f in pages:
+-    t=open(f,encoding='utf-8').read()
+-    t,n=re.subn(r'(<nav class="nav-links" id="site-nav"[^>]*>).*?(</nav>)',lambda m:m.group(1)+nav_inner(f=='index.html')+'    '+m.group(2),t,count=1,flags=re.S); assert n==1,f
+-    # footer links: ensure bots present
+-    if 'bot-moderation.html">Modexa</a>\n        <a href="bot-crm' not in t.split('footer-links')[1].split('</nav>')[0]:
+-        t=t.replace('<a href="#contact" data-contact="telegram" data-goal="ad_contact_telegram">Контакты</a>\n      </nav>','<a href="bot-moderation.html">Modexa</a>\n        <a href="bot-crm.html">КлиентРадар</a>\n        <a href="#contact" data-contact="telegram" data-goal="ad_contact_telegram">Контакты</a>\n      </nav>',1)
+-    if 'footer-cats' not in t:
+-        t=t.replace('<div class="footer-bottom">',foot_cats()+'<div class="footer-bottom">',1)
+-    else:
+-        t=re.sub(r'<nav class="footer-cats".*?</nav>\n    ',lambda m: foot_cats(),t,count=1,flags=re.S)
+-    open(f,'w',encoding='utf-8').write(t); print('ok',f)
+-# 404
+-t=open('404.html',encoding='utf-8').read()
+-links='<p class="nf-links">'+''.join('<a href="/%s.html">%s</a>'%(s,n) for s,n in CATS)+'<a href="/bot-moderation.html">Modexa</a><a href="/bot-crm.html">КлиентРадар</a></p>'
+-if 'nf-links' not in t:
+-    t=t.replace('<p><a class="promo-link" href="/">Перейти на главную страницу</a></p>','<p><a class="promo-link" href="/">Перейти на главную страницу</a></p>\n          <p>Или выберите раздел:</p>\n          '+links)
+-    open('404.html','w',encoding='utf-8').write(t)
+-
++"""Update the shared site navigation. Run from any directory."""
++from pathlib import Path
++import re
++ROOT=Path(__file__).resolve().parent.parent
++NAV=(ROOT/'scripts/templates/site-nav.html').read_text().strip()
++for p in ROOT.glob('*.html'):
++    text=p.read_text()
++    if 'id="site-nav"' not in text: continue
++    nav=NAV.replace('index.html#','#') if p.name=='index.html' else NAV
++    text,count=re.subn(r'<nav\b(?=[^>]*\bid="site-nav")[^>]*>.*?</nav>',lambda _:nav,text,count=1,flags=re.S)
++    if count!=1: raise ValueError('Navigation missing: '+p.name)
++    p.write_text(text)
++    print('Navigation:',p.name)
+diff --git a/site-pages.css b/site-pages.css
+index a9737ef..1dda969 100644
+--- a/site-pages.css
++++ b/site-pages.css
+@@ -61,3 +61,7 @@
+ .rd-page .ad-services .ad-price{font-size:28px;line-height:1.3;font-weight:800;color:#f2f7f4;margin:12px 0;}
+ .rd-page .platform-price-heading h2{font:700 21px/1.35 Manrope,sans-serif;letter-spacing:0;}
+ @media(max-width:600px){.rd-page .platform-price-heading h2{font-size:19px;}}
++
++.ad-final-order{padding-top:32px;padding-bottom:64px;}
++.ad-final-order .ad-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;}
++@media(max-width:600px){.ad-final-order .btn{width:100%;white-space:normal;text-align:center;}}
+diff --git a/sitemap.xml b/sitemap.xml
+index b23d87b..71b3ade 100644
+--- a/sitemap.xml
++++ b/sitemap.xml
+@@ -9,12 +9,6 @@
+   <url>
+     <loc>https://obyavleniya-dagestan.ru/</loc>
+   </url>
+-  <url>
+-    <loc>https://obyavleniya-dagestan.ru/group.html?id=telegram-main</loc>
+-  </url>
+-  <url>
+-    <loc>https://obyavleniya-dagestan.ru/group.html?id=whatsapp-2</loc>
+-  </url>
+   <url>
+     <loc>https://obyavleniya-dagestan.ru/bot-moderation.html</loc>
+   </url>
+@@ -48,5 +42,11 @@
+   <url>
+     <loc>https://obyavleniya-dagestan.ru/raznoe-dagestan.html</loc>
+   </url>
++  <url>
++    <loc>https://obyavleniya-dagestan.ru/group-telegram-main.html</loc>
++  </url>
++  <url>
++    <loc>https://obyavleniya-dagestan.ru/group-whatsapp-2.html</loc>
++  </url>
+ </urlset>
+ 
+diff --git a/style.css b/style.css
+index 47fbb1f..37d8404 100644
+--- a/style.css
++++ b/style.css
+@@ -318,7 +318,7 @@ header{
+ }
+ .promo-row{padding:16px 0; border-bottom:1px solid var(--glass-border);}
+ .promo-row:last-child{border-bottom:none;}
+-.promo-row h3{font-size:14px; text-transform:uppercase; letter-spacing:.3px; color:var(--ink-faint); margin-bottom:8px; font-family:var(--font-text); font-weight:700;}
++.promo-row h2{font-size:14px; text-transform:uppercase; letter-spacing:.3px; color:var(--ink-faint); margin-bottom:8px; font-family:var(--font-text); font-weight:700;}
+ .promo-row p{color:var(--ink-soft); font-size:15px;}
+ .promo-row .rules-list{margin-top:4px;}
+ .promo-row .rules-list li{padding:10px 0;}
+@@ -911,7 +911,7 @@ header{view-transition-name:hdr;}
+ .mf2-spam u{margin-left:auto; text-decoration:none; font-size:11px; font-weight:800; letter-spacing:.04em; text-transform:uppercase; color:#ff8a7e; opacity:0; animation:mf2tag 9s ease-in-out infinite; animation-delay:.7s;}
+ .a1{animation-delay:0s;} .a2{animation-delay:.7s;} .a3{animation-delay:2.2s;}
+ @keyframes mf2in{0%{opacity:0; transform:translateY(8px);}6%,86%{opacity:1; transform:none;}94%,100%{opacity:0;}}
+-@keyframes mf2strike{0%,14%{text-decoration:none; opacity:1;}20%,86%{text-decoration:line-through; text-decoration-color:#ff8a7e; opacity:.5;}100%{opacity:.5;}}
++@keyframes mf2strike{0%,14%{text-decoration:none; opacity:1;}20%,86%{text-decoration:line-through; text-decoration-color:#ff8a7e; opacity:.8;}100%{opacity:.8;}}
+ @keyframes mf2tag{0%,14%{opacity:0;}20%,86%{opacity:1;}94%,100%{opacity:0;}}
+ /* вращающийся луч радара у значка КлиентРадара */
+ .bot-ava-radar{position:relative; overflow:hidden;}
+@@ -920,7 +920,7 @@ header{view-transition-name:hdr;}
+ @media (prefers-reduced-motion:reduce){
+   .logo-badge-lg,.bot-ava-radar::after{animation:none;}
+   .mf2,.mf2-spam span,.mf2-spam u{animation:none; opacity:1;}
+-  .mf2-spam span{text-decoration:line-through; opacity:.5;}
++  .mf2-spam span{text-decoration:line-through; opacity:.8;}
+ }
+ 
+ 
+diff --git a/tehnika-dagestan.html b/tehnika-dagestan.html
+index 0ee0962..060613d 100644
+--- a/tehnika-dagestan.html
++++ b/tehnika-dagestan.html
+@@ -22,10 +22,10 @@
+ <link rel="canonical" href="https://obyavleniya-dagestan.ru/tehnika-dagestan.html">
+ <meta property="og:url" content="https://obyavleniya-dagestan.ru/tehnika-dagestan.html">
+ <link rel="icon" href="favicon.svg" type="image/svg+xml">
+-<meta property="og:image" content="https://obyavleniya-dagestan.ru/assets/images/og-image-v2.jpg">
+-<meta name="twitter:image" content="https://obyavleniya-dagestan.ru/assets/images/og-image-v2.jpg">
++<meta property="og:image" content="https://obyavleniya-dagestan.ru/assets/brand/og-community.jpg">
++<meta name="twitter:image" content="https://obyavleniya-dagestan.ru/assets/brand/og-community.jpg">
+ <script>document.documentElement.classList.add("js");</script>
+-<script>window.cookieAccepted=false;try{window.cookieAccepted=window.localStorage.getItem("cookie-consent")==="yes";}catch(e){}</script>
++<script src="consent.js"></script>
+ <!-- Яндекс Метрика -->
+ <script>
+     if (window.cookieAccepted) {
+@@ -40,9 +40,7 @@
+     }
+ </script>
+ <!-- /Яндекс Метрика -->
+-<link rel="preconnect" href="https://fonts.googleapis.com">
+-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
++<link rel="stylesheet" href="fonts.css">
+ <link rel="stylesheet" href="style.css">
+ <script type="application/ld+json">
+ {
+diff --git a/tovary-dagestan.html b/tovary-dagestan.html
+index 206fdff..6497941 100644
+--- a/tovary-dagestan.html
++++ b/tovary-dagestan.html
+@@ -22,10 +22,10 @@
+ <link rel="canonical" href="https://obyavleniya-dagestan.ru/tovary-dagestan.html">
+ <meta property="og:url" content="https://obyavleniya-dagestan.ru/tovary-dagestan.html">
+ <link rel="icon" href="favicon.svg" type="image/svg+xml">
+-<meta property="og:image" content="https://obyavleniya-dagestan.ru/assets/images/og-image-v2.jpg">
+-<meta name="twitter:image" content="https://obyavleniya-dagestan.ru/assets/images/og-image-v2.jpg">
++<meta property="og:image" content="https://obyavleniya-dagestan.ru/assets/brand/og-community.jpg">
++<meta name="twitter:image" content="https://obyavleniya-dagestan.ru/assets/brand/og-community.jpg">
+ <script>document.documentElement.classList.add("js");</script>
+-<script>window.cookieAccepted=false;try{window.cookieAccepted=window.localStorage.getItem("cookie-consent")==="yes";}catch(e){}</script>
++<script src="consent.js"></script>
+ <!-- Яндекс Метрика -->
+ <script>
+     if (window.cookieAccepted) {
+@@ -40,9 +40,7 @@
+     }
+ </script>
+ <!-- /Яндекс Метрика -->
+-<link rel="preconnect" href="https://fonts.googleapis.com">
+-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
++<link rel="stylesheet" href="fonts.css">
+ <link rel="stylesheet" href="style.css">
+ <script type="application/ld+json">
+ {
+diff --git a/uslugi-dagestan.html b/uslugi-dagestan.html
+index b69cc2a..2a890a8 100644
+--- a/uslugi-dagestan.html
++++ b/uslugi-dagestan.html
+@@ -22,10 +22,10 @@
+ <link rel="canonical" href="https://obyavleniya-dagestan.ru/uslugi-dagestan.html">
+ <meta property="og:url" content="https://obyavleniya-dagestan.ru/uslugi-dagestan.html">
+ <link rel="icon" href="favicon.svg" type="image/svg+xml">
+-<meta property="og:image" content="https://obyavleniya-dagestan.ru/assets/images/og-image-v2.jpg">
+-<meta name="twitter:image" content="https://obyavleniya-dagestan.ru/assets/images/og-image-v2.jpg">
++<meta property="og:image" content="https://obyavleniya-dagestan.ru/assets/brand/og-community.jpg">
++<meta name="twitter:image" content="https://obyavleniya-dagestan.ru/assets/brand/og-community.jpg">
+ <script>document.documentElement.classList.add("js");</script>
+-<script>window.cookieAccepted=false;try{window.cookieAccepted=window.localStorage.getItem("cookie-consent")==="yes";}catch(e){}</script>
++<script src="consent.js"></script>
+ <!-- Яндекс Метрика -->
+ <script>
+     if (window.cookieAccepted) {
+@@ -40,9 +40,7 @@
+     }
+ </script>
+ <!-- /Яндекс Метрика -->
+-<link rel="preconnect" href="https://fonts.googleapis.com">
+-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
++<link rel="stylesheet" href="fonts.css">
+ <link rel="stylesheet" href="style.css">
+ <script type="application/ld+json">
+ {
