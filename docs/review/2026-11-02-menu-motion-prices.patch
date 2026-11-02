@@ -1,0 +1,399 @@
+diff --git a/bot-crm.html b/bot-crm.html
+index a02ce63..1709fd2 100644
+--- a/bot-crm.html
++++ b/bot-crm.html
+@@ -124,6 +124,7 @@
+  ]
+ }
+ </script>
++<link rel="stylesheet" href="demo-motion.css">
+ </head>
+ <body class="theme-radar">
+ <a class="skip-link" href="#main">К содержимому</a>
+@@ -149,14 +150,17 @@
+     <p class="hero-note"><b>Бесплатно:</b> до 5 заявок в день с задержкой 30 минут. Новым — 3 дня 💎 бесплатно. Выберите нишу и город — бот сразу покажет подходящие заявки за последние сутки, если они были.</p>
+     <ul class="hero-points"><li>📍 Сначала заявки из Дагестана</li><li>⚠️ Подсказывает о возможных схемах</li><li>🎁 3 дня полного тарифа бесплатно</li></ul>
+   </div>
+-  <div class="hero-visual"><div class="radar"><svg viewBox="0 0 200 200" role="img" aria-label="Радар заявок"><defs><radialGradient id="rg" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#4CC3FF" stop-opacity=".22"/><stop offset="1" stop-color="#4CC3FF" stop-opacity="0"/></radialGradient><linearGradient id="sw" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#4CC3FF" stop-opacity="0"/><stop offset="1" stop-color="#4CC3FF" stop-opacity=".55"/></linearGradient></defs>
+-<circle cx="100" cy="100" r="95" fill="url(#rg)"/>
+-<circle class="ring" cx="100" cy="100" r="96"/><circle class="ring" cx="100" cy="100" r="66"/><circle class="ring" cx="100" cy="100" r="36"/>
+-<path class="ring" d="M100 4v192M4 100h192"/>
+-<path class="ring tick" d="M186.9 123.3L190.8 124.3M177.9 145.0L181.4 147.0M163.6 163.6L166.5 166.5M145.0 177.9L147.0 181.4M123.3 186.9L124.3 190.8M76.7 186.9L75.7 190.8M55.0 177.9L53.0 181.4M36.4 163.6L33.5 166.5M22.1 145.0L18.6 147.0M13.1 123.3L9.2 124.3M13.1 76.7L9.2 75.7M22.1 55.0L18.6 53.0M36.4 36.4L33.5 33.5M55.0 22.1L53.0 18.6M76.7 13.1L75.7 9.2M123.3 13.1L124.3 9.2M145.0 22.1L147.0 18.6M163.6 36.4L166.5 33.5M177.9 55.0L181.4 53.0M186.9 76.7L190.8 75.7"/>
+-<g class="sweep"><path d="M100 100L100 4A96 96 0 0 1 167.9 32.1Z" fill="url(#sw)"/><path d="M100 100L167.9 32.1" stroke="#7BD8FF" stroke-width="1.2" stroke-linecap="round" fill="none"/></g>
+-<circle class="rd-ping" cx="123.9" cy="55.0" r="5.2" style="animation-delay:-0.24s"/><circle class="rd-blip" cx="123.9" cy="55.0" r="4.2" style="animation-delay:-0.24s"/><circle class="rd-ping" cx="171.5" cy="62.0" r="4.4" style="animation-delay:-4.76s"/><circle class="rd-blip" cx="171.5" cy="62.0" r="3.4" style="animation-delay:-4.76s"/><circle class="rd-ping" cx="119.9" cy="109.3" r="4.2" style="animation-delay:-4.03s"/><circle class="rd-blip" cx="119.9" cy="109.3" r="3.2" style="animation-delay:-4.03s"/><circle class="rd-ping" cx="134.1" cy="137.9" r="5.2" style="animation-delay:-3.71s"/><circle class="rd-blip" cx="134.1" cy="137.9" r="4.2" style="animation-delay:-3.71s"/><circle class="rd-ping" cx="127.7" cy="176.1" r="4.4" style="animation-delay:-3.40s"/><circle class="rd-blip" cx="127.7" cy="176.1" r="3.4" style="animation-delay:-3.40s"/><circle class="rd-ping" cx="68.6" cy="140.2" r="4.8" style="animation-delay:-2.60s"/><circle class="rd-blip" cx="68.6" cy="140.2" r="3.8" style="animation-delay:-2.60s"/><circle class="rd-ping" cx="23.9" cy="127.7" r="5.0" style="animation-delay:-2.15s"/><circle class="rd-blip" cx="23.9" cy="127.7" r="4.0" style="animation-delay:-2.15s"/><circle class="rd-ping" cx="84.4" cy="84.4" r="4.2" style="animation-delay:-1.25s"/><circle class="rd-blip" cx="84.4" cy="84.4" r="3.2" style="animation-delay:-1.25s"/><circle class="rd-ping" cx="53.5" cy="33.6" r="4.6" style="animation-delay:-1.11s"/><circle class="rd-blip" cx="53.5" cy="33.6" r="3.6" style="animation-delay:-1.11s"/><circle class="rd-ping" cx="53.8" cy="78.4" r="4.4" style="animation-delay:-1.53s"/><circle class="rd-blip" cx="53.8" cy="78.4" r="3.4" style="animation-delay:-1.53s"/>
+-<circle cx="100" cy="100" r="5" fill="#4CC3FF"/><circle cx="100" cy="100" r="9" fill="none" stroke="#4CC3FF" stroke-opacity=".35"/></svg></div></div>
++  <div class="hero-visual"><div class="radar-demo " id="client-radar" data-motion-demo>
++ <div class="radar"><svg viewBox="0 0 200 200" role="img" aria-label="Пример поиска заявок: луч радара подсвечивает найденные цели"><defs><radialGradient id="client-radar-bg"><stop stop-color="#193c54"/><stop offset="1" stop-color="#081d2d"/></radialGradient><linearGradient id="client-radar-beam" x1="0" x2="1"><stop stop-color="#4cc3ff" stop-opacity="0"/><stop offset="1" stop-color="#4cc3ff" stop-opacity=".38"/></linearGradient></defs>
++ <circle cx="100" cy="100" r="97" fill="url(#client-radar-bg)"/>
++ <g class="radar-ticks"><path d="M100.00 9.00L100.00 4.00"/><path d="M123.55 12.10L124.85 7.27"/><path d="M145.50 21.19L148.00 16.86"/><path d="M164.35 35.65L167.88 32.12"/><path d="M178.81 54.50L183.14 52.00"/><path d="M187.90 76.45L192.73 75.15"/><path d="M191.00 100.00L196.00 100.00"/><path d="M187.90 123.55L192.73 124.85"/><path d="M178.81 145.50L183.14 148.00"/><path d="M164.35 164.35L167.88 167.88"/><path d="M145.50 178.81L148.00 183.14"/><path d="M123.55 187.90L124.85 192.73"/><path d="M100.00 191.00L100.00 196.00"/><path d="M76.45 187.90L75.15 192.73"/><path d="M54.50 178.81L52.00 183.14"/><path d="M35.65 164.35L32.12 167.88"/><path d="M21.19 145.50L16.86 148.00"/><path d="M12.10 123.55L7.27 124.85"/><path d="M9.00 100.00L4.00 100.00"/><path d="M12.10 76.45L7.27 75.15"/><path d="M21.19 54.50L16.86 52.00"/><path d="M35.65 35.65L32.12 32.12"/><path d="M54.50 21.19L52.00 16.86"/><path d="M76.45 12.10L75.15 7.27"/></g><circle class="ring" cx="100" cy="100" r="96"/><circle class="ring" cx="100" cy="100" r="70"/><circle class="ring" cx="100" cy="100" r="43"/><circle class="ring" cx="100" cy="100" r="18"/>
++ <path class="radar-cross" d="M100 5v190M5 100h190"/>
++ <g class="sweep"><path d="M100 100L26.5 38.3A96 96 0 0 1 100 4Z" fill="url(#client-radar-beam)"/><path d="M100 100V4" stroke="#8ddfff" stroke-width="1.2"/></g>
++ <g class="radar-target" style="--hit:-7.28653s"><circle class="rd-ping" cx="132" cy="49" r="5"/><circle class="rd-blip" cx="132" cy="49" r="3.3"/></g><g class="radar-target" style="--hit:-6.17001s"><circle class="rd-ping" cx="167" cy="91" r="5"/><circle class="rd-blip" cx="167" cy="91" r="3.3"/></g><g class="radar-target" style="--hit:-4.61884s"><circle class="rd-ping" cx="128" cy="153" r="5"/><circle class="rd-blip" cx="128" cy="153" r="3.3"/></g><g class="radar-target" style="--hit:-2.83343s"><circle class="rd-ping" cx="57" cy="133" r="5"/><circle class="rd-blip" cx="57" cy="133" r="3.3"/></g><g class="radar-target" style="--hit:-0.96560s"><circle class="rd-ping" cx="64" cy="62" r="5"/><circle class="rd-blip" cx="64" cy="62" r="3.3"/></g><circle cx="100" cy="100" r="4" fill="#b9edff"/>
++ </svg></div>
++ <p class="radar-demo-caption">Пример поиска заявок</p>
++ <button type="button" class="motion-toggle" data-motion-for="client-radar" aria-pressed="false">Приостановить анимацию</button>
++ </div></div>
+ </div></section>
+ <section id="start"><div class="wrap">
+   <div class="sh-plain"><div class="sec-head rv"><div class="eyebrow">Как это работает</div><h2>Три шага до первых заявок</h2></div></div>
+@@ -200,6 +204,7 @@ function snd(v){return v.closest('.vidbox').querySelector('.snd');}
+ vs.forEach(function(v){var b=snd(v);function tg(){var on=v.muted;vs.forEach(function(o){if(o!==v){o.muted=true;snd(o).textContent='🔊 Включить звук';}});v.muted=!on;if(on){v.volume=1;v.controls=true;var p=v.play();if(p&&p.catch)p.catch(function(){v.controls=true;});}else{v.controls=false;}b.textContent=on?'🔇 Выключить звук':'🔊 Включить звук';}b.addEventListener('click',tg);v.addEventListener('click',tg);});
+ if(rm||!('IntersectionObserver' in window))return;
+ var io=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;if(e.isIntersecting){var p=v.play();if(p&&p.catch)p.catch(function(){});}else{v.pause();}});},{threshold:.35});vs.forEach(function(v){io.observe(v);});})();</script>
++<script src="demo-motion.js" defer></script>
+ </body>
+ </html>
+ 
+diff --git a/demo-motion.css b/demo-motion.css
+new file mode 100644
+index 0000000..626588e
+--- /dev/null
++++ b/demo-motion.css
+@@ -0,0 +1,26 @@
++/* Explanatory demos; no live lead data is shown. */
++.radar-demo{width:min(360px,100%);display:flex;flex-direction:column;align-items:center;gap:14px;color:#b3e8ff;--accent:#4cc3ff;}
++.radar-demo .radar{width:100%;max-width:340px;aspect-ratio:1;}
++.radar-demo .radar svg{display:block;width:100%;height:100%;overflow:visible;}
++.radar-demo .ring{fill:none;stroke:#70c9f6;stroke-width:.6;stroke-opacity:.3;}
++.radar-cross{fill:none;stroke:#70c9f6;stroke-width:.5;stroke-opacity:.22;}
++.radar-ticks{stroke:#7edbff;stroke-width:.75;stroke-opacity:.45;}
++.radar-demo .sweep{transform-box:view-box;transform-origin:100px 100px;animation:clientRadarSweep 8s linear infinite;}
++.radar-demo .rd-blip{fill:#c4f2ff;opacity:.2;animation:clientRadarHit 8s linear infinite;animation-delay:var(--hit);}
++.radar-demo .rd-ping{fill:none;stroke:#8ee1ff;stroke-width:1;opacity:0;transform-box:fill-box;transform-origin:center;animation:clientRadarPing 8s linear infinite;animation-delay:var(--hit);}
++@keyframes clientRadarSweep{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
++@keyframes clientRadarHit{0%,3%{opacity:1;}12%{opacity:.75;}40%,100%{opacity:.2;}}
++@keyframes clientRadarPing{0%{opacity:.9;transform:scale(1);}18%{opacity:0;transform:scale(3);}100%{opacity:0;transform:scale(3);}}
++.radar-demo .radar-demo-caption{font-size:12px;line-height:1.5;letter-spacing:.06em;text-align:center;color:#a1bac8;margin:0;}
++.motion-toggle{display:inline-flex;align-items:center;justify-content:center;min-height:44px;border:1px solid #9ac6bc50;border-radius:7px;background:transparent;color:#b8d4c8;padding:8px 12px;font:inherit;font-size:12px;cursor:pointer;}
++.motion-toggle:focus-visible{outline:3px solid #9cddff;outline-offset:3px;}
++.motion-toggle[hidden]{display:none;}
++.demo-motion-paused,.demo-motion-paused *,.demo-motion-paused::after,.demo-motion-paused *::after{animation-play-state:paused!important;}
++.rd-home .radar-demo-mini{align-self:center;width:100%;margin:4px auto;}
++.rd-home .radar-demo-mini .radar{max-width:220px;}
++.rd-home .bot-card>.motion-toggle{align-self:flex-start;}
++.rd-home .mini-feed{display:grid;}
++@media(prefers-reduced-motion:reduce){
++ .radar-demo .sweep,.radar-demo .rd-blip,.radar-demo .rd-ping{animation:none!important;}
++ .radar-demo .rd-blip{opacity:.85;}.radar-demo .rd-ping{opacity:0;}
++}
+diff --git a/demo-motion.js b/demo-motion.js
+new file mode 100644
+index 0000000..c98ccf1
+--- /dev/null
++++ b/demo-motion.js
+@@ -0,0 +1,12 @@
++/* Pause decorative motion offscreen, in hidden tabs, or at the user's request. */
++(function(){
++ const reduce=window.matchMedia('(prefers-reduced-motion: reduce)');
++ const demos=[...document.querySelectorAll('[data-motion-demo]')].map(function(node){
++  return {node:node,button:document.querySelector('[data-motion-for="'+node.id+'"]'),visible:false,paused:false};
++ });
++ function update(d){d.node.classList.toggle('demo-motion-paused',!d.visible||d.paused||document.hidden||reduce.matches);if(d.button){d.button.hidden=reduce.matches;d.button.setAttribute('aria-pressed',String(d.paused));d.button.textContent=d.paused?'Продолжить анимацию':'Приостановить анимацию';}}
++ const io='IntersectionObserver' in window?new IntersectionObserver(function(entries){entries.forEach(function(e){const d=demos.find(x=>x.node===e.target);d.visible=e.isIntersecting;update(d);});},{threshold:.1}):null;
++ demos.forEach(function(d){if(d.button)d.button.addEventListener('click',function(){d.paused=!d.paused;update(d);});if(io)io.observe(d.node);else d.visible=true;update(d);});
++ document.addEventListener('visibilitychange',function(){demos.forEach(update);});
++ if(reduce.addEventListener)reduce.addEventListener('change',function(){demos.forEach(update);});
++})();
+diff --git a/group.html b/group.html
+index d6a3fa4..c4fe8c5 100644
+--- a/group.html
++++ b/group.html
+@@ -56,15 +56,15 @@
+       <span class="logo-badge"><img src="assets/brand/whatsapp.webp" alt="Логотип «Объявления Дагестана»" width="34" height="34"></span>
+       <span class="brand">ОБЪЯВЛЕНИЯ ДАГЕСТАНА</span>
+     </a>
+-    <nav class="nav-links" id="site-nav" aria-label="Разделы сайта">
+-      <a href="index.html">Главная</a>
+-      <a href="index.html#groups">Наши группы</a>
+-      <div class="nav-dd dd-cats"><a href="index.html#categories">Категории</a><div class="dd-menu"><a href="avto-dagestan.html">Автомобили</a><a href="nedvizhimost-dagestan.html">Недвижимость</a><a href="tehnika-dagestan.html">Техника</a><a href="odezhda-dagestan.html">Одежда</a><a href="uslugi-dagestan.html">Услуги</a><a href="rabota-dagestan.html">Работа</a><a href="tovary-dagestan.html">Товары</a><a href="raznoe-dagestan.html">Разное</a></div></div>
+-      <a href="index.html#rules">Правила</a>
+-      <a href="index.html#advertising">Реклама</a>
+-      <div class="nav-dd dd-bots"><a href="index.html#bots">Боты</a><div class="dd-menu"><a href="bot-moderation.html">Modexa</a><a href="bot-crm.html">КлиентРадар</a></div></div>
+-      <a href="#contact">Контакты</a>
+-        </nav>
++    <nav class="nav-links rd-nav" id="site-nav" aria-label="Разделы сайта">
++ <div class="rd-nav-heading">Разделы сайта</div>
++ <a class="rd-nav-home" href="index.html">Главная</a>
++ <a href="index.html#groups">Наши группы</a>
++ <details class="rd-nav-section"><summary>Категории</summary><div class="rd-nav-sub"><a href="avto-dagestan.html">Автомобили</a><a href="nedvizhimost-dagestan.html">Недвижимость</a><a href="tehnika-dagestan.html">Техника</a><a href="odezhda-dagestan.html">Одежда</a><a href="uslugi-dagestan.html">Услуги</a><a href="rabota-dagestan.html">Работа</a><a href="tovary-dagestan.html">Товары</a><a href="raznoe-dagestan.html">Разное</a></div></details>
++ <a href="reklama.html">Реклама и цены</a>
++ <details class="rd-nav-section"><summary>Наши боты</summary><div class="rd-nav-sub"><a href="bot-moderation.html">Modexa — модерация групп</a><a href="bot-crm.html">КлиентРадар — заявки и CRM</a></div></details>
++ <a href="index.html#rules">Правила</a><a href="index.html#faq">Вопросы и ответы</a><a href="#contact">Контакты</a>
++ </nav>
+     <button class="menu-toggle" type="button" aria-label="Меню" aria-expanded="false" aria-controls="site-nav"><svg aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-menu"></use></svg></button>
+   </div>
+   <div class="flag-stripe" aria-hidden="true"><span class="g1"></span><span class="g2"></span><span class="g3"></span></div>
+diff --git a/index.html b/index.html
+index 100620d..b4a5798 100644
+--- a/index.html
++++ b/index.html
+@@ -127,6 +127,7 @@
+ <link rel="stylesheet" href="style.css">
+ <link rel="stylesheet" href="redesign.css">
+ <link rel="preload" href="assets/brand/hero.webp" as="image">
++<link rel="stylesheet" href="demo-motion.css">
+ </head>
+ <body class="rd-home">
+ 
+@@ -138,7 +139,15 @@
+       <span class="logo-badge"><img src="assets/brand/whatsapp.webp" alt="Логотип «Объявления Дагестана»" width="34" height="34"></span>
+       <span class="brand">ОБЪЯВЛЕНИЯ ДАГЕСТАНА</span>
+     </a>
+-    <nav class="nav-links" id="site-nav" aria-label="Разделы сайта"><a href="#groups">Группы</a><a href="#categories">Категории</a><a href="reklama.html">Реклама</a><a href="#bots">Боты</a><a href="#contact" data-contact="telegram" data-goal="ad_contact_telegram">Связаться с нами</a></nav>
++    <nav class="nav-links rd-nav" id="site-nav" aria-label="Разделы сайта">
++ <div class="rd-nav-heading">Разделы сайта</div>
++ <a class="rd-nav-home" href="index.html">Главная</a>
++ <a href="#groups">Наши группы</a>
++ <details class="rd-nav-section"><summary>Категории</summary><div class="rd-nav-sub"><a href="avto-dagestan.html">Автомобили</a><a href="nedvizhimost-dagestan.html">Недвижимость</a><a href="tehnika-dagestan.html">Техника</a><a href="odezhda-dagestan.html">Одежда</a><a href="uslugi-dagestan.html">Услуги</a><a href="rabota-dagestan.html">Работа</a><a href="tovary-dagestan.html">Товары</a><a href="raznoe-dagestan.html">Разное</a></div></details>
++ <a href="reklama.html">Реклама и цены</a>
++ <details class="rd-nav-section"><summary>Наши боты</summary><div class="rd-nav-sub"><a href="bot-moderation.html">Modexa — модерация групп</a><a href="bot-crm.html">КлиентРадар — заявки и CRM</a></div></details>
++ <a href="#rules">Правила</a><a href="#faq">Вопросы и ответы</a><a href="#contact">Контакты</a>
++ </nav>
+     <button class="menu-toggle" type="button" aria-label="Меню" aria-expanded="false" aria-controls="site-nav"><svg aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-menu"></use></svg></button>
+   </div>
+   <div class="flag-stripe" aria-hidden="true"><span class="g1"></span><span class="g2"></span><span class="g3"></span></div>
+@@ -189,7 +198,7 @@
+   <div class="wrap">
+     <div class="ad-teaser reveal">
+       <h2>Хотите разместить рекламу?</h2>
+-      <p>Реклама в Telegram и WhatsApp: статус — 450 ₽, группы — 850 ₽, рассылка по 1 000 контактам — от 1 000 ₽, пост в Telegram — 500 ₽.</p>
++      <dl class="rd-ad-prices"><div><dt>WhatsApp-статус<span>На 24 часа</span></dt><dd>450 ₽</dd></div><div><dt>Рекламный пост + закреп<span>В группах Telegram и WhatsApp, на 24 часа</span></dt><dd>500 ₽</dd></div><div><dt>Рассылка по WhatsApp-группам<span>Только WhatsApp</span></dt><dd>850 ₽</dd></div><div><dt>Рассылка по 1 000 контактам<span>В WhatsApp</span></dt><dd>1 000 ₽</dd></div></dl><p class="rd-ad-extra"><strong>+500 ₽</strong> к рассылке по 1 000 контактам — если добавить просьбу поставить объявление в WhatsApp-статус. Итого: <strong>1 500 ₽</strong>.</p><p class="rd-ad-other">Реклама в других соцсетях — уточните условия у администратора.</p>
+       <div class="hero-ctas">
+         <a class="btn btn-ghost" href="reklama.html" data-goal="ad_prices">Цены и условия</a>
+         <a class="btn btn-tg" href="#contact" data-contact="telegram" data-goal="ad_contact_telegram"><span class="btn-ic"><svg aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-telegram"></use></svg></span>Написать в Telegram</a>
+@@ -212,11 +221,12 @@
+           <img class="bot-ava" src="assets/images/modexa-logo.jpg" alt="Логотип Modexa" width="56" height="56" loading="lazy">
+           <div><h3>Modexa</h3><span class="bot-sub">Защита и реклама для групп</span></div>
+         </div>
+-        <div class="mini-feed" role="img" aria-label="Пример: бот удаляет спам в группе, обычные объявления остаются">
++        <div class="mini-feed" id="modexa-preview" data-motion-demo role="img" aria-label="Пример: бот удаляет спам в группе, обычные объявления остаются">
+           <div class="mf2 a1"><i>✓</i>Платье вечернее — 3 500 ₽</div>
+           <div class="mf2 mf2-spam a2"><i>🛡</i><span>Подработка, пишите в личку</span><u>удалено</u></div>
+           <div class="mf2 a3"><i>✓</i>Велосипед горный — 8 000 ₽</div>
+         </div>
++        <button type="button" class="motion-toggle" data-motion-for="modexa-preview" aria-pressed="false">Приостановить анимацию</button>
+         <p>Чистит группу от спама и мошенников. ИИ-модерация, предложка, реклама без комиссии. Первая группа — бесплатно навсегда.</p>
+         <ul class="bot-tags"><li>ИИ-модерация</li><li>Предложка</li><li>Реклама без комиссии</li><li>Рейтинг продавцов</li></ul>
+         <div class="bot-actions">
+@@ -229,7 +239,17 @@
+           <span class="bot-ava bot-ava-radar" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 12l6-6"/></svg></span>
+           <div><h3>КлиентРадар</h3><span class="bot-sub">Заявки от клиентов</span></div>
+         </div>
+-        <p>Находит людей, которым нужна ваша услуга, в открытых группах, присылает заявки и помогает вести клиентов в CRM.</p>
++        <div class="radar-demo radar-demo-mini" id="home-radar" data-motion-demo>
++ <div class="radar"><svg viewBox="0 0 200 200" role="img" aria-label="Пример поиска заявок: луч радара подсвечивает найденные цели"><defs><radialGradient id="home-radar-bg"><stop stop-color="#193c54"/><stop offset="1" stop-color="#081d2d"/></radialGradient><linearGradient id="home-radar-beam" x1="0" x2="1"><stop stop-color="#4cc3ff" stop-opacity="0"/><stop offset="1" stop-color="#4cc3ff" stop-opacity=".38"/></linearGradient></defs>
++ <circle cx="100" cy="100" r="97" fill="url(#home-radar-bg)"/>
++ <g class="radar-ticks"><path d="M100.00 9.00L100.00 4.00"/><path d="M123.55 12.10L124.85 7.27"/><path d="M145.50 21.19L148.00 16.86"/><path d="M164.35 35.65L167.88 32.12"/><path d="M178.81 54.50L183.14 52.00"/><path d="M187.90 76.45L192.73 75.15"/><path d="M191.00 100.00L196.00 100.00"/><path d="M187.90 123.55L192.73 124.85"/><path d="M178.81 145.50L183.14 148.00"/><path d="M164.35 164.35L167.88 167.88"/><path d="M145.50 178.81L148.00 183.14"/><path d="M123.55 187.90L124.85 192.73"/><path d="M100.00 191.00L100.00 196.00"/><path d="M76.45 187.90L75.15 192.73"/><path d="M54.50 178.81L52.00 183.14"/><path d="M35.65 164.35L32.12 167.88"/><path d="M21.19 145.50L16.86 148.00"/><path d="M12.10 123.55L7.27 124.85"/><path d="M9.00 100.00L4.00 100.00"/><path d="M12.10 76.45L7.27 75.15"/><path d="M21.19 54.50L16.86 52.00"/><path d="M35.65 35.65L32.12 32.12"/><path d="M54.50 21.19L52.00 16.86"/><path d="M76.45 12.10L75.15 7.27"/></g><circle class="ring" cx="100" cy="100" r="96"/><circle class="ring" cx="100" cy="100" r="70"/><circle class="ring" cx="100" cy="100" r="43"/><circle class="ring" cx="100" cy="100" r="18"/>
++ <path class="radar-cross" d="M100 5v190M5 100h190"/>
++ <g class="sweep"><path d="M100 100L26.5 38.3A96 96 0 0 1 100 4Z" fill="url(#home-radar-beam)"/><path d="M100 100V4" stroke="#8ddfff" stroke-width="1.2"/></g>
++ <g class="radar-target" style="--hit:-7.28653s"><circle class="rd-ping" cx="132" cy="49" r="5"/><circle class="rd-blip" cx="132" cy="49" r="3.3"/></g><g class="radar-target" style="--hit:-6.17001s"><circle class="rd-ping" cx="167" cy="91" r="5"/><circle class="rd-blip" cx="167" cy="91" r="3.3"/></g><g class="radar-target" style="--hit:-4.61884s"><circle class="rd-ping" cx="128" cy="153" r="5"/><circle class="rd-blip" cx="128" cy="153" r="3.3"/></g><g class="radar-target" style="--hit:-2.83343s"><circle class="rd-ping" cx="57" cy="133" r="5"/><circle class="rd-blip" cx="57" cy="133" r="3.3"/></g><g class="radar-target" style="--hit:-0.96560s"><circle class="rd-ping" cx="64" cy="62" r="5"/><circle class="rd-blip" cx="64" cy="62" r="3.3"/></g><circle cx="100" cy="100" r="4" fill="#b9edff"/>
++ </svg></div>
++ <p class="radar-demo-caption">Пример поиска заявок</p>
++ <button type="button" class="motion-toggle" data-motion-for="home-radar" aria-pressed="false">Приостановить анимацию</button>
++ </div><p>Находит людей, которым нужна ваша услуга, в открытых группах, присылает заявки и помогает вести клиентов в CRM.</p>
+         <ul class="bot-tags"><li>Заявки</li><li>CRM</li><li>Ниши и город</li><li>Каталог групп</li></ul>
+         <div class="bot-actions">
+           <a class="btn btn-bot btn-sm" href="bot-crm.html" data-goal="home_bot_crm">Подробнее</a>
+@@ -304,6 +324,7 @@
+ 
+ <script src="script.js" defer></script>
+ <script src="page.js" defer></script>
++<script src="demo-motion.js" defer></script>
+ </body>
+ </html>
+ 
+diff --git a/redesign.css b/redesign.css
+index 47aa6e9..745d827 100644
+--- a/redesign.css
++++ b/redesign.css
+@@ -138,7 +138,7 @@
+ .rd-home .section-head>p{text-align:left;margin-top:14px;max-width:660px;}
+ .rd-home .groups-section .section-head{display:flex;}
+ .rd-home .groups-section .section-head>p{text-align:right;margin:0;}
+-.rd-home .mini-feed{display:none;}
++.rd-home .mini-feed{display:grid;}
+ .rd-home .bot-card>p{font-size:14px;line-height:1.7;}
+ .rd-home .topbar,.rd-group .topbar{background:none;border:0;border-radius:0;box-shadow:none;}
+ @media(max-width:760px){.rd-home .groups-section .section-head{display:block;}}
+@@ -167,3 +167,40 @@
+  .rd-home .cta-dock{border-radius:12px;}
+ }
+ @media(max-width:380px){.rd-home .cat-grid{grid-template-columns:repeat(2,minmax(0,1fr));}.rd-home .cat-card:nth-child(even){border-right:0;}}
++/* Complete navigation: spacious scrollable mobile drawer, nested sections. */
++.rd-nav-heading,.rd-nav-home{display:none;}
++.rd-nav-section{position:relative;}
++.rd-nav-section>summary{list-style:none;cursor:pointer;min-height:44px;display:flex;align-items:center;gap:8px;font-size:13px;}
++.rd-nav-section>summary::-webkit-details-marker{display:none;}
++.rd-nav-section>summary::after{content:'⌄';font-size:15px;color:#8ad9ba;}
++.rd-nav-sub{position:absolute;top:100%;left:0;z-index:3;min-width:235px;display:grid;padding:10px;background:#0b211b;border:1px solid #567264;border-radius:10px;box-shadow:0 18px 36px #0006;}
++.rd-nav-sub a{font-size:13px;padding:12px;min-height:44px;border-radius:6px;}
++.rd-nav-sub a:hover{background:#c0ecd610;}
++.rd-home .rd-nav,.rd-group .rd-nav{gap:20px;align-items:center;}
++.rd-home .rd-nav>a:last-child{margin-left:0;}
++.site-menu-backdrop{position:fixed;inset:0;border:0;background:#020b08b8;z-index:80;backdrop-filter:blur(3px);}
++.site-menu-backdrop[hidden]{display:none;}
++.rd-home header,.rd-group header{z-index:90;}
++@media(max-width:1100px) and (min-width:861px){.rd-home .rd-nav,.rd-group .rd-nav{gap:12px;}.rd-nav-section>summary,.rd-home .rd-nav>a,.rd-group .rd-nav>a{font-size:12px;}}
++@media(max-width:860px){
++ .rd-home.nav-open,.rd-group.nav-open{overflow:hidden;}
++ .rd-home.nav-open .cta-dock,.rd-group.nav-open .cta-dock{display:none!important;}
++ .rd-home .rd-nav.open,.rd-group .rd-nav.open{position:fixed;top:var(--menu-top,92px);left:16px;right:16px;bottom:auto;max-height:calc(100dvh - var(--menu-top,92px) - 16px);overflow-y:auto;overscroll-behavior:contain;display:flex;flex-direction:column;align-items:stretch;gap:0;margin:0;padding:12px 18px 20px;border:1px solid #698877;border-radius:12px;box-shadow:0 18px 50px #0008;transform:none;z-index:92;background:#0b211b;}
++ .rd-nav.open .rd-nav-heading{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#98b8a7;padding:10px 10px 16px;border-bottom:1px solid #c6e8d520;}
++ .rd-nav.open .rd-nav-home{display:flex;}
++ .rd-home .rd-nav.open>a,.rd-group .rd-nav.open>a,.rd-nav.open .rd-nav-section>summary{font-size:16px;min-height:52px;padding:14px 10px;display:flex;align-items:center;justify-content:space-between;border:0;border-bottom:1px solid #c6e8d51a;}
++ .rd-nav.open .rd-nav-sub{position:static;min-width:0;border:0;box-shadow:none;background:#071a14;padding:6px 8px;margin:4px 0 8px;}
++ .rd-nav.open .rd-nav-sub a{font-size:14px;padding:12px;line-height:1.5;}
++}
++/* Explicit service / platform / price pairing. */
++.rd-ad-prices{margin:26px 0 18px;max-width:780px;}
++.rd-ad-prices>div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;padding:16px 0;border-bottom:1px solid #bedec32a;}
++.rd-ad-prices dt{font-weight:600;font-size:16px;line-height:1.5;}
++.rd-ad-prices dt span{display:block;color:#acc8b8;font-size:13px;font-weight:400;margin-top:4px;}
++.rd-ad-prices dd{font-size:19px;font-weight:700;white-space:nowrap;margin:0;}
++.rd-home #advertising .ad-teaser p.rd-ad-extra,.rd-home #advertising .ad-teaser p.rd-ad-other{font-size:14px;line-height:1.7;max-width:740px;}
++.rd-home #advertising .ad-teaser p.rd-ad-other{color:#bad7c8;}
++@media(max-width:400px){.rd-ad-prices dt{font-size:14px;}.rd-ad-prices dd{font-size:16px;}.rd-ad-prices>div{gap:10px;}}
++.rd-home .rd-nav.open::after,.rd-group .rd-nav.open::after{display:none;}
++.rd-home .menu-toggle[aria-expanded="true"] svg,.rd-group .menu-toggle[aria-expanded="true"] svg{display:none;}
++.rd-home .menu-toggle[aria-expanded="true"]::before,.rd-group .menu-toggle[aria-expanded="true"]::before{content:'×';font-size:32px;line-height:1;}
+diff --git a/reklama.html b/reklama.html
+index 7eeae1e..b6bc298 100644
+--- a/reklama.html
++++ b/reklama.html
+@@ -4,20 +4,20 @@
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Реклама в Telegram и WhatsApp в Дагестане — цены от 450 ₽</title>
+-<meta name="description" content="Реклама в Telegram и WhatsApp в Дагестане: статус от 450 ₽, группы — 850 ₽, рассылка по контактам от 1 000 ₽. Цены и способы заказа.">
++<meta name="description" content="WhatsApp-статус — 450 ₽; пост с закрепом на сутки в Telegram и WhatsApp — 500 ₽; рассылка по WhatsApp-группам — 850 ₽, по 1 000 контактам — 1 000 ₽.">
+ <meta name="theme-color" content="#0A1F16">
+ <meta property="og:type" content="website">
+ <meta property="og:site_name" content="ОБЪЯВЛЕНИЯ ДАГЕСТАНА">
+ <meta property="og:locale" content="ru_RU">
+ <meta property="og:title" content="Реклама в Telegram и WhatsApp в Дагестане — цены от 450 ₽">
+-<meta property="og:description" content="Реклама в Telegram и WhatsApp в Дагестане: статус от 450 ₽, группы — 850 ₽, рассылка по контактам от 1 000 ₽. Цены и способы заказа.">
++<meta property="og:description" content="WhatsApp-статус — 450 ₽; пост с закрепом на сутки в Telegram и WhatsApp — 500 ₽; рассылка по WhatsApp-группам — 850 ₽, по 1 000 контактам — 1 000 ₽.">
+ <meta property="og:image:type" content="image/jpeg">
+ <meta property="og:image:width" content="1200">
+ <meta property="og:image:height" content="630">
+ <meta property="og:image:alt" content="ОБЪЯВЛЕНИЯ ДАГЕСТАНА — покупка, продажа, услуги, работа">
+ <meta name="twitter:card" content="summary_large_image">
+ <meta name="twitter:title" content="Реклама в Telegram и WhatsApp в Дагестане — цены от 450 ₽">
+-<meta name="twitter:description" content="Реклама в Telegram и WhatsApp в Дагестане: статус от 450 ₽, группы — 850 ₽, рассылка по контактам от 1 000 ₽. Цены и способы заказа.">
++<meta name="twitter:description" content="WhatsApp-статус — 450 ₽; пост с закрепом на сутки в Telegram и WhatsApp — 500 ₽; рассылка по WhatsApp-группам — 850 ₽, по 1 000 контактам — 1 000 ₽.">
+ <meta name="twitter:image:alt" content="ОБЪЯВЛЕНИЯ ДАГЕСТАНА — покупка, продажа, услуги, работа">
+ <link rel="canonical" href="https://obyavleniya-dagestan.ru/reklama.html">
+ <meta property="og:url" content="https://obyavleniya-dagestan.ru/reklama.html">
+@@ -79,7 +79,7 @@
+         "priceCurrency": "RUB",
+         "itemOffered": {
+           "@type": "Service",
+-          "name": "Рассылка по 1 000 контактам"
++          "name": "Рассылка по 1 000 контактам в WhatsApp"
+         }
+       },
+       {
+@@ -88,8 +88,9 @@
+         "priceCurrency": "RUB",
+         "itemOffered": {
+           "@type": "Service",
+-          "name": "Рассылка по 1 000 контактам + просьба поставить объявление в статус"
+-        }
++          "name": "Рассылка по 1 000 контактам в WhatsApp с просьбой поставить объявление в статус"
++        },
++        "description": "1 000 ₽ за рассылку + 500 ₽ за просьбу поставить объявление в статус; итого 1 500 ₽."
+       },
+       {
+         "@type": "Offer",
+@@ -97,7 +98,7 @@
+         "priceCurrency": "RUB",
+         "itemOffered": {
+           "@type": "Service",
+-          "name": "Реклама в Telegram"
++          "name": "Публикация рекламы с закреплением на 24 часа в группах Telegram и WhatsApp"
+         }
+       }
+     ]
+@@ -148,9 +149,10 @@
+       <div class="audience-grid ad-services"><article class="why-card"><h3>WhatsApp-статус</h3><p class="ad-price">450 ₽</p><p>Размещение вашего объявления в WhatsApp-статусе на 24 часа.</p><a class="btn btn-wa ad-tariff-order" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%3A%20WhatsApp-%D1%81%D1%82%D0%B0%D1%82%D1%83%D1%81%20%E2%80%94%20450%20%E2%82%BD." target="_blank" rel="noopener" data-goal="ad_contact_whatsapp">Заказать в WhatsApp</a></article>
+ <article class="why-card"><h3>Рассылка по WhatsApp-группам</h3><p class="ad-price">850 ₽</p><p>Публикация рекламного объявления в WhatsApp-группах.</p><a class="btn btn-wa ad-tariff-order" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%3A%20%D0%A0%D0%B0%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B0%20%D0%BF%D0%BE%20WhatsApp-%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B0%D0%BC%20%E2%80%94%20850%20%E2%82%BD." target="_blank" rel="noopener" data-goal="ad_contact_whatsapp">Заказать в WhatsApp</a></article>
+ <article class="why-card"><h3>Рассылка по 1 000 контактам</h3><p class="ad-price">1 000 ₽</p><p>Отправка объявления по 1 000 контактам в WhatsApp.</p><a class="btn btn-wa ad-tariff-order" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%3A%20%D0%A0%D0%B0%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B0%20%D0%BF%D0%BE%201%20000%20%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B0%D0%BC%20%E2%80%94%201%20000%20%E2%82%BD." target="_blank" rel="noopener" data-goal="ad_contact_whatsapp">Заказать в WhatsApp</a></article>
+-<article class="why-card"><h3>Рассылка + просьба поделиться</h3><p class="ad-price">1 500 ₽</p><p>Рассылка по 1 000 контактам с просьбой поставить объявление в статус. Размещение получателями в статусе не гарантируется.</p><a class="btn btn-wa ad-tariff-order" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%3A%20%D0%A0%D0%B0%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B0%20%D0%BF%D0%BE%201%20000%20%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B0%D0%BC%20%2B%20%D0%BF%D1%80%D0%BE%D1%81%D1%8C%D0%B1%D0%B0%20%D0%BF%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D1%82%D1%8C%20%D0%BE%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20%D1%81%D1%82%D0%B0%D1%82%D1%83%D1%81%20%E2%80%94%201%20500%20%E2%82%BD." target="_blank" rel="noopener" data-goal="ad_contact_whatsapp">Заказать в WhatsApp</a></article>
+-<article class="why-card"><h3>Реклама в Telegram</h3><p class="ad-price">500 ₽</p><p>Публикация рекламного поста в Telegram-группе с закреплением на 24 часа.</p><a class="btn btn-tg ad-tariff-order" href="https://t.me/ModexaGuardBot?start=ad_1" target="_blank" rel="noopener" data-goal="ad_order">Заказать в боте</a></article></div>
+-      <p class="ad-note">WhatsApp-статус и закрепление в Telegram — на 24 часа. Рассылка выполняется после оплаты и утверждения рекламы. Перед оплатой согласуйте текст, дату и условия размещения. После согласования заказа и оплаты отмена по инициативе заказчика не предусмотрена. Для рассылок используйте только контакты получателей, согласившихся получать рекламу.</p>
++<article class="why-card"><h3>1 000 контактов + просьба поставить в статус</h3><p class="ad-price">1 500 ₽</p><p>Рассылка в WhatsApp по 1 000 контактам — 1 000 ₽. Просьба поставить объявление в статус — дополнительно 500 ₽; итого 1 500 ₽. Размещение получателями в статусе не гарантируется.</p><a class="btn btn-wa ad-tariff-order" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%3A%20%D0%A0%D0%B0%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B0%20%D0%BF%D0%BE%201%20000%20%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B0%D0%BC%20%2B%20%D0%BF%D1%80%D0%BE%D1%81%D1%8C%D0%B1%D0%B0%20%D0%BF%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D1%82%D1%8C%20%D0%BE%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20%D1%81%D1%82%D0%B0%D1%82%D1%83%D1%81%20%E2%80%94%201%20500%20%E2%82%BD." target="_blank" rel="noopener" data-goal="ad_contact_whatsapp">Заказать в WhatsApp</a></article>
++<article class="why-card"><h3>Пост + закреп на 24 часа</h3><p class="ad-price">500 ₽</p><p>Публикация рекламы в группах Telegram и WhatsApp с закреплением на 24 часа. Площадку и группу согласуйте при заказе.</p><a class="btn btn-tg ad-tariff-order" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D0%BF%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8E%20%D1%80%D0%B5%D0%BA%D0%BB%D0%B0%D0%BC%D1%8B%20%D1%81%20%D0%B7%D0%B0%D0%BA%D1%80%D0%B5%D0%BF%D0%BE%D0%BC%20%D0%BD%D0%B0%2024%20%D1%87%D0%B0%D1%81%D0%B0%20%D0%B2%20Telegram%20%D0%B8%D0%BB%D0%B8%20WhatsApp%20%E2%80%94%20500%20%E2%82%BD." target="_blank" rel="noopener" data-goal="ad_contact_whatsapp">Выбрать площадку и заказать</a></article></div>
++      <p class="ad-other-platforms">Нужна реклама в других соцсетях? Напишите администратору — обсудим площадку, формат и стоимость.</p>
++      <p class="ad-note">WhatsApp-статус и закрепление рекламного поста в группах Telegram и WhatsApp — на 24 часа. Рассылка выполняется после оплаты и утверждения рекламы. Перед оплатой согласуйте текст, дату и условия размещения. После согласования заказа и оплаты отмена по инициативе заказчика не предусмотрена. Для рассылок используйте только контакты получателей, согласившихся получать рекламу.</p>
+     </div>
+   </section>
+   <section class="promo-section" id="order">
+@@ -201,9 +203,9 @@
+     <div class="wrap">
+       <div class="section-head"><div class="eyebrow">Вопросы</div><h2>Частые вопросы</h2></div>
+       <div class="faq bot-faq">
+-        <details><summary>Сколько стоит реклама?</summary><p>WhatsApp-статус — 450 ₽; рассылка по WhatsApp-группам — 850 ₽; по 1 000 контактам — 1 000 ₽; по 1 000 контактам с просьбой поставить объявление в статус — 1 500 ₽; реклама в Telegram — 500 ₽.</p></details>
++        <details><summary>Сколько стоит реклама?</summary><p>WhatsApp-статус — 450 ₽; рассылка по WhatsApp-группам — 850 ₽; по 1 000 контактам в WhatsApp — 1 000 ₽, с просьбой поставить объявление в статус — дополнительно 500 ₽ (итого 1 500 ₽); публикация с закрепом на 24 часа в группах Telegram и WhatsApp — 500 ₽.</p></details>
+         <details><summary>Как оплатить?</summary><p>После согласования заявки бот или администратор сообщит реквизиты. Пришлите скриншот чека для проверки оплаты.</p></details>
+-        <details><summary>Можно ли выбрать время публикации?</summary><p>Для Telegram время можно выбрать в боте. Дату и время других размещений согласуйте с администратором.</p></details>
++        <details><summary>Можно ли выбрать время публикации?</summary><p>Для Telegram время можно выбрать в боте. Дату и время размещения в WhatsApp и рассылок согласуйте с администратором.</p></details>
+         <details><summary>Можно ли отменить заказ?</summary><p>После согласования заказа и оплаты отмена по инициативе заказчика не предусмотрена. Если администратор откажет в публикации после оплаты, деньги будут возвращены.</p></details>
+         <details><summary>Какую рекламу не принимаете?</summary><p>Запрещённую законом РФ и нормами шариата: алкоголь, азартные игры, займы под проценты, гадания, 18+ и другое — полный список на этой странице.</p></details>
+       </div>
+diff --git a/script.js b/script.js
+index 6dac3a4..4115e21 100644
+--- a/script.js
++++ b/script.js
+@@ -568,27 +568,37 @@ function renderPromoPage() {
+ /* ---------- 6. Интерфейс: меню и анимация появления ---------- */
+ 
+ function initMenu() {
+-  const toggle = document.querySelector(".menu-toggle");
+-  const nav = document.getElementById("site-nav");
++  const toggle = document.querySelector(".menu-toggle"), nav = document.getElementById("site-nav");
+   if (!toggle || !nav) return;
+-
++  const modern = document.body.matches(".rd-home, .rd-group");
++  const backdrop = modern ? el("button", { cls: "site-menu-backdrop", attrs: { type: "button", "aria-label": "Закрыть меню", tabindex: "-1", hidden: "" } }) : null;
++  if (backdrop) document.body.appendChild(backdrop);
+   function setOpen(open) {
++    if (modern) {
++      document.documentElement.style.setProperty("--menu-top", Math.ceil(toggle.closest("header").getBoundingClientRect().bottom + 8) + "px");
++      document.body.classList.toggle("nav-open", open);
++      backdrop.hidden = !open;
++    }
+     nav.classList.toggle("open", open);
+-    toggle.setAttribute("aria-expanded", open ? "true" : "false");
++    toggle.setAttribute("aria-expanded", String(open));
++    toggle.setAttribute("aria-label", open ? "Закрыть меню" : "Меню");
++    if (open && modern) { nav.scrollTop=0; nav.querySelector("a, summary").focus({preventScroll:true}); }
++    if (!open) nav.querySelectorAll("details[open]").forEach(function(d){d.open=false;});
+   }
+-
+-  toggle.addEventListener("click", function () {
+-    setOpen(!nav.classList.contains("open"));
+-  });
+-  nav.addEventListener("click", function (event) {
+-    if (event.target.closest("a")) setOpen(false);
+-  });
+-  document.addEventListener("keydown", function (event) {
+-    if (event.key === "Escape" && nav.classList.contains("open")) {
+-      setOpen(false);
+-      toggle.focus();
++  toggle.addEventListener("click", function(){setOpen(!nav.classList.contains("open"));});
++  nav.addEventListener("click", function(e){if(e.target.closest("a"))setOpen(false);});
++  if (backdrop) backdrop.addEventListener("click", function(){setOpen(false);toggle.focus();});
++  document.addEventListener("keydown", function(e){
++    if(!nav.classList.contains("open"))return;
++    if(e.key==="Escape"){setOpen(false);toggle.focus();return;}
++    if(modern && e.key==="Tab"){
++      const items=[toggle,...nav.querySelectorAll("a[href], summary")].filter(function(n){return n.getClientRects().length;});
++      const first=items[0],last=items[items.length-1];
++      if(e.shiftKey && document.activeElement===first){e.preventDefault();last.focus();}
++      else if(!e.shiftKey && document.activeElement===last){e.preventDefault();first.focus();}
+     }
+   });
++  window.addEventListener("resize",function(){if(window.innerWidth>860 && nav.classList.contains("open"))setOpen(false);});
+ }
+ 
+ function initReveal() {
