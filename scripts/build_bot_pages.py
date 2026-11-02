@@ -209,6 +209,10 @@ def page(cfg):
         body=body.replace(a_,b_)
     body=body.replace('<script src="script.js" defer></script>','<script src="script.js" defer></script>\n<script src="page.js" defer></script>'+('\n'+vidjs if vidjs else ''))
     out=head+'\n'+body
+    if f['theme']=='radar' and 'src="demo-motion.js"' not in out:
+        out=out.replace('</body>','<script src="demo-motion.js" defer></script>\n</body>')
+    from site_components import enhance_bot
+    out=enhance_bot(out)
     for fn in ('bot.css','page.js','script.js'):
         out=out.replace('"'+fn+'"','"'+fn+'?v=20261024"')
     open(cfg['file'],'w',encoding='utf-8').write(out)
@@ -232,7 +236,7 @@ mod=dict(file='bot-moderation.html',theme='modexa',name='Modexa',handle='@Modexa
 <div class="mf-head"><span class="mf-shield"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span><div><b>Барахолка · пример группы</b><small>защищает Modexa</small></div></div>
 <div class="mf-body">
 <div class="mf-msg m1"><b>Хадижат</b>Платье вечернее, размер 44 — <i>3 500 ₽</i><em>👍 12 сделок, жалоб 0</em></div>
-<div class="mf-msg mf-spam m2"><b>Анна Работа</b><span>Подработка, пиши в личку</span><u>🛡 удалено ботом</u></div>
+<div class="mf-msg mf-spam m2"><b>Анна Работа</b><span>Подработка, пишите в личку</span><u>🛡 удалено ботом</u></div>
 <div class="mf-msg m3"><b>Арсен</b>Велосипед горный, 26 дюймов — <i>8 000 ₽</i></div>
 <div class="mf-msg mf-spam m4"><b>Курьер Про</b><span>Курьеры до 6000 ₽ в день, жми ссылку</span><u>🛡 удалено ботом</u></div>
 <div class="mf-msg m5"><b>Магомед</b>Продам диван, почти новый — <i>12 000 ₽</i></div>
@@ -242,7 +246,7 @@ mod=dict(file='bot-moderation.html',theme='modexa',name='Modexa',handle='@Modexa
  tabs=[
   dict(label='🛡 Защита',items=[
    ('shield','Капча для новичков','Кнопка «Я не бот» или пример «7 + 9 = ?».'),
-   ('wand','Спам о заработке','«Подработка, пиши в личку», «курьеры до 6000 ₽», казино ловятся сами, без списков слов — по признакам. Бот читает и текст на картинках у новичков.'),
+   ('wand','Спам о заработке','«Подработка, пишите в личку», «курьеры до 6000 ₽», казино ловятся сами, без списков слов — по признакам. Бот читает и текст на картинках у новичков.'),
    ('globe','Ссылки на чужие сайты и каналы','Удаляются в том числе ссылки, спрятанные в QR-код на картинке. Свои сайты можно разрешить.'),
    ('ai','ИИ-модерация на русском','Работает на российских сервисах GigaChat и Yandex. Вы выбираете, что удалять: работа «в личку», казино, крипта, реклама каналов, 18+, мошенничество, наркотики, оскорбления. Можно своими словами дописать, что ещё запрещено и что разрешено. Обычные объявления «продам, пишите в лс» и настоящие вакансии ИИ не трогает.'),
    ('brain','Память спама','Бот учится на подтверждённом спаме всех групп Modexa и сразу удаляет похожие сообщения, даже если слова поменяли.'),
@@ -328,14 +332,7 @@ mod=dict(file='bot-moderation.html',theme='modexa',name='Modexa',handle='@Modexa
  ft='Подключите группу бесплатно',fp='Первая группа — бесплатно навсегда. Гарантия 7 дней на первую оплату.',oshort='КлиентРадар',other=('bot-crm.html','КлиентРадар — заявки от клиентов'),
  contacts='<span>Поддержка: <a href="https://t.me/Abdylzhelil05" rel="noopener" target="_blank">@Abdylzhelil05</a> · вопросы по оплате — команда /paysupport в боте</span><span>Документы Modexa: <a href="%s" rel="noopener" target="_blank">оферта</a> · <a href="%s" rel="noopener" target="_blank">политика</a></span>'%(OFER,POLIT))
 
-SVG_RADAR='''<div class="radar"><svg viewBox="0 0 200 200" role="img" aria-label="Радар заявок"><defs><radialGradient id="rg" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#4CC3FF" stop-opacity=".22"/><stop offset="1" stop-color="#4CC3FF" stop-opacity="0"/></radialGradient><linearGradient id="sw" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#4CC3FF" stop-opacity="0"/><stop offset="1" stop-color="#4CC3FF" stop-opacity=".55"/></linearGradient></defs>
-<circle cx="100" cy="100" r="95" fill="url(#rg)"/>
-<circle class="ring" cx="100" cy="100" r="96"/><circle class="ring" cx="100" cy="100" r="66"/><circle class="ring" cx="100" cy="100" r="36"/>
-<path class="ring" d="M100 4v192M4 100h192"/>
-<path class="ring tick" d="M186.9 123.3L190.8 124.3M177.9 145.0L181.4 147.0M163.6 163.6L166.5 166.5M145.0 177.9L147.0 181.4M123.3 186.9L124.3 190.8M76.7 186.9L75.7 190.8M55.0 177.9L53.0 181.4M36.4 163.6L33.5 166.5M22.1 145.0L18.6 147.0M13.1 123.3L9.2 124.3M13.1 76.7L9.2 75.7M22.1 55.0L18.6 53.0M36.4 36.4L33.5 33.5M55.0 22.1L53.0 18.6M76.7 13.1L75.7 9.2M123.3 13.1L124.3 9.2M145.0 22.1L147.0 18.6M163.6 36.4L166.5 33.5M177.9 55.0L181.4 53.0M186.9 76.7L190.8 75.7"/>
-<g class="sweep"><path d="M100 100L100 4A96 96 0 0 1 167.9 32.1Z" fill="url(#sw)"/><path d="M100 100L167.9 32.1" stroke="#7BD8FF" stroke-width="1.2" stroke-linecap="round" fill="none"/></g>
-<circle class="rd-ping" cx="123.9" cy="55.0" r="5.2" style="animation-delay:-0.24s"/><circle class="rd-blip" cx="123.9" cy="55.0" r="4.2" style="animation-delay:-0.24s"/><circle class="rd-ping" cx="171.5" cy="62.0" r="4.4" style="animation-delay:-4.76s"/><circle class="rd-blip" cx="171.5" cy="62.0" r="3.4" style="animation-delay:-4.76s"/><circle class="rd-ping" cx="119.9" cy="109.3" r="4.2" style="animation-delay:-4.03s"/><circle class="rd-blip" cx="119.9" cy="109.3" r="3.2" style="animation-delay:-4.03s"/><circle class="rd-ping" cx="134.1" cy="137.9" r="5.2" style="animation-delay:-3.71s"/><circle class="rd-blip" cx="134.1" cy="137.9" r="4.2" style="animation-delay:-3.71s"/><circle class="rd-ping" cx="127.7" cy="176.1" r="4.4" style="animation-delay:-3.40s"/><circle class="rd-blip" cx="127.7" cy="176.1" r="3.4" style="animation-delay:-3.40s"/><circle class="rd-ping" cx="68.6" cy="140.2" r="4.8" style="animation-delay:-2.60s"/><circle class="rd-blip" cx="68.6" cy="140.2" r="3.8" style="animation-delay:-2.60s"/><circle class="rd-ping" cx="23.9" cy="127.7" r="5.0" style="animation-delay:-2.15s"/><circle class="rd-blip" cx="23.9" cy="127.7" r="4.0" style="animation-delay:-2.15s"/><circle class="rd-ping" cx="84.4" cy="84.4" r="4.2" style="animation-delay:-1.25s"/><circle class="rd-blip" cx="84.4" cy="84.4" r="3.2" style="animation-delay:-1.25s"/><circle class="rd-ping" cx="53.5" cy="33.6" r="4.6" style="animation-delay:-1.11s"/><circle class="rd-blip" cx="53.5" cy="33.6" r="3.6" style="animation-delay:-1.11s"/><circle class="rd-ping" cx="53.8" cy="78.4" r="4.4" style="animation-delay:-1.53s"/><circle class="rd-blip" cx="53.8" cy="78.4" r="3.4" style="animation-delay:-1.53s"/>
-<circle cx="100" cy="100" r="5" fill="#4CC3FF"/><circle cx="100" cy="100" r="9" fill="none" stroke="#4CC3FF" stroke-opacity=".35"/></svg></div>'''
+SVG_RADAR=open('scripts/templates/client-radar.html',encoding='utf-8').read().strip()
 crm=dict(file='bot-crm.html',theme='radar',name='КлиентРадар',handle='@klientradarbot',tg='https://t.me/klientradarbot?start=src_site',goal='bot_crm_open',
  logo='<span class="ic" style="width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#4CC3FF,#3B82F6);color:#031321"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 12l6-6"/></svg></span>',
  hlogo='<img class="brand-logo" src="assets/images/logo-klientradar.svg?v=2" alt="" width="40" height="40">',
@@ -390,3 +387,4 @@ crm=dict(file='bot-crm.html',theme='radar',name='КлиентРадар',handle=
 _args=sys.argv[1:] or ['modexa']
 if 'modexa' in _args: page(mod)
 if 'crm' in _args: page(crm)
+

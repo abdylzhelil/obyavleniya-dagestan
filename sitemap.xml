@@ -10,12 +10,6 @@
     <loc>https://obyavleniya-dagestan.ru/</loc>
   </url>
   <url>
-    <loc>https://obyavleniya-dagestan.ru/group.html?id=telegram-main</loc>
-  </url>
-  <url>
-    <loc>https://obyavleniya-dagestan.ru/group.html?id=whatsapp-2</loc>
-  </url>
-  <url>
     <loc>https://obyavleniya-dagestan.ru/bot-moderation.html</loc>
   </url>
   <url>
@@ -48,4 +42,11 @@
   <url>
     <loc>https://obyavleniya-dagestan.ru/raznoe-dagestan.html</loc>
   </url>
+  <url>
+    <loc>https://obyavleniya-dagestan.ru/group-telegram-main.html</loc>
+  </url>
+  <url>
+    <loc>https://obyavleniya-dagestan.ru/group-whatsapp-2.html</loc>
+  </url>
 </urlset>
+

@@ -390,3 +390,10 @@ section{padding:56px 0;}
   .step::before{margin:0; font-size:32px; line-height:1;}
 }
 .guarantee{margin-top:22px; max-width:760px; padding:16px 20px; border-radius:16px; border:1px solid var(--accent); background:rgba(255,255,255,.04); color:var(--ink); font-size:15.5px; line-height:1.5;}
+
+/* Keep bot menus usable on short and landscape screens. */
+.bh-menu{max-height:calc(100dvh - var(--bot-menu-top,64px) - 8px);overflow-y:auto;overscroll-behavior:contain;}
+.shots[tabindex]:focus-visible{outline:2px solid var(--accent,#4cc3ff);outline-offset:5px;border-radius:8px;}
+.bh-menu .bh-site-sections{margin-top:8px;padding-top:8px;border-top:1px solid var(--line);}
+.bh-site-sections summary{padding:14px 0;cursor:pointer;font-weight:700;color:var(--ink);}
+.bh-site-sections details a{padding-left:16px;}

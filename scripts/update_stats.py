@@ -28,3 +28,4 @@ OUT.write_text(json.dumps({
     "updated": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d"),
 }, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 print("обновлено:", members)
+

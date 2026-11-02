@@ -15,7 +15,7 @@
 <meta property="og:title" content="Политика конфиденциальности — ОБЪЯВЛЕНИЯ ДАГЕСТАНА">
 <meta property="og:description" content="Какие данные обрабатываются на сайте, как используются cookie и Яндекс Метрика, права посетителей.">
 <meta property="og:url" content="https://obyavleniya-dagestan.ru/privacy.html">
-<meta property="og:image" content="https://obyavleniya-dagestan.ru/assets/images/og-image-v2.jpg">
+<meta property="og:image" content="https://obyavleniya-dagestan.ru/assets/brand/og-community.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -23,13 +23,13 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Политика конфиденциальности — ОБЪЯВЛЕНИЯ ДАГЕСТАНА">
 <meta name="twitter:description" content="Какие данные обрабатываются на сайте, как используются cookie и Яндекс Метрика, права посетителей.">
-<meta name="twitter:image" content="https://obyavleniya-dagestan.ru/assets/images/og-image-v2.jpg">
+<meta name="twitter:image" content="https://obyavleniya-dagestan.ru/assets/brand/og-community.jpg">
 <meta name="twitter:image:alt" content="ОБЪЯВЛЕНИЯ ДАГЕСТАНА — покупка, продажа, услуги, работа">
 <script>document.documentElement.classList.add("js");</script>
-<script>try{window.cookieDeclined=window.localStorage.getItem("cookie-consent")==="no";}catch(e){}</script>
+<script src="consent.js"></script>
 <!-- Яндекс Метрика -->
 <script>
-    if (!window.cookieDeclined) {
+    if (window.cookieAccepted) {
     (function(m,e,t,r,i,k,a){
         m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
         m[i].l=1*new Date();
@@ -41,30 +41,30 @@
     }
 </script>
 <!-- /Яндекс Метрика -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
+<link rel="stylesheet" href="fonts.css">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="redesign.css">
+<link rel="stylesheet" href="site-pages.css">
 </head>
-<body>
+<body class="rd-page privacy-page">
 
 <a class="skip-link" href="#main">К содержимому</a>
 
 <header>
   <div class="wrap topbar">
     <a class="brand-mark" href="index.html">
-      <span class="logo-badge"><img src="assets/images/logo.jpg" alt="Логотип «Объявления Дагестана»" width="34" height="34"></span>
+      <span class="logo-badge"><img src="assets/brand/whatsapp.webp" alt="Логотип «Объявления Дагестана»" width="34" height="34"></span>
       <span class="brand">ОБЪЯВЛЕНИЯ ДАГЕСТАНА</span>
     </a>
-    <nav class="nav-links" id="site-nav" aria-label="Разделы сайта">
-      <a href="index.html">Главная</a>
-      <a href="index.html#groups">Наши группы</a>
-      <div class="nav-dd dd-cats"><a href="index.html#categories">Категории</a><div class="dd-menu"><a href="avto-dagestan.html">Автомобили</a><a href="nedvizhimost-dagestan.html">Недвижимость</a><a href="tehnika-dagestan.html">Техника</a><a href="odezhda-dagestan.html">Одежда</a><a href="uslugi-dagestan.html">Услуги</a><a href="rabota-dagestan.html">Работа</a><a href="tovary-dagestan.html">Товары</a><a href="raznoe-dagestan.html">Разное</a></div></div>
-      <a href="index.html#rules">Правила</a>
-      <a href="index.html#advertising">Реклама</a>
-      <div class="nav-dd dd-bots"><a href="index.html#bots">Боты</a><div class="dd-menu"><a href="bot-moderation.html">Modexa</a><a href="bot-crm.html">КлиентРадар</a></div></div>
-      <a href="#contact">Контакты</a>
-        </nav>
+    <nav class="nav-links rd-nav" id="site-nav" aria-label="Разделы сайта">
+ <div class="rd-nav-heading">Разделы сайта</div>
+ <a class="rd-nav-home" href="index.html">Главная</a>
+ <a href="index.html#groups">Наши группы</a>
+ <details class="rd-nav-section"><summary>Категории</summary><div class="rd-nav-sub"><a href="avto-dagestan.html">Автомобили</a><a href="nedvizhimost-dagestan.html">Недвижимость</a><a href="tehnika-dagestan.html">Техника</a><a href="odezhda-dagestan.html">Одежда</a><a href="uslugi-dagestan.html">Услуги</a><a href="rabota-dagestan.html">Работа</a><a href="tovary-dagestan.html">Товары</a><a href="raznoe-dagestan.html">Разное</a></div></details>
+ <a href="reklama.html">Реклама и цены</a>
+ <details class="rd-nav-section"><summary>Наши боты</summary><div class="rd-nav-sub"><a href="bot-moderation.html">Modexa — модерация групп</a><a href="bot-crm.html">КлиентРадар — заявки и CRM</a></div></details>
+ <a href="index.html#rules">Правила</a><a href="index.html#faq">Вопросы и ответы</a><a href="#contact">Контакты</a>
+ </nav>
     <button class="menu-toggle" type="button" aria-label="Меню" aria-expanded="false" aria-controls="site-nav"><svg aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-menu"></use></svg></button>
   </div>
   <div class="flag-stripe" aria-hidden="true"><span class="g1"></span><span class="g2"></span><span class="g3"></span></div>
@@ -76,13 +76,13 @@
       <article class="legal-card">
         <h1>Политика конфиденциальности</h1>
         <p class="legal-sub">Сайт «ОБЪЯВЛЕНИЯ ДАГЕСТАНА» — https://obyavleniya-dagestan.ru</p>
-        <p class="legal-date">Редакция от 25 октября 2026 года</p>
+        <p class="legal-date">Редакция от 2 ноября 2026 года</p>
 
         <h2>1. Общие положения</h2>
         <p>1.1. Эта политика описывает, какие данные обрабатываются при посещении сайта «ОБЪЯВЛЕНИЯ ДАГЕСТАНА», расположенного по адресу https://obyavleniya-dagestan.ru (далее — Сайт).</p>
         <p>1.2. Оператор данных — физическое лицо Раджабов Абдулжелил Маликович (далее — Оператор). По вопросам обработки данных можно написать на адрес электронной почты <a href="mailto:abdulzelilradzabov879@gmail.com">abdulzelilradzabov879@gmail.com</a>.</p>
         <p>1.3. Политика подготовлена в соответствии с Федеральным законом от 27.07.2006 № 152-ФЗ «О персональных данных».</p>
-        <p>1.4. Используя Сайт, посетитель принимает условия этой политики. Если вы с ними не согласны, прекратите использование Сайта или нажмите «Отказаться» в уведомлении о cookie.</p>
+        <p>1.4. Эта политика описывает обработку данных на Сайте. Аналитика включается только после нажатия «Принять» в уведомлении о cookie. Отказ не мешает пользоваться Сайтом.</p>
 
         <h2>2. Какие данные обрабатываются</h2>
         <p>2.1. Сайт является информационной страницей. На нём нет форм регистрации и обратной связи, Оператор не запрашивает у посетителей ФИО, телефон, адрес электронной почты и другие личные данные.</p>
@@ -108,19 +108,19 @@
         <h2>4. Сервисы и третьи лица</h2>
         <p>4.1. «Яндекс Метрика» (ООО «Яндекс») — веб-аналитика. Сервис получает технические данные, перечисленные в п. 2.2, и использует cookie с названиями, начинающимися на «_ym». Функции «Вебвизор» и «Карта кликов» на Сайте не используются.</p>
         <p>4.2. Хостинг GitHub Pages (GitHub, Inc., США) — публикация Сайта. В технических журналах сервера могут сохраняться IP-адрес и данные запросов.</p>
-        <p>4.3. Google Fonts (Google LLC) — шрифты загружаются с серверов Google. При загрузке Google получает IP-адрес и технические данные браузера.</p>
+        <p>4.3. Шрифты хранятся вместе с файлами Сайта и загружаются с его домена. Запросов к Google Fonts при посещении Сайта нет.</p>
         <p>4.4. Telegram и WhatsApp — при переходе по ссылкам на группы посетитель покидает Сайт. Дальнейшая обработка данных выполняется этими сервисами по их собственным правилам.</p>
         <p>4.5. Иным лицам Оператор данные не передаёт и не продаёт.</p>
 
         <h2>5. Cookie</h2>
         <p>5.1. Cookie — небольшие файлы, которые сохраняются в браузере посетителя. Яндекс Метрика использует их для статистики посещаемости.</p>
-        <p>5.2. Выбор посетителя («Принять» или «Отказаться») сохраняется в локальном хранилище браузера (localStorage) под названием «cookie-consent».</p>
-        <p>5.3. Если посетитель нажимает «Отказаться», Яндекс Метрика на Сайте отключается. Уже сохранённые cookie можно удалить в настройках браузера. Отказ не мешает пользоваться Сайтом.</p>
+        <p>5.2. Выбор посетителя («Принять» или «Отказаться») сохраняется в локальном хранилище браузера (localStorage): «cookie-consent» — выбор, «cookie-consent-details» — выбор, дата и версия условий. Эти записи остаются в вашем браузере и сами по себе не отправляются Оператору. При существенном изменении условий прежнее согласие на аналитику не используется: Сайт снова предложит сделать выбор. Ранее сохранённый отказ сохраняет силу.</p>
+        <p>5.3. До нажатия «Принять» Яндекс Метрика не загружается. При отказе она остаётся отключённой. Уже сохранённые cookie можно удалить в настройках браузера. Отказ не мешает пользоваться Сайтом.</p>
         <p>5.4. Изменить выбор можно в любой момент:</p>
         <p class="legal-actions"><button class="btn btn-ghost btn-sm" type="button" id="cookie-reset">Изменить выбор по cookie</button></p>
 
         <h2>6. Правовое основание</h2>
-        <p>Данные обрабатываются на основании согласия посетителя. Согласие выражается нажатием кнопки «Принять» в уведомлении о cookie или продолжением использования Сайта после уведомления. Согласие можно отозвать, нажав «Отказаться» (см. п. 5.4) или написав Оператору.</p>
+        <p>Данные обрабатываются на основании согласия посетителя. Согласие выражается нажатием кнопки «Принять» в уведомлении о cookie. Согласие можно отозвать, нажав «Отказаться» (см. п. 5.4) или написав Оператору.</p>
 
         <h2>7. Срок хранения</h2>
         <p>Данные хранятся не дольше, чем это необходимо для целей обработки, и в сроки, определённые правилами используемых сервисов. При отзыве согласия обработка прекращается, кроме случаев, когда закон требует иного.</p>
@@ -149,7 +149,7 @@
         <p>10.6. <strong>Проверка текста ИИ.</strong> Текст сообщения (без имени, ника и ID автора) может проверяться ИИ-сервисом GigaChat (ПАО Сбербанк), чтобы отсеять рекламу, вакансии и спам.</p>
 
         <h2>11. Изменение политики</h2>
-        <p>Актуальная версия политики всегда размещена на этой странице. Дата редакции указана в начале документа. 14 октября 2026 года добавлен раздел 10 о боте «КлиентРадар», а в п. 4.2 исправлено название хостинга. 25 октября 2026 года в раздел 10 добавлен п. 10.6 о проверке текста заявок ИИ.</p>
+        <p>Актуальная версия политики всегда размещена на этой странице. 2 ноября 2026 года шрифты перенесены на домен Сайта, добавлены дата и версия выбора cookie. Дата редакции указана в начале документа. 14 октября 2026 года добавлен раздел 10 о боте «КлиентРадар», а в п. 4.2 исправлено название хостинга. 25 октября 2026 года в раздел 10 добавлен п. 10.6 о проверке текста заявок ИИ.</p>
       </article>
     </div>
   </section>
@@ -159,7 +159,7 @@
   <div class="wrap">
     <div class="footer-grid">
       <div>
-        <div class="brand-mark"><span class="logo-badge"><img src="assets/images/logo.jpg" alt="" width="34" height="34"></span><span class="brand">ОБЪЯВЛЕНИЯ ДАГЕСТАНА</span></div>
+        <div class="brand-mark"><span class="logo-badge"><img src="assets/brand/whatsapp.webp" alt="" width="34" height="34"></span><span class="brand">ОБЪЯВЛЕНИЯ ДАГЕСТАНА</span></div>
         <div class="footer-tag">Покупка • Продажа • Услуги • Работа</div>
       </div>
       <nav class="footer-links" aria-label="Ссылки в подвале">
@@ -185,3 +185,4 @@
 <script src="page.js" defer></script>
 </body>
 </html>
+

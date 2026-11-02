@@ -318,7 +318,7 @@ header{
 }
 .promo-row{padding:16px 0; border-bottom:1px solid var(--glass-border);}
 .promo-row:last-child{border-bottom:none;}
-.promo-row h3{font-size:14px; text-transform:uppercase; letter-spacing:.3px; color:var(--ink-faint); margin-bottom:8px; font-family:var(--font-text); font-weight:700;}
+.promo-row h2{font-size:14px; text-transform:uppercase; letter-spacing:.3px; color:var(--ink-faint); margin-bottom:8px; font-family:var(--font-text); font-weight:700;}
 .promo-row p{color:var(--ink-soft); font-size:15px;}
 .promo-row .rules-list{margin-top:4px;}
 .promo-row .rules-list li{padding:10px 0;}
@@ -911,7 +911,7 @@ header{view-transition-name:hdr;}
 .mf2-spam u{margin-left:auto; text-decoration:none; font-size:11px; font-weight:800; letter-spacing:.04em; text-transform:uppercase; color:#ff8a7e; opacity:0; animation:mf2tag 9s ease-in-out infinite; animation-delay:.7s;}
 .a1{animation-delay:0s;} .a2{animation-delay:.7s;} .a3{animation-delay:2.2s;}
 @keyframes mf2in{0%{opacity:0; transform:translateY(8px);}6%,86%{opacity:1; transform:none;}94%,100%{opacity:0;}}
-@keyframes mf2strike{0%,14%{text-decoration:none; opacity:1;}20%,86%{text-decoration:line-through; text-decoration-color:#ff8a7e; opacity:.5;}100%{opacity:.5;}}
+@keyframes mf2strike{0%,14%{text-decoration:none; opacity:1;}20%,86%{text-decoration:line-through; text-decoration-color:#ff8a7e; opacity:.8;}100%{opacity:.8;}}
 @keyframes mf2tag{0%,14%{opacity:0;}20%,86%{opacity:1;}94%,100%{opacity:0;}}
 /* вращающийся луч радара у значка КлиентРадара */
 .bot-ava-radar{position:relative; overflow:hidden;}
@@ -920,5 +920,21 @@ header{view-transition-name:hdr;}
 @media (prefers-reduced-motion:reduce){
   .logo-badge-lg,.bot-ava-radar::after{animation:none;}
   .mf2,.mf2-spam span,.mf2-spam u{animation:none; opacity:1;}
-  .mf2-spam span{text-decoration:line-through; opacity:.5;}
+  .mf2-spam span{text-decoration:line-through; opacity:.8;}
 }
+
+
+/* Рекламные услуги и способы заказа */
+.ad-services{grid-template-columns:repeat(3,minmax(0,1fr));}
+.ad-services .ad-price{font-size:28px;font-weight:800;color:var(--ink);margin:12px 0;}
+.ad-order-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;}
+.ad-order-grid .btn{margin-top:18px;white-space:normal;text-align:center;}
+.ad-contact-buttons{display:flex;flex-wrap:wrap;gap:12px;}
+.ad-note{margin-top:20px;color:var(--ink-soft);max-width:75ch;}
+.ad-services>*,.ad-order-grid>*{min-width:0;overflow-wrap:break-word;}
+@media(max-width:900px){.ad-services{grid-template-columns:repeat(2,minmax(0,1fr));}.ad-order-grid{grid-template-columns:1fr;}}
+@media(max-width:600px){.ad-services{grid-template-columns:1fr;}.ad-contact-buttons .btn{width:100%;}}
+
+.ad-services .why-card{display:flex;flex-direction:column;align-items:flex-start;gap:8px;}
+.ad-services .ad-tariff-order{margin-top:auto;white-space:normal;text-align:center;min-height:44px;}
+.ad-services .why-card>p:last-of-type{margin-bottom:16px;}

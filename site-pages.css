@@ -1,0 +1,67 @@
+/* Internal pages share the approved photographic forest identity and controls. */
+.rd-page h1,.rd-page h2{font-family:Georgia,'Times New Roman',serif;font-weight:600;line-height:1.15;letter-spacing:-.03em;text-transform:none;}
+.rd-page h1{font-size:clamp(34px,4.5vw,58px);}
+.rd-page h2{font-size:clamp(27px,3.2vw,38px);}
+.rd-page .eyebrow{font-size:12px;letter-spacing:.15em;color:#a5cdb7;}
+.rd-page .section-head{max-width:900px;margin-bottom:24px;}
+.rd-page section.promo-section{padding:36px 0;}
+.rd-page section.hero{padding:0!important;margin:24px 0 0;text-align:left;background:none;}
+.rd-page .hero>.wrap{position:relative;isolation:isolate;overflow:hidden;border:1px solid #a9c4b72e;border-radius:12px;padding:40px;background:#0b201a;}
+.rd-page .hero>.wrap::before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#071c17f2,#071c17d9 55%,#071c1773),url('assets/brand/hero.webp') center 52%/cover;}
+.rd-page .hero h1{max-width:900px;margin:0 0 20px;line-height:1.12;text-shadow:none;}
+.rd-page .hero h1::after,.rd-page .hero::after{display:none;}
+.rd-page .hero .lead{font-size:16px;line-height:1.75;color:#c6dacf;max-width:800px;margin:0 0 24px;}
+.rd-page .hero-ctas{justify-content:flex-start;}
+.rd-page .crumbs{font-size:12px;color:#b2cebf;margin-bottom:22px;}
+.rd-page :is(.why-card,.rules-card,.legal-card,.promo-card,.cat-card,.group-card,.faq details){background:#0c211b;border:1px solid #b8d5c22b;border-radius:12px;box-shadow:none;}
+.rd-page :is(.why-card,.rules-card,.legal-card,.promo-card,.cat-card,.group-card,.faq details)::after,.rd-page .why-card::before{display:none;}
+.rd-page .why-card{padding:26px;}
+.rd-page .why-card h3{font-size:18px;line-height:1.45;letter-spacing:0;}
+.rd-page .why-card p,.rd-page .rules-list li{font-size:14px;line-height:1.75;}
+.rd-page .rules-card{padding:26px;}
+.rd-page .faq details{margin-bottom:12px;}
+.rd-page .faq summary{font-size:16px;line-height:1.55;min-height:52px;}
+.rd-page .faq summary::after{background:#a4d7bc15;border:1px solid #a4d7bc30;box-shadow:none;}
+.rd-page .faq details p{font-size:14px;line-height:1.75;color:#bdd1c5;}
+.rd-page .cat-card{padding:0;}
+.rd-page .cat-card a{padding:22px 12px;}
+.rd-page .cat-card .ic{background:transparent;border:0;box-shadow:none;color:#b1dfc8;}
+.rd-page .cat-card span{font-size:13px;overflow-wrap:anywhere;}
+.rd-page .cat-card:hover{transform:translateY(-2px);}
+.rd-page .legal{padding:32px 0 56px;}
+.rd-page .legal-card{max-width:960px;margin:auto;padding:36px;}
+.rd-page .legal-card h1{font-size:clamp(30px,4vw,44px);overflow-wrap:normal;}
+.rd-page .legal-card h2{font:700 21px/1.4 Manrope,sans-serif;letter-spacing:0;}
+.rd-page .legal-card p,.rd-page .legal-card li{font-size:15px;line-height:1.8;}
+.rd-page .legal-date,.rd-page .legal-sub{font-size:13px;}
+.rd-page.error-page .promo-hero{padding:0;border:0;}
+.rd-page.error-page .promo-message{max-width:850px;margin:30px auto;padding:40px;text-align:left;}
+.rd-page .nf-links{display:flex;flex-wrap:wrap;gap:10px 18px;line-height:1.8;}
+.rd-page.brand-assets-page main>section{padding:36px 0;}
+.rd-page.brand-assets-page h1{max-width:850px;margin-bottom:20px;}
+.rd-page.brand-assets-page .group-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:900px;}
+.rd-page.brand-assets-page .group-card{display:block;}
+.rd-page.brand-assets-page .group-card h2{font-size:28px;}
+.rd-page .btn::before,.rd-page .btn::after{display:none;}
+@media(max-width:760px){
+ .rd-page .hero>.wrap{padding:30px 24px;}
+ .rd-page .hero h1{font-size:36px;overflow-wrap:anywhere;}
+ .rd-page .hero .lead{font-size:15px;}
+ .rd-page .hero-ctas .btn{width:100%;font-size:14px;}
+ .rd-page section.promo-section{padding:28px 0;}
+ .rd-page .why-card,.rd-page .rules-card{padding:22px 20px;}
+ .rd-page .legal-card{padding:26px 20px;}
+ .rd-page .legal-card h1{font-size:31px;}
+ .rd-page .cat-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+ .rd-page.error-page .promo-message{padding:28px 22px;}
+ .rd-page.brand-assets-page .group-grid{grid-template-columns:minmax(0,1fr);}
+}
+/* Long Russian legal headings must remain inside narrow phone viewports. */
+.rd-page .legal-card h1{overflow-wrap:anywhere;}
+.rd-page .ad-services .ad-price{font-size:28px;line-height:1.3;font-weight:800;color:#f2f7f4;margin:12px 0;}
+.rd-page .platform-price-heading h2{font:700 21px/1.35 Manrope,sans-serif;letter-spacing:0;}
+@media(max-width:600px){.rd-page .platform-price-heading h2{font-size:19px;}}
+
+.ad-final-order{padding-top:32px;padding-bottom:64px;}
+.ad-final-order .ad-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;}
+@media(max-width:600px){.ad-final-order .btn{width:100%;white-space:normal;text-align:center;}}

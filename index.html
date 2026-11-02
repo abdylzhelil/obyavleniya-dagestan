@@ -14,8 +14,8 @@
      Адрес сайта задан в SITE.baseUrl (script.js); при смене домена замените его во всех файлах (см. README.md). -->
 <link rel="canonical" href="https://obyavleniya-dagestan.ru/">
 <meta property="og:url" content="https://obyavleniya-dagestan.ru/">
-<meta property="og:image" content="https://obyavleniya-dagestan.ru/assets/images/og-image-v2.jpg">
-<meta name="twitter:image" content="https://obyavleniya-dagestan.ru/assets/images/og-image-v2.jpg">
+<meta property="og:image" content="https://obyavleniya-dagestan.ru/assets/brand/og-community.jpg">
+<meta name="twitter:image" content="https://obyavleniya-dagestan.ru/assets/brand/og-community.jpg">
 
 <!-- Open Graph и Twitter Card -->
 <meta property="og:type" content="website">
@@ -89,7 +89,7 @@
           "name": "Что запрещено публиковать?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Ссылки, пересылки чужих сообщений, харам и сообщения не по теме группы."
+            "text": "Пересылки чужих сообщений, харам и сообщения не по теме запрещены. Из ссылок разрешены только ссылки на конкретные товары или объявления на Авито."
           }
         },
         {
@@ -99,6 +99,22 @@
             "@type": "Answer",
             "text": "Напишите администратору в Telegram @Abdylzhelil05 или в WhatsApp +7 963 796-85-87."
           }
+        },
+        {
+          "@type": "Question",
+          "name": "Что входит в пакет рекламы за 850 ₽?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Рекламный пост с закреплением и статус в одной WhatsApp-группе на 24 часа."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Как стать админом категории?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Админство категории стоит 850 ₽ в месяц. Включены своя категория, публикация своих объявлений, контроль порядка и один бесплатный статус группы в день. Напишите главному администратору название категории; доступность и группу согласуйте перед оплатой."
+          }
         }
       ]
     }
@@ -106,10 +122,10 @@
 }
 </script>
 <script>document.documentElement.classList.add("js");</script>
-<script>try{window.cookieDeclined=window.localStorage.getItem("cookie-consent")==="no";}catch(e){}</script>
+<script src="consent.js"></script>
 <!-- Яндекс Метрика -->
 <script>
-    if (!window.cookieDeclined) {
+    if (window.cookieAccepted) {
     (function(m,e,t,r,i,k,a){
         m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
         m[i].l=1*new Date();
@@ -121,30 +137,33 @@
     }
 </script>
 <!-- /Яндекс Метрика -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
+<link rel="stylesheet" href="fonts.css">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="redesign.css">
+<link rel="preload" href="assets/brand/hero.webp" as="image">
+<link rel="stylesheet" href="demo-motion.css">
+<link rel="stylesheet" href="community-offers.css">
+<link rel="stylesheet" href="platform-prices.css">
 </head>
-<body>
+<body class="rd-home">
 
 <a class="skip-link" href="#main">К содержимому</a>
 
 <header>
   <div class="wrap topbar">
     <a class="brand-mark" href="index.html">
-      <span class="logo-badge"><img src="assets/images/logo.jpg" alt="Логотип «Объявления Дагестана»" width="34" height="34"></span>
+      <span class="logo-badge"><img src="assets/brand/whatsapp.webp" alt="Логотип «Объявления Дагестана»" width="34" height="34"></span>
       <span class="brand">ОБЪЯВЛЕНИЯ ДАГЕСТАНА</span>
     </a>
-    <nav class="nav-links" id="site-nav" aria-label="Разделы сайта">
-      <a href="index.html">Главная</a>
-      <a href="#groups">Наши группы</a>
-      <div class="nav-dd dd-cats"><a href="#categories">Категории</a><div class="dd-menu"><a href="avto-dagestan.html">Автомобили</a><a href="nedvizhimost-dagestan.html">Недвижимость</a><a href="tehnika-dagestan.html">Техника</a><a href="odezhda-dagestan.html">Одежда</a><a href="uslugi-dagestan.html">Услуги</a><a href="rabota-dagestan.html">Работа</a><a href="tovary-dagestan.html">Товары</a><a href="raznoe-dagestan.html">Разное</a></div></div>
-      <a href="#rules">Правила</a>
-      <a href="#advertising">Реклама</a>
-      <div class="nav-dd dd-bots"><a href="#bots">Боты</a><div class="dd-menu"><a href="bot-moderation.html">Modexa</a><a href="bot-crm.html">КлиентРадар</a></div></div>
-      <a href="#contact">Контакты</a>
-        </nav>
+    <nav class="nav-links rd-nav" id="site-nav" aria-label="Разделы сайта">
+ <div class="rd-nav-heading">Разделы сайта</div>
+ <a class="rd-nav-home" href="index.html">Главная</a>
+ <a href="#groups">Наши группы</a>
+ <details class="rd-nav-section"><summary>Категории</summary><div class="rd-nav-sub"><a href="avto-dagestan.html">Автомобили</a><a href="nedvizhimost-dagestan.html">Недвижимость</a><a href="tehnika-dagestan.html">Техника</a><a href="odezhda-dagestan.html">Одежда</a><a href="uslugi-dagestan.html">Услуги</a><a href="rabota-dagestan.html">Работа</a><a href="tovary-dagestan.html">Товары</a><a href="raznoe-dagestan.html">Разное</a></div></details>
+ <a href="reklama.html">Реклама и цены</a>
+ <details class="rd-nav-section"><summary>Наши боты</summary><div class="rd-nav-sub"><a href="bot-moderation.html">Modexa — модерация групп</a><a href="bot-crm.html">КлиентРадар — заявки и CRM</a></div></details>
+ <a href="#rules">Правила</a><a href="#faq">Вопросы и ответы</a><a href="#contact">Контакты</a>
+ </nav>
     <button class="menu-toggle" type="button" aria-label="Меню" aria-expanded="false" aria-controls="site-nav"><svg aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-menu"></use></svg></button>
   </div>
   <div class="flag-stripe" aria-hidden="true"><span class="g1"></span><span class="g2"></span><span class="g3"></span></div>
@@ -152,50 +171,31 @@
 
 <main id="main">
 
-<section class="hero">
-  <div class="wrap">
-    <div class="logo-badge-lg"><img src="assets/images/logo-hero.jpg" alt="Логотип «Объявления Дагестана»" width="96" height="96"></div>
-    <h1>ОБЪЯВЛЕНИЯ ДАГЕСТАНА</h1>
-    <div class="tagline">Покупка • Продажа • Услуги • Работа</div>
-    <div class="subtagline">Будь в курсе всего нужного!</div>
-    <p class="lead">Площадка объявлений для жителей Дагестана. Находите нужные товары и услуги или размещайте свои предложения.</p>
-    <div class="hero-ctas">
-      <a class="btn btn-wa" href="#groups" data-join="whatsapp" data-goal="join_whatsapp"><span class="btn-ic"><svg aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-whatsapp"></use></svg></span>Вступить в WhatsApp</a>
-      <a class="btn btn-tg" href="#groups" data-join="telegram" data-goal="join_telegram"><span class="btn-ic"><svg aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-telegram"></use></svg></span>Перейти в Telegram</a>
-    </div>
-  </div>
-  <div class="mountains" aria-hidden="true"></div>
+<section class="rd-hero" aria-labelledby="home-title">
+ <div class="wrap"><div class="rd-hero-surface">
+  <img class="rd-landscape" src="assets/brand/hero.webp" alt="" width="1536" height="1024" fetchpriority="high">
+  <div class="rd-hero-content"><div class="eyebrow">Покупка · Продажа · Услуги · Работа</div>
+   <h1 id="home-title">Объявления<br><span>Дагестана</span></h1>
+   <p>Покупайте, продавайте и находите услуги рядом.</p>
+   <div class="hero-ctas">
+    <a class="btn btn-wa" href="#groups" data-goal="open_group_page"><span class="btn-ic"><svg aria-hidden="true"><use href="assets/icons/sprite.svg#i-whatsapp"></use></svg></span>Группы WhatsApp </a>
+    <a class="btn btn-tg" href="#groups" data-join="telegram" data-goal="join_telegram"><span class="btn-ic"><svg aria-hidden="true"><use href="assets/icons/sprite.svg#i-telegram"></use></svg></span>Группа Telegram </a>
+   </div>
+   <p class="rd-hero-footnote">Объявления участников — бесплатно.<br>Реклама для бизнеса — по <a href="reklama.html">отдельным тарифам</a>.</p>
+  </div><span class="rd-landscape-caption" aria-hidden="true">ДАГЕСТАН<br>БЛИЖЕ, ЧЕМ КАЖЕТСЯ</span>
+ </div></div>
 </section>
-
-<!-- Две группы в WhatsApp: карточки и подпись подставляет script.js из данных GROUPS -->
-<section class="wa-block" id="wa-groups">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="eyebrow">WhatsApp</div>
-      <h2>Две группы в WhatsApp</h2>
-      <p id="wa-groups-lead"></p>
-    </div>
-    <div class="wa-grid" id="wa-groups-grid"></div>
-  </div>
-</section>
-
-<!-- Наши группы: карточки подставляет script.js из данных GROUPS -->
-<section class="groups-section" id="groups">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="eyebrow">Площадки</div>
-      <h2>Наши группы</h2>
-      <p>Выберите удобную площадку и присоединяйтесь к «ОБЪЯВЛЕНИЯМ ДАГЕСТАНА».</p>
-    </div>
-    <div class="group-grid" id="groups-grid"></div>
-  </div>
-</section>
+<section class="groups-section" id="groups"><div class="wrap">
+ <div class="section-head"><div><div class="eyebrow">Наше сообщество</div><h2>Выберите свою группу</h2></div><p>Удобная площадка.<br>Объявления рядом с вами.</p></div>
+ <div class="group-grid" id="groups-grid"></div>
+ <noscript><p>Выберите группу: <a href="https://t.me/AvitoDag05_reklama_group">Telegram</a> или <a href="https://chat.whatsapp.com/EisxSK0qarkJzyrlt9v1fx">WhatsApp №2</a>.</p></noscript>
+</div></section>
 
 <section id="categories">
   <div class="wrap">
     <div class="section-head reveal">
       <div class="eyebrow">Категории</div>
-      <h2>Что можно найти</h2>
+      <h2>Что вы ищете?</h2>
     </div>
     <ul class="cat-grid">
       <li class="cat-card reveal"><a href="avto-dagestan.html"><div class="ic"><svg aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-cat-auto"></use></svg></div><span>Автомобили</span></a></li>
@@ -210,45 +210,18 @@
   </div>
 </section>
 
-<section id="why">
+<section id="advertising">
   <div class="wrap">
-    <div class="section-head reveal">
-      <div class="eyebrow">Проект</div>
-      <h2>Почему ОБЪЯВЛЕНИЯ ДАГЕСТАНА</h2>
+    <div class="ad-teaser reveal">
+      <h2>Хотите разместить рекламу?</h2>
+      <div class="platform-prices"><section class="platform-price-block platform-telegram" id="home-telegram-prices"><div class="platform-price-heading"><span class="platform-price-icon" aria-hidden="true"><svg><use href="assets/icons/sprite.svg#i-telegram"></use></svg></span><h3>Реклама в Telegram</h3></div><dl class="rd-ad-prices"><div><dt>Пост + закреп<span>В Telegram-группе на 24 часа</span></dt><dd>500 ₽</dd></div></dl><a class="platform-price-link" href="reklama.html#telegram-prices">Условия рекламы в Telegram →</a></section><section class="platform-price-block platform-whatsapp" id="home-whatsapp-prices"><div class="platform-price-heading"><span class="platform-price-icon" aria-hidden="true"><svg><use href="assets/icons/sprite.svg#i-whatsapp"></use></svg></span><h3>Реклама в WhatsApp</h3></div><dl class="rd-ad-prices"><div><dt>Статус администратора<span>На 24 часа</span></dt><dd>450 ₽</dd></div><div><dt>Статус группы<span>В одной WhatsApp-группе на 24 часа</span></dt><dd>500 ₽</dd></div><div><dt>Пост + закреп<span>В WhatsApp-группе на 24 часа</span></dt><dd>500 ₽</dd></div><div><dt>Пост с закрепом + статус группы<span>В одной группе, оба размещения на 24 часа</span></dt><dd>850 ₽</dd></div></dl><details class="rd-mailing-details"><summary>Рассылки WhatsApp — от 850 ₽</summary><dl class="rd-ad-prices"><div><dt>Рассылка по группам<span>Только WhatsApp</span></dt><dd>850 ₽</dd></div><div><dt>Рассылка по 1 000 контактам<span>Только WhatsApp</span></dt><dd>1 000 ₽</dd></div></dl><p class="rd-ad-extra"><strong>+500 ₽</strong> к рассылке по 1 000 контактам — за просьбу поставить объявление в WhatsApp-статус. Итого: <strong>1 500 ₽</strong>.</p></details></section></div><p class="rd-ad-other">Реклама в других соцсетях — уточните условия у администратора.</p>
+      <p class="ad-contact-caption">Связаться с администратором по любому формату:</p><div class="hero-ctas">
+        <a class="btn btn-ghost" href="reklama.html" data-goal="ad_prices">Цены и условия</a>
+        <a class="btn btn-tg" href="#contact" data-contact="telegram" data-goal="ad_contact_telegram"><span class="btn-ic"><svg aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-telegram"></use></svg></span>Администратор в Telegram</a>
+        <a class="btn btn-wa" href="#contact" data-contact="whatsapp" data-goal="ad_contact_whatsapp"><span class="btn-ic"><svg aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-whatsapp"></use></svg></span>Администратор в WhatsApp</a>
+      </div>
     </div>
-    <div class="why-grid">
-      <div class="why-card reveal"><h3>Аудитория из Дагестана</h3><p>Проект ориентирован на реальных жителей, покупателей и продавцов из Республики Дагестан.</p></div>
-      <div class="why-card reveal"><h3>Быстрое размещение</h3><p>Группа активна ежедневно с 08:00 до 22:00 — объявления публикуются оперативно.</p></div>
-      <div class="why-card reveal"><h3>Продвижение товаров и услуг</h3><p>Есть платные форматы, чтобы выделить объявление среди остальных.</p></div>
-      <div class="why-card reveal"><h3>Дополнительные услуги</h3><p>Рассылка по другим активным группам и усиленное продвижение — по договорённости с администрацией.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="how">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="eyebrow">Как начать</div>
-      <h2>Как это работает</h2>
-    </div>
-    <ol class="steps-grid">
-      <li class="step-card reveal"><div class="step-num">1</div><h3>Выберите площадку</h3><p>WhatsApp или Telegram.</p></li>
-      <li class="step-card reveal"><div class="step-num">2</div><h3>Вступите в группу</h3><p>Откройте подходящую площадку.</p></li>
-      <li class="step-card reveal"><div class="step-num">3</div><h3>Находите или размещайте объявления</h3><p>Покупайте, продавайте, находите услуги и предложения.</p></li>
-    </ol>
-  </div>
-</section>
-
-<!-- Правила: список подставляет script.js из данных RULES -->
-<section id="rules">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="eyebrow">Правила</div>
-      <h2>Правила группы</h2>
-    </div>
-    <div class="rules-card reveal">
-      <ul class="rules-list" id="rules-list"></ul>
-    </div>
+<section class="community-admin community-admin-brief" id="category-admin"><div class="community-admin-heading"><div><p class="community-eyebrow">Развивайте свою категорию</p><h2>Админ категории в группе</h2></div><p class="community-admin-price">850 ₽<span>/ месяц</span></p></div><p>Своя категория, публикация своих объявлений и контроль порядка. Один статус группы в день — бесплатно для админа категории.</p><a class="btn btn-wa" href="reklama.html#category-admin">Условия админства</a></section>
   </div>
 </section>
 
@@ -265,11 +238,12 @@
           <img class="bot-ava" src="assets/images/modexa-logo.jpg" alt="Логотип Modexa" width="56" height="56" loading="lazy">
           <div><h3>Modexa</h3><span class="bot-sub">Защита и реклама для групп</span></div>
         </div>
-        <div class="mini-feed" role="img" aria-label="Пример: бот удаляет спам в группе, обычные объявления остаются">
+        <div class="mini-feed" id="modexa-preview" data-motion-demo role="img" aria-label="Пример: бот удаляет спам в группе, обычные объявления остаются">
           <div class="mf2 a1"><i>✓</i>Платье вечернее — 3 500 ₽</div>
-          <div class="mf2 mf2-spam a2"><i>🛡</i><span>Подработка, пиши в личку</span><u>удалено</u></div>
+          <div class="mf2 mf2-spam a2"><i>🛡</i><span>Подработка, пишите в личку</span><u>удалено</u></div>
           <div class="mf2 a3"><i>✓</i>Велосипед горный — 8 000 ₽</div>
         </div>
+        <button type="button" class="motion-toggle" data-motion-for="modexa-preview" aria-pressed="false">Приостановить анимацию</button>
         <p>Чистит группу от спама и мошенников. ИИ-модерация, предложка, реклама без комиссии. Первая группа — бесплатно навсегда.</p>
         <ul class="bot-tags"><li>ИИ-модерация</li><li>Предложка</li><li>Реклама без комиссии</li><li>Рейтинг продавцов</li></ul>
         <div class="bot-actions">
@@ -282,7 +256,17 @@
           <span class="bot-ava bot-ava-radar" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 12l6-6"/></svg></span>
           <div><h3>КлиентРадар</h3><span class="bot-sub">Заявки от клиентов</span></div>
         </div>
-        <p>Находит людей, которым нужна ваша услуга, в открытых группах, присылает заявки и помогает вести клиентов в CRM.</p>
+        <div class="radar-demo radar-demo-mini" id="home-radar" data-motion-demo>
+ <div class="radar"><svg viewBox="0 0 200 200" role="img" aria-label="Пример поиска заявок: луч радара подсвечивает найденные цели"><defs><radialGradient id="home-radar-bg"><stop stop-color="#193c54"/><stop offset="1" stop-color="#081d2d"/></radialGradient><linearGradient id="home-radar-beam" x1="0" x2="1"><stop stop-color="#4cc3ff" stop-opacity="0"/><stop offset="1" stop-color="#4cc3ff" stop-opacity=".38"/></linearGradient></defs>
+ <circle cx="100" cy="100" r="97" fill="url(#home-radar-bg)"/>
+ <g class="radar-ticks"><path d="M100.00 9.00L100.00 4.00"/><path d="M123.55 12.10L124.85 7.27"/><path d="M145.50 21.19L148.00 16.86"/><path d="M164.35 35.65L167.88 32.12"/><path d="M178.81 54.50L183.14 52.00"/><path d="M187.90 76.45L192.73 75.15"/><path d="M191.00 100.00L196.00 100.00"/><path d="M187.90 123.55L192.73 124.85"/><path d="M178.81 145.50L183.14 148.00"/><path d="M164.35 164.35L167.88 167.88"/><path d="M145.50 178.81L148.00 183.14"/><path d="M123.55 187.90L124.85 192.73"/><path d="M100.00 191.00L100.00 196.00"/><path d="M76.45 187.90L75.15 192.73"/><path d="M54.50 178.81L52.00 183.14"/><path d="M35.65 164.35L32.12 167.88"/><path d="M21.19 145.50L16.86 148.00"/><path d="M12.10 123.55L7.27 124.85"/><path d="M9.00 100.00L4.00 100.00"/><path d="M12.10 76.45L7.27 75.15"/><path d="M21.19 54.50L16.86 52.00"/><path d="M35.65 35.65L32.12 32.12"/><path d="M54.50 21.19L52.00 16.86"/><path d="M76.45 12.10L75.15 7.27"/></g><circle class="ring" cx="100" cy="100" r="96"/><circle class="ring" cx="100" cy="100" r="70"/><circle class="ring" cx="100" cy="100" r="43"/><circle class="ring" cx="100" cy="100" r="18"/>
+ <path class="radar-cross" d="M100 5v190M5 100h190"/>
+ <g class="sweep"><path d="M100 100L26.5 38.3A96 96 0 0 1 100 4Z" fill="url(#home-radar-beam)"/><path d="M100 100V4" stroke="#8ddfff" stroke-width="1.2"/></g>
+ <g class="radar-target" style="--hit:-7.28653s"><circle class="rd-ping" cx="132" cy="49" r="5"/><circle class="rd-blip" cx="132" cy="49" r="3.3"/></g><g class="radar-target" style="--hit:-6.17001s"><circle class="rd-ping" cx="167" cy="91" r="5"/><circle class="rd-blip" cx="167" cy="91" r="3.3"/></g><g class="radar-target" style="--hit:-4.61884s"><circle class="rd-ping" cx="128" cy="153" r="5"/><circle class="rd-blip" cx="128" cy="153" r="3.3"/></g><g class="radar-target" style="--hit:-2.83343s"><circle class="rd-ping" cx="57" cy="133" r="5"/><circle class="rd-blip" cx="57" cy="133" r="3.3"/></g><g class="radar-target" style="--hit:-0.96560s"><circle class="rd-ping" cx="64" cy="62" r="5"/><circle class="rd-blip" cx="64" cy="62" r="3.3"/></g><circle cx="100" cy="100" r="4" fill="#b9edff"/>
+ </svg></div>
+ <p class="radar-demo-caption">Пример поиска заявок</p>
+ <button type="button" class="motion-toggle" data-motion-for="home-radar" aria-pressed="false">Приостановить анимацию</button>
+ </div><p>Находит людей, которым нужна ваша услуга, в открытых группах, присылает заявки и помогает вести клиентов в CRM.</p>
         <ul class="bot-tags"><li>Заявки</li><li>CRM</li><li>Ниши и город</li><li>Каталог групп</li></ul>
         <div class="bot-actions">
           <a class="btn btn-bot btn-sm" href="bot-crm.html" data-goal="home_bot_crm">Подробнее</a>
@@ -293,29 +277,14 @@
   </div>
 </section>
 
-<section id="advertising">
+<section id="rules">
   <div class="wrap">
-    <div class="ad-teaser reveal">
-      <h2>Хотите разместить рекламу?</h2>
-      <p>Размещайте рекламу своих товаров, услуг и бизнеса в сети «ОБЪЯВЛЕНИЯ ДАГЕСТАНА».</p>
-      <div class="hero-ctas">
-        <a class="btn btn-ghost" href="reklama.html" data-goal="ad_prices">Цены и условия</a>
-        <a class="btn btn-tg" href="#contact" data-contact="telegram" data-goal="ad_contact_telegram"><span class="btn-ic"><svg aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-telegram"></use></svg></span>Написать в Telegram</a>
-        <a class="btn btn-wa" href="#contact" data-contact="whatsapp" data-goal="ad_contact_whatsapp"><span class="btn-ic"><svg aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-whatsapp"></use></svg></span>Написать в WhatsApp</a>
-      </div>
+    <div class="section-head reveal">
+      <div class="eyebrow">Правила</div>
+      <h2>Правила группы</h2>
     </div>
-  </div>
-</section>
-
-<section id="about">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">О проекте</div>
-      <h2>Объявления Дагестана: покупка, продажа, услуги и работа</h2>
-    </div>
-    <div class="seo-text">
-      <p>«Объявления Дагестана» — площадка в WhatsApp и Telegram для жителей Республики Дагестан. Здесь публикуют объявления о продаже и покупке автомобилей, недвижимости, техники и одежды, предлагают услуги и ищут работу.</p>
-      <p>Обычные объявления участников размещаются бесплатно в часы работы группы — с 08:00 до 22:00. Для бизнеса доступна платная реклама товаров, услуг, каналов и сайтов.</p>
+    <div class="rules-card reveal">
+      <ul class="rules-list" id="rules-list"></ul>
     </div>
   </div>
 </section>
@@ -330,13 +299,12 @@
       <details><summary>Как разместить объявление в группе «Объявления Дагестана»?</summary><p>Вступите в группу в WhatsApp или Telegram, прочитайте закреплённое сообщение с правилами и опубликуйте объявление прямо в группе.</p></details>
       <details><summary>Это бесплатно?</summary><p>Обычные объявления участников — бесплатно в часы работы группы. Реклама каналов, групп, соцсетей, сайтов и сторонних площадок — только на платной основе.</p></details>
       <details><summary>Когда работает группа?</summary><p>Группа открывается в 08:00 и закрывается в 22:00.</p></details>
-      <details><summary>Что запрещено публиковать?</summary><p>Ссылки, пересылки чужих сообщений, харам и сообщения не по теме группы.</p></details>
+      <details><summary>Что запрещено публиковать?</summary><p>Пересылки чужих сообщений, харам и сообщения не по теме запрещены. Из ссылок разрешены только ссылки на конкретные товары или объявления на Авито.</p></details>
       <details><summary>В какую группу WhatsApp вступить?</summary><p data-faq="wa-group"></p></details>
       <details><summary>Как заказать рекламу?</summary><p>Напишите администратору в Telegram @Abdylzhelil05 или в WhatsApp +7 963 796-85-87.</p></details>
-    </div>
+<details><summary>Что входит в пакет рекламы за 850 ₽?</summary><p>Рекламный пост с закреплением и статус в одной WhatsApp-группе на 24 часа.</p></details><details><summary>Как стать админом категории?</summary><p>Админство категории стоит 850 ₽ в месяц. Включены своя категория, публикация своих объявлений, контроль порядка и один бесплатный статус группы в день. Напишите главному администратору название категории; доступность и группу согласуйте перед оплатой.</p></details>    </div>
   </div>
 </section>
-
 </main>
 
 <!-- Плавающая панель «Вступить» для телефонов: показывает script.js (initDock), ссылки подставляет applyLinks -->
@@ -349,7 +317,7 @@
   <div class="wrap">
     <div class="footer-grid">
       <div>
-        <div class="brand-mark"><span class="logo-badge"><img src="assets/images/logo.jpg" alt="" width="34" height="34"></span><span class="brand">ОБЪЯВЛЕНИЯ ДАГЕСТАНА</span></div>
+        <div class="brand-mark"><span class="logo-badge"><img src="assets/brand/whatsapp.webp" alt="" width="34" height="34"></span><span class="brand">ОБЪЯВЛЕНИЯ ДАГЕСТАНА</span></div>
         <div class="footer-tag">Покупка • Продажа • Услуги • Работа</div>
       </div>
       <nav class="footer-links" aria-label="Ссылки в подвале">
@@ -367,11 +335,13 @@
       </div>
     </div>
     <nav class="footer-cats" aria-label="Категории объявлений"><span>Категории:</span><a href="avto-dagestan.html">Автомобили</a><a href="nedvizhimost-dagestan.html">Недвижимость</a><a href="tehnika-dagestan.html">Техника</a><a href="odezhda-dagestan.html">Одежда</a><a href="uslugi-dagestan.html">Услуги</a><a href="rabota-dagestan.html">Работа</a><a href="tovary-dagestan.html">Товары</a><a href="raznoe-dagestan.html">Разное</a></nav>
-    <div class="footer-bottom">© ОБЪЯВЛЕНИЯ ДАГЕСТАНА · <a href="privacy.html">Политика конфиденциальности</a></div>
+    <div class="footer-bottom">© ОБЪЯВЛЕНИЯ ДАГЕСТАНА · <a href="privacy.html">Политика конфиденциальности</a> · <a href="brand-assets.html">Аватары групп</a></div>
   </div>
 </footer>
 
 <script src="script.js" defer></script>
 <script src="page.js" defer></script>
+<script src="demo-motion.js" defer></script>
 </body>
 </html>
+

@@ -1,0 +1,23 @@
+/* Category administration is a monthly group service, separate from advertising. */
+.community-admin{margin:28px 0 0;padding:30px;background:#0d251d;border:1px solid #80ae963f;border-radius:12px;color:#edf5ef;overflow-wrap:anywhere;}
+.community-admin-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;margin-bottom:20px;}
+.community-admin-heading>div,.community-admin-heading>h2{min-width:0;}
+.community-admin h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(27px,3vw,38px);font-weight:600;line-height:1.2;letter-spacing:-.025em;margin:0;max-width:700px;}
+.community-admin .community-eyebrow{font:600 11px/1.5 Manrope,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#a0cdb5;margin:0 0 10px;}
+.community-admin p{font-size:15px;line-height:1.7;max-width:800px;margin:0 0 18px;color:#c4d9cb;}
+.community-admin .community-admin-price{font-size:30px;font-weight:800;line-height:1.3;color:#f4faf5;white-space:nowrap;margin:0;flex-shrink:0;}
+.community-admin-price span{display:block;font-size:14px;font-weight:500;color:#acc8b8;}
+.community-admin ul{list-style:disc;margin:18px 0;padding-left:22px;display:grid;gap:9px;max-width:800px;}
+.community-admin li{font-size:14px;line-height:1.6;color:#d2e2d7;}
+.community-admin li::marker{color:#7ad8aa;}
+.community-admin .community-admin-note{font-size:13px;color:#abc5b5;}
+.community-admin-actions{display:flex;align-items:center;flex-wrap:wrap;gap:20px;}
+.community-admin .btn-wa{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:13px 20px;border-radius:8px;border:1px solid #8eddbb66;background:#006f48;color:#fff;box-shadow:none;font-size:14px;font-weight:700;text-align:center;white-space:normal;}
+.community-admin .btn-wa:hover{filter:brightness(1.1);}
+.community-admin .community-admin-details{font-size:13px;color:#b1dec6;text-decoration:underline;text-underline-offset:4px;}
+.community-admin a:focus-visible{outline:3px solid #b4f0ce;outline-offset:4px;}
+.community-admin-brief{margin-top:26px;}
+@media(max-width:600px){.community-admin{padding:24px 20px;}.community-admin-heading{flex-direction:column;gap:16px;}.community-admin h2{font-size:29px;}.community-admin .community-admin-price{font-size:28px;}.community-admin-price span{display:inline;margin-left:6px;}.community-admin-actions{align-items:stretch;flex-direction:column;gap:16px;}.community-admin .btn-wa{width:100%;}.community-admin .community-admin-details{text-align:center;}}
+.rd-home .community-admin,:is(.rd-group,.rd-page) .community-admin{padding:30px;}
+@media(max-width:600px){.rd-home .community-admin,:is(.rd-group,.rd-page) .community-admin{padding:24px 20px;}}
+.community-admin .btn::before,.community-admin .btn::after{display:none;}

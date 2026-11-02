@@ -23,11 +23,11 @@ const SITE = {
 
   homeUrl: "index.html",
   privacyUrl: "privacy.html", /* страница политики конфиденциальности */
-  groupPageUrl: "group.html", /* страница группы: groupPageUrl + "?id=<id группы>" */
+  groupPageUrl: "group.html", /* совместимость со старыми ссылками ?id; новые адреса создаёт getGroupPageHref */
 
   /* Картинки для SEO (пути от корня сайта; абсолютные адреса собираются из baseUrl) */
-  ogImage: "assets/images/og-image-v2.jpg",
-  logo: "assets/images/logo-hero.jpg",
+  ogImage: "assets/brand/og-community.jpg",
+  logo: "assets/brand/whatsapp.webp",
 
   adContacts: {
     telegram: "@Abdylzhelil05",
@@ -54,13 +54,13 @@ const GROUPS = [
     platform: "telegram",
     status: "open",
     name: "ОБЪЯВЛЕНИЯ ДАГЕСТАНА",
-    description: "Объявления и реклама по Республике Дагестан. Ссылки, пересылки, харам и всё не по теме — запрещены. Реклама платная.",
+    description: "Объявления и реклама по Республике Дагестан. Пересылки, харам и сообщения не по теме запрещены. Из ссылок разрешены только конкретные товары или объявления на Авито. Реклама платная.",
     membersLabel: "менее 3 000 участников",
     categories: ["Автомобили", "Недвижимость", "Техника", "Одежда", "Услуги", "Работа"],
     whatIsPosted: "Объявления и реклама по Республике Дагестан: покупка, продажа, услуги и другие предложения участников.",
     admin: { contact: "@Abdylzhelil05" },
     link: "https://t.me/AvitoDag05_reklama_group",
-    logo: "assets/images/logo-telegram.jpg"
+    logo: "assets/brand/telegram.webp"
   },
   {
     id: "whatsapp-main",
@@ -76,7 +76,7 @@ const GROUPS = [
     whatIsPosted: "Обычные объявления участников (бесплатно в часы работы группы) и платная реклама — каналы, соцсети, сайты и сторонние площадки.",
     admin: { name: "Главный администратор", contact: "+79637968587" },
     link: "https://chat.whatsapp.com/KA9KJ5Gt9W4Lb0HZkn7VvT?s=cl&p=a&mlu=4&ilr=4",
-    logo: "assets/images/logo.jpg"
+    logo: "assets/brand/whatsapp.webp"
   },
   {
     id: "whatsapp-2",
@@ -92,13 +92,23 @@ const GROUPS = [
     whatIsPosted: "Обычные объявления участников и платная реклама — по правилам группы.",
     admin: { name: "Главный администратор", contact: "+79637968587" },
     link: "https://chat.whatsapp.com/EisxSK0qarkJzyrlt9v1fx",
-    logo: "assets/images/logo.jpg"
+    logo: "assets/brand/whatsapp.webp"
   }
+];
+
+const ADMIN_CATEGORY_BENEFITS = [
+  "Админство своей категории.",
+  "Закрепление категории за вами на месяц.",
+  "Публикация своих объявлений в своей категории в течение месяца.",
+  "Удаление неактуальных и неподходящих объявлений.",
+  "Контроль порядка публикаций в своей категории.",
+  "Один статус группы в день — бесплатно для админа категории.",
+  "Дополнительное доверие участников группы."
 ];
 
 const RULES = [
   "Группа открывается в 08:00 и закрывается в 22:00.",
-  "Ссылки, пересылки, харам и сообщения не по теме — запрещены.",
+  "Пересылки, харам и сообщения не по теме запрещены. Сторонние ссылки запрещены, кроме ссылок на конкретные товары или объявления на Авито.",
   "Обычные объявления участников — бесплатно в часы работы группы.",
   "Реклама каналов, групп, соцсетей, сайтов и сторонних площадок — только на платной основе."
 ];
@@ -116,7 +126,7 @@ function getGroupById(id) {
 function getGroupsByPlatform(platform) {
   return GROUPS
     .filter(function (g) { return g.platform === platform; })
-    .sort(function (a, b) { return a.order - b.order; });
+    .sort(function (a, b) { return (a.status === "full") - (b.status === "full") || a.order - b.order; });
 }
 
 /* Первая группа платформы, в которую сейчас идёт набор */
@@ -126,7 +136,8 @@ function getOpenGroup(platform) {
 
 /* Ссылка на страницу группы — единственное место, где собирается этот адрес */
 function getGroupPageHref(id) {
-  return SITE.groupPageUrl + "?id=" + encodeURIComponent(id);
+  const group = getGroupById(id);
+  return group ? "group-" + group.id + ".html" : SITE.groupPageUrl + "?id=" + encodeURIComponent(id);
 }
 
 /* Создание элемента. Текст вставляется через textContent — безопасно для любых данных.
@@ -152,7 +163,7 @@ function setExternal(anchor, url) {
 
 function getContactUrl(type) {
   if (type === "telegram") return "https://t.me/" + SITE.adContacts.telegram.replace(/^@/, "");
-  if (type === "whatsapp") return "https://wa.me/" + SITE.adContacts.whatsapp;
+  if (type === "whatsapp") return "https://wa.me/" + SITE.adContacts.whatsapp.replace(/\D/g, "");
   return null;
 }
 
@@ -245,25 +256,22 @@ function createWhatsAppCard(group) {
 
 /* Карточка в разделе «Наши группы» */
 function createGroupCard(group) {
-  const isTelegram = group.platform === "telegram";
-  const card = el("a", {
-    cls: "group-card reveal",
-    attrs: { href: getGroupPageHref(group.id), "data-goal": "open_group_page" }
-  });
-
-  /* Бейдж статуса показывается только у пронумерованных групп */
-  if (group.number != null) card.appendChild(createStatusBadge(group.status, "group-status"));
-
-  const badge = el("div", { cls: "group-badge " + (isTelegram ? "tg" : "wa") });
-  badge.appendChild(el("img", { attrs: { src: group.logo, alt: "", width: "52", height: "52", loading: "lazy" } }));
-  card.appendChild(badge);
-
-  card.appendChild(el("h3", { text: group.name }));
-  card.appendChild(el("div", { cls: "members", text: group.membersLabel }));
-  card.appendChild(el("p", { cls: "desc", text: group.description }));
-  card.appendChild(createCategoryChips(group.categories));
-  card.appendChild(el("span", { cls: "btn btn-sm btn-block " + (isTelegram ? "btn-tg" : "btn-wa"), text: isTelegram ? "Открыть Telegram" : "Открыть WhatsApp" }));
-  return card;
+  const tg = group.platform === "telegram", open = group.status === "open";
+  const card = el("article", { cls: "group-card rd-community " + (tg ? "is-tg" : "is-wa") + (open ? "" : " is-full") });
+  const cover = el("div", { cls: "rd-card-cover", attrs: { "aria-hidden": "true" } });
+  cover.appendChild(el("img", { attrs: { src: tg ? "assets/brand/hero.webp" : (open ? "assets/brand/whatsapp-cover.webp" : "assets/brand/hero.webp"), alt: "", width: "1536", height: "1024", loading: "lazy" } }));
+  cover.appendChild(createStatusBadge(group.status));
+  card.appendChild(cover);
+  const body = el("div", { cls: "rd-card-body" });
+  const identity = el("a", { cls: "rd-card-identity", attrs: { href: getGroupPageHref(group.id), "data-goal": "open_group_page" } });
+  identity.appendChild(el("img", { attrs: { src: group.logo, alt: "", width: "76", height: "76", loading: "lazy" } }));
+  identity.appendChild(el("span", { text: tg ? "Telegram" : "WhatsApp · группа №" + group.number }));
+  body.appendChild(identity);
+  const title = el("h3");title.appendChild(el("a", { text: "Объявления Дагестана", attrs: { href: getGroupPageHref(group.id), "data-goal": "open_group_page" } }));body.appendChild(title);
+  body.appendChild(el("p", { text: open ? (tg ? "Покупка, продажа, услуги и работа в Telegram." : "Новая группа: вступайте и размещайте объявления.") : "Набор закрыт. Выберите группу, в которой есть места." }));
+  if(open){const join=el("a", {cls:"btn btn-block "+(tg?"btn-tg":"btn-wa"),text:"Вступить в группу",attrs:{"data-goal":tg?"join_telegram":"join_whatsapp"}});setExternal(join,group.link);body.appendChild(join);}
+  else{const alternative=getOpenGroup(group.platform);body.appendChild(el("a",{cls:"btn btn-ghost btn-block",text:"Выбрать другую группу",attrs:{href:alternative?getGroupPageHref(alternative.id):SITE.homeUrl+"#groups"}}));}
+  card.appendChild(body);return card;
 }
 
 function createCategoryChips(categories) {
@@ -292,8 +300,8 @@ function renderGroups() {
   if (!grid) return;
   grid.textContent = "";
   GROUPS
-    .filter(function (g) { return g.status !== "full"; })
-    .sort(function (a, b) { return a.order - b.order; })
+    .filter(function (g) { return true; })
+    .sort(function (a, b) { return (a.status === "full") - (b.status === "full") || a.order - b.order; })
     .forEach(function (group) { grid.appendChild(createGroupCard(group)); });
 }
 
@@ -314,21 +322,39 @@ function renderFaqAnswers() {
 
 function createPromoRow(title, content, extraClass) {
   const row = el("div", { cls: "promo-row" + (extraClass ? " " + extraClass : "") });
-  row.appendChild(el("h3", { text: title }));
+  row.appendChild(el("h2", { text: title }));
   row.appendChild(content);
   return row;
+}
+
+function createCategoryAdminOffer(group) {
+  const offer=el("section",{cls:"community-admin",attrs:{id:"category-admin"}});
+  const heading=el("div",{cls:"community-admin-heading"});
+  heading.appendChild(el("h2",{text:"Стать админом категории"}));
+  const price=el("p",{cls:"community-admin-price",text:"850 ₽"});price.appendChild(el("span",{text:"/ месяц"}));heading.appendChild(price);offer.appendChild(heading);
+  offer.appendChild(el("p",{text:"Получите свою категорию в группе и занимайтесь её развитием."}));
+  const list=el("ul");
+  ADMIN_CATEGORY_BENEFITS.forEach(function(text){list.appendChild(el("li",{text:text}));});offer.appendChild(list);
+  offer.appendChild(el("p",{cls:"community-admin-note",text:"Группу, доступность категории и условия согласуйте с главным администратором перед оплатой."}));
+  const actions=el("div",{cls:"community-admin-actions"});
+  const contact=el("a",{cls:"btn btn-wa",text:"Обсудить категорию",attrs:{"data-goal":"ad_contact_whatsapp"}});
+  setExternal(contact,getContactUrl("whatsapp")+"?text="+encodeURIComponent("Здравствуйте! Хочу стать админом категории в группе «"+group.name+"» за 850 ₽ в месяц. Подскажите доступные категории и условия."));actions.appendChild(contact);
+  actions.appendChild(el("a",{cls:"community-admin-details",text:"Полные условия админства",attrs:{href:"reklama.html#category-admin"}}));offer.appendChild(actions);return offer;
 }
 
 function createPromoPage(group) {
   const isTelegram = group.platform === "telegram";
   const fragment = document.createDocumentFragment();
 
-  const hero = el("div", { cls: "promo-hero" });
+  const hero = el("div", { cls: "promo-hero rd-group-hero" });
+  hero.appendChild(el("img", { cls: "rd-group-cover", attrs: { src: isTelegram ? "assets/brand/hero.webp" : "assets/brand/whatsapp-cover.webp", alt: "", width: "1536", height: "1024" } }));
   const avatar = el("div", { cls: "promo-avatar " + (isTelegram ? "tg" : "wa") });
   avatar.appendChild(el("img", { attrs: { src: group.logo, alt: "Логотип группы «" + group.name + "»", width: "84", height: "84" } }));
   hero.appendChild(avatar);
   hero.appendChild(el("div", { cls: "promo-platform", text: PLATFORM_NAMES[group.platform] }));
   hero.appendChild(el("h1", { text: group.name }));
+  hero.appendChild(el("p", { cls: "rd-group-intro", text: group.description }));
+  hero.appendChild(createJoinRow(group));
   fragment.appendChild(hero);
 
   const card = el("div", { cls: "promo-card" });
@@ -352,6 +378,7 @@ function createPromoPage(group) {
 
   card.appendChild(createJoinRow(group));
   fragment.appendChild(card);
+  fragment.appendChild(createCategoryAdminOffer(group));
   return fragment;
 }
 
@@ -416,6 +443,7 @@ function setMetaTag(attrName, attrValue, content) {
 }
 
 function setRobots(value) {
+  if (document.documentElement.dataset.preview === "true") value = "noindex, nofollow";
   setMetaTag("name", "robots", value);
 }
 
@@ -547,12 +575,13 @@ function updateStructuredData() {
 
 /* SEO главной страницы */
 function applyHomeSeo() {
-  if (!document.getElementById("wa-groups")) return;
+  if (!document.body.classList.contains("rd-home") && !document.getElementById("wa-groups")) return;
   setPageUrls("");
   updateStructuredData();
 }
 
 function renderPromoPage() {
+  if (document.getElementById("group-root")?.dataset.staticGroup) return;
   const root = document.getElementById("group-root");
   if (!root) return;
 
@@ -567,27 +596,37 @@ function renderPromoPage() {
 /* ---------- 6. Интерфейс: меню и анимация появления ---------- */
 
 function initMenu() {
-  const toggle = document.querySelector(".menu-toggle");
-  const nav = document.getElementById("site-nav");
+  const toggle = document.querySelector(".menu-toggle"), nav = document.getElementById("site-nav");
   if (!toggle || !nav) return;
-
+  const modern = document.body.matches(".rd-home, .rd-group, .rd-page");
+  const backdrop = modern ? el("button", { cls: "site-menu-backdrop", attrs: { type: "button", "aria-label": "Закрыть меню", tabindex: "-1", hidden: "" } }) : null;
+  if (backdrop) document.body.appendChild(backdrop);
   function setOpen(open) {
+    if (modern) {
+      document.documentElement.style.setProperty("--menu-top", Math.ceil(toggle.closest("header").getBoundingClientRect().bottom + 8) + "px");
+      document.body.classList.toggle("nav-open", open);
+      backdrop.hidden = !open;
+    }
     nav.classList.toggle("open", open);
-    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "Закрыть меню" : "Меню");
+    if (open && modern) { nav.scrollTop=0; nav.querySelector("a, summary").focus({preventScroll:true}); }
+    if (!open) nav.querySelectorAll("details[open]").forEach(function(d){d.open=false;});
   }
-
-  toggle.addEventListener("click", function () {
-    setOpen(!nav.classList.contains("open"));
-  });
-  nav.addEventListener("click", function (event) {
-    if (event.target.closest("a")) setOpen(false);
-  });
-  document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape" && nav.classList.contains("open")) {
-      setOpen(false);
-      toggle.focus();
+  toggle.addEventListener("click", function(){setOpen(!nav.classList.contains("open"));});
+  nav.addEventListener("click", function(e){if(e.target.closest("a"))setOpen(false);});
+  if (backdrop) backdrop.addEventListener("click", function(){setOpen(false);toggle.focus();});
+  document.addEventListener("keydown", function(e){
+    if(!nav.classList.contains("open"))return;
+    if(e.key==="Escape"){setOpen(false);toggle.focus();return;}
+    if(modern && e.key==="Tab"){
+      const items=[toggle,...nav.querySelectorAll("a[href], summary")].filter(function(n){return n.getClientRects().length;});
+      const first=items[0],last=items[items.length-1];
+      if(e.shiftKey && document.activeElement===first){e.preventDefault();last.focus();}
+      else if(!e.shiftKey && document.activeElement===last){e.preventDefault();first.focus();}
     }
   });
+  window.addEventListener("resize",function(){if(window.innerWidth>860 && nav.classList.contains("open"))setOpen(false);});
 }
 
 function initReveal() {
@@ -626,7 +665,7 @@ function applyLinks() {
 
 /* Цель Яндекс Метрики: отправляется, только если указан SITE.metrikaId и счётчик подключён */
 function trackGoal(goal) {
-  if (SITE.metrikaId && typeof window.ym === "function") {
+  if (window.cookieAccepted && SITE.metrikaId && typeof window.ym === "function") {
     window.ym(SITE.metrikaId, "reachGoal", goal);
   }
 }
@@ -641,28 +680,20 @@ function initAnalytics() {
 /* ---------- 8. Уведомление о cookie ---------- */
 
 /* Выбор посетителя хранится в localStorage: "yes" — принято, "no" — отказ от Яндекс Метрики.
-   При "no" скрипт в <head> ставит window.cookieDeclined = true, и код Метрики на странице
-   не выполняется (запросов к серверам Яндекса нет). */
-const CONSENT_KEY = "cookie-consent";
+   Скрипт в <head> запускает Метрику только при сохранённом "yes".
+   До выбора и при отказе запросов к Метрике нет. */
+function readConsent() { return window.SiteConsent ? SiteConsent.read() : null; }
 
-function readConsent() {
-  try { return window.localStorage.getItem(CONSENT_KEY); } catch (error) { return null; }
-}
+function writeConsent(value) { if(window.SiteConsent) SiteConsent.write(value); }
 
-function writeConsent(value) {
-  try { window.localStorage.setItem(CONSENT_KEY, value); } catch (error) { /* хранилище недоступно */ }
-}
-
-function clearConsent() {
-  try { window.localStorage.removeItem(CONSENT_KEY); } catch (error) { /* хранилище недоступно */ }
-}
+function clearConsent() { if(window.SiteConsent) SiteConsent.clear(); }
 
 function initCookieNotice() {
-  if (readConsent()) return;
+  if (["yes", "no"].includes(readConsent())) return;
 
   const notice = el("div", { cls: "cookie-notice", attrs: { role: "region", "aria-label": "Уведомление о cookie" } });
   const text = el("p");
-  text.appendChild(document.createTextNode("Мы используем cookie и «Яндекс Метрику» для статистики посещаемости. Продолжая пользоваться сайтом или нажимая «Принять», вы соглашаетесь с этим. Подробнее — в "));
+  text.appendChild(document.createTextNode("Мы используем cookie и «Яндекс Метрику» для статистики посещаемости. Метрика включится только после нажатия «Принять». Можно отказаться и продолжить пользоваться сайтом. Подробнее — в "));
   text.appendChild(el("a", { text: "Политике конфиденциальности", attrs: { href: SITE.privacyUrl } }));
   text.appendChild(document.createTextNode("."));
 
@@ -670,8 +701,7 @@ function initCookieNotice() {
   const decline = el("button", { cls: "btn btn-ghost btn-sm", text: "Отказаться", attrs: { type: "button" } });
   accept.addEventListener("click", function () {
     writeConsent("yes");
-    notice.remove();
-    document.body.classList.remove("with-cookie-notice");
+    window.location.reload(); /* загрузить Метрику после явного согласия */
   });
   decline.addEventListener("click", function () {
     writeConsent("no");
@@ -699,7 +729,7 @@ function initCookieReset() {
    Видна, когда кнопки первого экрана прокручены вверх и подвал ещё не показался. */
 function initDock() {
   const dock = document.getElementById("cta-dock");
-  const heroCtas = document.querySelector(".hero .hero-ctas");
+  const heroCtas = document.querySelector(".rd-hero .hero-ctas, .hero .hero-ctas");
   const footer = document.querySelector("footer");
   if (!dock || !heroCtas || !footer || !("IntersectionObserver" in window)) return;
 
@@ -742,3 +772,4 @@ function initApp() {
 }
 
 document.addEventListener("DOMContentLoaded", initApp);
+
