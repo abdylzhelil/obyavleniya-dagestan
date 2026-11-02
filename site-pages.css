@@ -65,3 +65,5 @@
 .ad-final-order{padding-top:32px;padding-bottom:64px;}
 .ad-final-order .ad-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;}
 @media(max-width:600px){.ad-final-order .btn{width:100%;white-space:normal;text-align:center;}}
+
+.privacy-summary{margin:24px 0 32px;padding:20px 22px;border:1px solid #749f8755;border-radius:10px;background:#14352966;}.privacy-summary p{margin:0 0 10px;}.privacy-summary ul{margin:0;padding-left:20px;}.privacy-summary li+li{margin-top:8px;}
