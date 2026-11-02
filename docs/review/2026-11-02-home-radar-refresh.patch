@@ -1,0 +1,161 @@
+diff --git a/demo-motion.css b/demo-motion.css
+index 626588e..aed4ae6 100644
+--- a/demo-motion.css
++++ b/demo-motion.css
+@@ -24,3 +24,37 @@
+  .radar-demo .sweep,.radar-demo .rd-blip,.radar-demo .rd-ping{animation:none!important;}
+  .radar-demo .rd-blip{opacity:.85;}.radar-demo .rd-ping{opacity:0;}
+ }
++
++/* Homepage lead-search illustration: restrained scanner + one readable request. */
++.lead-radar-demo{width:100%;margin:4px 0 6px;border:1px solid #54809844;border-radius:14px;background:radial-gradient(ellipse at 0 65%,#163c5140,transparent 72%),#0a1c24;overflow:hidden;color:#ddecf4;}
++.lead-radar-top{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:52px;padding:5px 14px;border-bottom:1px solid #6d99af22;}
++.lead-radar-label{font-size:12px;font-weight:600;display:flex;align-items:center;gap:9px;line-height:1.5;}
++.lead-radar-label>span{font-size:10px;font-weight:500;color:#a9c8d9;border:1px solid #739cb544;border-radius:4px;padding:1px 5px;}
++.lead-radar-pause{min-height:40px;min-width:48px;padding:6px 3px;border:0;border-radius:5px;color:#bfd7e5;font-size:11px;background:transparent;}
++.lead-radar-pause:hover{color:#fff;background:#648ca51a;}
++.lead-radar-stage{display:grid;grid-template-columns:minmax(76px,1fr) minmax(0,1.45fr);gap:18px;align-items:center;padding:22px 18px 14px;}
++.lead-radar-scope{position:relative;aspect-ratio:1;max-width:144px;width:100%;justify-self:center;border-radius:50%;background:radial-gradient(circle,#24566e24,transparent 70%);}
++.lead-radar-scope>svg{display:block;width:100%;height:100%;stroke:#74a8bd;stroke-opacity:.22;stroke-width:.6;}
++.lead-radar-scope>svg>path{stroke-opacity:.12;}
++.lead-radar-center{fill:#aedbf0;stroke:none;}
++.lead-radar-beam{position:absolute;inset:5%;border-radius:50%;background:conic-gradient(from -54deg,transparent 0deg,#79cdec05 10deg,#79cdec24 48deg,#9cddf34d 54deg,transparent 55deg);animation:leadSearchSweep 9s linear infinite;}
++.lead-radar-point{position:absolute;width:4px;height:4px;margin:-2px;border-radius:50%;background:#abdcef;box-shadow:0 0 9px #92d7f34d;opacity:.25;animation:leadSearchPoint 9s linear infinite;}
++.lead-radar-point.point-one{left:70%;top:33%;animation-delay:-7.758s;}
++.lead-radar-point.point-two{left:74%;top:75%;animation-delay:-5.596s;}
++.lead-radar-point.point-three{left:25%;top:65%;animation-delay:-3.024s;}
++.lead-radar-result{min-width:0;}
++.lead-radar-request{border:1px solid #81aec332;border-radius:9px;padding:13px 12px;background:linear-gradient(135deg,#18313f,#112932);box-shadow:0 8px 20px #00000012;animation:leadSearchResult 9s ease-in-out infinite;}
++.lead-radar-location{display:block;font-size:10px;line-height:1.6;color:#b4cdd8;margin-bottom:7px;}
++.lead-radar-request strong{display:block;font-size:13px;line-height:1.45;color:#edf6fa;}
++.lead-radar-request-line{display:block;height:3px;width:90%;margin-top:12px;background:#7b9caa33;border-radius:3px;}
++.lead-radar-request-line.short{width:58%;margin-top:6px;}
++.lead-radar-found{display:flex;align-items:center;gap:4px;color:#b0d9df;font-size:10px;line-height:1.5;margin-top:9px;animation:leadSearchFound 9s ease-in-out infinite;}
++.lead-radar-found svg{width:13px;height:13px;stroke:currentColor;stroke-width:1.5;flex-shrink:0;}
++.rd-home .bot-card .lead-radar-caption{font-size:11px;line-height:1.6;margin:0;padding:0 16px 16px;color:#b5c9d3;}
++.rd-home .bot-ava-radar::after{display:none;}
++@keyframes leadSearchSweep{to{transform:rotate(360deg);}}
++@keyframes leadSearchPoint{0%,8%{opacity:1;}35%,100%{opacity:.25;}}
++@keyframes leadSearchResult{0%,8%,85%,100%{transform:translateY(2px);border-color:#81aec332;}22%,65%{transform:translateY(0);border-color:#90cde16b;}}
++@keyframes leadSearchFound{0%,8%,90%,100%{opacity:.5;}22%,72%{opacity:1;}}
++@media(max-width:380px){.lead-radar-stage{grid-template-columns:70px minmax(0,1fr);gap:10px;padding:18px 12px 12px;}.lead-radar-request{padding:10px 8px;}.lead-radar-request strong{font-size:12px;}.lead-radar-top{padding-left:12px;padding-right:10px;}.lead-radar-label{gap:6px;font-size:11px;}}
++@media(prefers-reduced-motion:reduce){.lead-radar-demo *{animation:none!important;}.lead-radar-point,.lead-radar-found{opacity:1;}.lead-radar-beam{transform:rotate(45deg);}}
+diff --git a/demo-motion.js b/demo-motion.js
+index c98ccf1..664591c 100644
+--- a/demo-motion.js
++++ b/demo-motion.js
+@@ -4,7 +4,7 @@
+  const demos=[...document.querySelectorAll('[data-motion-demo]')].map(function(node){
+   return {node:node,button:document.querySelector('[data-motion-for="'+node.id+'"]'),visible:false,paused:false};
+  });
+- function update(d){d.node.classList.toggle('demo-motion-paused',!d.visible||d.paused||document.hidden||reduce.matches);if(d.button){d.button.hidden=reduce.matches;d.button.setAttribute('aria-pressed',String(d.paused));d.button.textContent=d.paused?'Продолжить анимацию':'Приостановить анимацию';}}
++ function update(d){d.node.classList.toggle('demo-motion-paused',!d.visible||d.paused||document.hidden||reduce.matches);if(d.button){d.button.hidden=reduce.matches;d.button.setAttribute('aria-pressed',String(d.paused));d.button.setAttribute('aria-label',d.paused?'Продолжить анимацию':'Приостановить анимацию');d.button.textContent=d.button.hasAttribute('data-motion-compact')?(d.paused?'Продолжить':'Пауза'):(d.paused?'Продолжить анимацию':'Приостановить анимацию');}}
+  const io='IntersectionObserver' in window?new IntersectionObserver(function(entries){entries.forEach(function(e){const d=demos.find(x=>x.node===e.target);d.visible=e.isIntersecting;update(d);});},{threshold:.1}):null;
+  demos.forEach(function(d){if(d.button)d.button.addEventListener('click',function(){d.paused=!d.paused;update(d);});if(io)io.observe(d.node);else d.visible=true;update(d);});
+  document.addEventListener('visibilitychange',function(){demos.forEach(update);});
+diff --git a/index.html b/index.html
+index 7d44619..f5bdd73 100644
+--- a/index.html
++++ b/index.html
+@@ -256,17 +256,14 @@
+           <span class="bot-ava bot-ava-radar" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 12l6-6"/></svg></span>
+           <div><h3>КлиентРадар</h3><span class="bot-sub">Заявки от клиентов</span></div>
+         </div>
+-        <div class="radar-demo radar-demo-mini" id="home-radar" data-motion-demo>
+- <div class="radar"><svg viewBox="0 0 200 200" role="img" aria-label="Пример поиска заявок: луч радара подсвечивает найденные цели"><defs><radialGradient id="home-radar-bg"><stop stop-color="#193c54"/><stop offset="1" stop-color="#081d2d"/></radialGradient><linearGradient id="home-radar-beam" x1="0" x2="1"><stop stop-color="#4cc3ff" stop-opacity="0"/><stop offset="1" stop-color="#4cc3ff" stop-opacity=".38"/></linearGradient></defs>
+- <circle cx="100" cy="100" r="97" fill="url(#home-radar-bg)"/>
+- <g class="radar-ticks"><path d="M100.00 9.00L100.00 4.00"/><path d="M123.55 12.10L124.85 7.27"/><path d="M145.50 21.19L148.00 16.86"/><path d="M164.35 35.65L167.88 32.12"/><path d="M178.81 54.50L183.14 52.00"/><path d="M187.90 76.45L192.73 75.15"/><path d="M191.00 100.00L196.00 100.00"/><path d="M187.90 123.55L192.73 124.85"/><path d="M178.81 145.50L183.14 148.00"/><path d="M164.35 164.35L167.88 167.88"/><path d="M145.50 178.81L148.00 183.14"/><path d="M123.55 187.90L124.85 192.73"/><path d="M100.00 191.00L100.00 196.00"/><path d="M76.45 187.90L75.15 192.73"/><path d="M54.50 178.81L52.00 183.14"/><path d="M35.65 164.35L32.12 167.88"/><path d="M21.19 145.50L16.86 148.00"/><path d="M12.10 123.55L7.27 124.85"/><path d="M9.00 100.00L4.00 100.00"/><path d="M12.10 76.45L7.27 75.15"/><path d="M21.19 54.50L16.86 52.00"/><path d="M35.65 35.65L32.12 32.12"/><path d="M54.50 21.19L52.00 16.86"/><path d="M76.45 12.10L75.15 7.27"/></g><circle class="ring" cx="100" cy="100" r="96"/><circle class="ring" cx="100" cy="100" r="70"/><circle class="ring" cx="100" cy="100" r="43"/><circle class="ring" cx="100" cy="100" r="18"/>
+- <path class="radar-cross" d="M100 5v190M5 100h190"/>
+- <g class="sweep"><path d="M100 100L26.5 38.3A96 96 0 0 1 100 4Z" fill="url(#home-radar-beam)"/><path d="M100 100V4" stroke="#8ddfff" stroke-width="1.2"/></g>
+- <g class="radar-target" style="--hit:-7.28653s"><circle class="rd-ping" cx="132" cy="49" r="5"/><circle class="rd-blip" cx="132" cy="49" r="3.3"/></g><g class="radar-target" style="--hit:-6.17001s"><circle class="rd-ping" cx="167" cy="91" r="5"/><circle class="rd-blip" cx="167" cy="91" r="3.3"/></g><g class="radar-target" style="--hit:-4.61884s"><circle class="rd-ping" cx="128" cy="153" r="5"/><circle class="rd-blip" cx="128" cy="153" r="3.3"/></g><g class="radar-target" style="--hit:-2.83343s"><circle class="rd-ping" cx="57" cy="133" r="5"/><circle class="rd-blip" cx="57" cy="133" r="3.3"/></g><g class="radar-target" style="--hit:-0.96560s"><circle class="rd-ping" cx="64" cy="62" r="5"/><circle class="rd-blip" cx="64" cy="62" r="3.3"/></g><circle cx="100" cy="100" r="4" fill="#b9edff"/>
+- </svg></div>
+- <p class="radar-demo-caption">Пример поиска заявок</p>
+- <button type="button" class="motion-toggle" data-motion-for="home-radar" aria-pressed="false">Приостановить анимацию</button>
+- </div><p>Находит людей, которым нужна ваша услуга, в открытых группах, присылает заявки и помогает вести клиентов в CRM.</p>
++        <div class="lead-radar-demo" id="home-radar" data-motion-demo>
++  <div class="lead-radar-top"><span class="lead-radar-label">Поиск заявок <span>Демо</span></span><button class="motion-toggle lead-radar-pause" type="button" data-motion-for="home-radar" data-motion-compact aria-pressed="false" aria-label="Приостановить анимацию поиска заявок">Пауза</button></div>
++  <div class="lead-radar-stage" aria-hidden="true">
++    <div class="lead-radar-scope"><svg viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="54"/><circle cx="60" cy="60" r="36"/><circle cx="60" cy="60" r="18"/><path d="M60 6v108M6 60h108"/><circle class="lead-radar-center" cx="60" cy="60" r="3"/></svg><span class="lead-radar-beam"></span><i class="lead-radar-point point-one"></i><i class="lead-radar-point point-two"></i><i class="lead-radar-point point-three"></i></div>
++    <div class="lead-radar-result"><div class="lead-radar-request"><span class="lead-radar-location">Махачкала · Услуги</span><strong>Нужен электрик</strong><span class="lead-radar-request-line"></span><span class="lead-radar-request-line short"></span></div><div class="lead-radar-found"><svg viewBox="0 0 16 16" fill="none"><path d="m4 8 2.5 2.5L12 5"/></svg>Заявка найдена</div></div>
++  </div>
++  <p class="lead-radar-caption">Пример поиска. Найденную заявку можно вести в CRM.</p>
++</div><p>Находит людей, которым нужна ваша услуга, в открытых группах, присылает заявки и помогает вести клиентов в CRM.</p>
+         <ul class="bot-tags"><li>Заявки</li><li>CRM</li><li>Ниши и город</li><li>Каталог групп</li></ul>
+         <div class="bot-actions">
+           <a class="btn btn-bot btn-sm" href="bot-crm.html" data-goal="home_bot_crm">Подробнее</a>
+diff --git a/privacy.html b/privacy.html
+index 85b892f..2d2e810 100644
+--- a/privacy.html
++++ b/privacy.html
+@@ -76,7 +76,7 @@
+       <article class="legal-card">
+         <h1>Политика конфиденциальности</h1>
+         <p class="legal-sub">Сайт «ОБЪЯВЛЕНИЯ ДАГЕСТАНА» — https://obyavleniya-dagestan.ru</p>
+-        <p class="legal-date">Редакция от 2 ноября 2026 года</p>
++        <p class="legal-date">Редакция от 2 ноября 2026 года</p><div class="privacy-summary"><p><strong>Коротко о ваших данных</strong></p><ul><li>На сайте нет регистрации и форм отправки заявок.</li><li>Аналитика включается только после вашего согласия.</li><li>Заказы и переписка проходят в Telegram или WhatsApp.</li><li>Демонстрации ботов показывают условные примеры, а не реальные заявки.</li></ul></div>
+ 
+         <h2>1. Общие положения</h2>
+         <p>1.1. Эта политика описывает, какие данные обрабатываются при посещении сайта «ОБЪЯВЛЕНИЯ ДАГЕСТАНА», расположенного по адресу https://obyavleniya-dagestan.ru (далее — Сайт).</p>
+@@ -85,7 +85,7 @@
+         <p>1.4. Эта политика описывает обработку данных на Сайте. Аналитика включается только после нажатия «Принять» в уведомлении о cookie. Отказ не мешает пользоваться Сайтом.</p>
+ 
+         <h2>2. Какие данные обрабатываются</h2>
+-        <p>2.1. Сайт является информационной страницей. На нём нет форм регистрации и обратной связи, Оператор не запрашивает у посетителей ФИО, телефон, адрес электронной почты и другие личные данные.</p>
++        <p>2.1. Сайт является информационной страницей. На нём нет форм регистрации и обратной связи, через страницы Сайта Оператор не запрашивает ФИО, телефон, адрес электронной почты и другие личные данные.</p>
+         <p>2.2. При посещении Сайта автоматически могут обрабатываться технические данные:</p>
+         <ul>
+           <li>IP-адрес;</li>
+@@ -95,21 +95,22 @@
+           <li>адреса посещённых страниц и источник перехода на Сайт;</li>
+           <li>действия на Сайте, в том числе нажатия на кнопки и ссылки (например, переходы в группы Telegram и WhatsApp).</li>
+         </ul>
+-        <p>2.3. Если посетитель сам напишет Оператору (например, на электронную почту), Оператор обработает те данные, которые посетитель сообщил в обращении.</p>
++        <p>2.3. Если посетитель сам напишет Оператору по электронной почте, в Telegram или WhatsApp, Оператор получит данные, которые посетитель сообщил в обращении, и сведения профиля, доступные в выбранном сервисе. Заказ рекламы или админства категории согласуется в переписке, а не через форму Сайта. Кнопки заказа могут заранее подставлять текст выбранной услуги; сообщение отправляет сам посетитель.</p>
+ 
++        <p>2.4. Анимации и карточки примеров Modexa и КлиентРадара на Сайте — иллюстрации. Они не подключены к личному кабинету посетителя и не показывают реальные сообщения, контакты или заявки из CRM. Просмотр демонстрации сам по себе не передаёт данные в ботов.</p>
+         <h2>3. Цели обработки</h2>
+         <ul>
+           <li>сбор статистики посещаемости и понимание того, как используется Сайт;</li>
+           <li>улучшение работы и содержания Сайта;</li>
+           <li>оценка эффективности рекламы Сайта;</li>
+-          <li>ответы на обращения посетителей.</li>
++          <li>ответы на обращения посетителей и согласование выбранных ими услуг в переписке.</li>
+         </ul>
+ 
+         <h2>4. Сервисы и третьи лица</h2>
+         <p>4.1. «Яндекс Метрика» (ООО «Яндекс») — веб-аналитика. Сервис получает технические данные, перечисленные в п. 2.2, и использует cookie с названиями, начинающимися на «_ym». Функции «Вебвизор» и «Карта кликов» на Сайте не используются.</p>
+         <p>4.2. Хостинг GitHub Pages (GitHub, Inc., США) — публикация Сайта. В технических журналах сервера могут сохраняться IP-адрес и данные запросов.</p>
+         <p>4.3. Шрифты хранятся вместе с файлами Сайта и загружаются с его домена. Запросов к Google Fonts при посещении Сайта нет.</p>
+-        <p>4.4. Telegram и WhatsApp — при переходе по ссылкам на группы посетитель покидает Сайт. Дальнейшая обработка данных выполняется этими сервисами по их собственным правилам.</p>
++        <p>4.4. Telegram и WhatsApp — при переходе по ссылкам на группы, ботов или для связи с администратором посетитель покидает Сайт. Дальнейшая обработка данных выполняется этими сервисами по их собственным правилам.</p>
+         <p>4.5. Иным лицам Оператор данные не передаёт и не продаёт.</p>
+ 
+         <h2>5. Cookie</h2>
+@@ -120,7 +121,7 @@
+         <p class="legal-actions"><button class="btn btn-ghost btn-sm" type="button" id="cookie-reset">Изменить выбор по cookie</button></p>
+ 
+         <h2>6. Правовое основание</h2>
+-        <p>Данные обрабатываются на основании согласия посетителя. Согласие выражается нажатием кнопки «Принять» в уведомлении о cookie. Согласие можно отозвать, нажав «Отказаться» (см. п. 5.4) или написав Оператору.</p>
++        <p>Технические данные для аналитики обрабатываются на основании согласия посетителя. Согласие на аналитику выражается нажатием кнопки «Принять» в уведомлении о cookie. Согласие можно отозвать, нажав «Отказаться» (см. п. 5.4) или написав Оператору.</p>
+ 
+         <h2>7. Срок хранения</h2>
+         <p>Данные хранятся не дольше, чем это необходимо для целей обработки, и в сроки, определённые правилами используемых сервисов. При отзыве согласия обработка прекращается, кроме случаев, когда закон требует иного.</p>
+@@ -149,7 +150,7 @@
+         <p>10.6. <strong>Проверка текста ИИ.</strong> Текст сообщения (без имени, ника и ID автора) может проверяться ИИ-сервисом GigaChat (ПАО Сбербанк), чтобы отсеять рекламу, вакансии и спам.</p>
+ 
+         <h2>11. Изменение политики</h2>
+-        <p>Актуальная версия политики всегда размещена на этой странице. 2 ноября 2026 года шрифты перенесены на домен Сайта, добавлены дата и версия выбора cookie. Дата редакции указана в начале документа. 14 октября 2026 года добавлен раздел 10 о боте «КлиентРадар», а в п. 4.2 исправлено название хостинга. 25 октября 2026 года в раздел 10 добавлен п. 10.6 о проверке текста заявок ИИ.</p>
++        <p>Актуальная версия политики всегда размещена на этой странице. 2 ноября 2026 года шрифты перенесены на домен Сайта, добавлены дата и версия выбора cookie. В этой редакции также уточнены переписка по заказам и использование условных примеров в демонстрациях ботов. Дата редакции указана в начале документа. 14 октября 2026 года добавлен раздел 10 о боте «КлиентРадар», а в п. 4.2 исправлено название хостинга. 25 октября 2026 года в раздел 10 добавлен п. 10.6 о проверке текста заявок ИИ.</p>
+       </article>
+     </div>
+   </section>
+diff --git a/site-pages.css b/site-pages.css
+index 1dda969..e2d4445 100644
+--- a/site-pages.css
++++ b/site-pages.css
+@@ -65,3 +65,5 @@
+ .ad-final-order{padding-top:32px;padding-bottom:64px;}
+ .ad-final-order .ad-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;}
+ @media(max-width:600px){.ad-final-order .btn{width:100%;white-space:normal;text-align:center;}}
++
++.privacy-summary{margin:24px 0 32px;padding:20px 22px;border:1px solid #749f8755;border-radius:10px;background:#14352966;}.privacy-summary p{margin:0 0 10px;}.privacy-summary ul{margin:0;padding-left:20px;}.privacy-summary li+li{margin-top:8px;}
