@@ -1,0 +1,57 @@
+diff --git a/demo-motion.css b/demo-motion.css
+index aed4ae6..5cf20b0 100644
+--- a/demo-motion.css
++++ b/demo-motion.css
+@@ -32,7 +32,7 @@
+ .lead-radar-label>span{font-size:10px;font-weight:500;color:#a9c8d9;border:1px solid #739cb544;border-radius:4px;padding:1px 5px;}
+ .lead-radar-pause{min-height:40px;min-width:48px;padding:6px 3px;border:0;border-radius:5px;color:#bfd7e5;font-size:11px;background:transparent;}
+ .lead-radar-pause:hover{color:#fff;background:#648ca51a;}
+-.lead-radar-stage{display:grid;grid-template-columns:minmax(76px,1fr) minmax(0,1.45fr);gap:18px;align-items:center;padding:22px 18px 14px;}
++.lead-radar-stage{display:grid;grid-template-columns:minmax(76px,1fr) minmax(0,1.45fr);gap:16px;align-items:center;padding:22px 16px 16px;}
+ .lead-radar-scope{position:relative;aspect-ratio:1;max-width:144px;width:100%;justify-self:center;border-radius:50%;background:radial-gradient(circle,#24566e24,transparent 70%);}
+ .lead-radar-scope>svg{display:block;width:100%;height:100%;stroke:#74a8bd;stroke-opacity:.22;stroke-width:.6;}
+ .lead-radar-scope>svg>path{stroke-opacity:.12;}
+@@ -42,19 +42,24 @@
+ .lead-radar-point.point-one{left:70%;top:33%;animation-delay:-7.758s;}
+ .lead-radar-point.point-two{left:74%;top:75%;animation-delay:-5.596s;}
+ .lead-radar-point.point-three{left:25%;top:65%;animation-delay:-3.024s;}
+-.lead-radar-result{min-width:0;}
+-.lead-radar-request{border:1px solid #81aec332;border-radius:9px;padding:13px 12px;background:linear-gradient(135deg,#18313f,#112932);box-shadow:0 8px 20px #00000012;animation:leadSearchResult 9s ease-in-out infinite;}
++.lead-radar-result{min-width:0;position:relative;}
++.lead-radar-request{border:1px solid #81aec332;border-radius:9px;padding:13px 11px;background:linear-gradient(135deg,#18313f,#112932);box-shadow:0 8px 20px #00000012;animation:leadSearchResult 9s ease-in-out infinite;}
+ .lead-radar-location{display:block;font-size:10px;line-height:1.6;color:#b4cdd8;margin-bottom:7px;}
+ .lead-radar-request strong{display:block;font-size:13px;line-height:1.45;color:#edf6fa;}
+-.lead-radar-request-line{display:block;height:3px;width:90%;margin-top:12px;background:#7b9caa33;border-radius:3px;}
+-.lead-radar-request-line.short{width:58%;margin-top:6px;}
++.lead-radar-excerpt{display:block;margin-top:9px;font-size:10px;line-height:1.6;color:#bdd2dc;}
+ .lead-radar-found{display:flex;align-items:center;gap:4px;color:#b0d9df;font-size:10px;line-height:1.5;margin-top:9px;animation:leadSearchFound 9s ease-in-out infinite;}
+ .lead-radar-found svg{width:13px;height:13px;stroke:currentColor;stroke-width:1.5;flex-shrink:0;}
+ .rd-home .bot-card .lead-radar-caption{font-size:11px;line-height:1.6;margin:0;padding:0 16px 16px;color:#b5c9d3;}
+ .rd-home .bot-ava-radar::after{display:none;}
+ @keyframes leadSearchSweep{to{transform:rotate(360deg);}}
+ @keyframes leadSearchPoint{0%,8%{opacity:1;}35%,100%{opacity:.25;}}
+-@keyframes leadSearchResult{0%,8%,85%,100%{transform:translateY(2px);border-color:#81aec332;}22%,65%{transform:translateY(0);border-color:#90cde16b;}}
+-@keyframes leadSearchFound{0%,8%,90%,100%{opacity:.5;}22%,72%{opacity:1;}}
++@keyframes leadSearchResult{0%,12%,91%,100%{transform:translateY(3px);border-color:#81aec332;box-shadow:0 8px 20px #00000012;}18%,72%{transform:translateY(0);border-color:#90cde17a;box-shadow:0 8px 24px #00000020,0 0 18px #60bad00b;}}
++@keyframes leadSearchFound{0%,14%,92%,100%{opacity:.4;transform:translateY(2px);}22%,78%{opacity:1;transform:translateY(0);}}
+ @media(max-width:380px){.lead-radar-stage{grid-template-columns:70px minmax(0,1fr);gap:10px;padding:18px 12px 12px;}.lead-radar-request{padding:10px 8px;}.lead-radar-request strong{font-size:12px;}.lead-radar-top{padding-left:12px;padding-right:10px;}.lead-radar-label{gap:6px;font-size:11px;}}
+ @media(prefers-reduced-motion:reduce){.lead-radar-demo *{animation:none!important;}.lead-radar-point,.lead-radar-found{opacity:1;}.lead-radar-beam{transform:rotate(45deg);}}
++
++/* A precise beam edge and a single response ripple keep the sequence legible. */
++.lead-radar-beam::after{content:"";position:absolute;left:50%;bottom:50%;height:50%;width:1px;background:linear-gradient(transparent,#b5e7f373);transform-origin:center bottom;}
++.lead-radar-point.point-one::after{content:"";position:absolute;inset:-4px;border:1px solid #9fdbea;border-radius:50%;opacity:0;animation:leadSearchRipple 9s ease-out infinite;animation-delay:-7.758s;}
++@keyframes leadSearchRipple{0%{opacity:.7;transform:scale(.6);}15%{opacity:0;transform:scale(2);}100%{opacity:0;transform:scale(2);}}
++@media(prefers-reduced-motion:reduce){.lead-radar-beam::after{opacity:.5;}.lead-radar-point.point-one::after{animation:none!important;opacity:0;}}
+diff --git a/index.html b/index.html
+index f5bdd73..973c0c2 100644
+--- a/index.html
++++ b/index.html
+@@ -260,7 +260,7 @@
+   <div class="lead-radar-top"><span class="lead-radar-label">Поиск заявок <span>Демо</span></span><button class="motion-toggle lead-radar-pause" type="button" data-motion-for="home-radar" data-motion-compact aria-pressed="false" aria-label="Приостановить анимацию поиска заявок">Пауза</button></div>
+   <div class="lead-radar-stage" aria-hidden="true">
+     <div class="lead-radar-scope"><svg viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="54"/><circle cx="60" cy="60" r="36"/><circle cx="60" cy="60" r="18"/><path d="M60 6v108M6 60h108"/><circle class="lead-radar-center" cx="60" cy="60" r="3"/></svg><span class="lead-radar-beam"></span><i class="lead-radar-point point-one"></i><i class="lead-radar-point point-two"></i><i class="lead-radar-point point-three"></i></div>
+-    <div class="lead-radar-result"><div class="lead-radar-request"><span class="lead-radar-location">Махачкала · Услуги</span><strong>Нужен электрик</strong><span class="lead-radar-request-line"></span><span class="lead-radar-request-line short"></span></div><div class="lead-radar-found"><svg viewBox="0 0 16 16" fill="none"><path d="m4 8 2.5 2.5L12 5"/></svg>Заявка найдена</div></div>
++    <div class="lead-radar-result"><div class="lead-radar-request"><span class="lead-radar-location">Махачкала · Услуги</span><strong>Нужен электрик</strong><span class="lead-radar-excerpt">Коротит розетка. Кто может помочь?</span></div><div class="lead-radar-found"><svg viewBox="0 0 16 16" fill="none"><path d="m4 8 2.5 2.5L12 5"/></svg>Заявка найдена</div></div>
+   </div>
+   <p class="lead-radar-caption">Пример поиска. Найденную заявку можно вести в CRM.</p>
+ </div><p>Находит людей, которым нужна ваша услуга, в открытых группах, присылает заявки и помогает вести клиентов в CRM.</p>
