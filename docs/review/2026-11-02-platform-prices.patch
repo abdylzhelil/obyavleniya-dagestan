@@ -1,0 +1,119 @@
+diff --git a/index.html b/index.html
+index fdbc540..d821cca 100644
+--- a/index.html
++++ b/index.html
+@@ -145,6 +145,7 @@
+ <link rel="preload" href="assets/brand/hero.webp" as="image">
+ <link rel="stylesheet" href="demo-motion.css">
+ <link rel="stylesheet" href="community-offers.css">
++<link rel="stylesheet" href="platform-prices.css">
+ </head>
+ <body class="rd-home">
+ 
+@@ -215,11 +216,11 @@
+   <div class="wrap">
+     <div class="ad-teaser reveal">
+       <h2>Хотите разместить рекламу?</h2>
+-      <dl class="rd-ad-prices"><div><dt>WhatsApp-статус администратора<span>На 24 часа</span></dt><dd>450 ₽</dd></div><div><dt>Статус в WhatsApp-группе<span>В одной группе, на 24 часа</span></dt><dd>500 ₽</dd></div><div><dt>Рекламный пост + закреп<span>В группах Telegram и WhatsApp, на 24 часа</span></dt><dd>500 ₽</dd></div><div><dt>Пакет: пост с закрепом + статус группы<span>В одной WhatsApp-группе, оба размещения на 24 часа</span></dt><dd>850 ₽</dd></div><div><dt>Рассылка по WhatsApp-группам<span>Только WhatsApp</span></dt><dd>850 ₽</dd></div><div><dt>Рассылка по 1 000 контактам<span>В WhatsApp</span></dt><dd>1 000 ₽</dd></div></dl><p class="rd-ad-extra"><strong>+500 ₽</strong> к рассылке по 1 000 контактам — если добавить просьбу поставить объявление в WhatsApp-статус. Итого: <strong>1 500 ₽</strong>.</p><p class="rd-ad-other">Реклама в других соцсетях — уточните условия у администратора.</p>
+-      <div class="hero-ctas">
++      <div class="platform-prices"><section class="platform-price-block platform-telegram" id="home-telegram-prices"><div class="platform-price-heading"><span class="platform-price-icon" aria-hidden="true"><svg><use href="assets/icons/sprite.svg#i-telegram"></use></svg></span><h3>Реклама в Telegram</h3></div><dl class="rd-ad-prices"><div><dt>Пост + закреп<span>В Telegram-группе на 24 часа</span></dt><dd>500 ₽</dd></div></dl><a class="platform-price-link" href="reklama.html#telegram-prices">Условия рекламы в Telegram →</a></section><section class="platform-price-block platform-whatsapp" id="home-whatsapp-prices"><div class="platform-price-heading"><span class="platform-price-icon" aria-hidden="true"><svg><use href="assets/icons/sprite.svg#i-whatsapp"></use></svg></span><h3>Реклама в WhatsApp</h3></div><dl class="rd-ad-prices"><div><dt>Статус администратора<span>На 24 часа</span></dt><dd>450 ₽</dd></div><div><dt>Статус группы<span>В одной WhatsApp-группе на 24 часа</span></dt><dd>500 ₽</dd></div><div><dt>Пост + закреп<span>В WhatsApp-группе на 24 часа</span></dt><dd>500 ₽</dd></div><div><dt>Пост с закрепом + статус группы<span>В одной группе, оба размещения на 24 часа</span></dt><dd>850 ₽</dd></div><div><dt>Рассылка по группам<span>Только WhatsApp</span></dt><dd>850 ₽</dd></div><div><dt>Рассылка по 1 000 контактам<span>Только WhatsApp</span></dt><dd>1 000 ₽</dd></div></dl><p class="rd-ad-extra"><strong>+500 ₽</strong> к рассылке по 1 000 контактам — за просьбу поставить объявление в WhatsApp-статус. Итого: <strong>1 500 ₽</strong>.</p></section></div><p class="rd-ad-other">Реклама в других соцсетях — уточните условия у администратора.</p>
++      <p class="ad-contact-caption">Связаться с администратором по любому формату:</p><div class="hero-ctas">
+         <a class="btn btn-ghost" href="reklama.html" data-goal="ad_prices">Цены и условия</a>
+-        <a class="btn btn-tg" href="#contact" data-contact="telegram" data-goal="ad_contact_telegram"><span class="btn-ic"><svg aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-telegram"></use></svg></span>Написать в Telegram</a>
+-        <a class="btn btn-wa" href="#contact" data-contact="whatsapp" data-goal="ad_contact_whatsapp"><span class="btn-ic"><svg aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-whatsapp"></use></svg></span>Написать в WhatsApp</a>
++        <a class="btn btn-tg" href="#contact" data-contact="telegram" data-goal="ad_contact_telegram"><span class="btn-ic"><svg aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-telegram"></use></svg></span>Администратор в Telegram</a>
++        <a class="btn btn-wa" href="#contact" data-contact="whatsapp" data-goal="ad_contact_whatsapp"><span class="btn-ic"><svg aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-whatsapp"></use></svg></span>Администратор в WhatsApp</a>
+       </div>
+     </div>
+ <section class="community-admin community-admin-brief" id="category-admin"><div class="community-admin-heading"><div><p class="community-eyebrow">Развивайте свою категорию</p><h2>Админ категории в группе</h2></div><p class="community-admin-price">850 ₽<span>/ месяц</span></p></div><p>Своя категория, публикация своих объявлений и контроль порядка. Один статус группы в день — бесплатно для админа категории.</p><a class="btn btn-wa" href="reklama.html#category-admin">Условия админства</a></section>
+diff --git a/platform-prices.css b/platform-prices.css
+new file mode 100644
+index 0000000..afcb28c
+--- /dev/null
++++ b/platform-prices.css
+@@ -0,0 +1,23 @@
++/* Platform headings and names identify services independently of colour. */
++.platform-prices{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.3fr);align-items:start;gap:20px;margin:26px 0;}
++.platform-price-block{padding:24px;border:1px solid var(--platform-line);border-left:3px solid var(--platform-accent);border-radius:10px;background:var(--platform-bg);margin:24px 0;min-width:0;}
++.platform-telegram{--platform-accent:#84d4f4;--platform-line:#65bfdf52;--platform-bg:#0a2530;}
++.platform-whatsapp{--platform-accent:#91dfb8;--platform-line:#7bc59845;--platform-bg:#0a281e;}
++.platform-price-heading{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
++.platform-price-heading h2,.platform-price-heading h3{margin:0;font:700 21px/1.35 Manrope,sans-serif;letter-spacing:0;color:var(--platform-accent);}
++.platform-price-icon{display:grid;place-items:center;flex-shrink:0;width:36px;height:36px;color:var(--platform-accent);border:1px solid var(--platform-line);border-radius:8px;}
++.platform-price-icon svg{width:22px;height:22px;}
++.platform-price-link{display:inline-flex;align-items:center;min-height:44px;font-size:13px;line-height:1.5;color:var(--platform-accent);text-decoration:underline;text-underline-offset:4px;}
++.rd-home #advertising .platform-price-block{padding:24px;margin:0;}
++.rd-home .platform-price-block .rd-ad-prices{margin:0 0 16px;}
++.platform-price-block .rd-ad-prices>div:first-child{padding-top:0;}
++.rd-home .platform-price-block .rd-ad-prices dt{font-size:15px;}
++.rd-home #advertising .platform-price-block p.rd-ad-extra{font-size:13px;line-height:1.7;margin:14px 0 0;color:#c4ddcf;}
++.rd-home #advertising .ad-contact-caption{font-size:13px;color:#bdd2c6;margin:20px 0 14px;}
++.platform-price-block .why-card{background:#ffffff05;box-shadow:none;border:1px solid var(--platform-line);border-radius:9px;}
++.platform-price-block .why-card::after{display:none;}
++.platform-price-block .ad-services{grid-template-columns:repeat(3,minmax(0,1fr));}
++.platform-telegram .ad-services{grid-template-columns:minmax(0,1fr);}
++.platform-price-block a:focus-visible{outline:3px solid var(--platform-accent);outline-offset:4px;}
++@media(max-width:1000px){.platform-prices{grid-template-columns:minmax(0,1fr);}.platform-price-block .ad-services{grid-template-columns:repeat(2,minmax(0,1fr));}.platform-telegram .ad-services{grid-template-columns:minmax(0,1fr);}}
++@media(max-width:600px){.platform-price-block,.rd-home #advertising .platform-price-block{padding:20px 16px;}.platform-price-heading h2,.platform-price-heading h3{font-size:19px;}.platform-price-block .ad-services{grid-template-columns:minmax(0,1fr);}.rd-home .platform-price-block .rd-ad-prices dt{font-size:14px;}.platform-price-block .rd-ad-prices dd{font-size:16px;}.rd-home #advertising .platform-prices{margin-top:22px;}}
+diff --git a/reklama.html b/reklama.html
+index 3be5304..22d9ebe 100644
+--- a/reklama.html
++++ b/reklama.html
+@@ -98,7 +98,7 @@
+         "priceCurrency": "RUB",
+         "itemOffered": {
+           "@type": "Service",
+-          "name": "Публикация рекламы с закреплением на 24 часа в группах Telegram и WhatsApp"
++          "name": "Публикация рекламы в Telegram-группе с закреплением на 24 часа"
+         }
+       },
+       {
+@@ -119,6 +119,15 @@
+           "@type": "Service",
+           "name": "Рекламный пост с закреплением + статус в одной WhatsApp-группе на 24 часа"
+         }
++      },
++      {
++        "@type": "Offer",
++        "price": "500",
++        "priceCurrency": "RUB",
++        "itemOffered": {
++          "@type": "Service",
++          "name": "Публикация рекламы в WhatsApp-группе с закреплением на 24 часа"
++        }
+       }
+     ]
+   }
+@@ -126,6 +135,7 @@
+ </script>
+ <script type="application/ld+json" id="category-admin-schema">{"@context": "https://schema.org", "@type": "Service", "name": "Админство категории внутри группы", "description": "Админство категории на месяц. Один статус группы в день бесплатно для админа категории. Группа и доступность категории согласуются с администратором.", "url": "https://obyavleniya-dagestan.ru/reklama.html#category-admin", "offers": {"@type": "Offer", "price": "850", "priceCurrency": "RUB", "priceSpecification": {"@type": "UnitPriceSpecification", "price": "850", "priceCurrency": "RUB", "unitText": "месяц"}}}</script>
+ <link rel="stylesheet" href="community-offers.css">
++<link rel="stylesheet" href="platform-prices.css">
+ </head>
+ <body>
+ 
+@@ -167,12 +177,7 @@
+   <section class="promo-section" id="prices">
+     <div class="wrap">
+       <div class="section-head"><div class="eyebrow">Услуги и цены</div><h2>Выберите формат рекламы</h2></div>
+-      <div class="audience-grid ad-services"><article class="why-card"><h3>WhatsApp-статус администратора</h3><p class="ad-price">450 ₽</p><p>Размещение вашего объявления в WhatsApp-статусе администратора на 24 часа.</p><a class="btn btn-wa ad-tariff-order" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%3A%20WhatsApp-%D1%81%D1%82%D0%B0%D1%82%D1%83%D1%81%20%E2%80%94%20450%20%E2%82%BD." target="_blank" rel="noopener" data-goal="ad_contact_whatsapp">Заказать в WhatsApp</a></article>
+-<article class="why-card"><h3>Статус в WhatsApp-группе</h3><p class="ad-price">500 ₽</p><p>Размещение рекламного статуса в одной WhatsApp-группе на 24 часа. Группу согласуйте с администратором.</p><a class="btn btn-wa ad-tariff-order" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D1%81%D1%82%D0%B0%D1%82%D1%83%D1%81%20%D0%B2%20%D0%BE%D0%B4%D0%BD%D0%BE%D0%B9%20WhatsApp-%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B5%20%D0%BD%D0%B0%2024%20%D1%87%D0%B0%D1%81%D0%B0%20%E2%80%94%20500%20%E2%82%BD." target="_blank" rel="noopener" data-goal="ad_contact_whatsapp">Заказать статус в группе</a></article>
+-<article class="why-card"><h3>Рассылка по WhatsApp-группам</h3><p class="ad-price">850 ₽</p><p>Публикация рекламного объявления в WhatsApp-группах.</p><a class="btn btn-wa ad-tariff-order" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%3A%20%D0%A0%D0%B0%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B0%20%D0%BF%D0%BE%20WhatsApp-%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B0%D0%BC%20%E2%80%94%20850%20%E2%82%BD." target="_blank" rel="noopener" data-goal="ad_contact_whatsapp">Заказать в WhatsApp</a></article>
+-<article class="why-card"><h3>Рассылка по 1 000 контактам</h3><p class="ad-price">1 000 ₽</p><p>Отправка объявления по 1 000 контактам в WhatsApp.</p><a class="btn btn-wa ad-tariff-order" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%3A%20%D0%A0%D0%B0%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B0%20%D0%BF%D0%BE%201%20000%20%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B0%D0%BC%20%E2%80%94%201%20000%20%E2%82%BD." target="_blank" rel="noopener" data-goal="ad_contact_whatsapp">Заказать в WhatsApp</a></article>
+-<article class="why-card"><h3>1 000 контактов + просьба поставить в статус</h3><p class="ad-price">1 500 ₽</p><p>Рассылка в WhatsApp по 1 000 контактам — 1 000 ₽. Просьба поставить объявление в статус — дополнительно 500 ₽; итого 1 500 ₽. Размещение получателями в статусе не гарантируется.</p><a class="btn btn-wa ad-tariff-order" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%3A%20%D0%A0%D0%B0%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B0%20%D0%BF%D0%BE%201%20000%20%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B0%D0%BC%20%2B%20%D0%BF%D1%80%D0%BE%D1%81%D1%8C%D0%B1%D0%B0%20%D0%BF%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D1%82%D1%8C%20%D0%BE%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20%D1%81%D1%82%D0%B0%D1%82%D1%83%D1%81%20%E2%80%94%201%20500%20%E2%82%BD." target="_blank" rel="noopener" data-goal="ad_contact_whatsapp">Заказать в WhatsApp</a></article>
+-<article class="why-card"><h3>Пост + закреп на 24 часа</h3><p class="ad-price">500 ₽</p><p>Публикация рекламы в группах Telegram и WhatsApp с закреплением на 24 часа. Площадку и группу согласуйте при заказе.</p><a class="btn btn-tg ad-tariff-order" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D0%BF%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8E%20%D1%80%D0%B5%D0%BA%D0%BB%D0%B0%D0%BC%D1%8B%20%D1%81%20%D0%B7%D0%B0%D0%BA%D1%80%D0%B5%D0%BF%D0%BE%D0%BC%20%D0%BD%D0%B0%2024%20%D1%87%D0%B0%D1%81%D0%B0%20%D0%B2%20Telegram%20%D0%B8%D0%BB%D0%B8%20WhatsApp%20%E2%80%94%20500%20%E2%82%BD." target="_blank" rel="noopener" data-goal="ad_contact_whatsapp">Выбрать площадку и заказать</a></article><article class="why-card"><h3>Пост с закрепом + статус группы</h3><p class="ad-price">850 ₽</p><p>Рекламный пост с закреплением и статус в одной WhatsApp-группе. Оба размещения — на 24 часа.</p><a class="btn btn-wa ad-tariff-order" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%3A%20%D1%80%D0%B5%D0%BA%D0%BB%D0%B0%D0%BC%D0%BD%D1%8B%D0%B9%20%D0%BF%D0%BE%D1%81%D1%82%20%D1%81%20%D0%B7%D0%B0%D0%BA%D1%80%D0%B5%D0%BF%D0%BE%D0%BC%20%2B%20%D1%81%D1%82%D0%B0%D1%82%D1%83%D1%81%20%D0%B2%20%D0%BE%D0%B4%D0%BD%D0%BE%D0%B9%20WhatsApp-%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B5%20%D0%BD%D0%B0%2024%20%D1%87%D0%B0%D1%81%D0%B0%20%E2%80%94%20850%20%E2%82%BD." target="_blank" rel="noopener" data-goal="ad_contact_whatsapp">Заказать пакет</a></article></div>
++      <section class="platform-price-block platform-telegram" id="telegram-prices"><div class="platform-price-heading"><span class="platform-price-icon" aria-hidden="true"><svg><use href="assets/icons/sprite.svg#i-telegram"></use></svg></span><h2>Реклама в Telegram</h2></div><div class="audience-grid ad-services"><article class="why-card"><h3>Пост в Telegram + закреп</h3><p class="ad-price">500 ₽</p><p>Публикация рекламного поста в Telegram-группе с закреплением на 24 часа.</p><a class="btn btn-tg ad-tariff-order" href="https://t.me/ModexaGuardBot?start=ad_1" target="_blank" rel="noopener" data-goal="ad_order">Заказать в Telegram-боте</a></article></div></section><section class="platform-price-block platform-whatsapp" id="whatsapp-prices"><div class="platform-price-heading"><span class="platform-price-icon" aria-hidden="true"><svg><use href="assets/icons/sprite.svg#i-whatsapp"></use></svg></span><h2>Реклама в WhatsApp</h2></div><div class="audience-grid ad-services"><article class="why-card"><h3>WhatsApp-статус администратора</h3><p class="ad-price">450 ₽</p><p>Размещение вашего объявления в WhatsApp-статусе администратора на 24 часа.</p><a class="btn btn-wa ad-tariff-order" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%3A%20WhatsApp-%D1%81%D1%82%D0%B0%D1%82%D1%83%D1%81%20%E2%80%94%20450%20%E2%82%BD." target="_blank" rel="noopener" data-goal="ad_contact_whatsapp">Заказать в WhatsApp</a></article><article class="why-card"><h3>Статус в WhatsApp-группе</h3><p class="ad-price">500 ₽</p><p>Размещение рекламного статуса в одной WhatsApp-группе на 24 часа. Группу согласуйте с администратором.</p><a class="btn btn-wa ad-tariff-order" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D1%81%D1%82%D0%B0%D1%82%D1%83%D1%81%20%D0%B2%20%D0%BE%D0%B4%D0%BD%D0%BE%D0%B9%20WhatsApp-%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B5%20%D0%BD%D0%B0%2024%20%D1%87%D0%B0%D1%81%D0%B0%20%E2%80%94%20500%20%E2%82%BD." target="_blank" rel="noopener" data-goal="ad_contact_whatsapp">Заказать статус в группе</a></article><article class="why-card"><h3>Пост в WhatsApp + закреп</h3><p class="ad-price">500 ₽</p><p>Публикация рекламного поста в WhatsApp-группе с закреплением на 24 часа. Группу согласуйте с администратором.</p><a class="btn btn-wa ad-tariff-order" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D1%80%D0%B5%D0%BA%D0%BB%D0%B0%D0%BC%D0%BD%D1%8B%D0%B9%20%D0%BF%D0%BE%D1%81%D1%82%20%D0%B2%20WhatsApp-%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B5%20%D1%81%20%D0%B7%D0%B0%D0%BA%D1%80%D0%B5%D0%BF%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%D0%BC%20%D0%BD%D0%B0%2024%20%D1%87%D0%B0%D1%81%D0%B0%20%E2%80%94%20500%20%E2%82%BD." target="_blank" rel="noopener" data-goal="ad_contact_whatsapp">Заказать в WhatsApp</a></article><article class="why-card"><h3>Рассылка по WhatsApp-группам</h3><p class="ad-price">850 ₽</p><p>Публикация рекламного объявления в WhatsApp-группах.</p><a class="btn btn-wa ad-tariff-order" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%3A%20%D0%A0%D0%B0%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B0%20%D0%BF%D0%BE%20WhatsApp-%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B0%D0%BC%20%E2%80%94%20850%20%E2%82%BD." target="_blank" rel="noopener" data-goal="ad_contact_whatsapp">Заказать в WhatsApp</a></article><article class="why-card"><h3>Рассылка по 1 000 контактам</h3><p class="ad-price">1 000 ₽</p><p>Отправка объявления по 1 000 контактам в WhatsApp.</p><a class="btn btn-wa ad-tariff-order" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%3A%20%D0%A0%D0%B0%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B0%20%D0%BF%D0%BE%201%20000%20%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B0%D0%BC%20%E2%80%94%201%20000%20%E2%82%BD." target="_blank" rel="noopener" data-goal="ad_contact_whatsapp">Заказать в WhatsApp</a></article><article class="why-card"><h3>1 000 контактов + просьба поставить в статус</h3><p class="ad-price">1 500 ₽</p><p>Рассылка в WhatsApp по 1 000 контактам — 1 000 ₽. Просьба поставить объявление в статус — дополнительно 500 ₽; итого 1 500 ₽. Размещение получателями в статусе не гарантируется.</p><a class="btn btn-wa ad-tariff-order" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%3A%20%D0%A0%D0%B0%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B0%20%D0%BF%D0%BE%201%20000%20%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B0%D0%BC%20%2B%20%D0%BF%D1%80%D0%BE%D1%81%D1%8C%D0%B1%D0%B0%20%D0%BF%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D1%82%D1%8C%20%D0%BE%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20%D1%81%D1%82%D0%B0%D1%82%D1%83%D1%81%20%E2%80%94%201%20500%20%E2%82%BD." target="_blank" rel="noopener" data-goal="ad_contact_whatsapp">Заказать в WhatsApp</a></article><article class="why-card"><h3>Пост с закрепом + статус группы</h3><p class="ad-price">850 ₽</p><p>Рекламный пост с закреплением и статус в одной WhatsApp-группе. Оба размещения — на 24 часа.</p><a class="btn btn-wa ad-tariff-order" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%3A%20%D1%80%D0%B5%D0%BA%D0%BB%D0%B0%D0%BC%D0%BD%D1%8B%D0%B9%20%D0%BF%D0%BE%D1%81%D1%82%20%D1%81%20%D0%B7%D0%B0%D0%BA%D1%80%D0%B5%D0%BF%D0%BE%D0%BC%20%2B%20%D1%81%D1%82%D0%B0%D1%82%D1%83%D1%81%20%D0%B2%20%D0%BE%D0%B4%D0%BD%D0%BE%D0%B9%20WhatsApp-%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B5%20%D0%BD%D0%B0%2024%20%D1%87%D0%B0%D1%81%D0%B0%20%E2%80%94%20850%20%E2%82%BD." target="_blank" rel="noopener" data-goal="ad_contact_whatsapp">Заказать пакет</a></article></div></section>
+       <p class="ad-other-platforms">Нужна реклама в других соцсетях? Напишите администратору — обсудим площадку, формат и стоимость.</p>
+       <p class="ad-note">Статус администратора, статус в одной WhatsApp-группе и закрепление рекламного поста в группах Telegram и WhatsApp — на 24 часа. Рассылка выполняется после оплаты и утверждения рекламы. Перед оплатой согласуйте текст, дату и условия размещения. После согласования заказа и оплаты отмена по инициативе заказчика не предусмотрена. Для рассылок используйте только контакты получателей, согласившихся получать рекламу.</p>
+     </div>
+@@ -188,8 +193,8 @@
+         </article>
+         <article class="why-card"><h3>2. Через администратора — любой формат</h3>
+           <p>Напишите в Telegram или WhatsApp. Укажите нужную услугу, пришлите объявление и желаемую дату. Администратор согласует условия и сообщит реквизиты для оплаты. Рассылка выполняется после оплаты и утверждения рекламы.</p>
+-          <div class="ad-contact-buttons"><a class="btn btn-tg" href="https://t.me/Abdylzhelil05" data-contact="telegram" data-goal="ad_contact_telegram">Написать в Telegram</a>
+-          <a class="btn btn-wa" href="https://wa.me/79637968587" data-contact="whatsapp" data-goal="ad_contact_whatsapp">Написать в WhatsApp</a></div>
++          <div class="ad-contact-buttons"><a class="btn btn-tg" href="https://t.me/Abdylzhelil05" data-contact="telegram" data-goal="ad_contact_telegram">Администратор в Telegram</a>
++          <a class="btn btn-wa" href="https://wa.me/79637968587" data-contact="whatsapp" data-goal="ad_contact_whatsapp">Администратор в WhatsApp</a></div>
+         </article>
+       </div>
+     </div>
