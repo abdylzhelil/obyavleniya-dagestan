@@ -1,0 +1,695 @@
+diff --git a/avto-dagestan.html b/avto-dagestan.html
+index 6f50d43..1420828 100644
+--- a/avto-dagestan.html
++++ b/avto-dagestan.html
+@@ -81,7 +81,7 @@
+      "name": "Можно ли давать ссылки на сайты и каналы?",
+      "acceptedAnswer": {
+       "@type": "Answer",
+-      "text": "Нет, ссылки и пересылки запрещены. Реклама каналов, сайтов и сторонних площадок — только на платной основе."
++      "text": "Пересылки и сторонние ссылки запрещены. Исключение — ссылки на конкретные товары или объявления на Авито. Реклама каналов, сайтов и сторонних площадок — только на платной основе."
+      }
+     },
+     {
+@@ -97,6 +97,7 @@
+  ]
+ }
+ </script>
++<link rel="stylesheet" href="community-offers.css">
+ </head>
+ <body>
+ 
+@@ -135,6 +136,7 @@
+     </div>
+   </section>
+ 
++<section class="promo-section"><div class="wrap"><section class="community-admin" id="category-admin"><div class="community-admin-heading"><div><p class="community-eyebrow">Админство внутри группы</p><h2>Стать админом категории «Автомобили»</h2></div><p class="community-admin-price">850 ₽<span>/ месяц</span></p></div><p>Получите свою категорию в группе и занимайтесь её развитием.</p><ul><li>Закрепление категории за вами на месяц.</li><li>Публикация своих объявлений в своей категории в течение месяца.</li><li>Один статус группы в день — бесплатно для админа категории.</li></ul><p class="community-admin-note">Группу, доступность категории и условия согласуйте с главным администратором перед оплатой.</p><div class="community-admin-actions"><a class="btn btn-wa" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%81%D1%82%D0%B0%D1%82%D1%8C%20%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD%D0%BE%D0%BC%20%D0%BA%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D0%B8%20%C2%AB%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%BE%D0%B1%D0%B8%D0%BB%D0%B8%C2%BB%20%D0%B7%D0%B0%20850%20%E2%82%BD%20%D0%B2%20%D0%BC%D0%B5%D1%81%D1%8F%D1%86.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%20%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D0%BD%D0%BE%D1%81%D1%82%D1%8C%20%D0%BA%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D0%B8%20%D0%B8%20%D1%83%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F." target="_blank" rel="noopener" data-goal="ad_contact_whatsapp">Обсудить эту категорию</a><a class="community-admin-details" href="reklama.html#category-admin">Полные условия админства</a></div></section></div></section>
+   <section class="promo-section">
+     <div class="wrap">
+       <div class="audience-grid" style="grid-template-columns:repeat(2,1fr)">
+@@ -148,7 +150,7 @@
+           <li><span>Укажите марку, модель, год, пробег и цену</span></li>
+           <li><span>Добавьте реальные фото с нескольких сторон</span></li>
+           <li><span>Напишите город или район и контакт для связи</span></li>
+-          <li><span>Не публикуйте ссылки — они запрещены правилами группы</span></li>
++          <li><span>Из ссылок разрешены только ссылки на конкретные товары или объявления на Авито</span></li>
+         </ul></div>
+       </div>
+     </div>
+@@ -159,7 +161,7 @@
+       <div class="section-head"><div class="eyebrow">Правила</div><h2>Как работают группы</h2></div>
+       <div class="rules-card"><ol class="rules-list">
+         <li><span>Группа открывается в 08:00 и закрывается в 22:00.</span></li>
+-        <li><span>Ссылки, пересылки, харам и сообщения не по теме — запрещены.</span></li>
++        <li><span>Пересылки, харам и сообщения не по теме запрещены. Сторонние ссылки запрещены, кроме ссылок на конкретные товары или объявления на Авито.</span></li>
+         <li><span>Обычные объявления участников — бесплатно в часы работы группы.</span></li>
+         <li><span>Реклама каналов, групп, соцсетей, сайтов и сторонних площадок — только на платной основе.</span></li>
+       </ol></div>
+@@ -171,7 +173,7 @@
+       <div class="section-head"><div class="eyebrow">Вопросы</div><h2>Частые вопросы</h2></div>
+       <div class="faq bot-faq">
+         <details><summary>Можно ли разместить объявление о продаже авто бесплатно?</summary><p>Да, обычные объявления участников публикуются бесплатно в часы работы группы — с 08:00 до 22:00.</p></details>
+-        <details><summary>Можно ли давать ссылки на сайты и каналы?</summary><p>Нет, ссылки и пересылки запрещены. Реклама каналов, сайтов и сторонних площадок — только на платной основе.</p></details>
++        <details><summary>Можно ли давать ссылки на сайты и каналы?</summary><p>Пересылки и сторонние ссылки запрещены. Исключение — ссылки на конкретные товары или объявления на Авито. Реклама каналов, сайтов и сторонних площадок — только на платной основе.</p></details>
+         <details><summary>Как заказать рекламу автосалона или автосервиса?</summary><p>Напишите администратору в Telegram @Abdylzhelil05 или в WhatsApp +7 963 796-85-87.</p></details>
+       </div>
+     </div>
+diff --git a/community-offers.css b/community-offers.css
+new file mode 100644
+index 0000000..5ecb191
+--- /dev/null
++++ b/community-offers.css
+@@ -0,0 +1,23 @@
++/* Category administration is a monthly group service, separate from advertising. */
++.community-admin{margin:28px 0 0;padding:30px;background:#0d251d;border:1px solid #80ae963f;border-radius:12px;color:#edf5ef;overflow-wrap:anywhere;}
++.community-admin-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;margin-bottom:20px;}
++.community-admin-heading>div,.community-admin-heading>h2{min-width:0;}
++.community-admin h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(27px,3vw,38px);font-weight:600;line-height:1.2;letter-spacing:-.025em;margin:0;max-width:700px;}
++.community-admin .community-eyebrow{font:600 11px/1.5 Manrope,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#a0cdb5;margin:0 0 10px;}
++.community-admin p{font-size:15px;line-height:1.7;max-width:800px;margin:0 0 18px;color:#c4d9cb;}
++.community-admin .community-admin-price{font-size:30px;font-weight:800;line-height:1.3;color:#f4faf5;white-space:nowrap;margin:0;flex-shrink:0;}
++.community-admin-price span{display:block;font-size:14px;font-weight:500;color:#acc8b8;}
++.community-admin ul{list-style:disc;margin:18px 0;padding-left:22px;display:grid;gap:9px;max-width:800px;}
++.community-admin li{font-size:14px;line-height:1.6;color:#d2e2d7;}
++.community-admin li::marker{color:#7ad8aa;}
++.community-admin .community-admin-note{font-size:13px;color:#abc5b5;}
++.community-admin-actions{display:flex;align-items:center;flex-wrap:wrap;gap:20px;}
++.community-admin .btn-wa{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:13px 20px;border-radius:8px;border:1px solid #8eddbb66;background:#006f48;color:#fff;box-shadow:none;font-size:14px;font-weight:700;text-align:center;white-space:normal;}
++.community-admin .btn-wa:hover{filter:brightness(1.1);}
++.community-admin .community-admin-details{font-size:13px;color:#b1dec6;text-decoration:underline;text-underline-offset:4px;}
++.community-admin a:focus-visible{outline:3px solid #b4f0ce;outline-offset:4px;}
++.community-admin-brief{margin-top:26px;}
++@media(max-width:600px){.community-admin{padding:24px 20px;}.community-admin-heading{flex-direction:column;gap:16px;}.community-admin h2{font-size:29px;}.community-admin .community-admin-price{font-size:28px;}.community-admin-price span{display:inline;margin-left:6px;}.community-admin-actions{align-items:stretch;flex-direction:column;gap:16px;}.community-admin .btn-wa{width:100%;}.community-admin .community-admin-details{text-align:center;}}
++.rd-home .community-admin,.rd-group .community-admin{padding:30px;}
++@media(max-width:600px){.rd-home .community-admin,.rd-group .community-admin{padding:24px 20px;}}
++.community-admin .btn::before,.community-admin .btn::after{display:none;}
+diff --git a/group.html b/group.html
+index c4fe8c5..a8594fa 100644
+--- a/group.html
++++ b/group.html
+@@ -45,6 +45,7 @@
+ <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
+ <link rel="stylesheet" href="style.css">
+ <link rel="stylesheet" href="redesign.css">
++<link rel="stylesheet" href="community-offers.css">
+ </head>
+ <body class="rd-group">
+ 
+diff --git a/index.html b/index.html
+index cdeecd3..fdbc540 100644
+--- a/index.html
++++ b/index.html
+@@ -89,7 +89,7 @@
+           "name": "Что запрещено публиковать?",
+           "acceptedAnswer": {
+             "@type": "Answer",
+-            "text": "Ссылки, пересылки чужих сообщений, харам и сообщения не по теме группы."
++            "text": "Пересылки чужих сообщений, харам и сообщения не по теме запрещены. Из ссылок разрешены только ссылки на конкретные товары или объявления на Авито."
+           }
+         },
+         {
+@@ -99,6 +99,22 @@
+             "@type": "Answer",
+             "text": "Напишите администратору в Telegram @Abdylzhelil05 или в WhatsApp +7 963 796-85-87."
+           }
++        },
++        {
++          "@type": "Question",
++          "name": "Что входит в пакет рекламы за 850 ₽?",
++          "acceptedAnswer": {
++            "@type": "Answer",
++            "text": "Рекламный пост с закреплением и статус в одной WhatsApp-группе на 24 часа."
++          }
++        },
++        {
++          "@type": "Question",
++          "name": "Как стать админом категории?",
++          "acceptedAnswer": {
++            "@type": "Answer",
++            "text": "Админство категории стоит 850 ₽ в месяц. Включены своя категория, публикация своих объявлений, контроль порядка и один бесплатный статус группы в день. Напишите главному администратору название категории; доступность и группу согласуйте перед оплатой."
++          }
+         }
+       ]
+     }
+@@ -128,6 +144,7 @@
+ <link rel="stylesheet" href="redesign.css">
+ <link rel="preload" href="assets/brand/hero.webp" as="image">
+ <link rel="stylesheet" href="demo-motion.css">
++<link rel="stylesheet" href="community-offers.css">
+ </head>
+ <body class="rd-home">
+ 
+@@ -198,13 +215,14 @@
+   <div class="wrap">
+     <div class="ad-teaser reveal">
+       <h2>Хотите разместить рекламу?</h2>
+-      <dl class="rd-ad-prices"><div><dt>WhatsApp-статус администратора<span>На 24 часа</span></dt><dd>450 ₽</dd></div><div><dt>Статус в WhatsApp-группе<span>В одной группе, на 24 часа</span></dt><dd>500 ₽</dd></div><div><dt>Рекламный пост + закреп<span>В группах Telegram и WhatsApp, на 24 часа</span></dt><dd>500 ₽</dd></div><div><dt>Рассылка по WhatsApp-группам<span>Только WhatsApp</span></dt><dd>850 ₽</dd></div><div><dt>Рассылка по 1 000 контактам<span>В WhatsApp</span></dt><dd>1 000 ₽</dd></div></dl><p class="rd-ad-extra"><strong>+500 ₽</strong> к рассылке по 1 000 контактам — если добавить просьбу поставить объявление в WhatsApp-статус. Итого: <strong>1 500 ₽</strong>.</p><p class="rd-ad-other">Реклама в других соцсетях — уточните условия у администратора.</p>
++      <dl class="rd-ad-prices"><div><dt>WhatsApp-статус администратора<span>На 24 часа</span></dt><dd>450 ₽</dd></div><div><dt>Статус в WhatsApp-группе<span>В одной группе, на 24 часа</span></dt><dd>500 ₽</dd></div><div><dt>Рекламный пост + закреп<span>В группах Telegram и WhatsApp, на 24 часа</span></dt><dd>500 ₽</dd></div><div><dt>Пакет: пост с закрепом + статус группы<span>В одной WhatsApp-группе, оба размещения на 24 часа</span></dt><dd>850 ₽</dd></div><div><dt>Рассылка по WhatsApp-группам<span>Только WhatsApp</span></dt><dd>850 ₽</dd></div><div><dt>Рассылка по 1 000 контактам<span>В WhatsApp</span></dt><dd>1 000 ₽</dd></div></dl><p class="rd-ad-extra"><strong>+500 ₽</strong> к рассылке по 1 000 контактам — если добавить просьбу поставить объявление в WhatsApp-статус. Итого: <strong>1 500 ₽</strong>.</p><p class="rd-ad-other">Реклама в других соцсетях — уточните условия у администратора.</p>
+       <div class="hero-ctas">
+         <a class="btn btn-ghost" href="reklama.html" data-goal="ad_prices">Цены и условия</a>
+         <a class="btn btn-tg" href="#contact" data-contact="telegram" data-goal="ad_contact_telegram"><span class="btn-ic"><svg aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-telegram"></use></svg></span>Написать в Telegram</a>
+         <a class="btn btn-wa" href="#contact" data-contact="whatsapp" data-goal="ad_contact_whatsapp"><span class="btn-ic"><svg aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-whatsapp"></use></svg></span>Написать в WhatsApp</a>
+       </div>
+     </div>
++<section class="community-admin community-admin-brief" id="category-admin"><div class="community-admin-heading"><div><p class="community-eyebrow">Развивайте свою категорию</p><h2>Админ категории в группе</h2></div><p class="community-admin-price">850 ₽<span>/ месяц</span></p></div><p>Своя категория, публикация своих объявлений и контроль порядка. Один статус группы в день — бесплатно для админа категории.</p><a class="btn btn-wa" href="reklama.html#category-admin">Условия админства</a></section>
+   </div>
+ </section>
+ 
+@@ -282,10 +300,10 @@
+       <details><summary>Как разместить объявление в группе «Объявления Дагестана»?</summary><p>Вступите в группу в WhatsApp или Telegram, прочитайте закреплённое сообщение с правилами и опубликуйте объявление прямо в группе.</p></details>
+       <details><summary>Это бесплатно?</summary><p>Обычные объявления участников — бесплатно в часы работы группы. Реклама каналов, групп, соцсетей, сайтов и сторонних площадок — только на платной основе.</p></details>
+       <details><summary>Когда работает группа?</summary><p>Группа открывается в 08:00 и закрывается в 22:00.</p></details>
+-      <details><summary>Что запрещено публиковать?</summary><p>Ссылки, пересылки чужих сообщений, харам и сообщения не по теме группы.</p></details>
++      <details><summary>Что запрещено публиковать?</summary><p>Пересылки чужих сообщений, харам и сообщения не по теме запрещены. Из ссылок разрешены только ссылки на конкретные товары или объявления на Авито.</p></details>
+       <details><summary>В какую группу WhatsApp вступить?</summary><p data-faq="wa-group"></p></details>
+       <details><summary>Как заказать рекламу?</summary><p>Напишите администратору в Telegram @Abdylzhelil05 или в WhatsApp +7 963 796-85-87.</p></details>
+-    </div>
++<details><summary>Что входит в пакет рекламы за 850 ₽?</summary><p>Рекламный пост с закреплением и статус в одной WhatsApp-группе на 24 часа.</p></details><details><summary>Как стать админом категории?</summary><p>Админство категории стоит 850 ₽ в месяц. Включены своя категория, публикация своих объявлений, контроль порядка и один бесплатный статус группы в день. Напишите главному администратору название категории; доступность и группу согласуйте перед оплатой.</p></details>    </div>
+   </div>
+ </section>
+ </main>
+diff --git a/nedvizhimost-dagestan.html b/nedvizhimost-dagestan.html
+index 3d883be..772336d 100644
+--- a/nedvizhimost-dagestan.html
++++ b/nedvizhimost-dagestan.html
+@@ -97,6 +97,7 @@
+  ]
+ }
+ </script>
++<link rel="stylesheet" href="community-offers.css">
+ </head>
+ <body>
+ 
+@@ -135,6 +136,7 @@
+     </div>
+   </section>
+ 
++<section class="promo-section"><div class="wrap"><section class="community-admin" id="category-admin"><div class="community-admin-heading"><div><p class="community-eyebrow">Админство внутри группы</p><h2>Стать админом категории «Недвижимость»</h2></div><p class="community-admin-price">850 ₽<span>/ месяц</span></p></div><p>Получите свою категорию в группе и занимайтесь её развитием.</p><ul><li>Закрепление категории за вами на месяц.</li><li>Публикация своих объявлений в своей категории в течение месяца.</li><li>Один статус группы в день — бесплатно для админа категории.</li></ul><p class="community-admin-note">Группу, доступность категории и условия согласуйте с главным администратором перед оплатой.</p><div class="community-admin-actions"><a class="btn btn-wa" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%81%D1%82%D0%B0%D1%82%D1%8C%20%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD%D0%BE%D0%BC%20%D0%BA%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D0%B8%20%C2%AB%D0%9D%D0%B5%D0%B4%D0%B2%D0%B8%D0%B6%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D1%8C%C2%BB%20%D0%B7%D0%B0%20850%20%E2%82%BD%20%D0%B2%20%D0%BC%D0%B5%D1%81%D1%8F%D1%86.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%20%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D0%BD%D0%BE%D1%81%D1%82%D1%8C%20%D0%BA%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D0%B8%20%D0%B8%20%D1%83%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F." target="_blank" rel="noopener" data-goal="ad_contact_whatsapp">Обсудить эту категорию</a><a class="community-admin-details" href="reklama.html#category-admin">Полные условия админства</a></div></section></div></section>
+   <section class="promo-section">
+     <div class="wrap">
+       <div class="audience-grid" style="grid-template-columns:repeat(2,1fr)">
+@@ -148,7 +150,7 @@
+           <li><span>Укажите город, район, площадь и этаж</span></li>
+           <li><span>Добавьте фото и точную цену</span></li>
+           <li><span>Отметьте, продаёт собственник или агентство</span></li>
+-          <li><span>Оставьте контакт для связи — без ссылок на сайты</span></li>
++          <li><span>Оставьте контакт для связи. Ссылки разрешены только на конкретные товары или объявления на Авито</span></li>
+         </ul></div>
+       </div>
+     </div>
+@@ -159,7 +161,7 @@
+       <div class="section-head"><div class="eyebrow">Правила</div><h2>Как работают группы</h2></div>
+       <div class="rules-card"><ol class="rules-list">
+         <li><span>Группа открывается в 08:00 и закрывается в 22:00.</span></li>
+-        <li><span>Ссылки, пересылки, харам и сообщения не по теме — запрещены.</span></li>
++        <li><span>Пересылки, харам и сообщения не по теме запрещены. Сторонние ссылки запрещены, кроме ссылок на конкретные товары или объявления на Авито.</span></li>
+         <li><span>Обычные объявления участников — бесплатно в часы работы группы.</span></li>
+         <li><span>Реклама каналов, групп, соцсетей, сайтов и сторонних площадок — только на платной основе.</span></li>
+       </ol></div>
+diff --git a/odezhda-dagestan.html b/odezhda-dagestan.html
+index a4f314c..6cc1aad 100644
+--- a/odezhda-dagestan.html
++++ b/odezhda-dagestan.html
+@@ -97,6 +97,7 @@
+  ]
+ }
+ </script>
++<link rel="stylesheet" href="community-offers.css">
+ </head>
+ <body>
+ 
+@@ -135,6 +136,7 @@
+     </div>
+   </section>
+ 
++<section class="promo-section"><div class="wrap"><section class="community-admin" id="category-admin"><div class="community-admin-heading"><div><p class="community-eyebrow">Админство внутри группы</p><h2>Стать админом категории «Одежда»</h2></div><p class="community-admin-price">850 ₽<span>/ месяц</span></p></div><p>Получите свою категорию в группе и занимайтесь её развитием.</p><ul><li>Закрепление категории за вами на месяц.</li><li>Публикация своих объявлений в своей категории в течение месяца.</li><li>Один статус группы в день — бесплатно для админа категории.</li></ul><p class="community-admin-note">Группу, доступность категории и условия согласуйте с главным администратором перед оплатой.</p><div class="community-admin-actions"><a class="btn btn-wa" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%81%D1%82%D0%B0%D1%82%D1%8C%20%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD%D0%BE%D0%BC%20%D0%BA%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D0%B8%20%C2%AB%D0%9E%D0%B4%D0%B5%D0%B6%D0%B4%D0%B0%C2%BB%20%D0%B7%D0%B0%20850%20%E2%82%BD%20%D0%B2%20%D0%BC%D0%B5%D1%81%D1%8F%D1%86.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%20%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D0%BD%D0%BE%D1%81%D1%82%D1%8C%20%D0%BA%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D0%B8%20%D0%B8%20%D1%83%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F." target="_blank" rel="noopener" data-goal="ad_contact_whatsapp">Обсудить эту категорию</a><a class="community-admin-details" href="reklama.html#category-admin">Полные условия админства</a></div></section></div></section>
+   <section class="promo-section">
+     <div class="wrap">
+       <div class="audience-grid" style="grid-template-columns:repeat(2,1fr)">
+@@ -148,7 +150,7 @@
+           <li><span>Укажите размер, состояние и цену</span></li>
+           <li><span>Добавьте чёткие фото на нейтральном фоне</span></li>
+           <li><span>Напишите город и способ передачи</span></li>
+-          <li><span>Контакт — в тексте объявления, без ссылок</span></li>
++          <li><span>Контакт — в тексте объявления. Ссылки разрешены только на конкретные товары или объявления на Авито</span></li>
+         </ul></div>
+       </div>
+     </div>
+@@ -159,7 +161,7 @@
+       <div class="section-head"><div class="eyebrow">Правила</div><h2>Как работают группы</h2></div>
+       <div class="rules-card"><ol class="rules-list">
+         <li><span>Группа открывается в 08:00 и закрывается в 22:00.</span></li>
+-        <li><span>Ссылки, пересылки, харам и сообщения не по теме — запрещены.</span></li>
++        <li><span>Пересылки, харам и сообщения не по теме запрещены. Сторонние ссылки запрещены, кроме ссылок на конкретные товары или объявления на Авито.</span></li>
+         <li><span>Обычные объявления участников — бесплатно в часы работы группы.</span></li>
+         <li><span>Реклама каналов, групп, соцсетей, сайтов и сторонних площадок — только на платной основе.</span></li>
+       </ol></div>
+diff --git a/rabota-dagestan.html b/rabota-dagestan.html
+index 2eded22..2aad672 100644
+--- a/rabota-dagestan.html
++++ b/rabota-dagestan.html
+@@ -97,6 +97,7 @@
+  ]
+ }
+ </script>
++<link rel="stylesheet" href="community-offers.css">
+ </head>
+ <body>
+ 
+@@ -135,6 +136,7 @@
+     </div>
+   </section>
+ 
++<section class="promo-section"><div class="wrap"><section class="community-admin" id="category-admin"><div class="community-admin-heading"><div><p class="community-eyebrow">Админство внутри группы</p><h2>Стать админом категории «Работа»</h2></div><p class="community-admin-price">850 ₽<span>/ месяц</span></p></div><p>Получите свою категорию в группе и занимайтесь её развитием.</p><ul><li>Закрепление категории за вами на месяц.</li><li>Публикация своих объявлений в своей категории в течение месяца.</li><li>Один статус группы в день — бесплатно для админа категории.</li></ul><p class="community-admin-note">Группу, доступность категории и условия согласуйте с главным администратором перед оплатой.</p><div class="community-admin-actions"><a class="btn btn-wa" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%81%D1%82%D0%B0%D1%82%D1%8C%20%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD%D0%BE%D0%BC%20%D0%BA%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D0%B8%20%C2%AB%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%C2%BB%20%D0%B7%D0%B0%20850%20%E2%82%BD%20%D0%B2%20%D0%BC%D0%B5%D1%81%D1%8F%D1%86.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%20%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D0%BD%D0%BE%D1%81%D1%82%D1%8C%20%D0%BA%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D0%B8%20%D0%B8%20%D1%83%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F." target="_blank" rel="noopener" data-goal="ad_contact_whatsapp">Обсудить эту категорию</a><a class="community-admin-details" href="reklama.html#category-admin">Полные условия админства</a></div></section></div></section>
+   <section class="promo-section">
+     <div class="wrap">
+       <div class="audience-grid" style="grid-template-columns:repeat(2,1fr)">
+@@ -159,7 +161,7 @@
+       <div class="section-head"><div class="eyebrow">Правила</div><h2>Как работают группы</h2></div>
+       <div class="rules-card"><ol class="rules-list">
+         <li><span>Группа открывается в 08:00 и закрывается в 22:00.</span></li>
+-        <li><span>Ссылки, пересылки, харам и сообщения не по теме — запрещены.</span></li>
++        <li><span>Пересылки, харам и сообщения не по теме запрещены. Сторонние ссылки запрещены, кроме ссылок на конкретные товары или объявления на Авито.</span></li>
+         <li><span>Обычные объявления участников — бесплатно в часы работы группы.</span></li>
+         <li><span>Реклама каналов, групп, соцсетей, сайтов и сторонних площадок — только на платной основе.</span></li>
+       </ol></div>
+diff --git a/raznoe-dagestan.html b/raznoe-dagestan.html
+index bad518d..7713b07 100644
+--- a/raznoe-dagestan.html
++++ b/raznoe-dagestan.html
+@@ -89,7 +89,7 @@
+      "name": "Что запрещено публиковать?",
+      "acceptedAnswer": {
+       "@type": "Answer",
+-      "text": "Ссылки, пересылки чужих сообщений, харам и сообщения не по теме группы. Платная реклама — по договорённости с администратором @Abdylzhelil05."
++      "text": "Пересылки чужих сообщений, харам и сообщения не по теме запрещены. Из ссылок разрешены только ссылки на конкретные товары или объявления на Авито. Платная реклама — по договорённости с администратором @Abdylzhelil05."
+      }
+     }
+    ]
+@@ -97,6 +97,7 @@
+  ]
+ }
+ </script>
++<link rel="stylesheet" href="community-offers.css">
+ </head>
+ <body>
+ 
+@@ -135,6 +136,7 @@
+     </div>
+   </section>
+ 
++<section class="promo-section"><div class="wrap"><section class="community-admin" id="category-admin"><div class="community-admin-heading"><div><p class="community-eyebrow">Админство внутри группы</p><h2>Стать админом категории «Разное»</h2></div><p class="community-admin-price">850 ₽<span>/ месяц</span></p></div><p>Получите свою категорию в группе и занимайтесь её развитием.</p><ul><li>Закрепление категории за вами на месяц.</li><li>Публикация своих объявлений в своей категории в течение месяца.</li><li>Один статус группы в день — бесплатно для админа категории.</li></ul><p class="community-admin-note">Группу, доступность категории и условия согласуйте с главным администратором перед оплатой.</p><div class="community-admin-actions"><a class="btn btn-wa" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%81%D1%82%D0%B0%D1%82%D1%8C%20%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD%D0%BE%D0%BC%20%D0%BA%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D0%B8%20%C2%AB%D0%A0%D0%B0%D0%B7%D0%BD%D0%BE%D0%B5%C2%BB%20%D0%B7%D0%B0%20850%20%E2%82%BD%20%D0%B2%20%D0%BC%D0%B5%D1%81%D1%8F%D1%86.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%20%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D0%BD%D0%BE%D1%81%D1%82%D1%8C%20%D0%BA%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D0%B8%20%D0%B8%20%D1%83%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F." target="_blank" rel="noopener" data-goal="ad_contact_whatsapp">Обсудить эту категорию</a><a class="community-admin-details" href="reklama.html#category-admin">Полные условия админства</a></div></section></div></section>
+   <section class="promo-section">
+     <div class="wrap">
+       <div class="audience-grid" style="grid-template-columns:repeat(2,1fr)">
+@@ -160,7 +162,7 @@
+       <div class="section-head"><div class="eyebrow">Правила</div><h2>Как работают группы</h2></div>
+       <div class="rules-card"><ol class="rules-list">
+         <li><span>Группа открывается в 08:00 и закрывается в 22:00.</span></li>
+-        <li><span>Ссылки, пересылки, харам и сообщения не по теме — запрещены.</span></li>
++        <li><span>Пересылки, харам и сообщения не по теме запрещены. Сторонние ссылки запрещены, кроме ссылок на конкретные товары или объявления на Авито.</span></li>
+         <li><span>Обычные объявления участников — бесплатно в часы работы группы.</span></li>
+         <li><span>Реклама каналов, групп, соцсетей, сайтов и сторонних площадок — только на платной основе.</span></li>
+       </ol></div>
+@@ -173,7 +175,7 @@
+       <div class="faq bot-faq">
+         <details><summary>Что публиковать в категории «Разное»?</summary><p>Всё, что не подходит под другие категории: животных, вещи «отдам даром» и обмен, мероприятия, находки и потеряшки, предложения по хобби и увлечениям.</p></details>
+         <details><summary>Можно ли отдать вещь даром?</summary><p>Да, такие объявления публикуются как обычные объявления участников — бесплатно в часы работы группы, с 08:00 до 22:00.</p></details>
+-        <details><summary>Что запрещено публиковать?</summary><p>Ссылки, пересылки чужих сообщений, харам и сообщения не по теме группы. Платная реклама — по договорённости с администратором @Abdylzhelil05.</p></details>
++        <details><summary>Что запрещено публиковать?</summary><p>Пересылки чужих сообщений, харам и сообщения не по теме запрещены. Из ссылок разрешены только ссылки на конкретные товары или объявления на Авито. Платная реклама — по договорённости с администратором @Abdylzhelil05.</p></details>
+       </div>
+     </div>
+   </section>
+diff --git a/reklama.html b/reklama.html
+index 9eece9b..3be5304 100644
+--- a/reklama.html
++++ b/reklama.html
+@@ -110,11 +110,22 @@
+           "name": "Статус в одной WhatsApp-группе на 24 часа"
+         },
+         "description": "Размещение рекламного статуса в одной WhatsApp-группе на 24 часа. Группа согласуется с администратором."
++      },
++      {
++        "@type": "Offer",
++        "price": "850",
++        "priceCurrency": "RUB",
++        "itemOffered": {
++          "@type": "Service",
++          "name": "Рекламный пост с закреплением + статус в одной WhatsApp-группе на 24 часа"
++        }
+       }
+     ]
+   }
+ }
+ </script>
++<script type="application/ld+json" id="category-admin-schema">{"@context": "https://schema.org", "@type": "Service", "name": "Админство категории внутри группы", "description": "Админство категории на месяц. Один статус группы в день бесплатно для админа категории. Группа и доступность категории согласуются с администратором.", "url": "https://obyavleniya-dagestan.ru/reklama.html#category-admin", "offers": {"@type": "Offer", "price": "850", "priceCurrency": "RUB", "priceSpecification": {"@type": "UnitPriceSpecification", "price": "850", "priceCurrency": "RUB", "unitText": "месяц"}}}</script>
++<link rel="stylesheet" href="community-offers.css">
+ </head>
+ <body>
+ 
+@@ -161,11 +172,12 @@
+ <article class="why-card"><h3>Рассылка по WhatsApp-группам</h3><p class="ad-price">850 ₽</p><p>Публикация рекламного объявления в WhatsApp-группах.</p><a class="btn btn-wa ad-tariff-order" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%3A%20%D0%A0%D0%B0%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B0%20%D0%BF%D0%BE%20WhatsApp-%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B0%D0%BC%20%E2%80%94%20850%20%E2%82%BD." target="_blank" rel="noopener" data-goal="ad_contact_whatsapp">Заказать в WhatsApp</a></article>
+ <article class="why-card"><h3>Рассылка по 1 000 контактам</h3><p class="ad-price">1 000 ₽</p><p>Отправка объявления по 1 000 контактам в WhatsApp.</p><a class="btn btn-wa ad-tariff-order" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%3A%20%D0%A0%D0%B0%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B0%20%D0%BF%D0%BE%201%20000%20%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B0%D0%BC%20%E2%80%94%201%20000%20%E2%82%BD." target="_blank" rel="noopener" data-goal="ad_contact_whatsapp">Заказать в WhatsApp</a></article>
+ <article class="why-card"><h3>1 000 контактов + просьба поставить в статус</h3><p class="ad-price">1 500 ₽</p><p>Рассылка в WhatsApp по 1 000 контактам — 1 000 ₽. Просьба поставить объявление в статус — дополнительно 500 ₽; итого 1 500 ₽. Размещение получателями в статусе не гарантируется.</p><a class="btn btn-wa ad-tariff-order" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%3A%20%D0%A0%D0%B0%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B0%20%D0%BF%D0%BE%201%20000%20%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B0%D0%BC%20%2B%20%D0%BF%D1%80%D0%BE%D1%81%D1%8C%D0%B1%D0%B0%20%D0%BF%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D1%82%D1%8C%20%D0%BE%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20%D1%81%D1%82%D0%B0%D1%82%D1%83%D1%81%20%E2%80%94%201%20500%20%E2%82%BD." target="_blank" rel="noopener" data-goal="ad_contact_whatsapp">Заказать в WhatsApp</a></article>
+-<article class="why-card"><h3>Пост + закреп на 24 часа</h3><p class="ad-price">500 ₽</p><p>Публикация рекламы в группах Telegram и WhatsApp с закреплением на 24 часа. Площадку и группу согласуйте при заказе.</p><a class="btn btn-tg ad-tariff-order" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D0%BF%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8E%20%D1%80%D0%B5%D0%BA%D0%BB%D0%B0%D0%BC%D1%8B%20%D1%81%20%D0%B7%D0%B0%D0%BA%D1%80%D0%B5%D0%BF%D0%BE%D0%BC%20%D0%BD%D0%B0%2024%20%D1%87%D0%B0%D1%81%D0%B0%20%D0%B2%20Telegram%20%D0%B8%D0%BB%D0%B8%20WhatsApp%20%E2%80%94%20500%20%E2%82%BD." target="_blank" rel="noopener" data-goal="ad_contact_whatsapp">Выбрать площадку и заказать</a></article></div>
++<article class="why-card"><h3>Пост + закреп на 24 часа</h3><p class="ad-price">500 ₽</p><p>Публикация рекламы в группах Telegram и WhatsApp с закреплением на 24 часа. Площадку и группу согласуйте при заказе.</p><a class="btn btn-tg ad-tariff-order" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D0%BF%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8E%20%D1%80%D0%B5%D0%BA%D0%BB%D0%B0%D0%BC%D1%8B%20%D1%81%20%D0%B7%D0%B0%D0%BA%D1%80%D0%B5%D0%BF%D0%BE%D0%BC%20%D0%BD%D0%B0%2024%20%D1%87%D0%B0%D1%81%D0%B0%20%D0%B2%20Telegram%20%D0%B8%D0%BB%D0%B8%20WhatsApp%20%E2%80%94%20500%20%E2%82%BD." target="_blank" rel="noopener" data-goal="ad_contact_whatsapp">Выбрать площадку и заказать</a></article><article class="why-card"><h3>Пост с закрепом + статус группы</h3><p class="ad-price">850 ₽</p><p>Рекламный пост с закреплением и статус в одной WhatsApp-группе. Оба размещения — на 24 часа.</p><a class="btn btn-wa ad-tariff-order" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%3A%20%D1%80%D0%B5%D0%BA%D0%BB%D0%B0%D0%BC%D0%BD%D1%8B%D0%B9%20%D0%BF%D0%BE%D1%81%D1%82%20%D1%81%20%D0%B7%D0%B0%D0%BA%D1%80%D0%B5%D0%BF%D0%BE%D0%BC%20%2B%20%D1%81%D1%82%D0%B0%D1%82%D1%83%D1%81%20%D0%B2%20%D0%BE%D0%B4%D0%BD%D0%BE%D0%B9%20WhatsApp-%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B5%20%D0%BD%D0%B0%2024%20%D1%87%D0%B0%D1%81%D0%B0%20%E2%80%94%20850%20%E2%82%BD." target="_blank" rel="noopener" data-goal="ad_contact_whatsapp">Заказать пакет</a></article></div>
+       <p class="ad-other-platforms">Нужна реклама в других соцсетях? Напишите администратору — обсудим площадку, формат и стоимость.</p>
+       <p class="ad-note">Статус администратора, статус в одной WhatsApp-группе и закрепление рекламного поста в группах Telegram и WhatsApp — на 24 часа. Рассылка выполняется после оплаты и утверждения рекламы. Перед оплатой согласуйте текст, дату и условия размещения. После согласования заказа и оплаты отмена по инициативе заказчика не предусмотрена. Для рассылок используйте только контакты получателей, согласившихся получать рекламу.</p>
+     </div>
+   </section>
++<section class="promo-section"><div class="wrap"><section class="community-admin" id="category-admin"><div class="community-admin-heading"><div><p class="community-eyebrow">Админство внутри группы</p><h2>Стать админом категории</h2></div><p class="community-admin-price">850 ₽<span>/ месяц</span></p></div><p>Получите свою категорию в группе и занимайтесь её развитием.</p><ul><li>Админство своей категории.</li><li>Закрепление категории за вами на месяц.</li><li>Публикация своих объявлений в своей категории в течение месяца.</li><li>Удаление неактуальных и неподходящих объявлений.</li><li>Контроль порядка публикаций в своей категории.</li><li>Один статус группы в день — бесплатно для админа категории.</li><li>Дополнительное доверие участников группы.</li></ul><p class="community-admin-note">Группу, доступность категории и условия согласуйте с главным администратором перед оплатой.</p><div class="community-admin-actions"><a class="btn btn-wa" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%81%D1%82%D0%B0%D1%82%D1%8C%20%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD%D0%BE%D0%BC%20%D0%BA%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D0%B8%20%D0%B2%20%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B5%20%D0%B7%D0%B0%20850%20%E2%82%BD%20%D0%B2%20%D0%BC%D0%B5%D1%81%D1%8F%D1%86.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%20%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D0%BD%D0%BE%D1%81%D1%82%D1%8C%20%D0%BA%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D0%B8%20%D0%B8%20%D1%83%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F." target="_blank" rel="noopener" data-goal="ad_contact_whatsapp">Написать о категории</a></div></section></div></section>
+   <section class="promo-section" id="order">
+     <div class="wrap">
+       <div class="section-head"><div class="eyebrow">Как заказать</div><h2>Два способа заказа</h2></div>
+@@ -214,7 +226,7 @@
+     <div class="wrap">
+       <div class="section-head"><div class="eyebrow">Вопросы</div><h2>Частые вопросы</h2></div>
+       <div class="faq bot-faq">
+-        <details><summary>Сколько стоит реклама?</summary><p>WhatsApp-статус администратора — 450 ₽; статус в одной WhatsApp-группе на 24 часа — 500 ₽; рассылка по WhatsApp-группам — 850 ₽; по 1 000 контактам в WhatsApp — 1 000 ₽, с просьбой поставить объявление в статус — дополнительно 500 ₽ (итого 1 500 ₽); публикация с закрепом на 24 часа в группах Telegram и WhatsApp — 500 ₽.</p></details>
++        <details><summary>Сколько стоит реклама?</summary><p>Пакет «пост с закрепом + статус одной WhatsApp-группы на 24 часа» — 850 ₽; WhatsApp-статус администратора — 450 ₽; статус в одной WhatsApp-группе на 24 часа — 500 ₽; рассылка по WhatsApp-группам — 850 ₽; по 1 000 контактам в WhatsApp — 1 000 ₽, с просьбой поставить объявление в статус — дополнительно 500 ₽ (итого 1 500 ₽); публикация с закрепом на 24 часа в группах Telegram и WhatsApp — 500 ₽.</p></details>
+         <details><summary>Как оплатить?</summary><p>После согласования заявки бот или администратор сообщит реквизиты. Пришлите скриншот чека для проверки оплаты.</p></details>
+         <details><summary>Можно ли выбрать время публикации?</summary><p>Для Telegram время можно выбрать в боте. Дату и время размещения в WhatsApp и рассылок согласуйте с администратором.</p></details>
+         <details><summary>Можно ли отменить заказ?</summary><p>После согласования заказа и оплаты отмена по инициативе заказчика не предусмотрена. Если администратор откажет в публикации после оплаты, деньги будут возвращены.</p></details>
+diff --git a/script.js b/script.js
+index 4115e21..decf9f1 100644
+--- a/script.js
++++ b/script.js
+@@ -54,7 +54,7 @@ const GROUPS = [
+     platform: "telegram",
+     status: "open",
+     name: "ОБЪЯВЛЕНИЯ ДАГЕСТАНА",
+-    description: "Объявления и реклама по Республике Дагестан. Ссылки, пересылки, харам и всё не по теме — запрещены. Реклама платная.",
++    description: "Объявления и реклама по Республике Дагестан. Пересылки, харам и сообщения не по теме запрещены. Из ссылок разрешены только конкретные товары или объявления на Авито. Реклама платная.",
+     membersLabel: "менее 3 000 участников",
+     categories: ["Автомобили", "Недвижимость", "Техника", "Одежда", "Услуги", "Работа"],
+     whatIsPosted: "Объявления и реклама по Республике Дагестан: покупка, продажа, услуги и другие предложения участников.",
+@@ -96,9 +96,19 @@ const GROUPS = [
+   }
+ ];
+ 
++const ADMIN_CATEGORY_BENEFITS = [
++  "Админство своей категории.",
++  "Закрепление категории за вами на месяц.",
++  "Публикация своих объявлений в своей категории в течение месяца.",
++  "Удаление неактуальных и неподходящих объявлений.",
++  "Контроль порядка публикаций в своей категории.",
++  "Один статус группы в день — бесплатно для админа категории.",
++  "Дополнительное доверие участников группы."
++];
++
+ const RULES = [
+   "Группа открывается в 08:00 и закрывается в 22:00.",
+-  "Ссылки, пересылки, харам и сообщения не по теме — запрещены.",
++  "Пересылки, харам и сообщения не по теме запрещены. Сторонние ссылки запрещены, кроме ссылок на конкретные товары или объявления на Авито.",
+   "Обычные объявления участников — бесплатно в часы работы группы.",
+   "Реклама каналов, групп, соцсетей, сайтов и сторонних площадок — только на платной основе."
+ ];
+@@ -316,6 +326,21 @@ function createPromoRow(title, content, extraClass) {
+   return row;
+ }
+ 
++function createCategoryAdminOffer(group) {
++  const offer=el("section",{cls:"community-admin",attrs:{id:"category-admin"}});
++  const heading=el("div",{cls:"community-admin-heading"});
++  heading.appendChild(el("h2",{text:"Стать админом категории"}));
++  const price=el("p",{cls:"community-admin-price",text:"850 ₽"});price.appendChild(el("span",{text:"/ месяц"}));heading.appendChild(price);offer.appendChild(heading);
++  offer.appendChild(el("p",{text:"Получите свою категорию в группе и занимайтесь её развитием."}));
++  const list=el("ul");
++  ADMIN_CATEGORY_BENEFITS.forEach(function(text){list.appendChild(el("li",{text:text}));});offer.appendChild(list);
++  offer.appendChild(el("p",{cls:"community-admin-note",text:"Группу, доступность категории и условия согласуйте с главным администратором перед оплатой."}));
++  const actions=el("div",{cls:"community-admin-actions"});
++  const contact=el("a",{cls:"btn btn-wa",text:"Обсудить категорию",attrs:{"data-goal":"ad_contact_whatsapp"}});
++  setExternal(contact,getContactUrl("whatsapp")+"?text="+encodeURIComponent("Здравствуйте! Хочу стать админом категории в группе «"+group.name+"» за 850 ₽ в месяц. Подскажите доступные категории и условия."));actions.appendChild(contact);
++  actions.appendChild(el("a",{cls:"community-admin-details",text:"Полные условия админства",attrs:{href:"reklama.html#category-admin"}}));offer.appendChild(actions);return offer;
++}
++
+ function createPromoPage(group) {
+   const isTelegram = group.platform === "telegram";
+   const fragment = document.createDocumentFragment();
+@@ -352,6 +377,7 @@ function createPromoPage(group) {
+ 
+   card.appendChild(createJoinRow(group));
+   fragment.appendChild(card);
++  fragment.appendChild(createCategoryAdminOffer(group));
+   return fragment;
+ }
+ 
+diff --git a/scripts/build_category_pages.py b/scripts/build_category_pages.py
+index 3654568..1a382ca 100644
+--- a/scripts/build_category_pages.py
++++ b/scripts/build_category_pages.py
+@@ -1,5 +1,6 @@
+ """Страницы категорий (avto-dagestan.html и др.), обновление sitemap.xml и главной (запуск из корня репозитория, шаблон — group.html)."""
+ import re,json,html
++from community_content import admin_offer
+ src=open('group.html',encoding='utf-8').read()
+ head=src[:src.index('<main id="main">')]
+ foot=src[src.index('</main>')+len('</main>'):]
+@@ -12,15 +13,15 @@ CATS=[
+   desc='Объявления о продаже и покупке автомобилей, запчастей и автоуслуг в Дагестане. Бесплатно размещайте объявления в группах WhatsApp и Telegram.',
+   intro='Здесь собраны группы, где жители Дагестана продают и покупают автомобили, запчасти, шины и автоуслуги. Публикуйте объявление сами — в часы работы группы это бесплатно.',
+   posts=['Продажа и покупка легковых и грузовых автомобилей','Запчасти, шины, диски, аксессуары','Автоуслуги: ремонт, шиномонтаж, эвакуатор, детейлинг','Аренда и пригон автомобилей'],
+-  tips=['Укажите марку, модель, год, пробег и цену','Добавьте реальные фото с нескольких сторон','Напишите город или район и контакт для связи','Не публикуйте ссылки — они запрещены правилами группы'],
+-  faq=[('Можно ли разместить объявление о продаже авто бесплатно?','Да, обычные объявления участников публикуются бесплатно в часы работы группы — с 08:00 до 22:00.'),('Можно ли давать ссылки на сайты и каналы?','Нет, ссылки и пересылки запрещены. Реклама каналов, сайтов и сторонних площадок — только на платной основе.'),('Как заказать рекламу автосалона или автосервиса?','Напишите администратору в Telegram @Abdylzhelil05 или в WhatsApp +7 963 796-85-87.')]),
++  tips=['Укажите марку, модель, год, пробег и цену','Добавьте реальные фото с нескольких сторон','Напишите город или район и контакт для связи','Из ссылок разрешены только ссылки на конкретные товары или объявления на Авито'],
++  faq=[('Можно ли разместить объявление о продаже авто бесплатно?','Да, обычные объявления участников публикуются бесплатно в часы работы группы — с 08:00 до 22:00.'),('Можно ли давать ссылки на сайты и каналы?','Пересылки и сторонние ссылки запрещены. Исключение — ссылки на конкретные товары или объявления на Авито. Реклама каналов, сайтов и сторонних площадок — только на платной основе.'),('Как заказать рекламу автосалона или автосервиса?','Напишите администратору в Telegram @Abdylzhelil05 или в WhatsApp +7 963 796-85-87.')]),
+  dict(slug='nedvizhimost-dagestan',name='Недвижимость',icon='realty',
+   h1='Недвижимость в Дагестане: объявления',
+   title='Недвижимость в Дагестане — квартиры, дома, аренда, объявления',
+   desc='Объявления о продаже, покупке и аренде квартир, домов и участков в Дагестане. Размещайте предложения в группах WhatsApp и Telegram.',
+   intro='Продажа, покупка и аренда квартир, домов, участков и коммерческих помещений в Республике Дагестан. Вступайте в группу и публикуйте объявление сами.',
+   posts=['Продажа и покупка квартир, домов, участков','Аренда жилья и коммерческих помещений','Посуточная аренда','Услуги риелторов и оформление документов'],
+-  tips=['Укажите город, район, площадь и этаж','Добавьте фото и точную цену','Отметьте, продаёт собственник или агентство','Оставьте контакт для связи — без ссылок на сайты'],
++  tips=['Укажите город, район, площадь и этаж','Добавьте фото и точную цену','Отметьте, продаёт собственник или агентство','Оставьте контакт для связи. Ссылки разрешены только на конкретные товары или объявления на Авито'],
+   faq=[('Можно ли сдать квартиру через группу?','Да, объявления об аренде публикуются как обычные объявления участников — бесплатно в часы работы группы.'),('Агентствам тоже можно публиковать?','Обычные объявления участников — бесплатно. Реклама агентства, сайта или канала — на платной основе, условия уточняйте у администратора.'),('Как связаться с администратором?','Telegram @Abdylzhelil05 или WhatsApp +7 963 796-85-87.')]),
+  dict(slug='tehnika-dagestan',name='Техника',icon='tech',
+   h1='Объявления о технике в Дагестане',
+@@ -29,14 +30,14 @@ CATS=[
+   intro='Телефоны, ноутбуки, телевизоры, бытовая техника и электроника: продавайте ненужное и находите нужное у жителей Дагестана.',
+   posts=['Телефоны, планшеты, ноутбуки, компьютеры','Бытовая техника и электроника','Комплектующие и аксессуары','Ремонт техники и сервисные услуги'],
+   tips=['Опишите состояние, комплектацию и гарантию','Добавьте фото самого товара','Укажите цену и город','Лучше встречаться в людном месте и проверять технику при покупке'],
+-  faq=[('Можно ли продать б/у технику?','Да, объявления о продаже подержанной техники принимаются как обычные объявления участников.'),('Что запрещено публиковать?','Ссылки, пересылки чужих сообщений, харам и сообщения не по теме группы.'),('Когда работает группа?','Группа открывается в 08:00 и закрывается в 22:00.')]),
++  faq=[('Можно ли продать б/у технику?','Да, объявления о продаже подержанной техники принимаются как обычные объявления участников.'),('Что запрещено публиковать?','Пересылки чужих сообщений, харам и сообщения не по теме запрещены. Из ссылок разрешены только ссылки на конкретные товары или объявления на Авито.'),('Когда работает группа?','Группа открывается в 08:00 и закрывается в 22:00.')]),
+  dict(slug='odezhda-dagestan',name='Одежда',icon='clothes',
+   h1='Объявления об одежде и обуви в Дагестане',
+   title='Одежда и обувь в Дагестане — купить и продать, объявления',
+   desc='Продажа и покупка одежды, обуви и аксессуаров в Дагестане. Размещайте объявления бесплатно в группах WhatsApp и Telegram.',
+   intro='Одежда, обувь, аксессуары, детские вещи и товары для дома: публикуйте объявления и находите покупателей среди жителей Дагестана.',
+   posts=['Мужская, женская и детская одежда','Обувь и аксессуары','Национальная одежда и пошив на заказ','Услуги ателье и ремонта одежды'],
+-  tips=['Укажите размер, состояние и цену','Добавьте чёткие фото на нейтральном фоне','Напишите город и способ передачи','Контакт — в тексте объявления, без ссылок'],
++  tips=['Укажите размер, состояние и цену','Добавьте чёткие фото на нейтральном фоне','Напишите город и способ передачи','Контакт — в тексте объявления. Ссылки разрешены только на конкретные товары или объявления на Авито'],
+   faq=[('Можно ли продавать вещи, бывшие в употреблении?','Да, такие объявления публикуются как обычные объявления участников.'),('Можно ли рекламировать свой магазин?','Реклама магазинов, каналов и соцсетей — только на платной основе. Напишите администратору @Abdylzhelil05.'),('Где найти правила группы?','Закреплённое сообщение с правилами есть в самой группе, а краткие правила — на главной странице сайта.')]),
+  dict(slug='uslugi-dagestan',name='Услуги',icon='services',
+   h1='Услуги в Дагестане: объявления мастеров и специалистов',
+@@ -44,7 +45,7 @@ CATS=[
+   desc='Объявления об услугах в Дагестане: ремонт, строительство, красота, обучение, доставка и другое. Размещайте предложения в группах WhatsApp и Telegram.',
+   intro='Ремонт и строительство, красота и здоровье, обучение, доставка, фото и видео — публикуйте свои услуги или ищите исполнителя в группах «Объявления Дагестана».',
+   posts=['Ремонт и строительство, сантехники, электрики','Красота, здоровье, фото и видео','Репетиторы и обучение','Грузоперевозки, доставка, клининг'],
+-  tips=['Коротко опишите, что вы делаете, и укажите район работы','Добавьте примеры работ, если есть фото','Укажите цену или «от» и способ связи','Не публикуйте ссылки на сайты и каналы'],
++  tips=['Коротко опишите, что вы делаете, и укажите район работы','Добавьте примеры работ, если есть фото','Укажите цену или «от» и способ связи','Не публикуйте ссылки на сайты и каналы, кроме ссылок на конкретные товары или объявления на Авито'],
+   faq=[('Можно ли предложить свои услуги бесплатно?','Обычные объявления участников — бесплатно в часы работы группы. Реклама каналов, сайтов и соцсетей — платная.'),('Как найти мастера?','Опубликуйте объявление в группе с описанием задачи и районом — исполнители откликнутся сами.'),('Как заказать платную рекламу услуг?','Telegram @Abdylzhelil05 или WhatsApp +7 963 796-85-87.')]),
+  dict(slug='rabota-dagestan',name='Работа',icon='jobs',
+   h1='Работа в Дагестане: вакансии и резюме',
+@@ -60,8 +61,8 @@ CATS=[
+   desc='Бесплатные объявления о товарах в Дагестане: мебель, детские товары, продукты, товары для дома. Группы в WhatsApp и Telegram.',
+   intro='Мебель, детские товары, продукты, товары для дома и дачи — размещайте объявления и находите покупателей в группах «Объявления Дагестана».',
+   posts=['Мебель и товары для дома','Детские товары и игрушки','Продукты, домашняя продукция','Всё для дачи, сада и ремонта'],
+-  tips=['Опишите товар и укажите цену','Добавьте реальные фото','Напишите город и способ передачи','Контакт — в тексте, без ссылок'],
+-  faq=[('Можно ли продавать продукты?','Да, объявления о домашней продукции и продуктах публикуются как обычные объявления участников.'),('Что нельзя публиковать?','Ссылки, пересылки, харам и сообщения не по теме группы.'),('Как вступить в группу?','Нажмите кнопку «Вступить» на этой странице или выберите группу на главной.')]),
++  tips=['Опишите товар и укажите цену','Добавьте реальные фото','Напишите город и способ передачи','Контакт — в тексте. Ссылки разрешены только на конкретные товары или объявления на Авито'],
++  faq=[('Можно ли продавать продукты?','Да, объявления о домашней продукции и продуктах публикуются как обычные объявления участников.'),('Что нельзя публиковать?','Пересылки, харам и сообщения не по теме запрещены. Из ссылок разрешены только ссылки на конкретные товары или объявления на Авито.'),('Как вступить в группу?','Нажмите кнопку «Вступить» на этой странице или выберите группу на главной.')]),
+  dict(slug='raznoe-dagestan',name='Разное',icon='other',
+   h1='Разное в Дагестане: объявления обо всём остальном',
+   title='Разное в Дагестане — отдам даром, животные, мероприятия, находки',
+@@ -69,7 +70,7 @@ CATS=[
+   intro='Здесь всё, что не подошло под автомобили, недвижимость, технику, одежду, услуги, работу и товары: животные, отдам даром и обмен, мероприятия, находки и потеряшки, хобби.',
+   posts=['Животные и товары для них','Отдам даром и обмен','Мероприятия и афиша','Находки и потеряшки','Хобби, спорт, книги и коллекции'],
+   tips=['Коротко и понятно напишите, что предлагаете или ищете','Добавьте фото, если это вещь или животное','Укажите район и контакт для связи','Для находок и потеряшек — место и дата'],
+-  faq=[('Что публиковать в категории «Разное»?','Всё, что не подходит под другие категории: животных, вещи «отдам даром» и обмен, мероприятия, находки и потеряшки, предложения по хобби и увлечениям.'),('Можно ли отдать вещь даром?','Да, такие объявления публикуются как обычные объявления участников — бесплатно в часы работы группы, с 08:00 до 22:00.'),('Что запрещено публиковать?','Ссылки, пересылки чужих сообщений, харам и сообщения не по теме группы. Платная реклама — по договорённости с администратором @Abdylzhelil05.')]),
++  faq=[('Что публиковать в категории «Разное»?','Всё, что не подходит под другие категории: животных, вещи «отдам даром» и обмен, мероприятия, находки и потеряшки, предложения по хобби и увлечениям.'),('Можно ли отдать вещь даром?','Да, такие объявления публикуются как обычные объявления участников — бесплатно в часы работы группы, с 08:00 до 22:00.'),('Что запрещено публиковать?','Пересылки чужих сообщений, харам и сообщения не по теме запрещены. Из ссылок разрешены только ссылки на конкретные товары или объявления на Авито. Платная реклама — по договорённости с администратором @Abdylzhelil05.')]),
+ ]
+ def a(t): return html.escape(t,quote=True)
+ def build(c):
+@@ -116,7 +117,7 @@ def build(c):
+       <div class="section-head"><div class="eyebrow">Правила</div><h2>Как работают группы</h2></div>
+       <div class="rules-card"><ol class="rules-list">
+         <li><span>Группа открывается в 08:00 и закрывается в 22:00.</span></li>
+-        <li><span>Ссылки, пересылки, харам и сообщения не по теме — запрещены.</span></li>
++        <li><span>Пересылки, харам и сообщения не по теме запрещены. Сторонние ссылки запрещены, кроме ссылок на конкретные товары или объявления на Авито.</span></li>
+         <li><span>Обычные объявления участников — бесплатно в часы работы группы.</span></li>
+         <li><span>Реклама каналов, групп, соцсетей, сайтов и сторонних площадок — только на платной основе.</span></li>
+       </ol></div>
+@@ -141,6 +142,7 @@ def build(c):
+   </section>
+ </main>'''%dict(name=a(c['name']),h1=a(c['h1']),intro=a(c['intro']),posts=li(c['posts']),tips=li(c['tips']),
+       faq='\n'.join('        <details><summary>%s</summary><p>%s</p></details>'%(a(q),a(t)) for q,t in faq),rel=rel)
++    body=body.replace('</main>', '<section class="promo-section"><div class="wrap">'+admin_offer(category=c['name'],anchor='category-admin')+'</div></section>\n</main>')
+     open(fn,'w',encoding='utf-8').write(h+body+foot)
+ for c in CATS: build(c)
+ # sitemap
+diff --git a/scripts/community_content.py b/scripts/community_content.py
+new file mode 100644
+index 0000000..143bfd2
+--- /dev/null
++++ b/scripts/community_content.py
+@@ -0,0 +1,19 @@
++"""Shared static content for category pages and offer placement."""
++from html import escape
++from urllib.parse import quote
++ADMIN_BENEFITS = [
++ "Админство своей категории.",
++ "Закрепление категории за вами на месяц.",
++ "Публикация своих объявлений в своей категории в течение месяца.",
++ "Удаление неактуальных и неподходящих объявлений.",
++ "Контроль порядка публикаций в своей категории.",
++ "Один статус группы в день — бесплатно для админа категории.",
++ "Дополнительное доверие участников группы."
++]
++def admin_offer(category=None, detailed=False, anchor=None):
++ title = "Стать админом категории" if not category else "Стать админом категории «" + category + "»"
++ message = "Здравствуйте! Хочу стать админом " + ("категории «" + category + "»" if category else "категории в группе") + " за 850 ₽ в месяц. Подскажите доступность категории и условия."
++ href = "https://wa.me/79637968587?text=" + quote(message)
++ benefits = ADMIN_BENEFITS if detailed else [ADMIN_BENEFITS[1], ADMIN_BENEFITS[2], ADMIN_BENEFITS[5]]
++ ident = ' id="' + escape(anchor, quote=True) + '"' if anchor else ''
++ return ('<section class="community-admin"' + ident + '><div class="community-admin-heading"><div><p class="community-eyebrow">Админство внутри группы</p><h2>' + escape(title) + '</h2></div><p class="community-admin-price">850 ₽<span>/ месяц</span></p></div><p>Получите свою категорию в группе и занимайтесь её развитием.</p><ul>' + ''.join('<li>' + escape(item) + '</li>' for item in benefits) + '</ul><p class="community-admin-note">Группу, доступность категории и условия согласуйте с главным администратором перед оплатой.</p><div class="community-admin-actions"><a class="btn btn-wa" href="' + escape(href, quote=True) + '" target="_blank" rel="noopener" data-goal="ad_contact_whatsapp">' + ('Обсудить эту категорию' if category else 'Написать о категории') + '</a><a class="community-admin-details" href="reklama.html#category-admin">Полные условия админства</a></div></section>')
+diff --git a/tehnika-dagestan.html b/tehnika-dagestan.html
+index 4659565..afb0894 100644
+--- a/tehnika-dagestan.html
++++ b/tehnika-dagestan.html
+@@ -81,7 +81,7 @@
+      "name": "Что запрещено публиковать?",
+      "acceptedAnswer": {
+       "@type": "Answer",
+-      "text": "Ссылки, пересылки чужих сообщений, харам и сообщения не по теме группы."
++      "text": "Пересылки чужих сообщений, харам и сообщения не по теме запрещены. Из ссылок разрешены только ссылки на конкретные товары или объявления на Авито."
+      }
+     },
+     {
+@@ -97,6 +97,7 @@
+  ]
+ }
+ </script>
++<link rel="stylesheet" href="community-offers.css">
+ </head>
+ <body>
+ 
+@@ -135,6 +136,7 @@
+     </div>
+   </section>
+ 
++<section class="promo-section"><div class="wrap"><section class="community-admin" id="category-admin"><div class="community-admin-heading"><div><p class="community-eyebrow">Админство внутри группы</p><h2>Стать админом категории «Техника»</h2></div><p class="community-admin-price">850 ₽<span>/ месяц</span></p></div><p>Получите свою категорию в группе и занимайтесь её развитием.</p><ul><li>Закрепление категории за вами на месяц.</li><li>Публикация своих объявлений в своей категории в течение месяца.</li><li>Один статус группы в день — бесплатно для админа категории.</li></ul><p class="community-admin-note">Группу, доступность категории и условия согласуйте с главным администратором перед оплатой.</p><div class="community-admin-actions"><a class="btn btn-wa" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%81%D1%82%D0%B0%D1%82%D1%8C%20%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD%D0%BE%D0%BC%20%D0%BA%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D0%B8%20%C2%AB%D0%A2%D0%B5%D1%85%D0%BD%D0%B8%D0%BA%D0%B0%C2%BB%20%D0%B7%D0%B0%20850%20%E2%82%BD%20%D0%B2%20%D0%BC%D0%B5%D1%81%D1%8F%D1%86.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%20%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D0%BD%D0%BE%D1%81%D1%82%D1%8C%20%D0%BA%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D0%B8%20%D0%B8%20%D1%83%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F." target="_blank" rel="noopener" data-goal="ad_contact_whatsapp">Обсудить эту категорию</a><a class="community-admin-details" href="reklama.html#category-admin">Полные условия админства</a></div></section></div></section>
+   <section class="promo-section">
+     <div class="wrap">
+       <div class="audience-grid" style="grid-template-columns:repeat(2,1fr)">
+@@ -159,7 +161,7 @@
+       <div class="section-head"><div class="eyebrow">Правила</div><h2>Как работают группы</h2></div>
+       <div class="rules-card"><ol class="rules-list">
+         <li><span>Группа открывается в 08:00 и закрывается в 22:00.</span></li>
+-        <li><span>Ссылки, пересылки, харам и сообщения не по теме — запрещены.</span></li>
++        <li><span>Пересылки, харам и сообщения не по теме запрещены. Сторонние ссылки запрещены, кроме ссылок на конкретные товары или объявления на Авито.</span></li>
+         <li><span>Обычные объявления участников — бесплатно в часы работы группы.</span></li>
+         <li><span>Реклама каналов, групп, соцсетей, сайтов и сторонних площадок — только на платной основе.</span></li>
+       </ol></div>
+@@ -171,7 +173,7 @@
+       <div class="section-head"><div class="eyebrow">Вопросы</div><h2>Частые вопросы</h2></div>
+       <div class="faq bot-faq">
+         <details><summary>Можно ли продать б/у технику?</summary><p>Да, объявления о продаже подержанной техники принимаются как обычные объявления участников.</p></details>
+-        <details><summary>Что запрещено публиковать?</summary><p>Ссылки, пересылки чужих сообщений, харам и сообщения не по теме группы.</p></details>
++        <details><summary>Что запрещено публиковать?</summary><p>Пересылки чужих сообщений, харам и сообщения не по теме запрещены. Из ссылок разрешены только ссылки на конкретные товары или объявления на Авито.</p></details>
+         <details><summary>Когда работает группа?</summary><p>Группа открывается в 08:00 и закрывается в 22:00.</p></details>
+       </div>
+     </div>
+diff --git a/tovary-dagestan.html b/tovary-dagestan.html
+index 76e748b..243fe34 100644
+--- a/tovary-dagestan.html
++++ b/tovary-dagestan.html
+@@ -81,7 +81,7 @@
+      "name": "Что нельзя публиковать?",
+      "acceptedAnswer": {
+       "@type": "Answer",
+-      "text": "Ссылки, пересылки, харам и сообщения не по теме группы."
++      "text": "Пересылки, харам и сообщения не по теме запрещены. Из ссылок разрешены только ссылки на конкретные товары или объявления на Авито."
+      }
+     },
+     {
+@@ -97,6 +97,7 @@
+  ]
+ }
+ </script>
++<link rel="stylesheet" href="community-offers.css">
+ </head>
+ <body>
+ 
+@@ -135,6 +136,7 @@
+     </div>
+   </section>
+ 
++<section class="promo-section"><div class="wrap"><section class="community-admin" id="category-admin"><div class="community-admin-heading"><div><p class="community-eyebrow">Админство внутри группы</p><h2>Стать админом категории «Товары»</h2></div><p class="community-admin-price">850 ₽<span>/ месяц</span></p></div><p>Получите свою категорию в группе и занимайтесь её развитием.</p><ul><li>Закрепление категории за вами на месяц.</li><li>Публикация своих объявлений в своей категории в течение месяца.</li><li>Один статус группы в день — бесплатно для админа категории.</li></ul><p class="community-admin-note">Группу, доступность категории и условия согласуйте с главным администратором перед оплатой.</p><div class="community-admin-actions"><a class="btn btn-wa" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%81%D1%82%D0%B0%D1%82%D1%8C%20%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD%D0%BE%D0%BC%20%D0%BA%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D0%B8%20%C2%AB%D0%A2%D0%BE%D0%B2%D0%B0%D1%80%D1%8B%C2%BB%20%D0%B7%D0%B0%20850%20%E2%82%BD%20%D0%B2%20%D0%BC%D0%B5%D1%81%D1%8F%D1%86.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%20%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D0%BD%D0%BE%D1%81%D1%82%D1%8C%20%D0%BA%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D0%B8%20%D0%B8%20%D1%83%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F." target="_blank" rel="noopener" data-goal="ad_contact_whatsapp">Обсудить эту категорию</a><a class="community-admin-details" href="reklama.html#category-admin">Полные условия админства</a></div></section></div></section>
+   <section class="promo-section">
+     <div class="wrap">
+       <div class="audience-grid" style="grid-template-columns:repeat(2,1fr)">
+@@ -148,7 +150,7 @@
+           <li><span>Опишите товар и укажите цену</span></li>
+           <li><span>Добавьте реальные фото</span></li>
+           <li><span>Напишите город и способ передачи</span></li>
+-          <li><span>Контакт — в тексте, без ссылок</span></li>
++          <li><span>Контакт — в тексте. Ссылки разрешены только на конкретные товары или объявления на Авито</span></li>
+         </ul></div>
+       </div>
+     </div>
+@@ -159,7 +161,7 @@
+       <div class="section-head"><div class="eyebrow">Правила</div><h2>Как работают группы</h2></div>
+       <div class="rules-card"><ol class="rules-list">
+         <li><span>Группа открывается в 08:00 и закрывается в 22:00.</span></li>
+-        <li><span>Ссылки, пересылки, харам и сообщения не по теме — запрещены.</span></li>
++        <li><span>Пересылки, харам и сообщения не по теме запрещены. Сторонние ссылки запрещены, кроме ссылок на конкретные товары или объявления на Авито.</span></li>
+         <li><span>Обычные объявления участников — бесплатно в часы работы группы.</span></li>
+         <li><span>Реклама каналов, групп, соцсетей, сайтов и сторонних площадок — только на платной основе.</span></li>
+       </ol></div>
+@@ -171,7 +173,7 @@
+       <div class="section-head"><div class="eyebrow">Вопросы</div><h2>Частые вопросы</h2></div>
+       <div class="faq bot-faq">
+         <details><summary>Можно ли продавать продукты?</summary><p>Да, объявления о домашней продукции и продуктах публикуются как обычные объявления участников.</p></details>
+-        <details><summary>Что нельзя публиковать?</summary><p>Ссылки, пересылки, харам и сообщения не по теме группы.</p></details>
++        <details><summary>Что нельзя публиковать?</summary><p>Пересылки, харам и сообщения не по теме запрещены. Из ссылок разрешены только ссылки на конкретные товары или объявления на Авито.</p></details>
+         <details><summary>Как вступить в группу?</summary><p>Нажмите кнопку «Вступить» на этой странице или выберите группу на главной.</p></details>
+       </div>
+     </div>
+diff --git a/uslugi-dagestan.html b/uslugi-dagestan.html
+index d94d452..0c61119 100644
+--- a/uslugi-dagestan.html
++++ b/uslugi-dagestan.html
+@@ -97,6 +97,7 @@
+  ]
+ }
+ </script>
++<link rel="stylesheet" href="community-offers.css">
+ </head>
+ <body>
+ 
+@@ -135,6 +136,7 @@
+     </div>
+   </section>
+ 
++<section class="promo-section"><div class="wrap"><section class="community-admin" id="category-admin"><div class="community-admin-heading"><div><p class="community-eyebrow">Админство внутри группы</p><h2>Стать админом категории «Услуги»</h2></div><p class="community-admin-price">850 ₽<span>/ месяц</span></p></div><p>Получите свою категорию в группе и занимайтесь её развитием.</p><ul><li>Закрепление категории за вами на месяц.</li><li>Публикация своих объявлений в своей категории в течение месяца.</li><li>Один статус группы в день — бесплатно для админа категории.</li></ul><p class="community-admin-note">Группу, доступность категории и условия согласуйте с главным администратором перед оплатой.</p><div class="community-admin-actions"><a class="btn btn-wa" href="https://wa.me/79637968587?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%81%D1%82%D0%B0%D1%82%D1%8C%20%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD%D0%BE%D0%BC%20%D0%BA%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D0%B8%20%C2%AB%D0%A3%D1%81%D0%BB%D1%83%D0%B3%D0%B8%C2%BB%20%D0%B7%D0%B0%20850%20%E2%82%BD%20%D0%B2%20%D0%BC%D0%B5%D1%81%D1%8F%D1%86.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%20%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D0%BD%D0%BE%D1%81%D1%82%D1%8C%20%D0%BA%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D0%B8%20%D0%B8%20%D1%83%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F." target="_blank" rel="noopener" data-goal="ad_contact_whatsapp">Обсудить эту категорию</a><a class="community-admin-details" href="reklama.html#category-admin">Полные условия админства</a></div></section></div></section>
+   <section class="promo-section">
+     <div class="wrap">
+       <div class="audience-grid" style="grid-template-columns:repeat(2,1fr)">
+@@ -148,7 +150,7 @@
+           <li><span>Коротко опишите, что вы делаете, и укажите район работы</span></li>
+           <li><span>Добавьте примеры работ, если есть фото</span></li>
+           <li><span>Укажите цену или «от» и способ связи</span></li>
+-          <li><span>Не публикуйте ссылки на сайты и каналы</span></li>
++          <li><span>Не публикуйте ссылки на сайты и каналы, кроме ссылок на конкретные товары или объявления на Авито</span></li>
+         </ul></div>
+       </div>
+     </div>
+@@ -159,7 +161,7 @@
+       <div class="section-head"><div class="eyebrow">Правила</div><h2>Как работают группы</h2></div>
+       <div class="rules-card"><ol class="rules-list">
+         <li><span>Группа открывается в 08:00 и закрывается в 22:00.</span></li>
+-        <li><span>Ссылки, пересылки, харам и сообщения не по теме — запрещены.</span></li>
++        <li><span>Пересылки, харам и сообщения не по теме запрещены. Сторонние ссылки запрещены, кроме ссылок на конкретные товары или объявления на Авито.</span></li>
+         <li><span>Обычные объявления участников — бесплатно в часы работы группы.</span></li>
+         <li><span>Реклама каналов, групп, соцсетей, сайтов и сторонних площадок — только на платной основе.</span></li>
+       </ol></div>
