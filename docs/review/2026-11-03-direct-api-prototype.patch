@@ -1,0 +1,124 @@
+--- /dev/null
++++ direct-api-prototype/app.py
+@@ -0,0 +1,83 @@
++"""Read-only Direct API connection prototype. No campaign mutation endpoints."""
++import json
++import os
++import urllib.error
++import urllib.request
++from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
++from pathlib import Path
++
++CAMPAIGN_ID = 715775801
++API_URL = 'https://api.direct.yandex.com/json/v501/campaigns'
++ROOT = Path(__file__).parent
++
++
++def probe():
++    token = os.environ.get('YANDEX_DIRECT_TOKEN', '')
++    headers = {'Content-Type': 'application/json; charset=utf-8', 'Accept-Language': 'ru'}
++    if token:
++        headers['Authorization'] = 'Bearer ' + token
++    payload = {'method': 'get', 'params': {
++        'SelectionCriteria': {'Ids': [CAMPAIGN_ID]},
++        'FieldNames': ['Id', 'Name', 'State', 'Status'],
++    }}
++    request = urllib.request.Request(API_URL, data=json.dumps(payload).encode(), headers=headers)
++    try:
++        with urllib.request.urlopen(request, timeout=25) as response:
++            status = response.status
++            body = json.loads(response.read(1048576))
++    except urllib.error.HTTPError as exc:
++        status = exc.code
++        try:
++            body = json.loads(exc.read(1048576))
++        except (ValueError, UnicodeError):
++            return {'status': 'http_error', 'http_status': status}
++    except (OSError, ValueError):
++        return {'status': 'connection_error', 'message': 'Проверка сети не завершилась. Данные кампаний не получены.'}
++    error = body.get('error')
++    if error:
++        # Do not echo raw response strings or headers that might contain credentials.
++        code = error.get('error_code')
++        return {'status': 'authorization_required' if code == 8000 and not token else 'api_error',
++                'http_status': status, 'api_error_code': code,
++                'message': 'OAuth-токен не указан' if code == 8000 and not token else 'API вернул ошибку. Изменений нет.',
++                'campaign_data_received': False}
++    campaigns = body.get('result', {}).get('Campaigns')
++    if not isinstance(campaigns, list):
++        return {'status': 'unexpected_response', 'http_status': status}
++    return {'status': 'read_complete', 'http_status': status,
++            'campaigns': [{k: c[k] for k in ('Id', 'Name', 'State', 'Status') if k in c}
++                          for c in campaigns if c.get('Id') == CAMPAIGN_ID]}
++
++
++class Handler(BaseHTTPRequestHandler):
++    def log_message(self, *args):
++        pass
++
++    def send(self, status, body, content_type):
++        self.send_response(status)
++        self.send_header('Content-Type', content_type)
++        self.send_header('Cache-Control', 'no-store')
++        self.send_header('X-Content-Type-Options', 'nosniff')
++        self.send_header('Content-Length', str(len(body)))
++        self.end_headers()
++        self.wfile.write(body)
++
++    def do_GET(self):
++        if self.path != '/':
++            self.send(404, b'Not found', 'text/plain')
++            return
++        self.send(200, (ROOT / 'index.html').read_bytes(), 'text/html; charset=utf-8')
++
++    def do_POST(self):
++        if self.path != '/probe':
++            self.send(404, b'Not found', 'text/plain')
++            return
++        if self.headers.get('Origin') != 'http://127.0.0.1:8765':
++            self.send(403, b'Forbidden', 'text/plain')
++            return
++        self.send(200, json.dumps(probe(), ensure_ascii=False).encode(), 'application/json; charset=utf-8')
++
++
++if __name__ == '__main__':
++    print('Read-only prototype: http://127.0.0.1:8765', flush=True)
++    ThreadingHTTPServer(('127.0.0.1', 8765), Handler).serve_forever()
+--- /dev/null
++++ direct-api-prototype/index.html
+@@ -0,0 +1,21 @@
++<!doctype html><html lang="ru"><meta charset="utf-8"><title>Подключение API — Объявления Дагестана</title>
++<meta name="viewport" content="width=device-width,initial-scale=1">
++<style>
++*{box-sizing:border-box}body{margin:0;background:#edf2f1;color:#16372e;font:18px/1.5 Arial,sans-serif}main{max-width:1000px;margin:48px auto;padding:0 28px}.label{font-size:14px;font-weight:bold;letter-spacing:.09em;color:#6a786f}h1{font-size:38px;line-height:1.2;margin:14px 0}h2{font-size:23px;margin:0 0 14px}.card{background:#fff;border:1px solid #dbe3df;border-radius:18px;padding:26px;margin:24px 0}.badge{display:inline-block;background:#fff0ce;color:#73520c;border-radius:7px;padding:6px 12px;font-weight:bold;font-size:15px}.muted{color:#5a6c65}dl{display:grid;grid-template-columns:220px 1fr;gap:10px;margin:0}dt{color:#5a6c65}dd{margin:0}code{font-size:16px}button{background:#145d47;color:white;border:0;border-radius:9px;font:inherit;font-weight:bold;padding:13px 20px;cursor:pointer}button:disabled{opacity:.6}#result{white-space:pre-wrap;background:#f3f6f4;padding:18px;border-radius:10px;font:15px/1.6 monospace;overflow-wrap:anywhere}footer{font-size:15px;color:#5a6c65;margin-bottom:40px}
++</style><main>
++<div class="label">ОБЪЯВЛЕНИЯ ДАГЕСТАНА · ВНУТРЕННИЙ ИНСТРУМЕНТ</div>
++<h1>Подключение к API Яндекс Директа</h1>
++<span class="badge">Прототип в разработке · только чтение</span>
++<p class="muted">Реальная проверка соединения. OAuth ещё не подключён; доступа к данным кампаний пока нет.</p>
++<section class="card"><h2>Параметры проверки</h2><dl>
++<dt>Сервис</dt><dd>Официальный API Яндекс Директа, v501</dd>
++<dt>Операция</dt><dd><code>campaigns.get</code> — чтение состояния</dd>
++<dt>Целевая кампания</dt><dd>715775801 — ID задан владельцем, данные ещё не получены</dd>
++<dt>Авторизация</dt><dd>Не настроена</dd>
++<dt>Изменение рекламы</dt><dd>Не реализовано в этом прототипе</dd>
++</dl></section>
++<section class="card"><h2>Результат запроса</h2><button id="probe">Проверить соединение с API</button><pre id="result">Проверка ещё не выполнялась.</pre><p id="summary" class="muted"></p></section>
++<footer>Прототип не создаёт объявления, не запускает показы и не изменяет бюджет. Управление кампаниями планируется после одобрения доступа, реализации клиента и проверки ограничений.</footer>
++</main><script>
++document.getElementById('probe').onclick=async()=>{const b=document.getElementById('probe');b.disabled=true;document.getElementById('summary').textContent='';document.getElementById('result').textContent='Выполняется HTTPS-запрос к Яндексу…';try{const r=await fetch('/probe',{method:'POST'});if(!r.ok)throw Error();const data=await r.json();document.getElementById('result').textContent=JSON.stringify(data,null,2);document.getElementById('summary').textContent=data.status==='authorization_required'?'API доступен по сети. Для чтения данных требуется OAuth. Запрос не изменял настройки рекламы.':'Результат получен. Это проверка чтения, без изменения рекламы.';}catch{document.getElementById('result').textContent='Проверка не завершилась.';}finally{b.disabled=false;}};
++</script></html>
+--- /dev/null
++++ direct-api-prototype/README.md
+@@ -0,0 +1,11 @@
++# Прототип подключения к API Директа
++
++Это реальный минимальный инструмент на Python, а не готовая система управления рекламой. Выполняет только campaigns.get для ID 715775801. Изменения рекламы, модерация, запуск, платежи и планировщик не реализованы.
++
++Запуск: `python3 app.py`, затем открыть `http://127.0.0.1:8765`.
++
++Используется только стандартная библиотека Python. Проверка HTTPS включена, настройки прокси/CA наследуются из окружения. Сервер слушает только loopback, публикация наружу не предусмотрена.
++
++Без OAuth возвращается реальный ответ Яндекса о необходимости токена. Это доказывает сетевую доступность, но не авторизованный доступ. При наличии одобренного приложения токен можно передать только закрытой переменной YANDEX_DIRECT_TOKEN; не передавать его в чате, командной строке или GitHub.
++
++Снимок prototype.png показывает состояние разработки и реальный результат запроса. Его можно прикладывать к заявке только с явным описанием, что это прототип, а управление кампаниями ещё разрабатывается. Одобрение заявки не гарантировано.
