@@ -665,6 +665,39 @@ function applyLinks() {
   });
 }
 
+/* Отдельное приглашение для одного рекламного теста. Не меняет GROUPS/SEO,
+   не записывает cookie и не считает переход фактическим вступлением. */
+function applyCampaignInvite() {
+  const campaign = {
+    utm_source: "yandex",
+    utm_medium: "cpc",
+    utm_campaign: "dagestan_members_search_v1"
+  };
+  const current = new URL(window.location.href);
+  const keys = Object.keys(campaign);
+  if (!keys.every(function (key) {
+    const values = current.searchParams.getAll(key);
+    return values.length === 1 && values[0] === campaign[key];
+  })) return;
+
+  const group = getGroupById("telegram-main");
+  if (!group || group.status !== "open") return;
+  document.querySelectorAll('a[data-goal="join_telegram"][href]').forEach(function (anchor) {
+    if (anchor.href === group.link) {
+      setExternal(anchor, "https://t.me/+dzHbbWsdciM4ZGYy");
+    }
+  });
+
+  /* Сохраняем только три метки при переходах по страницам сайта.
+     Без этого страница группы потеряет источник. Внешние ссылки не меняем. */
+  document.querySelectorAll("a[href]").forEach(function (anchor) {
+    const url = new URL(anchor.href, current);
+    if (url.origin !== current.origin || !(/\.html$/.test(url.pathname) || url.pathname.endsWith("/"))) return;
+    keys.forEach(function (key) { url.searchParams.set(key, campaign[key]); });
+    anchor.setAttribute("href", url.pathname + url.search + url.hash);
+  });
+}
+
 /* Цель Яндекс Метрики: отправляется, только если указан SITE.metrikaId и счётчик подключён */
 function trackGoal(goal) {
   if (window.cookieAccepted && SITE.metrikaId && typeof window.ym === "function") {
@@ -783,6 +816,7 @@ function initApp() {
   renderPromoPage();
   applyHomeSeo();
   applyLinks();
+  applyCampaignInvite();
   initMenu();
   initReveal();
   initAnalytics();
