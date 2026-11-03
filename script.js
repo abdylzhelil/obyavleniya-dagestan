@@ -108,9 +108,11 @@ const ADMIN_CATEGORY_BENEFITS = [
 
 const RULES = [
   "Группа открывается в 08:00 и закрывается в 22:00.",
-  "Пересылки, харам и сообщения не по теме запрещены. Сторонние ссылки запрещены, кроме ссылок на конкретные товары или объявления на Авито.",
   "Обычные объявления участников — бесплатно в часы работы группы.",
-  "Реклама каналов, групп, соцсетей, сайтов и сторонних площадок — только на платной основе."
+  "Пересылки, харам и сообщения не по теме запрещены.",
+  "Сторонние ссылки запрещены. Исключение — ссылки на конкретные товары или объявления на Авито.",
+  "Реклама каналов, групп, соцсетей, сайтов, онлайн-сервисов и сторонних площадок размещается только платно, по согласованию с администратором.",
+  "Участникам запрещено самостоятельно публиковать статусы WhatsApp-группы. Для размещения обратитесь к администратору."
 ];
 
 /* Подписи платформ и статусов */
@@ -364,7 +366,7 @@ function createPromoPage(group) {
   card.appendChild(createPromoRow("Что публикуется", el("p", { text: group.whatIsPosted })));
 
   const rules = el("ul", { cls: "rules-list" });
-  RULES.slice(0, 3).forEach(function (rule) { rules.appendChild(createRuleItem(rule)); });
+  RULES.forEach(function (rule) { rules.appendChild(createRuleItem(rule)); });
   card.appendChild(createPromoRow("Правила", rules));
 
   /* Имя администратора необязательно: без него выводится только контакт */
@@ -753,6 +755,24 @@ function initDock() {
   }).observe(footer);
 }
 
+/* Open disclosure content when a visitor follows its direct link. */
+function initDisclosureAnchors() {
+  function reveal(hash, scroll) {
+    let node; try { node=document.getElementById(decodeURIComponent(hash.slice(1))); } catch(e) { return; }
+    if(!node)return;
+    let expanded=false;
+    for(let p=node;p;p=p.parentElement){if(p.tagName==='DETAILS'&&!p.open){p.open=true;expanded=true;}}
+    if(expanded&&scroll)node.scrollIntoView({block:'start'});
+  }
+  reveal(window.location.hash,true);
+  window.addEventListener('hashchange',function(){reveal(window.location.hash,true);});
+  document.addEventListener('click',function(e){
+    const a=e.target.closest('a[href]');if(!a||a.target==='_blank')return;
+    let url;try{url=new URL(a.href);}catch(error){return;}
+    if(url.origin===location.origin&&url.pathname===location.pathname&&url.search===location.search&&url.hash)reveal(url.hash,false);
+  });
+}
+
 /* ---------- 9. Запуск ---------- */
 
 function initApp() {
@@ -769,6 +789,7 @@ function initApp() {
   initCookieNotice();
   initCookieReset();
   initDock();
+  initDisclosureAnchors();
 }
 
 document.addEventListener("DOMContentLoaded", initApp);

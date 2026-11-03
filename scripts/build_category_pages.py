@@ -1,5 +1,7 @@
 """Страницы категорий (avto-dagestan.html и др.), обновление sitemap.xml и главной (запуск из корня репозитория, шаблон — group.html)."""
 import re,json,html
+from pathlib import Path
+RULES=json.loads(re.search(r"const RULES = (\[.*?\]);",(Path(__file__).resolve().parent.parent/"script.js").read_text(),re.S).group(1))
 from community_content import admin_offer
 src=open('group.html',encoding='utf-8').read()
 head=src[:src.index('<main id="main">')]
@@ -86,6 +88,8 @@ def build(c):
       {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":BASE},{"@type":"ListItem","position":2,"name":c['name'],"item":url}]},
       {"@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":t}} for q,t in faq]}]}
     h=h.replace('</head>','<script type="application/ld+json">\n'+json.dumps(ld,ensure_ascii=False,indent=1)+'\n</script>\n</head>',1)
+    h=re.sub(r'<link rel="stylesheet" href="(?:community-offers|redesign|site-pages)\.css">\n?','',h)
+    h=h.replace('</head>','<link rel="stylesheet" href="community-offers.css">\n<link rel="stylesheet" href="redesign.css">\n<link rel="stylesheet" href="site-pages.css">\n</head>')
     li=lambda xs:'\n'.join('          <li><span>%s</span></li>'%a(x) for x in xs)
     rel=''.join('        <li class="cat-card"><a href="%s.html"><div class="ic"><svg aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-cat-%s"></use></svg></div><span>%s</span></a></li>\n'%(o['slug'],o['icon'],o['name']) for o in CATS if o is not c)
     body='''<main id="main">
@@ -118,10 +122,7 @@ def build(c):
     <div class="wrap">
       <div class="section-head"><div class="eyebrow">Правила</div><h2>Как работают группы</h2></div>
       <div class="rules-card"><ol class="rules-list">
-        <li><span>Группа открывается в 08:00 и закрывается в 22:00.</span></li>
-        <li><span>Пересылки, харам и сообщения не по теме запрещены. Сторонние ссылки запрещены, кроме ссылок на конкретные товары или объявления на Авито.</span></li>
-        <li><span>Обычные объявления участников — бесплатно в часы работы группы.</span></li>
-        <li><span>Реклама каналов, групп, соцсетей, сайтов и сторонних площадок — только на платной основе.</span></li>
+%(rules)s
       </ol></div>
     </div>
   </section>
@@ -143,8 +144,8 @@ def build(c):
     </div>
   </section>
 </main>'''%dict(name=a(c['name']),h1=a(c['h1']),intro=a(c['intro']),posts=li(c['posts']),tips=li(c['tips']),
-      faq='\n'.join('        <details><summary>%s</summary><p>%s</p></details>'%(a(q),a(t)) for q,t in faq),rel=rel)
-    body=body.replace('</main>', '<section class="promo-section"><div class="wrap">'+admin_offer(category=c['name'],anchor='category-admin')+'</div></section>\n</main>')
+      rules='\n'.join('        <li><span>'+a(rule)+'</span></li>' for rule in RULES),faq='\n'.join('        <details><summary>%s</summary><p>%s</p></details>'%(a(q),a(t)) for q,t in faq),rel=rel)
+    body=body.replace('  <section class="promo-section">', '<section class="promo-section"><div class="wrap">'+admin_offer(category=c['name'],anchor='category-admin')+'</div></section>\n  <section class="promo-section">',1)
     open(fn,'w',encoding='utf-8').write(h+body+foot)
 for c in CATS: build(c)
 # sitemap
@@ -157,5 +158,6 @@ open('sitemap.xml','w',encoding='utf-8').write(s)
 i=open('index.html',encoding='utf-8').read()
 for c in CATS:
     i=re.sub(r'<a href="#groups">(<div class="ic"><svg[^>]*><use href="assets/icons/sprite.svg#i-cat-%s"></use></svg></div><span>%s</span>)</a>'%(c['icon'],c['name']),lambda m:'<a href="%s.html">%s</a>'%(c['slug'],m.group(1)),i)
+i=re.sub(r'(<ul[^>]*id="rules-list"[^>]*>).*?(</ul>)',lambda m:m.group(1)+''.join('<li>'+html.escape(rule)+'</li>' for rule in RULES)+m.group(2),i,count=1,flags=re.S)
 open('index.html','w',encoding='utf-8').write(i)
 
