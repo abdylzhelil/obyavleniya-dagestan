@@ -1,0 +1,227 @@
+name: Direct bounded control
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/direct-control/request.json']
+
+permissions: {}
+
+concurrency:
+  group: direct-bounded-control
+  cancel-in-progress: false
+
+jobs:
+  control:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - name: Inspect or apply bounded request
+        env:
+          YANDEX_DIRECT_TOKEN: ${{ secrets.YANDEX_DIRECT_TOKEN }}
+        shell: bash
+        run: |
+          python3 - <<'PYCONTROL'
+          """Bounded Direct operator; fixed campaign/group, explicit actions, auditable snapshots."""
+          import hashlib
+          import json
+          import os
+          import re
+          import sys
+          import urllib.error
+          import urllib.request
+          from datetime import date, datetime, timezone
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+          
+          CAMPAIGN, GROUP = 715775801, 5819958999
+          CONTROL_PATH = ".github/direct-control/request.json"
+          ALLOWED_NEGATIVES = {"05 ru в махачкале", "сколько стоит картошка в дагестане"}
+          ALLOWED_CALLS = {("campaigns", "get"), ("campaigns", "suspend"), ("adgroups", "get"),
+                           ("adgroups", "update"), ("keywords", "get"), ("keywords", "update")}
+          
+          
+          class ControlError(Exception):
+              pass
+          
+          
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self, req, fp, code, msg, headers, newurl):
+                  raise urllib.error.HTTPError(req.full_url, code, "Redirect refused", headers, fp)
+          
+          
+          def request_from_event(event, event_name, sha, opener):
+              changed = [p for c in event.get("commits", []) for key in ("added", "modified") for p in c.get(key, [])]
+              if event_name != "push" or CONTROL_PATH not in changed:
+                  return {"action": "inspect", "campaign_id": CAMPAIGN, "group_id": GROUP}
+              if not re.fullmatch(r"[0-9a-f]{40}", sha):
+                  raise ControlError("Invalid source revision")
+              url = f"https://raw.githubusercontent.com/abdylzhelil/obyavleniya-dagestan/{sha}/{CONTROL_PATH}"
+              with opener.open(urllib.request.Request(url, method="GET"), timeout=30) as response:
+                  raw = response.read(16385)
+              if len(raw) > 16384:
+                  raise ControlError("Control request too large")
+              return json.loads(raw)
+          
+          
+          def validate_request(request, now):
+              if not isinstance(request, dict) or request.get("campaign_id") != CAMPAIGN or request.get("group_id") != GROUP:
+                  raise ControlError("Wrong campaign or group")
+              allowed = {"action", "campaign_id", "group_id", "expected_revision", "issued_at", "reason", "phrases", "narrow_enabled", "request_id"}
+              if set(request) - allowed:
+                  raise ControlError("Unexpected request fields")
+              action = request.get("action")
+              if action not in ("inspect", "append_negatives", "set_narrow", "pause"):
+                  raise ControlError("Action not allowed")
+              if action == "inspect":
+                  return action
+              if not date(2026,11,4) <= now.astimezone(ZoneInfo("Europe/Moscow")).date() <= date(2026,11,10):
+                  raise ControlError("Write outside approved test period")
+              if not re.fullmatch(r"[0-9a-f]{64}", str(request.get("expected_revision", ""))):
+                  raise ControlError("A verified settings revision is required")
+              issued = datetime.fromisoformat(request.get("issued_at", ""))
+              if issued.tzinfo is None or not 0 <= (now - issued).total_seconds() <= 900:
+                  raise ControlError("Write request is stale or not timezone-aware")
+              if not isinstance(request.get("reason"), str) or not 10 <= len(request["reason"]) <= 500:
+                  raise ControlError("Write reason is required")
+              if action == "append_negatives":
+                  phrases = request.get("phrases")
+                  if not isinstance(phrases, list) or not 1 <= len(phrases) <= 2 or any(p not in ALLOWED_NEGATIVES for p in phrases):
+                      raise ControlError("Phrase outside the initial narrow safety allowlist")
+              if action == "set_narrow" and type(request.get("narrow_enabled")) is not bool:
+                  raise ControlError("Narrow setting must be boolean")
+              return action
+          
+          
+          class Direct:
+              def __init__(self, token, opener):
+                  self.token, self.opener = token, opener
+              def call(self, service, method, params):
+                  if (service, method) not in ALLOWED_CALLS:
+                      raise ControlError("API method forbidden")
+                  req = urllib.request.Request(f"https://api.direct.yandex.com/json/v501/{service}",
+                      data=json.dumps({"method": method, "params": params}).encode(), method="POST",
+                      headers={"Authorization": "Bearer " + self.token, "Content-Type": "application/json", "Accept-Language": "ru"})
+                  try:
+                      with self.opener.open(req, timeout=45) as response:
+                          raw = response.read(1024*1024+1)
+                      if len(raw) > 1024*1024:
+                          raise ControlError("Response too large")
+                      data = json.loads(raw)
+                  except urllib.error.HTTPError as error:
+                      raise ControlError("HTTP failure " + str(error.code)) from None
+                  except (urllib.error.URLError, OSError, ValueError):
+                      raise ControlError("API request failed; details suppressed") from None
+                  if not isinstance(data, dict) or "error" in data:
+                      code = data.get("error", {}).get("error_code") if isinstance(data, dict) else None
+                      raise ControlError("Direct API rejected request" + (" code " + str(code) if type(code) is int else ""))
+                  if not isinstance(data.get("result"), dict):
+                      raise ControlError("Missing API result")
+                  return data["result"]
+          
+          
+          def snapshot(api):
+              campaigns = api.call("campaigns", "get", {"SelectionCriteria": {"Ids": [CAMPAIGN]}, "FieldNames": ["Id", "State", "Status", "Type"]}).get("Campaigns", [])
+              groups = api.call("adgroups", "get", {"SelectionCriteria": {"CampaignIds": [CAMPAIGN], "Ids": [GROUP]}, "FieldNames": ["Id", "CampaignId", "Status", "RegionIds", "NegativeKeywords", "Type"]}).get("AdGroups", [])
+              result = api.call("keywords", "get", {"SelectionCriteria": {"CampaignIds": [CAMPAIGN], "AdGroupIds": [GROUP]},
+                  "FieldNames": ["Id", "AdGroupId", "CampaignId", "Keyword", "State", "Status"],
+                  "AutotargetingSettingsCategoriesFieldNames": ["Exact", "Narrow", "Alternative", "Accessory", "Broader"],
+                  "AutotargetingSettingsBrandOptionsFieldNames": ["WithoutBrands", "WithAdvertiserBrand", "WithCompetitorsBrand"]})
+              keywords = result.get("Keywords", [])
+              if len(campaigns) != 1 or campaigns[0].get("Id") != CAMPAIGN:
+                  raise ControlError("Campaign identity mismatch")
+              if len(groups) != 1 or groups[0].get("Id") != GROUP or groups[0].get("CampaignId") != CAMPAIGN:
+                  raise ControlError("Group identity mismatch")
+              if result.get("LimitedBy") or any(k.get("CampaignId") != CAMPAIGN or k.get("AdGroupId") != GROUP for k in keywords):
+                  raise ControlError("Keywords outside scope or incomplete")
+              return {"campaign": campaigns[0], "group": groups[0], "keywords": sorted(keywords, key=lambda k: k["Id"])}
+          
+          
+          def revision(settings):
+              return hashlib.sha256(json.dumps(settings, sort_keys=True, ensure_ascii=False, separators=(",", ":")).encode()).hexdigest()
+          
+          
+          def plan(request, before):
+              if request["expected_revision"] != revision(before):
+                  raise ControlError("Settings changed since inspection; inspect again")
+              action = request["action"]
+              if action == "pause":
+                  return "campaigns", "suspend", {"SelectionCriteria": {"Ids": [CAMPAIGN]}}, "SuspendResults", CAMPAIGN
+              if action == "append_negatives":
+                  old = (before["group"].get("NegativeKeywords") or {}).get("Items", [])
+                  merged = list(dict.fromkeys(old + request["phrases"]))
+                  if sum(len(p.replace(" ", "")) for p in merged) > 4096:
+                      raise ControlError("Negative keyword length limit exceeded")
+                  return "adgroups", "update", {"AdGroups": [{"Id": GROUP, "NegativeKeywords": {"Items": merged}}]}, "UpdateResults", GROUP
+              auto = [k for k in before["keywords"] if k.get("Keyword") == "---autotargeting"]
+              if len(auto) != 1 or not isinstance(auto[0].get("AutotargetingSettings"), dict):
+                  raise ControlError("Autotargeting settings not available")
+              categories = {"Exact": "YES", "Narrow": "YES" if request["narrow_enabled"] else "NO", "Alternative": "NO", "Accessory": "NO", "Broader": "NO"}
+              return "keywords", "update", {"Keywords": [{"Id": auto[0]["Id"], "AutotargetingSettings": {"Categories": categories}}]}, "UpdateResults", auto[0]["Id"]
+          
+          
+          def verify(request, after):
+              if request["action"] == "pause":
+                  return after["campaign"]["State"] == "SUSPENDED"
+              if request["action"] == "append_negatives":
+                  phrases = (after["group"].get("NegativeKeywords") or {}).get("Items", [])
+                  return all(p in phrases for p in request["phrases"])
+              auto = [k for k in after["keywords"] if k.get("Keyword") == "---autotargeting"]
+              expected = {"Exact": "YES", "Narrow": "YES" if request["narrow_enabled"] else "NO", "Alternative": "NO", "Accessory": "NO", "Broader": "NO"}
+              return len(auto) == 1 and auto[0].get("AutotargetingSettings", {}).get("Categories") == expected
+          
+          
+          def main():
+              out = Path("direct-control")
+              out.mkdir(exist_ok=True)
+              token = os.environ.get("YANDEX_DIRECT_TOKEN", "").strip()
+              record = {"captured_at_utc": datetime.now(timezone.utc).isoformat(), "applied": False, "verified": False}
+              try:
+                  if not token or any(c.isspace() for c in token):
+                      raise ControlError("Missing OAuth secret")
+                  opener = urllib.request.build_opener(NoRedirect())
+                  event = json.loads(Path(os.environ["GITHUB_EVENT_PATH"]).read_text())
+                  request = request_from_event(event, os.environ["GITHUB_EVENT_NAME"], os.environ["GITHUB_SHA"], opener)
+                  action = validate_request(request, datetime.now(timezone.utc))
+                  record["request"] = request
+                  api = Direct(token, opener)
+                  before = snapshot(api)
+                  record.update(before=before, revision=revision(before))
+                  if action != "inspect":
+                      service, method, payload, result_key, expected_id = plan(request, before)
+                      record["proposed_api_request"] = {"service": service, "method": method, "params": payload}
+                      result = api.call(service, method, payload)
+                      items = result.get(result_key, [])
+                      if len(items) != 1 or items[0].get("Id") != expected_id or items[0].get("Errors"):
+                          raise ControlError("Update failed or returned partial errors; inspect before retrying")
+                      record["applied"] = True
+                      after = snapshot(api)
+                      record["after"] = after
+                      if not verify(request, after):
+                          raise ControlError("Change not confirmed by reread; inspect before retrying")
+                  record["verified"] = True
+                  record["status"] = "read_only_inspection" if action == "inspect" else "change_verified"
+                  print("PASS: " + record["status"])
+              except (ControlError, ValueError, KeyError, TypeError, OSError, urllib.error.URLError) as error:
+                  record["status"] = "failed"
+                  record["error"] = str(error).replace(token, "[REDACTED]") if token else "Missing OAuth secret"
+                  print("FAIL: control result saved; no raw API body logged")
+              (out / "result.json").write_text(json.dumps(record, ensure_ascii=False, indent=2).replace(token, "[REDACTED]") if token else json.dumps(record), encoding="utf-8")
+              summary = os.environ.get("GITHUB_STEP_SUMMARY")
+              if summary:
+                  with open(summary, "a", encoding="utf-8") as handle:
+                      handle.write("## Direct bounded control\n\nStatus: " + record["status"] + "; applied: " + str(record["applied"]) + "\n")
+              return 0 if record["verified"] else 1
+          
+          
+          if __name__ == "__main__": sys.exit(main())
+          PYCONTROL
+      - name: Save before and after evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: direct-control-${{ github.run_id }}-${{ github.run_attempt }}
+          path: direct-control/
+          retention-days: 30
+          if-no-files-found: warn
