@@ -273,7 +273,9 @@ jobs:
           METRICS = ["ym:s:visits", "ym:s:users", "ym:s:bounceRate", "ym:s:pageDepth", "ym:s:avgVisitDurationSeconds",
                      "ym:s:goal668953269reaches", "ym:s:goal668953269visits", "ym:s:goal668953627reaches", "ym:s:goal668953627visits"]
           DIMENSIONS = {"overview": None, "daily": "ym:s:date", "devices": "ym:s:deviceCategory",
-                        "regions": "ym:s:regionCountry,ym:s:regionArea,ym:s:regionCity"}
+                        "regions": "ym:s:regionCountry,ym:s:regionArea,ym:s:regionCity",
+                        "all_traffic": None, "observed_utm": "ym:s:UTMSource,ym:s:UTMMedium,ym:s:UTMCampaign"}
+          DIAGNOSTIC_KEYS = {"all_traffic", "observed_utm"}
           
           
           class NoRedirect(urllib.request.HTTPRedirectHandler):
@@ -313,6 +315,13 @@ jobs:
                       "data_lag": data.get("data_lag"), "truncated": data.get("total_rows", 0) > 1000}
           
           
+          def request_params(key, first, last):
+              p = params(first, last, DIMENSIONS[key])
+              if key in DIAGNOSTIC_KEYS:
+                  p.pop("filters")
+              return p
+          
+          
           def main():
               out = Path("direct-reports/metrika")
               out.mkdir(parents=True, exist_ok=True)
@@ -335,8 +344,23 @@ jobs:
                           first, last = direct["date_from"], direct["date_to"]
                           result.update(date_from=first, date_to=last)
                           opener = urllib.request.build_opener(NoRedirect())
+                          try:
+                              req = urllib.request.Request("https://api-metrika.yandex.net/management/v1/counter/" + COUNTER,
+                                  headers={"Authorization": "OAuth " + token}, method="GET")
+                              with opener.open(req, timeout=45) as response:
+                                  raw = response.read(1024 * 1024 + 1)
+                              if len(raw) > 1024 * 1024:
+                                  raise ValueError("Counter metadata too large")
+                              counter = json.loads(raw)["counter"]
+                              if str(counter["id"]) != COUNTER:
+                                  raise ValueError("Counter identity mismatch")
+                              result["counter_meta"] = {k: counter.get(k) for k in ("id", "site", "time_zone_name", "time_zone_offset")}
+                              (out / "counter.json").write_text(json.dumps(result["counter_meta"], ensure_ascii=False, indent=2).replace(token, "[REDACTED]") + "\n", encoding="utf-8")
+                          except (urllib.error.URLError, OSError, ValueError, KeyError, TypeError):
+                              result["counter_meta"] = {"status": "not_verified"}
                           for key, dimension in DIMENSIONS.items():
-                              item = {"request": params(first, last, dimension)}
+                              item = {"request": request_params(key, first, last),
+                                      "traffic_scope": "all_counter_traffic_diagnostic_only" if key in DIAGNOSTIC_KEYS else "exact_utm_campaign"}
                               try:
                                   url = ENDPOINT + "?" + urllib.parse.urlencode(item["request"])
                                   request = urllib.request.Request(url, headers={"Authorization": "OAuth " + token}, method="GET")
@@ -377,4 +401,5 @@ jobs:
           path: direct-reports/
           retention-days: 30
           if-no-files-found: warn
+
 
