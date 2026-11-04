@@ -1,0 +1,195 @@
+{
+  "captured_at_utc": "2026-11-04T10:38:17Z",
+  "campaign_id": "715775801",
+  "group_id": "5819958999",
+  "audit_status": "partial_verified_baseline_followups_required",
+  "direct": {
+    "run_id": "81100fd2-ff0d-4efd-b23e-58aa18c445f5",
+    "requested_date_from": "2026-11-04",
+    "requested_date_to": "2026-11-04",
+    "displayed_day_row": "2026-11-03",
+    "timezone": null,
+    "date_conflict": true,
+    "impressions": 97,
+    "clicks": 6,
+    "spend_rub_excluding_vat": 34.57,
+    "vat_checkbox_checked": false,
+    "aggregate_conversions": 0,
+    "ctr_computed_percent": 6.185567010309279,
+    "cpc_computed_rub": 5.761666666666667
+  },
+  "query_rows": [
+    {
+      "query": "дагестанских огнях найти дом на долгий срок",
+      "spend_rub_excluding_vat": 11.69,
+      "impressions": 3,
+      "clicks": 1,
+      "conversions": 0,
+      "criterion": "Автотаргетинг",
+      "category": "Узкие запросы",
+      "manual_keyword": null,
+      "intent_review": "contextual_housing"
+    },
+    {
+      "query": "баран реализация дагестан",
+      "spend_rub_excluding_vat": 0.97,
+      "impressions": 2,
+      "clicks": 1,
+      "conversions": 0,
+      "criterion": "Автотаргетинг",
+      "category": "Узкие запросы",
+      "manual_keyword": null,
+      "intent_review": "contextual_goods"
+    },
+    {
+      "query": "05 ru в махачкале",
+      "spend_rub_excluding_vat": 4.45,
+      "impressions": 1,
+      "clicks": 1,
+      "conversions": 0,
+      "criterion": "Автотаргетинг",
+      "category": "Узкие запросы",
+      "manual_keyword": null,
+      "intent_review": "suspected_retailer_navigation"
+    },
+    {
+      "query": "квартиры махачкала на длительный срок тг канал",
+      "spend_rub_excluding_vat": 7.41,
+      "impressions": 1,
+      "clicks": 1,
+      "conversions": 0,
+      "criterion": "Автотаргетинг",
+      "category": "Узкие запросы",
+      "manual_keyword": null,
+      "intent_review": "relevant_telegram_housing"
+    },
+    {
+      "query": "кухни в дагестане",
+      "spend_rub_excluding_vat": 6.41,
+      "impressions": 1,
+      "clicks": 1,
+      "conversions": 0,
+      "criterion": "Автотаргетинг",
+      "category": "Узкие запросы",
+      "manual_keyword": null,
+      "intent_review": "broad_product_intent"
+    },
+    {
+      "query": "шторы на заказ для невест хасавюрт",
+      "spend_rub_excluding_vat": 3.65,
+      "impressions": 1,
+      "clicks": 1,
+      "conversions": 0,
+      "criterion": "Автотаргетинг",
+      "category": "Узкие запросы",
+      "manual_keyword": null,
+      "intent_review": "broad_service_intent"
+    }
+  ],
+  "query_totals": {
+    "report_spend": 34.57,
+    "sum_rounded_row_spend": 34.58,
+    "impressions": 9,
+    "clicks": 6,
+    "conversions": 0,
+    "coverage": "visible_clicked_queries; not all campaign impressions"
+  },
+  "devices": {
+    "run_id": "9e0bec2b-db41-49ad-8acb-4a7e3aa030d0",
+    "displayed_range": "2026-10-06/2026-11-04",
+    "same_day_filter_confirmed": false,
+    "rows": [
+      {
+        "network": "Поиск",
+        "device": "Десктопы",
+        "os": "Не определён",
+        "spend": 0.97,
+        "impressions": 7,
+        "clicks": 1
+      },
+      {
+        "network": "Поиск",
+        "device": "Смартфоны",
+        "os": "Android",
+        "spend": 26.19,
+        "impressions": 58,
+        "clicks": 4
+      },
+      {
+        "network": "Поиск",
+        "device": "Смартфоны",
+        "os": "iOS",
+        "spend": 7.41,
+        "impressions": 33,
+        "clicks": 1
+      }
+    ],
+    "impressions": 98,
+    "clicks": 6,
+    "spend": 34.57
+  },
+  "actual_regions": {
+    "status": "unverified",
+    "reason": "report returned Нет данных; empty is not confirmed zero"
+  },
+  "specific_placements": {
+    "status": "unverified",
+    "reason": "separate report returned Нет данных; search type confirmed only in device rows"
+  },
+  "metrika": {
+    "run_id": "476f0a50-c94c-4797-9a22-a6f73cb6bd46",
+    "counter_id": 113403438,
+    "displayed_date": "4 ноя",
+    "traffic_scope": "all traffic; campaign UTM segment NOT applied",
+    "telegram": {
+      "goal_id": 668953627,
+      "target_visits": 1,
+      "achievements": 1,
+      "conversion_percent": 33.33
+    },
+    "whatsapp": {
+      "goal_id": 668953269,
+      "status": "Нет данных по цели",
+      "target_visits": null,
+      "achievements": null
+    },
+    "campaign_paid_counts": null,
+    "limitation": "Saved-segment search returned no matches; does NOT prove UTM filtering impossible. Recent Direct conversion data warning."
+  },
+  "actual_joins": {
+    "telegram": 0,
+    "source": "owner report",
+    "baseline": 0,
+    "whatsapp": null,
+    "paid_unique_people": null
+  },
+  "changes_applied": [],
+  "data_warnings": [
+    "Do not compare reports as identical-day cohorts",
+    "1 kopeck query-row rounding difference not independently explained",
+    "97 vs98 impressions may reflect refresh or differing periods, not fractional rounding",
+    "Do not infer network delivery from query impression coverage",
+    "Do not infer no configured keywords from absence in clicked query rows",
+    "Do not infer paid Telegram click from all-traffic goal achievement"
+  ],
+  "source_runs": [
+    {
+      "run_id": "81100fd2-ff0d-4efd-b23e-58aa18c445f5",
+      "status": "completed",
+      "raw_browser_report": "# READ-ONLY EVIDENCE AUDIT: Campaign 715775801\n\n**Report URLs:**\n1. Performance Campaign Report: https://direct.yandex.ru/dna/reports/library/performance-campaigns/?ulogin=abdylzhelil00001&campaignIds=715775801&campaignTypes=CAMPAIGN_TYPE_UNIFIED&goalIds=668953269,668953627&attributionModel=AUTOMATIC&from=2026-11-04&to=2026-11-04\n2. Search Queries Report: https://direct.yandex.ru/dna/reports/library/search-queries/?ulogin=abdylzhelil00001&campaigns-ids=715775801&state=19119681\n\n**Date:** 04.11.2026 (set explicitly via custom date range picker to single day)\n**Time of Observation:** 2026-11-04\n\n---\n\n## PRIORITY 1: Campaign Stats (Performance Report — Date 04.11.2026)\n\n**Campaign Name:** Единая перфоманс-кампания №1 от 03-11-2026\n**Campaign ID:** 715775801\n**Campaign Status:** Активные (Active)\n**Group Name:** Новая группа\n**Group ID:** 5819958999\n\n**Table Headers:** День | Название кампании | № кампании | Статус кампании | Расход | Показы | Клики | Конверсии | CR | CPA\n\n**Row Data:** 03.11.2026, вт | Единая перфоманс-кампания №1 от 03-11-2026 | 715775801 | Активные | 34,57 ₽ | 97 | 6 | 0 | 0,00 % | –\n\n**Note on Date:** The date column shows \"03.11.2026, вт\" (Tuesday, November 3, 2026) while the filter is set to \"04.11.2026\" — this may reflect timezone difference (America/New_York per tracking logs). The report filter was explicitly set to 04.11.2026 via calendar custom date picker.\n\n**VAT Checkbox (\"с НДС\"):** Visible and UNCCKED\n\n**Report Timezone:** Not explicitly displayed on the report page; tracking URLs reference America/New_York\n\n**Totals:**\n- Impressions (Показы): 97\n- Clicks (Клики): 6\n- Spend (Расход): 34,57 ₽\n- Conversions (Конверсии): 0\n- CR: 0,00%\n- CPA: – (not applicable, 0 conversions)\n- CTR: 6.19% (6/97, derived — not shown as a column in this report)\n\n---\n\n## PRIORITY 2: Search Queries Report (Date 04.11.2026)\n\n**Table Headers (exact order):**\nТип условия показа | Поисковый запрос | Категория запроса | Упоминание брендов в запросах | Название кампании | № кампании | Название группы | № группы | Ключевая фраза | Тип соответствия | Расход | Показы | Клики | Конверсии | CR | CPA\n\n**Raw Rows (6 entries, all from campaign 715775801):**\n\n| # | Criterion Type | Search Query | Category | Brand Mentions | Campaign Name | Camp ID | Group Name | Group ID | Key Phrase | Match Type | Spend | Shows | Clicks | Conv | CR | CPA |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n| 1 | Автотаргетинг | дагестанских огнях найти дом на долгий срок | Узкие запросы | Запросы без упоминания брендов | Единая перфоманс-кампания №1 от 03-11-2026 | 715775801 | Новая группа | 5819958999 | – | – | 11,69 ₽ | 3 | 1 | 0 | 0,00% | – |\n| 2 | Автотаргетинг | баран реализация дагестан | Узкие запросы | Заqueries без упоминания брендов | Единая перфоманс-кампания №1 от 03-11-2026 | 715775801 | Новая группа | 5819958999 | – | – | 0,97 ₽ | 2 | 1 | 0 | 0,00% | – |\n| 3 | Автотаргетинг | 05 ru в махачкале | Узкие запросы | Запросы без упоминания брендов | Единая перфоманс-кампания №1 от 03-11-2026 | 715775801 | Новая группа | 5819958999 | – | – | 4,45 ₽ | 1 | 1 | 0 | 0,00% | – |\n| 4 | Автотаргетинг | квартиры махачкала на длительный срок тг канал | Узкие запросы | Запросы без упоминания брендов | Единая перфоманс-кампания №1 от 03-11-2026 | 715775801 | Новая группа | 5819958999 | – | – | 7,41 ₽ | 1 | 1 | 0 | 0,00% | – |\n| 5 | Автотаргетинг | кухни в дагестане | Узкие запросы | Запросы без упоминания брендов | Единая перфоманс-кампания №1 от 03-11-2026 | 715775801 | Новая группа | 5819958999 | – | – | 6,41 ₽ | 1 | 1 | 0 | 0,00% | – |\n| 6 | Автотаргетинг | шторы на заказ для невест хасавюрт | Узкие запросы | Запросы без упоминания брендов | Единая перфоманс-кампания №1 от 03-11-2026 | 715775801 | Новая группа | 5819958999 | – | – | 3,65 ₽ | 1 | 1 | 0 | 0,00% | – |\n\n**Summary/Total Row (Итого):**\nРасход: 34,57 ₽ | Показы: 9 | Клики: 6 | Конверсии: 0 | CR: 0,00% | CPA: –\n\n**Cross-Check: Sum Verification**\n- Sum of clicks from search queries: 1+1+1+1+1+1 = 6 ✓ (matches campaign total of 6)\n- Sum of spend from search queries: 11,69+0,97+4,45+7,41+6,41+3,65 = 34,58 ₽\n- Campaign report spend: 34,57 ₽\n- **Discrepancy:** 0,01 ₽ rounding difference (search queries report total is 34,58 ₽, campaign report shows 34,57 ₽). This is a minor floating-point rounding variance, not a data inconsistency requiring further investigation.\n\n**Search Queries vs. Campaign Totals Discrepancy Note:**\n- The search queries report shows Показы (impressions) total of 9, while the campaign performance report shows 97. This is expected because:\n  - Campaign report may include placements outside search (e.g., network/display placements) or auto-targeting categories not broken down to individual queries\n  - Alternatively, the search queries report may aggregate or filter differently\n\n**VAT Checkbox (\"с НДС\"):** Visible and UNCHECKED\n\n**Attribution Model:** Автоматическая (Automatic)\n**Goals:** 2 goals configured (IDs: 668953269, 668953627)\n\n---\n\n## PRIORITY 3: Additional Dimensions\n\n**Criterion Type (Тип условия показа):** All 6 queries are from \"Автотаргетинг\" (Auto-targeting) — meaning these are auto-generated matching queries from auto-targeting category, not manually set keywords.\n\n**Query Category (Категория запроса):** All 6 queries are categorized as \"Узкие запросы\" (Narrow queries) with \"Запросы без упоминания брендов\" (No brand mentions).\n\n**Keyword/Match Type:** \"Ключевая фрага\" and \"Тип соответствия\" columns show \"–\" (not set/empty), confirming these are auto-targeting auto-generated queries, not manual keyword matches.\n\n**Campaign Status:** Active (Активные) — read-only observation\n\n---\n\n## MISSING CHECKS / LIMITATIONS\n\n1. **Placement/Network Report:** Not accessed (would require separate navigation to \"Площадки\" report)\n2. **Geo/Location Report:** Not accessed (would require separate navigation to \"Регионы\" report)\n3. **Devices Report:** Not accessed (would require separate navigation to \"Устройства\" report)\n4. **Exact Date 04.11.2026 Data:** The campaign stats table showed date \"03.11.2026\" in the data row despite the filter being set to 04.11.2026 — possible timezone offset effect (browser timezone is America/New_York, while Yandex may use Moscow time UTC+3, meaning Nov 4 in Moscow = Nov 3 in New York)\n5. **Report Timezone:** Not explicitly displayed on the page\n6. **Pagination/Withheld Data:** No pagination indicators visible; all 6 rows shown (no \"withheld\" or \"other\" categories indicated)\n7. **Budget:** Not visible on the current report pages — only visible in sidebar as account balance (465,42 ₽ total account balance)\n\n---\n\n## KEY FINDINGS SUMMARY\n\n- **Campaign 715775801** is an \"Единая перфоманс-кампания\" (Unified Performance Campaign)\n- **All traffic sources are Auto-targeting** (Автотаргетинг) — no manual keywords are present\n- **6 search queries** generated traffic, all from auto-targeting narrow queries with no brand mentions\n- **6 clicks, 0 conversions, 0% CR, N/A CPA** on 04.11.2026\n- **Total spend:** 34,57 ₽ (campaign report) / 34,58 ₽ (search queries sum) — 0,01 ₽ rounding\n- **CTR:** ~6.19% (6 clicks from campaign 97 impressions)\n- **Search queries show 9 impressions total**, significantly less than campaign's 97 impressions — suggests majority of impressions came from non-search or aggregated sources not individually itemized in the search queries report\n- **VAT (\"с НДС\") checkbox is unchecked** throughout all reports",
+      "trust_note": "Raw agent-generated reading; authoritative normalized observations and limitations above. Ignore unsupported causal/timezone/platform/rounding claims in raw report."
+    },
+    {
+      "run_id": "9e0bec2b-db41-49ad-8acb-4a7e3aa030d0",
+      "status": "completed",
+      "raw_browser_report": "## Campaign 715775801 Traffic-Dimensions Audit — Evidence Summary\n\n### Core Report (Performance Campaigns)\n**Report URL:** `https://direct.yandex.ru/dna/reports/library/performance-campaigns/?campaignIds=715775801&campaignTypes=CAMPAIGN_TYPE_UNIFIED&goalIds=668953269,668953627&attributionModel=AUTOMATIC&from=2026-11-04&to=2026-11-04`\n\n**Date Filter Issue:** URL specifies `04.11.2026` but the actual data table displayed `03.11.2026, вт` (November 3, 2026, Tuesday). The date picker in the UI was set to \"04 нояб 2026\" but did not refresh the table data accordingly — **data mismatch detected**.\n\n**Campaign Details:**\n- **Name:** Единая перфоманс-кампания №1 от 03-11-2026\n- **ID:** 715775801\n- **Status (visible text):** Активные (Active)\n- **Spend (Расход):** 34,57 ₽ (without VAT — \"с НДС\" checkbox is **unchecked**)\n- **Impressions (Показы):** 97\n- **Clicks (Клики):** 6\n- **Conversions:** 0\n- **CR:** 0,00%\n- **CPA:** –\n- **Attribution:** Автоматическая (Automatic)\n\n**Column Headers:** День, Название кампании, № кампании, Стататус кампании, Расход, Показы, Клики, Конверсии, CR, CPA\n\n**Goals Filter:** \"Вступить в WhatsApp, +1\" (clicked) was applied as an active filter button.\n\n### Devices Report (Отчёт по устройствам)\n**URL:** `https://direct.yandex.ru/dna/reports/library/devices?ulogin=abdylzhelil00001&inheritFrom=19119824`\n\n**Date Range:** 06 окт – 04 нояб 2026 (multi-day; could not set to single 04.11.2026 — date picker did not update table after interaction).\n\n**Data Rows (for campaign 715775801):**\n\n| Тип площадки | Тип устройства | Тип ОС | Расход | Показы | Клики | CTR |\n|---|---|---|---|---|---|---|\n| Поиск | Десктопы | Не определён | 0,97 ₽ | 7 | 1 | 14,29% |\n| Поиск | Смартфоны | Android | 26,19 ₽ | 58 | 4 | 6,90% |\n| Поиск | Смартфоны | iOS | 7,41 ₽ | 33 | 1 | 3,03% |\n\n**Totals from devices:** Spend = 34,57 ₽ (0.97+26.19+7.41), Impressions = 98 (7+58+33), Clicks = 6 (1+4+1). Slight impression discrepancy vs. 97 in the main report (possibly rounding/dedup). **All placements: Поиск (Search) only — zero network (Сети) data visible.**\n\n### Placements Report (Площадки)\n**URL:** `https://direct.yandex.ru/dna/reports/library/pages?ulogin=abdylzhelil00001`\n- **Result:** \"Нет данных\" (No data) — empty table even after removing \"Тип площадки: Сети\" filter. Could not reconcile actual placements.\n\n### Regions Report (Регионы)\n**URL:** `https://direct.yandex.ru/dna/reports/library/regions?ulogin=abdylzhelil00001&state=19120049`\n- **Result:** \"Нет данных\" (No data) — empty table.\n- **Column headers present:** Страна таргетинга › Округ таргетинга › Область таргетинга › Город таргетинга › Регион таргетинга › **Регион местонахождения**, Расход, Показы, Клики, Конверсии, CR, CPA\n- **Note:** The header shows \"Регион местонахождения\" (actual user location) is the last component in the hierarchy, confirming it exists as a dimension but no data loaded.\n\n### Key Findings\n1. **Date mismatch:** URL says 04.11.2026 but report shows 03.11.2026 data. This is a platform issue, not timezone — the date filter UI shows \"04 нояб 2026\" but table row shows \"03.11.2026\".\n2. **Spend reconciliation:** Main report shows 34,57 ₽; devices report sums to 34,57 ₽ (0.97+26.19+7.41) — **matches**.\n3. **Clicks reconciliation:** 6 clicks in main report = 6 clicks across devices (1+4+1) — **matches**.\n4. **Impression discrepancy:** Main report shows 97, devices report sums to 98 — minor 1-impression difference (possible rounding).\n5. **Network vs Search:** All device data shows \"Поиск\" (Search) placement type only — zero \"Сети\" (Network) placements visible. The 97 vs 6 query impression gap does NOT indicate network delivery.\n6. **VAT status:** \"с НДС\" checkbox is **unchecked** (без НДС), confirming 34.57 ₽ is the VAT-exclusive spend.\n7. **Account timezone:** Not visibly displayed on any report page — **unknown**.\n8. **Campaign status:** Visible as \"Активные\" (Active) on the main performance report row.\n9. **Query vs Campaign Impression Gap:** 97 campaign impressions vs 9 query impressions — confirms **incomplete query coverage**, NOT proof of network delivery.\n\n### Budget Exceeded Notice\nBudget of 150 steps exhausted. Regions and Placements reports returned \"Нет данных\" despite campaign filter inheritance. Could not verify actual placement/region breakdown for 04.11.2026 in separate report views. The devices report is the most complete dimensional view available.\n",
+      "trust_note": "Raw agent-generated reading; authoritative normalized observations and limitations above. Ignore unsupported causal/timezone/platform/rounding claims in raw report."
+    },
+    {
+      "run_id": "476f0a50-c94c-4797-9a22-a6f73cb6bd46",
+      "status": "completed",
+      "raw_browser_report": "METRIKA AUDIT REPORT — Counter 113403438 (Объявления Дагестана / obyavleniya-dagestan.ru)\nDate: 04Nov2026 (displayed as \"4 ноя\" in UI)\n\n--- ALLTRAFFIC (Unsegmented) Goals — Conversion Rate Report ---\n\nWARNING: Yandex Direct shows a banner: \"Данные о конверсиях из Директа за последние дни могут быть неполными\" (Direct conversion data for recent days may be incomplete). No geographic breakdown is visible.\n\nGOAL: join_telegram — \"Перейти в Telegram\" (ID: 668953627)\n- Целевые визиты (Target Visits): 1\n- Достижения цели (Goal Achievements): 1\n- Конверсия (Conversion Rate): 33.33%\n\nGOAL: join_whatsapp — \"Вступить в WhatsApp\" (ID: 668953269)\n- Целевые визиты (Target Visits): Нет данных по цели (No data)\n- Достижения цели (Goal Achievements): Нет данных по цели (No data)\n- Конверсия (Conversion Rate): Нет данных по цели (No data)\n\nOther goals (15 total, all 16 goals used): All show \"Нет данных по цели\".\n\nOVERALL PAGE METRICS:\n- Total visits and people counts: Not displayed as aggregate totals on this conversion_rate view (only per-goal figures).\n- View mode: Hierarchical, showing \"Визиты\" and \"Люди\" as metric toggles.\n\n--- PAID CAMPAIGN SEGMENT (UTM: campaign=dagestan_members_search_v1, source=yandex, medium=cpc) ---\nSegment filter test: Opened segment dropdown → searched \"dagestan_members_search_v1\" → result: \"Нет сегментов\" (No segments found).\nThis UTM-based paid campaign segment is NOT available for selection in the built-in segment picker.\n\nCONCLUSION for paid campaign: paid_countsunknown = true (not 0). Cannot efficiently filter to this specific UTM segment. The two goals for ALLTRAFFIC (no segment) are:\n- join_telegram (668953627): 1 target visit, 1 achievement\n- join_whatsapp (668953269): no data\n\nSegment provenance: Manual search for \"dagestan_members_search_v1\" in the segment menu returned no results. Segment cannot be applied.\n\nReport compiled from the conversion_rate view without creating any new reports or modifying any settings.",
+      "trust_note": "Raw agent-generated reading; authoritative normalized observations and limitations above. Ignore unsupported causal/timezone/platform/rounding claims in raw report."
+    }
+  ]
+}
