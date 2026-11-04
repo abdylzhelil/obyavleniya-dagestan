@@ -52,8 +52,9 @@ jobs:
           
           
           def request_from_event(event, event_name, sha, opener):
-              changed = [p for c in event.get("commits", []) for key in ("added", "modified") for p in c.get(key, [])]
-              if event_name != "push" or CONTROL_PATH not in changed:
+              # The workflow push.paths gate only allows this command file. Actions may omit
+              # commit-level changed-file arrays, so do not rely on those payload attributes.
+              if event_name != "push" or event.get("ref") != "refs/heads/main":
                   return {"action": "inspect", "campaign_id": CAMPAIGN, "group_id": GROUP}
               if not re.fullmatch(r"[0-9a-f]{40}", sha):
                   raise ControlError("Invalid source revision")
