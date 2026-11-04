@@ -1,0 +1,116 @@
+name: Direct API connection check
+
+on:
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: direct-api-connection-check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Read fixed campaign 715775801
+        env:
+          YANDEX_DIRECT_TOKEN: ${{ secrets.YANDEX_DIRECT_TOKEN }}
+        shell: bash
+        run: |
+          python3 - <<'PYDIRECT'
+          """Single fixed, read-only Direct request; never print secrets or response bodies."""
+          import json
+          import os
+          import re
+          import sys
+          import urllib.error
+          import urllib.request
+          
+          CAMPAIGN_ID = 715775801
+          ENDPOINT = "https://api.direct.yandex.com/json/v501/campaigns"
+          PAYLOAD = {
+              "method": "get",
+              "params": {
+                  "SelectionCriteria": {"Ids": [CAMPAIGN_ID]},
+                  "FieldNames": ["Id", "State", "Status", "Type"],
+              },
+          }
+          
+          
+          class RejectRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self, req, fp, code, msg, headers, newurl):
+                  raise urllib.error.HTTPError(req.full_url, code, "Redirect refused", headers, fp)
+          
+          
+          def check(token, opener=None):
+              if not token or any(c.isspace() for c in token):
+                  return False, "OAuth secret is missing or contains whitespace."
+              request = urllib.request.Request(
+                  ENDPOINT,
+                  data=json.dumps(PAYLOAD).encode("utf-8"),
+                  headers={
+                      "Authorization": "Bearer " + token,
+                      "Content-Type": "application/json; charset=utf-8",
+                      "Accept-Language": "ru",
+                  },
+                  method="POST",
+              )
+              opener = opener or urllib.request.build_opener(RejectRedirect())
+              try:
+                  with opener.open(request, timeout=45) as response:
+                      if response.status != 200:
+                          return False, "Unexpected HTTP status."
+                      raw = response.read(1024 * 1024 + 1)
+                  if len(raw) > 1024 * 1024:
+                      return False, "Response exceeds the allowed size."
+                  data = json.loads(raw)
+                  if not isinstance(data, dict):
+                      return False, "Unexpected response format."
+                  if "error" in data:
+                      error = data["error"]
+                      code = error.get("error_code") if isinstance(error, dict) else None
+                      # Server messages/request headers may contain secrets. Do not echo them.
+                      suffix = " Code: " + str(code) if type(code) is int else ""
+                      return False, "Direct API rejected the request." + suffix
+                  result = data.get("result")
+                  campaigns = result.get("Campaigns") if isinstance(result, dict) else None
+                  if not isinstance(campaigns, list) or len(campaigns) != 1:
+                      return False, "The requested campaign was not returned."
+                  campaign = campaigns[0]
+                  if not isinstance(campaign, dict) or campaign.get("Id") != CAMPAIGN_ID:
+                      return False, "The returned campaign does not match the fixed ID."
+                  fields = {}
+                  for key in ("State", "Status", "Type"):
+                      value = campaign.get(key)
+                      if not isinstance(value, str) or not re.fullmatch(r"[A-Z_]{1,80}", value):
+                          return False, "Unexpected campaign status format."
+                      fields[key] = value
+                  return True, json.dumps({"Id": CAMPAIGN_ID, **fields})
+              except urllib.error.HTTPError as error:
+                  return False, "HTTP request failed. Code: " + str(error.code)
+              except (urllib.error.URLError, TimeoutError, OSError):
+                  return False, "HTTPS connection failed; no response details logged."
+              except (ValueError, TypeError, KeyError, AttributeError):
+                  return False, "The API response could not be validated."
+          
+          
+          def main():
+              token = os.environ.get("YANDEX_DIRECT_TOKEN", "").strip()
+              ok, message = check(token)
+              # Defense in depth: do not emit the secret even if it accidentally matches data.
+              if token:
+                  message = message.replace(token, "[REDACTED]")
+              text = ("PASS: " if ok else "FAIL: ") + message
+              print(text)
+              summary = os.environ.get("GITHUB_STEP_SUMMARY")
+              if summary:
+                  with open(summary, "a", encoding="utf-8") as handle:
+                      handle.write("## Direct API connection check\n\n" + text + "\n")
+              return 0 if ok else 1
+          
+          
+          if __name__ == "__main__":
+              sys.exit(main())
+          PYDIRECT
