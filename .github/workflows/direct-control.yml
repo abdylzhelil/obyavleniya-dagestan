@@ -123,8 +123,8 @@ jobs:
           
           
           def snapshot(api):
-              campaigns = api.call("campaigns", "get", {"SelectionCriteria": {"Ids": [CAMPAIGN]}, "FieldNames": ["Id", "State", "Status", "Type"]}).get("Campaigns", [])
-              groups = api.call("adgroups", "get", {"SelectionCriteria": {"CampaignIds": [CAMPAIGN], "Ids": [GROUP]}, "FieldNames": ["Id", "CampaignId", "Status", "RegionIds", "NegativeKeywords", "Type"]}).get("AdGroups", [])
+              campaigns = api.call("campaigns", "get", {"SelectionCriteria": {"Ids": [CAMPAIGN]}, "FieldNames": ["Id", "State", "Status", "Type"], "UnifiedCampaignFieldNames": ["TrackingParams", "CounterIds"]}).get("Campaigns", [])
+              groups = api.call("adgroups", "get", {"SelectionCriteria": {"CampaignIds": [CAMPAIGN], "Ids": [GROUP]}, "FieldNames": ["Id", "CampaignId", "Status", "RegionIds", "NegativeKeywords", "Type", "TrackingParams"]}).get("AdGroups", [])
               result = api.call("keywords", "get", {"SelectionCriteria": {"CampaignIds": [CAMPAIGN], "AdGroupIds": [GROUP]},
                   "FieldNames": ["Id", "AdGroupId", "CampaignId", "Keyword", "State", "Status"],
                   "AutotargetingSettingsCategoriesFieldNames": ["Exact", "Narrow", "Alternative", "Accessory", "Broader"],
