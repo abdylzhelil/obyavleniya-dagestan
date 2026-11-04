@@ -1,0 +1,4 @@
+capture_date,report_period,network,device,os,impressions,clicks,spend_rub_excluding_vat,source_run
+"2026-11-04","2026-10-06/2026-11-04","Поиск","Десктопы","Не определён","7","1","0.97","9e0bec2b-db41-49ad-8acb-4a7e3aa030d0"
+"2026-11-04","2026-10-06/2026-11-04","Поиск","Смартфоны","Android","58","4","26.19","9e0bec2b-db41-49ad-8acb-4a7e3aa030d0"
+"2026-11-04","2026-10-06/2026-11-04","Поиск","Смартфоны","iOS","33","1","7.41","9e0bec2b-db41-49ad-8acb-4a7e3aa030d0"
