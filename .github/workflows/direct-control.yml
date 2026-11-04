@@ -143,6 +143,12 @@ jobs:
               return hashlib.sha256(json.dumps(settings, sort_keys=True, ensure_ascii=False, separators=(",", ":")).encode()).hexdigest()
           
           
+          def normalized_negative(value):
+              # Direct canonicalizes the literal preposition in these approved phrases to
+              # !в. Do not strip other operators or stem words: that could hide a change.
+              return " ".join("в" if part == "!в" else part for part in value.casefold().split())
+          
+          
           def plan(request, before):
               if request["expected_revision"] != revision(before):
                   raise ControlError("Settings changed since inspection; inspect again")
@@ -151,7 +157,12 @@ jobs:
                   return "campaigns", "suspend", {"SelectionCriteria": {"Ids": [CAMPAIGN]}}, "SuspendResults", CAMPAIGN
               if action == "append_negatives":
                   old = (before["group"].get("NegativeKeywords") or {}).get("Items", [])
-                  merged = list(dict.fromkeys(old + request["phrases"]))
+                  merged = list(old)
+                  seen = {normalized_negative(p) for p in old}
+                  for phrase in request["phrases"]:
+                      if normalized_negative(phrase) not in seen:
+                          merged.append(phrase)
+                          seen.add(normalized_negative(phrase))
                   if sum(len(p.replace(" ", "")) for p in merged) > 4096:
                       raise ControlError("Negative keyword length limit exceeded")
                   return "adgroups", "update", {"AdGroups": [{"Id": GROUP, "NegativeKeywords": {"Items": merged}}]}, "UpdateResults", GROUP
@@ -167,7 +178,7 @@ jobs:
                   return after["campaign"]["State"] == "SUSPENDED"
               if request["action"] == "append_negatives":
                   phrases = (after["group"].get("NegativeKeywords") or {}).get("Items", [])
-                  return all(p in phrases for p in request["phrases"])
+                  return all(normalized_negative(p) in {normalized_negative(x) for x in phrases} for p in request["phrases"])
               auto = [k for k in after["keywords"] if k.get("Keyword") == "---autotargeting"]
               expected = {"Exact": "YES", "Narrow": "YES" if request["narrow_enabled"] else "NO", "Alternative": "NO", "Accessory": "NO", "Broader": "NO"}
               return len(auto) == 1 and auto[0].get("AutotargetingSettings", {}).get("Categories") == expected
@@ -193,6 +204,7 @@ jobs:
                       service, method, payload, result_key, expected_id = plan(request, before)
                       record["proposed_api_request"] = {"service": service, "method": method, "params": payload}
                       result = api.call(service, method, payload)
+                      record["api_result"] = result
                       items = result.get(result_key, [])
                       if len(items) != 1 or items[0].get("Id") != expected_id or items[0].get("Errors"):
                           raise ControlError("Update failed or returned partial errors; inspect before retrying")
@@ -201,6 +213,11 @@ jobs:
                       record["after"] = after
                       if not verify(request, after):
                           raise ControlError("Change not confirmed by reread; inspect before retrying")
+                      if action == "append_negatives":
+                          old = (before["group"].get("NegativeKeywords") or {}).get("Items", [])
+                          new = (after["group"].get("NegativeKeywords") or {}).get("Items", [])
+                          if not {normalized_negative(p) for p in old}.issubset({normalized_negative(p) for p in new}):
+                              raise ControlError("Existing negatives were not all preserved; inspect before retrying")
                   record["verified"] = True
                   record["status"] = "read_only_inspection" if action == "inspect" else "change_verified"
                   print("PASS: " + record["status"])
