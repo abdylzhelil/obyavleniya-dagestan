@@ -1,0 +1,218 @@
+{
+  "counter_id": "113403438",
+  "filter": "ym:s:UTMSource=='yandex' AND ym:s:UTMMedium=='cpc' AND ym:s:UTMCampaign=='dagestan_members_search_v1'",
+  "scope": "exact UTM campaign, aggregated visits only",
+  "captured_at_utc": "2026-11-04T17:12:36.906567+00:00",
+  "reports": {
+    "overview": {
+      "request": {
+        "ids": "113403438",
+        "date1": "2026-11-04",
+        "date2": "2026-11-04",
+        "metrics": "ym:s:visits,ym:s:users,ym:s:bounceRate,ym:s:pageDepth,ym:s:avgVisitDurationSeconds,ym:s:goal668953269reaches,ym:s:goal668953269visits,ym:s:goal668953627reaches,ym:s:goal668953627visits",
+        "filters": "ym:s:UTMSource=='yandex' AND ym:s:UTMMedium=='cpc' AND ym:s:UTMCampaign=='dagestan_members_search_v1'",
+        "accuracy": "full",
+        "limit": "1000",
+        "offset": "1",
+        "lang": "ru"
+      },
+      "traffic_scope": "exact_utm_campaign",
+      "status": "complete",
+      "observation": {
+        "metrics": {
+          "ym:s:visits": 0.0,
+          "ym:s:users": 0.0,
+          "ym:s:bounceRate": 0.0,
+          "ym:s:pageDepth": 0.0,
+          "ym:s:avgVisitDurationSeconds": 0.0,
+          "ym:s:goal668953269reaches": 0.0,
+          "ym:s:goal668953269visits": 0.0,
+          "ym:s:goal668953627reaches": 0.0,
+          "ym:s:goal668953627visits": 0.0
+        },
+        "total_rows": 0,
+        "sampled": false,
+        "sample_share": 1.0,
+        "data_lag": 0,
+        "truncated": false
+      }
+    },
+    "daily": {
+      "request": {
+        "ids": "113403438",
+        "date1": "2026-11-04",
+        "date2": "2026-11-04",
+        "metrics": "ym:s:visits,ym:s:users,ym:s:bounceRate,ym:s:pageDepth,ym:s:avgVisitDurationSeconds,ym:s:goal668953269reaches,ym:s:goal668953269visits,ym:s:goal668953627reaches,ym:s:goal668953627visits",
+        "filters": "ym:s:UTMSource=='yandex' AND ym:s:UTMMedium=='cpc' AND ym:s:UTMCampaign=='dagestan_members_search_v1'",
+        "accuracy": "full",
+        "limit": "1000",
+        "offset": "1",
+        "lang": "ru",
+        "dimensions": "ym:s:date"
+      },
+      "traffic_scope": "exact_utm_campaign",
+      "status": "complete",
+      "observation": {
+        "metrics": {
+          "ym:s:visits": 0.0,
+          "ym:s:users": 0.0,
+          "ym:s:bounceRate": 0.0,
+          "ym:s:pageDepth": 0.0,
+          "ym:s:avgVisitDurationSeconds": 0.0,
+          "ym:s:goal668953269reaches": 0.0,
+          "ym:s:goal668953269visits": 0.0,
+          "ym:s:goal668953627reaches": 0.0,
+          "ym:s:goal668953627visits": 0.0
+        },
+        "total_rows": 0,
+        "sampled": false,
+        "sample_share": 1.0,
+        "data_lag": 0,
+        "truncated": false
+      }
+    },
+    "devices": {
+      "request": {
+        "ids": "113403438",
+        "date1": "2026-11-04",
+        "date2": "2026-11-04",
+        "metrics": "ym:s:visits,ym:s:users,ym:s:bounceRate,ym:s:pageDepth,ym:s:avgVisitDurationSeconds,ym:s:goal668953269reaches,ym:s:goal668953269visits,ym:s:goal668953627reaches,ym:s:goal668953627visits",
+        "filters": "ym:s:UTMSource=='yandex' AND ym:s:UTMMedium=='cpc' AND ym:s:UTMCampaign=='dagestan_members_search_v1'",
+        "accuracy": "full",
+        "limit": "1000",
+        "offset": "1",
+        "lang": "ru",
+        "dimensions": "ym:s:deviceCategory"
+      },
+      "traffic_scope": "exact_utm_campaign",
+      "status": "complete",
+      "observation": {
+        "metrics": {
+          "ym:s:visits": 0.0,
+          "ym:s:users": 0.0,
+          "ym:s:bounceRate": 0.0,
+          "ym:s:pageDepth": 0.0,
+          "ym:s:avgVisitDurationSeconds": 0.0,
+          "ym:s:goal668953269reaches": 0.0,
+          "ym:s:goal668953269visits": 0.0,
+          "ym:s:goal668953627reaches": 0.0,
+          "ym:s:goal668953627visits": 0.0
+        },
+        "total_rows": 0,
+        "sampled": false,
+        "sample_share": 1.0,
+        "data_lag": 0,
+        "truncated": false
+      }
+    },
+    "regions": {
+      "request": {
+        "ids": "113403438",
+        "date1": "2026-11-04",
+        "date2": "2026-11-04",
+        "metrics": "ym:s:visits,ym:s:users,ym:s:bounceRate,ym:s:pageDepth,ym:s:avgVisitDurationSeconds,ym:s:goal668953269reaches,ym:s:goal668953269visits,ym:s:goal668953627reaches,ym:s:goal668953627visits",
+        "filters": "ym:s:UTMSource=='yandex' AND ym:s:UTMMedium=='cpc' AND ym:s:UTMCampaign=='dagestan_members_search_v1'",
+        "accuracy": "full",
+        "limit": "1000",
+        "offset": "1",
+        "lang": "ru",
+        "dimensions": "ym:s:regionCountry,ym:s:regionArea,ym:s:regionCity"
+      },
+      "traffic_scope": "exact_utm_campaign",
+      "status": "complete",
+      "observation": {
+        "metrics": {
+          "ym:s:visits": 0.0,
+          "ym:s:users": 0.0,
+          "ym:s:bounceRate": 0.0,
+          "ym:s:pageDepth": 0.0,
+          "ym:s:avgVisitDurationSeconds": 0.0,
+          "ym:s:goal668953269reaches": 0.0,
+          "ym:s:goal668953269visits": 0.0,
+          "ym:s:goal668953627reaches": 0.0,
+          "ym:s:goal668953627visits": 0.0
+        },
+        "total_rows": 0,
+        "sampled": false,
+        "sample_share": 1.0,
+        "data_lag": 0,
+        "truncated": false
+      }
+    },
+    "all_traffic": {
+      "request": {
+        "ids": "113403438",
+        "date1": "2026-11-04",
+        "date2": "2026-11-04",
+        "metrics": "ym:s:visits,ym:s:users,ym:s:bounceRate,ym:s:pageDepth,ym:s:avgVisitDurationSeconds,ym:s:goal668953269reaches,ym:s:goal668953269visits,ym:s:goal668953627reaches,ym:s:goal668953627visits",
+        "accuracy": "full",
+        "limit": "1000",
+        "offset": "1",
+        "lang": "ru"
+      },
+      "traffic_scope": "all_counter_traffic_diagnostic_only",
+      "status": "complete",
+      "observation": {
+        "metrics": {
+          "ym:s:visits": 6.0,
+          "ym:s:users": 6.0,
+          "ym:s:bounceRate": 0.0,
+          "ym:s:pageDepth": 1.16666667,
+          "ym:s:avgVisitDurationSeconds": 13.66666667,
+          "ym:s:goal668953269reaches": 0.0,
+          "ym:s:goal668953269visits": 0.0,
+          "ym:s:goal668953627reaches": 1.0,
+          "ym:s:goal668953627visits": 1.0
+        },
+        "total_rows": 1,
+        "sampled": false,
+        "sample_share": 1.0,
+        "data_lag": 0,
+        "truncated": false
+      }
+    },
+    "observed_utm": {
+      "request": {
+        "ids": "113403438",
+        "date1": "2026-11-04",
+        "date2": "2026-11-04",
+        "metrics": "ym:s:visits,ym:s:users,ym:s:bounceRate,ym:s:pageDepth,ym:s:avgVisitDurationSeconds,ym:s:goal668953269reaches,ym:s:goal668953269visits,ym:s:goal668953627reaches,ym:s:goal668953627visits",
+        "accuracy": "full",
+        "limit": "1000",
+        "offset": "1",
+        "lang": "ru",
+        "dimensions": "ym:s:UTMSource,ym:s:UTMMedium,ym:s:UTMCampaign"
+      },
+      "traffic_scope": "all_counter_traffic_diagnostic_only",
+      "status": "complete",
+      "observation": {
+        "metrics": {
+          "ym:s:visits": 0.0,
+          "ym:s:users": 0.0,
+          "ym:s:bounceRate": 0.0,
+          "ym:s:pageDepth": 0.0,
+          "ym:s:avgVisitDurationSeconds": 0.0,
+          "ym:s:goal668953269reaches": 0.0,
+          "ym:s:goal668953269visits": 0.0,
+          "ym:s:goal668953627reaches": 0.0,
+          "ym:s:goal668953627visits": 0.0
+        },
+        "total_rows": 0,
+        "sampled": false,
+        "sample_share": 1.0,
+        "data_lag": 0,
+        "truncated": false
+      }
+    }
+  },
+  "note": "Goals are button events after analytics consent, NOT actual group joins. Do not equate Metrika attribution with Direct AUTO.",
+  "date_from": "2026-11-04",
+  "date_to": "2026-11-04",
+  "counter_meta": {
+    "id": 113403438,
+    "site": "obyavleniya-dagestan.ru",
+    "time_zone_name": "Europe/Moscow",
+    "time_zone_offset": 180
+  },
+  "status": "complete"
+}
