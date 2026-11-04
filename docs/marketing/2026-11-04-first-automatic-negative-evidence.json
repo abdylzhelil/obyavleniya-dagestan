@@ -1,0 +1,215 @@
+{
+  "captured_at_utc": "2026-11-04T16:31:47.212906+00:00",
+  "applied": true,
+  "verified": false,
+  "request": {
+    "action": "append_negatives",
+    "campaign_id": 715775801,
+    "group_id": 5819958999,
+    "request_id": "exclude-price-question-20261104-163124",
+    "issued_at": "2026-11-04T16:31:24+00:00",
+    "expected_revision": "0fcaf6ea848597a6644d5c03db3a130815879339f76fa5d60dfda97c3c6f042b",
+    "phrases": [
+      "сколько стоит картошка в дагестане"
+    ],
+    "reason": "Владелец поручил самостоятельную настройку текущей кампании в пределах бюджета. API-срез04.11 подтверждает информационный запрос о цене картошки:1клик,2.50RUB. Добавляем только эту минус-фразу; сохраняем остальные8,регионы,ключевыефразы и автотаргетинг."
+  },
+  "before": {
+    "campaign": {
+      "Id": 715775801,
+      "Type": "UNIFIED_CAMPAIGN",
+      "Status": "ACCEPTED",
+      "State": "ON"
+    },
+    "group": {
+      "Id": 5819958999,
+      "CampaignId": 715775801,
+      "Status": "ACCEPTED",
+      "Type": "UNIFIED_AD_GROUP",
+      "RegionIds": [
+        11010
+      ],
+      "NegativeKeywords": {
+        "Items": [
+          "бот",
+          "купить подписчиков",
+          "накрутка",
+          "скачать Telegram",
+          "скачать WhatsApp",
+          "скачать приложение",
+          "создание групп",
+          "создать группу"
+        ]
+      }
+    },
+    "keywords": [
+      {
+        "Id": 58412964936,
+        "Keyword": "группы объявлений Дагестан",
+        "AdGroupId": 5819958999,
+        "CampaignId": 715775801,
+        "State": "ON",
+        "Status": "ACCEPTED"
+      },
+      {
+        "Id": 58412964937,
+        "Keyword": "объявления Дагестан WhatsApp",
+        "AdGroupId": 5819958999,
+        "CampaignId": 715775801,
+        "State": "ON",
+        "Status": "ACCEPTED"
+      },
+      {
+        "Id": 58412964938,
+        "Keyword": "объявления Дагестан Telegram",
+        "AdGroupId": 5819958999,
+        "CampaignId": 715775801,
+        "State": "ON",
+        "Status": "ACCEPTED"
+      },
+      {
+        "Id": 58412964939,
+        "Keyword": "разместить объявление бесплатно Дагестан",
+        "AdGroupId": 5819958999,
+        "CampaignId": 715775801,
+        "State": "ON",
+        "Status": "ACCEPTED"
+      },
+      {
+        "Id": 205819958999,
+        "Keyword": "---autotargeting",
+        "AdGroupId": 5819958999,
+        "CampaignId": 715775801,
+        "State": "ON",
+        "Status": "ACCEPTED",
+        "AutotargetingSettings": {
+          "Categories": {
+            "Exact": "YES",
+            "Narrow": "YES",
+            "Alternative": "NO",
+            "Accessory": "NO",
+            "Broader": "NO"
+          },
+          "BrandOptions": {
+            "WithoutBrands": "YES",
+            "WithAdvertiserBrand": "YES",
+            "WithCompetitorsBrand": "YES"
+          }
+        }
+      }
+    ]
+  },
+  "revision": "0fcaf6ea848597a6644d5c03db3a130815879339f76fa5d60dfda97c3c6f042b",
+  "proposed_api_request": {
+    "service": "adgroups",
+    "method": "update",
+    "params": {
+      "AdGroups": [
+        {
+          "Id": 5819958999,
+          "NegativeKeywords": {
+            "Items": [
+              "бот",
+              "купить подписчиков",
+              "накрутка",
+              "скачать Telegram",
+              "скачать WhatsApp",
+              "скачать приложение",
+              "создание групп",
+              "создать группу",
+              "сколько стоит картошка в дагестане"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "after": {
+    "campaign": {
+      "Id": 715775801,
+      "Type": "UNIFIED_CAMPAIGN",
+      "Status": "ACCEPTED",
+      "State": "ON"
+    },
+    "group": {
+      "Id": 5819958999,
+      "CampaignId": 715775801,
+      "Status": "ACCEPTED",
+      "Type": "UNIFIED_AD_GROUP",
+      "RegionIds": [
+        11010
+      ],
+      "NegativeKeywords": {
+        "Items": [
+          "бот",
+          "купить подписчиков",
+          "накрутка",
+          "скачать Telegram",
+          "скачать WhatsApp",
+          "скачать приложение",
+          "сколько стоит картошка !в дагестане",
+          "создание групп",
+          "создать группу"
+        ]
+      }
+    },
+    "keywords": [
+      {
+        "Id": 58412964936,
+        "Keyword": "группы объявлений Дагестан",
+        "AdGroupId": 5819958999,
+        "CampaignId": 715775801,
+        "State": "ON",
+        "Status": "ACCEPTED"
+      },
+      {
+        "Id": 58412964937,
+        "Keyword": "объявления Дагестан WhatsApp",
+        "AdGroupId": 5819958999,
+        "CampaignId": 715775801,
+        "State": "ON",
+        "Status": "ACCEPTED"
+      },
+      {
+        "Id": 58412964938,
+        "Keyword": "объявления Дагестан Telegram",
+        "AdGroupId": 5819958999,
+        "CampaignId": 715775801,
+        "State": "ON",
+        "Status": "ACCEPTED"
+      },
+      {
+        "Id": 58412964939,
+        "Keyword": "разместить объявление бесплатно Дагестан",
+        "AdGroupId": 5819958999,
+        "CampaignId": 715775801,
+        "State": "ON",
+        "Status": "ACCEPTED"
+      },
+      {
+        "Id": 205819958999,
+        "Keyword": "---autotargeting",
+        "AdGroupId": 5819958999,
+        "CampaignId": 715775801,
+        "State": "ON",
+        "Status": "ACCEPTED",
+        "AutotargetingSettings": {
+          "Categories": {
+            "Exact": "YES",
+            "Narrow": "YES",
+            "Alternative": "NO",
+            "Accessory": "NO",
+            "Broader": "NO"
+          },
+          "BrandOptions": {
+            "WithoutBrands": "YES",
+            "WithAdvertiserBrand": "YES",
+            "WithCompetitorsBrand": "YES"
+          }
+        }
+      }
+    ]
+  },
+  "status": "failed",
+  "error": "Change not confirmed by reread; inspect before retrying"
+}
