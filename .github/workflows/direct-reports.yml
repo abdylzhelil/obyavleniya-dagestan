@@ -1,4 +1,5 @@
 name: Direct read-only reports
+# Metrika read-only OAuth application: 40fbd9c24b874b4bacaa0883e57ca434
 
 on:
   workflow_dispatch:
