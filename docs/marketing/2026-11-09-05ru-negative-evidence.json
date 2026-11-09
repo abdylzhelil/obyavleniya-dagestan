@@ -1,0 +1,243 @@
+{
+  "captured_at_utc": "2026-11-09T20:46:35.991671+00:00",
+  "applied": true,
+  "verified": true,
+  "request": {
+    "action": "append_negatives",
+    "campaign_id": 715775801,
+    "group_id": 5819958999,
+    "request_id": "add-05ru-negative-20261109",
+    "expected_revision": "9841ccdb9ef75cc826c855803259beca788a221626f8d4937733cb3d73ce00c1",
+    "issued_at": "2026-11-09T20:46:20Z",
+    "reason": "Владелец просит точечную правку. Запрос 05 ru в Махачкале: 1 клик 4,45 руб.; официальный 05.ru подтверждён как интернет-магазин. Исключаем навигацию к другому сервису, сохраняя остальные настройки.",
+    "phrases": [
+      "05 ru в махачкале"
+    ]
+  },
+  "before": {
+    "campaign": {
+      "Id": 715775801,
+      "Type": "UNIFIED_CAMPAIGN",
+      "Status": "ACCEPTED",
+      "State": "ON",
+      "UnifiedCampaign": {
+        "TrackingParams": "utm_source=yandex&utm_medium=cpc&utm_campaign=dagestan_members_search_v1&utm_content={ad_id}&utm_term={keyword}",
+        "CounterIds": {
+          "Items": [
+            113403438
+          ]
+        }
+      }
+    },
+    "group": {
+      "Id": 5819958999,
+      "CampaignId": 715775801,
+      "Status": "ACCEPTED",
+      "Type": "UNIFIED_AD_GROUP",
+      "RegionIds": [
+        11010
+      ],
+      "NegativeKeywords": {
+        "Items": [
+          "бот",
+          "купить подписчиков",
+          "накрутка",
+          "скачать Telegram",
+          "скачать WhatsApp",
+          "скачать приложение",
+          "сколько стоит картошка !в дагестане",
+          "создание групп",
+          "создать группу"
+        ]
+      },
+      "TrackingParams": ""
+    },
+    "keywords": [
+      {
+        "Id": 58412964936,
+        "Keyword": "группы объявлений Дагестан",
+        "AdGroupId": 5819958999,
+        "CampaignId": 715775801,
+        "State": "ON",
+        "Status": "ACCEPTED"
+      },
+      {
+        "Id": 58412964937,
+        "Keyword": "объявления Дагестан WhatsApp",
+        "AdGroupId": 5819958999,
+        "CampaignId": 715775801,
+        "State": "ON",
+        "Status": "ACCEPTED"
+      },
+      {
+        "Id": 58412964938,
+        "Keyword": "объявления Дагестан Telegram",
+        "AdGroupId": 5819958999,
+        "CampaignId": 715775801,
+        "State": "ON",
+        "Status": "ACCEPTED"
+      },
+      {
+        "Id": 58412964939,
+        "Keyword": "разместить объявление бесплатно Дагестан",
+        "AdGroupId": 5819958999,
+        "CampaignId": 715775801,
+        "State": "ON",
+        "Status": "ACCEPTED"
+      },
+      {
+        "Id": 205819958999,
+        "Keyword": "---autotargeting",
+        "AdGroupId": 5819958999,
+        "CampaignId": 715775801,
+        "State": "ON",
+        "Status": "ACCEPTED",
+        "AutotargetingSettings": {
+          "Categories": {
+            "Exact": "YES",
+            "Narrow": "YES",
+            "Alternative": "NO",
+            "Accessory": "NO",
+            "Broader": "NO"
+          },
+          "BrandOptions": {
+            "WithoutBrands": "YES",
+            "WithAdvertiserBrand": "YES",
+            "WithCompetitorsBrand": "YES"
+          }
+        }
+      }
+    ]
+  },
+  "revision": "9841ccdb9ef75cc826c855803259beca788a221626f8d4937733cb3d73ce00c1",
+  "proposed_api_request": {
+    "service": "adgroups",
+    "method": "update",
+    "params": {
+      "AdGroups": [
+        {
+          "Id": 5819958999,
+          "NegativeKeywords": {
+            "Items": [
+              "бот",
+              "купить подписчиков",
+              "накрутка",
+              "скачать Telegram",
+              "скачать WhatsApp",
+              "скачать приложение",
+              "сколько стоит картошка !в дагестане",
+              "создание групп",
+              "создать группу",
+              "05 ru в махачкале"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "api_result": {
+    "UpdateResults": [
+      {
+        "Id": 5819958999,
+        "Errors": []
+      }
+    ]
+  },
+  "after": {
+    "campaign": {
+      "Id": 715775801,
+      "Type": "UNIFIED_CAMPAIGN",
+      "Status": "ACCEPTED",
+      "State": "ON",
+      "UnifiedCampaign": {
+        "TrackingParams": "utm_source=yandex&utm_medium=cpc&utm_campaign=dagestan_members_search_v1&utm_content={ad_id}&utm_term={keyword}",
+        "CounterIds": {
+          "Items": [
+            113403438
+          ]
+        }
+      }
+    },
+    "group": {
+      "Id": 5819958999,
+      "CampaignId": 715775801,
+      "Status": "ACCEPTED",
+      "Type": "UNIFIED_AD_GROUP",
+      "RegionIds": [
+        11010
+      ],
+      "NegativeKeywords": {
+        "Items": [
+          "05 ru !в махачкале",
+          "бот",
+          "купить подписчиков",
+          "накрутка",
+          "скачать Telegram",
+          "скачать WhatsApp",
+          "скачать приложение",
+          "сколько стоит картошка !в дагестане",
+          "создание групп",
+          "создать группу"
+        ]
+      },
+      "TrackingParams": ""
+    },
+    "keywords": [
+      {
+        "Id": 58412964936,
+        "Keyword": "группы объявлений Дагестан",
+        "AdGroupId": 5819958999,
+        "CampaignId": 715775801,
+        "State": "ON",
+        "Status": "ACCEPTED"
+      },
+      {
+        "Id": 58412964937,
+        "Keyword": "объявления Дагестан WhatsApp",
+        "AdGroupId": 5819958999,
+        "CampaignId": 715775801,
+        "State": "ON",
+        "Status": "ACCEPTED"
+      },
+      {
+        "Id": 58412964938,
+        "Keyword": "объявления Дагестан Telegram",
+        "AdGroupId": 5819958999,
+        "CampaignId": 715775801,
+        "State": "ON",
+        "Status": "ACCEPTED"
+      },
+      {
+        "Id": 58412964939,
+        "Keyword": "разместить объявление бесплатно Дагестан",
+        "AdGroupId": 5819958999,
+        "CampaignId": 715775801,
+        "State": "ON",
+        "Status": "ACCEPTED"
+      },
+      {
+        "Id": 205819958999,
+        "Keyword": "---autotargeting",
+        "AdGroupId": 5819958999,
+        "CampaignId": 715775801,
+        "State": "ON",
+        "Status": "ACCEPTED",
+        "AutotargetingSettings": {
+          "Categories": {
+            "Exact": "YES",
+            "Narrow": "YES",
+            "Alternative": "NO",
+            "Accessory": "NO",
+            "Broader": "NO"
+          },
+          "BrandOptions": {
+            "WithoutBrands": "YES",
+            "WithAdvertiserBrand": "YES",
+            "WithCompetitorsBrand": "YES"
+          }
+        }
+      }
+    ]
+  },
+  "status": "change_verified"
+}
