@@ -399,6 +399,48 @@ jobs:
           if __name__ == "__main__":
               sys.exit(main())
           PYMETRIKA
+      - name: Build summary without a language model
+        if: always() && steps.window.outputs.enabled == 'true'
+        shell: bash
+        run: |
+          python3 - <<'PYSUMMARY'
+          import json, os
+          from pathlib import Path
+          from decimal import Decimal
+          root=Path("direct-reports")
+          lines=["# Сводка рекламы без ИИ", "", "Это сохранённый срез, не непрерывный контроль и не команда остановки.", ""]
+          try:
+              data=json.loads((root/"metadata.json").read_text())
+              assert str(data["campaign_id"])=="715775801" and data["include_vat"] is False
+              lines += ["Период: "+data["date_from"]+" — "+data["date_to"], "Срез UTC: "+data["captured_at_utc"], "", "| Дата | Показы | Клики | Расход без НДС |", "|---|---:|---:|---:|"]
+              for row in data["reports"]["daily"]["data"]:
+                  lines.append("| "+row["Date"]+" | "+row["Impressions"]+" | "+row["Clicks"]+" | "+row["Cost"]+" ₽ |")
+              total=data["reports"]["totals"]["data"]
+              assert len(total)==1
+              cost=Decimal(total[0]["Cost"])
+              lines += ["", "Всего: "+total[0]["Clicks"]+" кликов; "+str(cost)+" ₽ без НДС.", "До лимита 500 ₽: "+str(max(Decimal("0"),Decimal("500")-cost))+" ₽."]
+              if cost>=Decimal("500"): lines += ["**ЛИМИТ ДОСТИГНУТ: требуется проверить состояние кампании. Скрипт её не останавливал.**"]
+              elif cost>=Decimal("400"): lines += ["**Близко к лимиту: использовано не менее 80% бюджета.**"]
+          except (OSError,ValueError,KeyError,IndexError,AssertionError):
+              lines += ["**Отчёт Директа недоступен или неполон. Расход неизвестен, не ноль.**"]
+          try:
+              metrika=json.loads((root/"metrika/status.json").read_text())
+              lines += ["", "Метрика: "+metrika["status"]]
+              for key in ("direct_overview","overview"):
+                  item=metrika.get("reports",{}).get(key,{})
+                  if item.get("status")!="complete":
+                      lines.append(key+": данные неполны/не получены.")
+                      continue
+                  metrics=item["observation"]["metrics"]
+                  lines += [key+" (отдельный сегмент): визиты="+str(metrics["ym:s:visits"])+", WA-события="+str(metrics["ym:s:goal668953269reaches"])+", TG-события="+str(metrics["ym:s:goal668953627reaches"])]
+              lines += ["События кнопок — не вступления. Реальные вступления автоматически не подключены."]
+          except (OSError,ValueError,KeyError):
+              lines += ["Метрика недоступна; значения неизвестны."]
+          text="\n".join(lines)+"\n"
+          root.mkdir(exist_ok=True)
+          (root/"summary.md").write_text(text)
+          with open(os.environ["GITHUB_STEP_SUMMARY"],"a") as out: out.write("\n"+text)
+          PYSUMMARY
       - name: Save report evidence
         if: always() && steps.window.outputs.enabled == 'true'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
