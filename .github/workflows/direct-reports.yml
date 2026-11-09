@@ -276,6 +276,9 @@ jobs:
                         "regions": "ym:s:regionCountry,ym:s:regionArea,ym:s:regionCity",
                         "all_traffic": None, "observed_utm": "ym:s:UTMSource,ym:s:UTMMedium,ym:s:UTMCampaign"}
           DIAGNOSTIC_KEYS = {"all_traffic", "observed_utm"}
+          DIRECT_KEYS = {"direct_overview", "direct_daily"}
+          DIRECT_FILTER = "ym:s:<attribution>DirectClickOrder==715775801"
+          DIMENSIONS.update(direct_overview="ym:s:<attribution>DirectClickOrder", direct_daily="ym:s:date")
           
           
           class NoRedirect(urllib.request.HTTPRedirectHandler):
@@ -319,6 +322,9 @@ jobs:
               p = params(first, last, DIMENSIONS[key])
               if key in DIAGNOSTIC_KEYS:
                   p.pop("filters")
+              if key in DIRECT_KEYS:
+                  p["filters"] = DIRECT_FILTER
+                  p["attribution"] = "automatic"
               return p
           
           
@@ -360,7 +366,7 @@ jobs:
                               result["counter_meta"] = {"status": "not_verified"}
                           for key, dimension in DIMENSIONS.items():
                               item = {"request": request_params(key, first, last),
-                                      "traffic_scope": "all_counter_traffic_diagnostic_only" if key in DIAGNOSTIC_KEYS else "exact_utm_campaign"}
+                                      "traffic_scope": "direct_linked_campaign_automatic" if key in DIRECT_KEYS else ("all_counter_traffic_diagnostic_only" if key in DIAGNOSTIC_KEYS else "exact_utm_campaign")}
                               try:
                                   url = ENDPOINT + "?" + urllib.parse.urlencode(item["request"])
                                   request = urllib.request.Request(url, headers={"Authorization": "OAuth " + token}, method="GET")
