@@ -1,0 +1,7 @@
+# Отдельный отчёт Метрики по ID кампании Директа
+
+Подготовлено9ноябряпопоручениювладельца. Workflowdirect-reportsдополненdirect_overview/direct_daily. GETstat/v1/datacounter113403438,filterym:s:<attribution>DirectClickOrder==715775801,attributionautomatic,датыизтого жеDirectmetadata04–10ноября. Новыеотчётыscope direct_linked_campaign_automatic,безUTMфильтра. Исходные4UTMи2общиедиагностикисохранены. Данныецелей—нажатия,невступления. Изменениятольковreadonlyвыгрузке,нерекламнаяоптимизация. Локальные6тестовМетки/границ/фильтровпройдены. РеальныйответAPIпокатребуетпроверки;ошибкуневыдаватьзапустуюстатистику.
+
+Официальныеисточники: https://yandex.ru/dev/metrika/ru/stat/presets/preset_direct , https://yandex.com/dev/metrika/en/stat/param , https://yandex.ru/support/metrica/ru/general/direct . Явнозапрашиваемautomatic,фактическуюмодельсмотретьquery.attributionвответе. Необещатьполноеравенствокликов/визитовилиDirectAUTOцелей:период/учёт/модельнужносопоставить.
+
+Commit5929b3e6e34045c3c52f35ff62e3a0de06531c5fобновилworkflow,егоpushтриггердолжендатьпроверочныйrun. Запуск/артефактподтвердитьотдельно. ТокеныосталисьGitHubSecrets,нераскрывались. Расписание/годовойguard/лимит500 ₽неизменены. Это не снятиеусловияфинальнойуборкиcron10ноября.
