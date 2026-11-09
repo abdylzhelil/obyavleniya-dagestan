@@ -1,6 +1,12 @@
 {
-  "action": "inspect",
+  "action": "append_negatives",
   "campaign_id": 715775801,
   "group_id": 5819958999,
-  "request_id": "inspect-before-05ru-negative-20261109"
+  "request_id": "add-05ru-negative-20261109",
+  "expected_revision": "9841ccdb9ef75cc826c855803259beca788a221626f8d4937733cb3d73ce00c1",
+  "issued_at": "2026-11-09T20:46:20Z",
+  "reason": "Владелец просит точечную правку. Запрос 05 ru в Махачкале: 1 клик 4,45 руб.; официальный 05.ru подтверждён как интернет-магазин. Исключаем навигацию к другому сервису, сохраняя остальные настройки.",
+  "phrases": [
+    "05 ru в махачкале"
+  ]
 }
