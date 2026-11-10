@@ -441,6 +441,66 @@ jobs:
           (root/"summary.md").write_text(text)
           with open(os.environ["GITHUB_STEP_SUMMARY"],"a") as out: out.write("\n"+text)
           PYSUMMARY
+      - name: Deliver summary to owner Telegram
+        if: always() && steps.window.outputs.enabled == 'true' && github.event_name != 'push'
+        env:
+          TELEGRAM_REPORT_BOT_TOKEN: ${{ secrets.TELEGRAM_REPORT_BOT_TOKEN }}
+          TELEGRAM_REPORT_CHAT_ID: ${{ secrets.TELEGRAM_REPORT_CHAT_ID }}
+        shell: bash
+        run: |
+          python3 - <<'PYTELEGRAM'
+          import json, os, re, sys, urllib.request, urllib.error
+          from pathlib import Path
+          class DeliveryError(Exception): pass
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self, req, fp, code, msg, headers, newurl):
+                  raise DeliveryError("redirect_refused")
+          def deliver(token, chat, text, opener):
+              if not re.fullmatch(r"[0-9]+:[A-Za-z0-9_-]+", token) or not re.fullmatch(r"[1-9][0-9]*", chat):
+                  raise DeliveryError("invalid_configuration")
+              def call(method, payload):
+                  req=urllib.request.Request("https://api.telegram.org/bot"+token+"/"+method,
+                      data=json.dumps(payload).encode(),method="POST",headers={"Content-Type":"application/json"})
+                  try:
+                      with opener.open(req,timeout=20) as response:
+                          raw=response.read(1024*1024+1)
+                      if len(raw)>1024*1024: raise DeliveryError("response_too_large")
+                      result=json.loads(raw)
+                      if result.get("ok") is not True: raise DeliveryError("telegram_rejected")
+                      return result["result"]
+                  except urllib.error.HTTPError as error:
+                      raise DeliveryError("telegram_http_"+str(error.code)) from None
+                  except (urllib.error.URLError,TimeoutError,OSError,ValueError,KeyError):
+                      raise DeliveryError("request_failed_delivery_may_be_unknown") from None
+              me=call("getMe",{})
+              if me.get("username","").lower()!="statistics456_bot":
+                  raise DeliveryError("unexpected_bot")
+              target=call("getChat",{"chat_id":chat})
+              if target.get("type")!="private" or str(target.get("id"))!=chat:
+                  raise DeliveryError("recipient_must_be_configured_private_chat")
+              result=call("sendMessage",{"chat_id":chat,"text":text[:3500],"link_preview_options":{"is_disabled":True}})
+              if str(result.get("chat",{}).get("id"))!=chat:
+                  raise DeliveryError("recipient_response_mismatch")
+          def main():
+              token=os.environ.get("TELEGRAM_REPORT_BOT_TOKEN","").strip()
+              chat=os.environ.get("TELEGRAM_REPORT_CHAT_ID","").strip()
+              path=Path("direct-reports/summary.md")
+              if not token or not chat:
+                  print("Telegram: not configured; message not sent")
+                  return 0
+              if not path.is_file():
+                  print("Telegram: summary unavailable; message not sent")
+                  return 1
+              text=path.read_text()[:3100]+"\n\nПолный отчёт: https://github.com/abdylzhelil/obyavleniya-dagestan/actions/runs/"+os.environ["GITHUB_RUN_ID"]
+              try:
+                  deliver(token,chat,text,urllib.request.build_opener(NoRedirect()))
+                  print("Telegram: API confirmed message sent to configured private chat")
+                  return 0
+              except DeliveryError as error:
+                  print("Telegram: "+str(error)+"; no automatic resend")
+                  return 1
+          if __name__=="__main__":sys.exit(main())
+          PYTELEGRAM
       - name: Save report evidence
         if: always() && steps.window.outputs.enabled == 'true'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
