@@ -1,0 +1,173 @@
+name: Owner authorized WhatsApp test 2 launch
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/direct-test2-launch.yml']
+permissions: {}
+concurrency:
+  group: direct-bounded-control
+  cancel-in-progress: false
+jobs:
+  launch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Resume fixed campaign and ad preserving 500 RUB period
+        env:
+          YANDEX_DIRECT_TOKEN: ${{ secrets.YANDEX_DIRECT_TOKEN }}
+        shell: bash
+        run: |
+          python3 - <<'PYCONTROL'
+          """Bounded Direct operator; fixed campaign/group, explicit actions, auditable snapshots."""
+          import hashlib
+          import json
+          import os
+          import re
+          import sys
+          import urllib.error
+          import urllib.request
+          from datetime import date, datetime, timezone
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+          
+          CAMPAIGN, GROUP = 715775801, 5819958999
+          CONTROL_PATH = ".github/direct-control/request.json"
+          ALLOWED_NEGATIVES = {"05 ru в махачкале", "сколько стоит картошка в дагестане"}
+          ALLOWED_CALLS = {("campaigns", "get"), ("campaigns", "resume"), ("adgroups", "get"), ("keywords", "get"), ("ads", "get"), ("ads", "resume")}
+          
+          
+          class ControlError(Exception):
+              pass
+          
+          
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self, req, fp, code, msg, headers, newurl):
+                  raise urllib.error.HTTPError(req.full_url, code, "Redirect refused", headers, fp)
+          
+          
+          class Direct:
+              def __init__(self, token, opener):
+                  self.token, self.opener = token, opener
+              def call(self, service, method, params):
+                  if (service, method) not in ALLOWED_CALLS:
+                      raise ControlError("API method forbidden")
+                  req = urllib.request.Request(f"https://api.direct.yandex.com/json/v501/{service}",
+                      data=json.dumps({"method": method, "params": params}).encode(), method="POST",
+                      headers={"Authorization": "Bearer " + self.token, "Content-Type": "application/json", "Accept-Language": "ru"})
+                  try:
+                      with self.opener.open(req, timeout=45) as response:
+                          raw = response.read(1024*1024+1)
+                      if len(raw) > 1024*1024:
+                          raise ControlError("Response too large")
+                      data = json.loads(raw)
+                  except urllib.error.HTTPError as error:
+                      raise ControlError("HTTP failure " + str(error.code)) from None
+                  except (urllib.error.URLError, OSError, ValueError):
+                      raise ControlError("API request failed; details suppressed") from None
+                  if not isinstance(data, dict) or "error" in data:
+                      code = data.get("error", {}).get("error_code") if isinstance(data, dict) else None
+                      raise ControlError("Direct API rejected request" + (" code " + str(code) if type(code) is int else ""))
+                  if not isinstance(data.get("result"), dict):
+                      raise ControlError("Missing API result")
+                  return data["result"]
+          
+          
+          def snapshot(api):
+              campaigns = api.call("campaigns", "get", {"SelectionCriteria": {"Ids": [CAMPAIGN]}, "FieldNames": ["Id", "State", "Status", "StatusClarification", "Type", "Name", "StartDate", "EndDate", "TimeTargeting"], "UnifiedCampaignFieldNames": ["TrackingParams", "CounterIds", "BiddingStrategy", "PriorityGoals", "Settings"]}).get("Campaigns", [])
+              groups = api.call("adgroups", "get", {"SelectionCriteria": {"CampaignIds": [CAMPAIGN], "Ids": [GROUP]}, "FieldNames": ["Id", "CampaignId", "Status", "RegionIds", "NegativeKeywords", "Type", "TrackingParams"]}).get("AdGroups", [])
+              result = api.call("keywords", "get", {"SelectionCriteria": {"CampaignIds": [CAMPAIGN], "AdGroupIds": [GROUP]},
+                  "FieldNames": ["Id", "AdGroupId", "CampaignId", "Keyword", "State", "Status"],
+                  "AutotargetingSettingsCategoriesFieldNames": ["Exact", "Narrow", "Alternative", "Accessory", "Broader"],
+                  "AutotargetingSettingsBrandOptionsFieldNames": ["WithoutBrands", "WithAdvertiserBrand", "WithCompetitorsBrand"]})
+              keywords = result.get("Keywords", [])
+              if len(campaigns) != 1 or campaigns[0].get("Id") != CAMPAIGN:
+                  raise ControlError("Campaign identity mismatch")
+              if len(groups) != 1 or groups[0].get("Id") != GROUP or groups[0].get("CampaignId") != CAMPAIGN:
+                  raise ControlError("Group identity mismatch")
+              if result.get("LimitedBy") or any(k.get("CampaignId") != CAMPAIGN or k.get("AdGroupId") != GROUP for k in keywords):
+                  raise ControlError("Keywords outside scope or incomplete")
+              ads = api.call("ads", "get", {"SelectionCriteria": {"CampaignIds": [CAMPAIGN], "AdGroupIds": [GROUP]}, "FieldNames": ["Id", "CampaignId", "AdGroupId", "Type", "State", "Status", "StatusClarification"], "TextAdFieldNames": ["Title", "Title2", "Text", "Href"], "ResponsiveAdFieldNames": ["Titles", "Texts", "Href", "BusinessId"]})
+              return {"campaign": campaigns[0], "group": groups[0], "keywords": sorted(keywords, key=lambda k: k["Id"]), "ads": ads}
+          
+          
+          def revision(settings):
+              return hashlib.sha256(json.dumps(settings, sort_keys=True, ensure_ascii=False, separators=(",", ":")).encode()).hexdigest()
+          
+          
+          def main():
+              token=os.environ.get("YANDEX_DIRECT_TOKEN","").strip()
+              record={"captured_at_utc":datetime.now(timezone.utc).isoformat(),"applied":False,"verified":False,"operations":[],"reason":"Owner explicitly requested launch after confirmed 500.67 net balance and baseline45; preserve test2 settings"}
+              out=Path("direct-control");out.mkdir(exist_ok=True)
+              try:
+                  now=datetime.now(timezone.utc)
+                  issued=datetime.fromisoformat("2026-11-11T17:45:14+00:00")
+                  if not 0 <= (now-issued).total_seconds() <=900 or now.astimezone(ZoneInfo("Europe/Moscow")).date()!=date(2026,11,11):
+                      raise ControlError("Launch request expired; inspect before retry")
+                  if os.environ.get("GITHUB_RUN_ATTEMPT")!="1" or not token:
+                      raise ControlError("Missing secret or prohibited blind retry")
+                  api=Direct(token,urllib.request.build_opener(NoRedirect()))
+                  before=snapshot(api);record["before"]=before
+                  expected=json.loads("{\"captured_at_utc\": \"2026-11-11T17:42:46.847422+00:00\", \"applied\": false, \"verified\": true, \"request\": {\"action\": \"inspect\", \"campaign_id\": 715775801, \"group_id\": 5819958999}, \"before\": {\"campaign\": {\"Id\": 715775801, \"Name\": \"Объявления Дагестана — WhatsApp — тест 2\", \"StartDate\": \"2026-11-12\", \"Type\": \"UNIFIED_CAMPAIGN\", \"Status\": \"MODERATION\", \"State\": \"SUSPENDED\", \"StatusClarification\": \"Кампания остановлена. Дата окончания кампании 18.11.2026\", \"EndDate\": \"2026-11-18\", \"UnifiedCampaign\": {\"BiddingStrategy\": {\"Search\": {\"BiddingStrategyType\": \"WB_MAXIMUM_CLICKS\", \"WbMaximumClicks\": {\"CustomPeriodBudget\": {\"SpendLimit\": 500000000, \"StartDate\": \"2026-11-12\", \"EndDate\": \"2026-11-18\", \"AutoContinue\": \"NO\"}, \"BudgetType\": \"CUSTOM_PERIOD_BUDGET\", \"BidCeiling\": null}}, \"Network\": {\"BiddingStrategyType\": \"SERVING_OFF\"}}, \"Settings\": [{\"Option\": \"ADD_METRICA_TAG\", \"Value\": \"NO\"}, {\"Option\": \"ADD_TO_FAVORITES\", \"Value\": \"NO\"}, {\"Option\": \"CAMPAIGN_EXACT_PHRASE_MATCHING_ENABLED\", \"Value\": \"NO\"}, {\"Option\": \"ALTERNATIVE_TEXTS_ENABLED\", \"Value\": \"NO\"}, {\"Option\": \"AUTO_ASSETS_ENABLED\", \"Value\": \"NO\"}, {\"Option\": \"ENABLE_AREA_OF_INTEREST_TARGETING\", \"Value\": \"YES\"}, {\"Option\": \"ENABLE_COMPANY_INFO\", \"Value\": \"YES\"}, {\"Option\": \"ENABLE_SITE_MONITORING\", \"Value\": \"NO\"}, {\"Option\": \"REQUIRE_SERVICING\", \"Value\": \"NO\"}, {\"Option\": \"SHARED_ACCOUNT_ENABLED\", \"Value\": \"YES\"}], \"TrackingParams\": \"utm_source=yandex&utm_medium=cpc&utm_campaign=dagestan_whatsapp_test2_20261112&utm_content={ad_id}&utm_term={keyword}\", \"PriorityGoals\": {\"Items\": [{\"GoalId\": 668953269, \"Value\": 300000, \"IsMetrikaSourceOfValue\": \"NO\"}]}, \"CounterIds\": {\"Items\": [113403438]}}, \"TimeTargeting\": {\"HolidaysSchedule\": null, \"Schedule\": {\"Items\": [\"1,0,0,0,0,0,0,0,0,100,100,100,100,100,100,100,100,100,100,100,100,100,100,0,0\", \"2,0,0,0,0,0,0,0,0,100,100,100,100,100,100,100,100,100,100,100,100,100,100,0,0\", \"3,0,0,0,0,0,0,0,0,100,100,100,100,100,100,100,100,100,100,100,100,100,100,0,0\", \"4,0,0,0,0,0,0,0,0,100,100,100,100,100,100,100,100,100,100,100,100,100,100,0,0\", \"5,0,0,0,0,0,0,0,0,100,100,100,100,100,100,100,100,100,100,100,100,100,100,0,0\", \"6,0,0,0,0,0,0,0,0,100,100,100,100,100,100,100,100,100,100,100,100,100,100,0,0\", \"7,0,0,0,0,0,0,0,0,100,100,100,100,100,100,100,100,100,100,100,100,100,100,0,0\"]}, \"ConsiderWorkingWeekends\": \"YES\"}}, \"group\": {\"Id\": 5819958999, \"CampaignId\": 715775801, \"Status\": \"ACCEPTED\", \"Type\": \"UNIFIED_AD_GROUP\", \"RegionIds\": [11010], \"NegativeKeywords\": {\"Items\": [\"05 ru !в махачкале\", \"бот\", \"купить подписчиков\", \"накрутка\", \"скачать Telegram\", \"скачать WhatsApp\", \"скачать приложение\", \"сколько стоит картошка !в дагестане\", \"создание групп\", \"создать группу\"]}, \"TrackingParams\": \"\"}, \"keywords\": [{\"Id\": 58412964936, \"Keyword\": \"группа объявлений Дагестан WhatsApp\", \"AdGroupId\": 5819958999, \"CampaignId\": 715775801, \"State\": \"ON\", \"Status\": \"ACCEPTED\"}, {\"Id\": 58412964937, \"Keyword\": \"объявления Дагестан ватсап группа\", \"AdGroupId\": 5819958999, \"CampaignId\": 715775801, \"State\": \"ON\", \"Status\": \"ACCEPTED\"}, {\"Id\": 58412964938, \"Keyword\": \"вступить в группу объявлений Дагестан\", \"AdGroupId\": 5819958999, \"CampaignId\": 715775801, \"State\": \"ON\", \"Status\": \"ACCEPTED\"}, {\"Id\": 58412964939, \"Keyword\": \"разместить объявление Дагестан WhatsApp\", \"AdGroupId\": 5819958999, \"CampaignId\": 715775801, \"State\": \"ON\", \"Status\": \"ACCEPTED\"}, {\"Id\": 205819958999, \"Keyword\": \"---autotargeting\", \"AdGroupId\": 5819958999, \"CampaignId\": 715775801, \"State\": \"ON\", \"Status\": \"ACCEPTED\", \"AutotargetingSettings\": {\"Categories\": {\"Exact\": \"YES\", \"Narrow\": \"NO\", \"Alternative\": \"NO\", \"Accessory\": \"NO\", \"Broader\": \"NO\"}, \"BrandOptions\": {\"WithoutBrands\": \"YES\", \"WithAdvertiserBrand\": \"YES\", \"WithCompetitorsBrand\": \"YES\"}}}], \"ads\": {\"Ads\": [{\"Id\": 1926010917047642292, \"CampaignId\": 715775801, \"AdGroupId\": 5819958999, \"Status\": \"UNKNOWN\", \"State\": \"SUSPENDED\", \"StatusClarification\": \"Остановлено.\", \"Type\": \"RESPONSIVE_AD\", \"ResponsiveAd\": {\"Texts\": [{\"Text\": \"Вступайте в WhatsApp-группу Дагестана. Объявления бесплатно по правилам.\", \"Status\": \"ACCEPTED\"}, {\"Text\": \"Размещайте обычные объявления бесплатно. Коммерческая реклама — платно.\", \"Status\": \"ACCEPTED\"}], \"Titles\": [{\"Title\": \"Объявления Дагестана в WhatsApp\", \"Status\": \"ACCEPTED\"}, {\"Title\": \"Вступайте в группу объявлений\", \"Status\": \"ACCEPTED\"}], \"Href\": \"https://obyavleniya-dagestan.ru/group-whatsapp-2.html\", \"BusinessId\": null}}]}}, \"revision\": \"3f99b34d42f26791afd5d2a97f1e5e5c20cc02ce58624482ecce863e8eebebef\", \"status\": \"read_only_inspection\"}")["before"]
+                  def stable(v,ignore_state=False):
+                      if isinstance(v,dict):return {k:stable(x,ignore_state) for k,x in v.items() if k not in (("Status","StatusClarification","State") if ignore_state else ("Status","StatusClarification"))}
+                      if isinstance(v,list):return [stable(x,ignore_state) for x in v]
+                      return v
+                  record["expected_revision"]=revision(stable(expected))
+                  if revision(stable(before))!=record["expected_revision"]:
+                      raise ControlError("Settings changed since inspected baseline; no launch")
+                  c=before["campaign"];ads=before["ads"]["Ads"]
+                  budget=c["UnifiedCampaign"]["BiddingStrategy"]["Search"]["WbMaximumClicks"]["CustomPeriodBudget"]
+                  if budget!={"SpendLimit":500000000,"StartDate":"2026-11-12","EndDate":"2026-11-18","AutoContinue":"NO"}:
+                      raise ControlError("Budget or dates mismatch")
+                  if c["EndDate"]!="2026-11-18" or c["State"]!="SUSPENDED" or len(ads)!=1 or ads[0]["State"]!="SUSPENDED":
+                      raise ControlError("Unexpected campaign or ad state")
+                  a=ads[0]
+                  if a["ResponsiveAd"].get("BusinessId") is not None or a["ResponsiveAd"]["Href"]!="https://obyavleniya-dagestan.ru/group-whatsapp-2.html":
+                      raise ControlError("Contact binding or landing mismatch")
+                  if c["Status"]=="REJECTED" or a["Status"]=="REJECTED":
+                      raise ControlError("Moderation rejected; do not resume")
+                  def resume(service, ids):
+                      record["operations"].append({"service":service,"method":"resume","ids":ids,"state":"attempted"})
+                      record["applied"]=True
+                      result=api.call(service,"resume",{"SelectionCriteria":{"Ids":ids}})
+                      record["operations"][-1]["result"]=result
+                      rows=result.get("ResumeResults",[])
+                      if len(rows)!=len(ids) or {x.get("Id") for x in rows}!=set(ids) or any(x.get("Errors") for x in rows):
+                          raise ControlError("Resume rejected or partial; inspect before retry")
+                      record["operations"][-1]["state"]="accepted"
+                  resume("ads",[a["Id"]])
+                  resume("campaigns",[CAMPAIGN])
+                  import time
+                  after=snapshot(api)
+                  for _ in range(5):
+                      if after["campaign"]["State"]!="SUSPENDED" and all(x["State"]!="SUSPENDED" for x in after["ads"]["Ads"]):break
+                      time.sleep(2);after=snapshot(api)
+                  record["after"]=after
+                  record["checks"]={"campaign_resumed":after["campaign"]["State"]=="ON",
+                                    "ad_not_suspended":all(x["State"] not in ("SUSPENDED","ARCHIVED") for x in after["ads"]["Ads"]),
+                                    "all_settings_preserved":stable(after,True)==stable(before,True)}
+                  if not all(record["checks"].values()):
+                      raise ControlError("Readback incomplete; inspect before retry")
+                  record["verified"]=True;record["status"]="resume_accepted_verified"
+                  record["delivery_note"]="Resume is not proof of impressions: start date12Nov and Yandex moderation still apply"
+              except Exception as error:
+                  record["status"]="failed_inspect_before_retry"
+                  record["error"]=str(error).replace(token,"[REDACTED]") if token else "Missing secret"
+                  if record["applied"]:
+                      try:record["after_failure"]=snapshot(api)
+                      except Exception:record["after_failure_unavailable"]=True
+              data=json.dumps(record,ensure_ascii=False)
+              if token:data=data.replace(token,"[REDACTED]")
+              (out/"result.json").write_text(data,encoding="utf-8");print(data)
+              return 0 if record["verified"] else 1
+          
+          if __name__=="__main__":sys.exit(main())
+          
+          PYCONTROL
+      - name: Save launch evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: whatsapp-launch-${{ github.run_id }}
+          path: direct-control/
+          retention-days: 30
