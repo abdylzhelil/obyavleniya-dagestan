@@ -13,6 +13,10 @@ on:
         required: false
         type: string
 
+  push:
+    branches: [main]
+    paths: ['.github/workflows/direct-reports.yml']
+
 permissions: {}
 
 concurrency:
@@ -255,6 +259,7 @@ jobs:
           import os
           import re
           import sys
+          import time
           import urllib.error
           import urllib.parse
           import urllib.request
@@ -280,6 +285,30 @@ jobs:
               def redirect_request(self, req, fp, code, msg, headers, newurl):
                   raise urllib.error.HTTPError(req.full_url, code, "Redirect refused", headers, fp)
           
+          
+          def open_report(opener, request, wait=time.sleep):
+              for attempt in range(3):
+                  try:
+                      return opener.open(request, timeout=30)
+                  except urllib.error.HTTPError as error:
+                      if error.code not in (429, 500, 502, 503, 504) or attempt == 2:
+                          raise
+                      retry=error.headers.get("Retry-After", "") if error.headers else ""
+                      delay=min(10, max(1, int(retry))) if retry.isdigit() else 2*(attempt+1)
+                      error.close()
+                      wait(delay)
+          
+          def api_error(error, token):
+              try:
+                  data=json.loads(error.read(8192).decode("utf-8", errors="replace"))
+                  result=[]
+                  for item in data.get("errors", [])[:3]:
+                      if isinstance(item,dict):
+                          result.append({k: str(item[k]).replace(token,"[REDACTED]")[:350]
+                                         for k in ("error_type","message") if k in item})
+                  return result
+              except (ValueError, OSError, TypeError):
+                  return []
           
           def params(first, last, dimension):
               if not "2026-11-04" <= first <= last <= "2026-11-10":
@@ -365,7 +394,7 @@ jobs:
                               try:
                                   url = ENDPOINT + "?" + urllib.parse.urlencode(item["request"])
                                   request = urllib.request.Request(url, headers={"Authorization": "OAuth " + token}, method="GET")
-                                  with opener.open(request, timeout=45) as response:
+                                  with open_report(opener, request) as response:
                                       body = response.read(5 * 1024 * 1024 + 1)
                                       if response.status != 200 or len(body) > 5 * 1024 * 1024:
                                           raise ValueError("Unexpected response")
@@ -376,8 +405,9 @@ jobs:
                                   (out / f"{key}.json").write_text(text, encoding="utf-8")
                                   print(f"Metrika: {key}; {item['status']}")
                               except urllib.error.HTTPError as error:
-                                  item.update(status="failed", http_status=error.code)
-                                  print(f"Metrika: {key}; HTTP {error.code}, no response body logged")
+                                  detail=api_error(error, token)
+                                  item.update(status="failed", http_status=error.code, api_errors=detail)
+                                  print(f"Metrika: {key}; HTTP {error.code}; "+json.dumps(detail,ensure_ascii=False))
                               except (urllib.error.URLError, TimeoutError, OSError, ValueError, TypeError):
                                   item.update(status="failed", error="Request or response validation failed; details suppressed")
                                   print(f"Metrika: {key}; failed")
