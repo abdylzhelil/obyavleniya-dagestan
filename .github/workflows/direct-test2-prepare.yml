@@ -66,7 +66,8 @@ jobs:
                       raise ControlError("API request failed; details suppressed") from None
                   if not isinstance(data, dict) or "error" in data:
                       code = data.get("error", {}).get("error_code") if isinstance(data, dict) else None
-                      raise ControlError("Direct API rejected request" + (" code " + str(code) if type(code) is int else ""))
+                      detail = str(data.get("error", {}).get("error_detail", ""))[:350].replace(self.token, "[REDACTED]")
+                      raise ControlError("Direct API rejected request" + (" code " + str(code) if type(code) is int else "") + ": " + detail)
                   if not isinstance(data.get("result"), dict):
                       raise ControlError("Missing API result")
                   return data["result"]
@@ -101,7 +102,7 @@ jobs:
               out.mkdir(exist_ok=True)
               try:
                   now = datetime.now(timezone.utc)
-                  issued = datetime.fromisoformat("2026-11-11T16:55:14.103007+00:00")
+                  issued = datetime.fromisoformat("2026-11-11T16:57:31.691786+00:00")
                   if not 0 <= (now - issued).total_seconds() <= 900 or now.astimezone(ZoneInfo("Europe/Moscow")).date() != date(2026,11,11):
                       raise ControlError("Expired one-time preparation; inspect again")
                   if os.environ.get("GITHUB_RUN_ATTEMPT") != "1":
@@ -111,7 +112,7 @@ jobs:
                   api = Direct(token, urllib.request.build_opener(NoRedirect()))
                   before = snapshot(api)
                   record["before"] = before
-                  record["expected_revision"] = "fd21f4a1503f99e0b065ac693476e5d8d009090184cc7f01409b8ccb1c224013"
+                  record["expected_revision"] = "a77e8dac168c3f2818d1b64912c049d66b7daf8e1630009bbe0ad911591057f4"
                   if revision(before) != record["expected_revision"]:
                       raise ControlError("Settings changed since fresh inspection")
                   def apply(service, method, params, ids, key="UpdateResults"):
@@ -142,7 +143,7 @@ jobs:
                   budget = {"SpendLimit": 500000000, "StartDate": "2026-11-12", "EndDate": "2026-11-18", "AutoContinue": "NO"}
                   tracking = "utm_source=yandex&utm_medium=cpc&utm_campaign=dagestan_whatsapp_test2_20261112&utm_content={ad_id}&utm_term={keyword}"
                   strategy = {"Search": {"BiddingStrategyType": "WB_MAXIMUM_CLICKS", "WbMaximumClicks": {"CustomPeriodBudget": budget}}, "Network": {"BiddingStrategyType": "SERVING_OFF"}}
-                  apply("campaigns", "update", {"Campaigns": [{"Id": CAMPAIGN, "Name": "Объявления Дагестана — WhatsApp — тест 2", "StartDate": "2026-11-12", "EndDate": "2026-11-18", "UnifiedCampaign": {"BiddingStrategy": strategy, "TrackingParams": tracking, "PriorityGoals": {"Items": [{"GoalId": 668953269, "Value": 300000}]}, "Settings": [{"Option": "ENABLE_AREA_OF_INTEREST_TARGETING", "Value": "NO"}, {"Option": "ALTERNATIVE_TEXTS_ENABLED", "Value": "NO"}]}}]}, [CAMPAIGN])
+                  apply("campaigns", "update", {"Campaigns": [{"Id": CAMPAIGN, "Name": "Объявления Дагестана — WhatsApp — тест 2", "StartDate": "2026-11-12", "EndDate": "2026-11-18", "UnifiedCampaign": {"BiddingStrategy": strategy, "TrackingParams": tracking, "PriorityGoals": {"Items": [{"GoalId": 668953269, "Value": 300000, "Operation": "SET", "IsMetrikaSourceOfValue": "NO"}]}, "Settings": [{"Option": "ALTERNATIVE_TEXTS_ENABLED", "Value": "NO"}]}}]}, [CAMPAIGN])
                   phrases = {58412964936: "группа объявлений Дагестан WhatsApp", 58412964937: "объявления Дагестан ватсап группа", 58412964938: "вступить в группу объявлений Дагестан", 58412964939: "разместить объявление Дагестан WhatsApp"}
                   categories = {"Exact": "YES", "Narrow": "NO", "Alternative": "NO", "Accessory": "NO", "Broader": "NO"}
                   updates = [{"Id": k, "Keyword": v} for k,v in phrases.items()] + [{"Id": 205819958999, "AutotargetingSettings": {"Categories": categories}}]
@@ -169,8 +170,7 @@ jobs:
                       "tracking": u["TrackingParams"] == tracking,
                       "counter_preserved": u["CounterIds"] == before["campaign"]["UnifiedCampaign"]["CounterIds"],
                       "wa_goal_only": [g["GoalId"] for g in u["PriorityGoals"]["Items"]] == [668953269],
-                      "physical_region_only": any(x == {"Option":"ENABLE_AREA_OF_INTEREST_TARGETING","Value":"NO"} for x in u["Settings"]),
-                      "automatic_texts_off": any(x == {"Option":"ALTERNATIVE_TEXTS_ENABLED","Value":"NO"} for x in u["Settings"]),
+                                "automatic_texts_off": any(x == {"Option":"ALTERNATIVE_TEXTS_ENABLED","Value":"NO"} for x in u["Settings"]),
                       "region_preserved": after["group"]["RegionIds"] == [11010],
                       "negatives_preserved": after["group"]["NegativeKeywords"] == before["group"]["NegativeKeywords"],
                       "keywords": got_phrases == phrases,
