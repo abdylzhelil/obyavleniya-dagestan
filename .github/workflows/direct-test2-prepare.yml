@@ -101,7 +101,7 @@ jobs:
               out.mkdir(exist_ok=True)
               try:
                   now = datetime.now(timezone.utc)
-                  issued = datetime.fromisoformat("2026-11-11T16:54:21.508069+00:00")
+                  issued = datetime.fromisoformat("2026-11-11T16:55:14.103007+00:00")
                   if not 0 <= (now - issued).total_seconds() <= 900 or now.astimezone(ZoneInfo("Europe/Moscow")).date() != date(2026,11,11):
                       raise ControlError("Expired one-time preparation; inspect again")
                   if os.environ.get("GITHUB_RUN_ATTEMPT") != "1":
@@ -111,7 +111,7 @@ jobs:
                   api = Direct(token, urllib.request.build_opener(NoRedirect()))
                   before = snapshot(api)
                   record["before"] = before
-                  record["expected_revision"] = "a605559d40bd21d6f1de7918b3fc684ea91b8c3da79dddd4577cc9ded2b31a52"
+                  record["expected_revision"] = "fd21f4a1503f99e0b065ac693476e5d8d009090184cc7f01409b8ccb1c224013"
                   if revision(before) != record["expected_revision"]:
                       raise ControlError("Settings changed since fresh inspection")
                   def apply(service, method, params, ids, key="UpdateResults"):
@@ -130,7 +130,12 @@ jobs:
                   apply("ads", "suspend", {"SelectionCriteria": {"Ids": ad_ids}}, ad_ids, "SuspendResults")
                   if before["campaign"]["State"] != "SUSPENDED":
                       apply("campaigns", "suspend", {"SelectionCriteria": {"Ids": [CAMPAIGN]}}, [CAMPAIGN], "SuspendResults")
+                  import time
                   paused = snapshot(api)
+                  for _ in range(5):
+                      if all(a["State"] == "SUSPENDED" for a in paused["ads"]["Ads"]): break
+                      time.sleep(2)
+                      paused = snapshot(api)
                   record["paused"] = paused
                   if not all(a["State"] == "SUSPENDED" for a in paused["ads"]["Ads"]):
                       raise ControlError("Suspension not confirmed; no settings updated")
