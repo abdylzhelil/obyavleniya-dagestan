@@ -1,8 +1,6 @@
 name: Prepare WhatsApp test 2 suspended
 on:
-  push:
-    branches: [main]
-    paths: ['.github/workflows/direct-test2-prepare.yml']
+  workflow_dispatch:
 permissions: {}
 concurrency:
   group: direct-bounded-control
