@@ -92,7 +92,12 @@ jobs:
           
           
           def revision(settings):
-              return hashlib.sha256(json.dumps(settings, sort_keys=True, ensure_ascii=False, separators=(",", ":")).encode()).hexdigest()
+              # Moderation Status is volatile and is not a user setting; State remains guarded.
+              def stable(value):
+                  if isinstance(value, dict): return {k: stable(v) for k,v in value.items() if k != "Status"}
+                  if isinstance(value, list): return [stable(v) for v in value]
+                  return value
+              return hashlib.sha256(json.dumps(stable(settings), sort_keys=True, ensure_ascii=False, separators=(",", ":")).encode()).hexdigest()
           
           
           def main():
@@ -102,7 +107,7 @@ jobs:
               out.mkdir(exist_ok=True)
               try:
                   now = datetime.now(timezone.utc)
-                  issued = datetime.fromisoformat("2026-11-11T16:57:31.691786+00:00")
+                  issued = datetime.fromisoformat("2026-11-11T16:58:17.559079+00:00")
                   if not 0 <= (now - issued).total_seconds() <= 900 or now.astimezone(ZoneInfo("Europe/Moscow")).date() != date(2026,11,11):
                       raise ControlError("Expired one-time preparation; inspect again")
                   if os.environ.get("GITHUB_RUN_ATTEMPT") != "1":
@@ -112,7 +117,7 @@ jobs:
                   api = Direct(token, urllib.request.build_opener(NoRedirect()))
                   before = snapshot(api)
                   record["before"] = before
-                  record["expected_revision"] = "a77e8dac168c3f2818d1b64912c049d66b7daf8e1630009bbe0ad911591057f4"
+                  record["expected_revision"] = "9cd8959a169e8988f7ae7ad6b828e3d1028bb056392991527203afb286c52d54"
                   if revision(before) != record["expected_revision"]:
                       raise ControlError("Settings changed since fresh inspection")
                   def apply(service, method, params, ids, key="UpdateResults"):
