@@ -136,7 +136,7 @@ jobs:
                   raise ControlError("Group identity mismatch")
               if result.get("LimitedBy") or any(k.get("CampaignId") != CAMPAIGN or k.get("AdGroupId") != GROUP for k in keywords):
                   raise ControlError("Keywords outside scope or incomplete")
-              ads = api.call("ads", "get", {"SelectionCriteria": {"CampaignIds": [CAMPAIGN], "AdGroupIds": [GROUP]}, "FieldNames": ["Id", "CampaignId", "AdGroupId", "Type", "State", "Status"], "TextAdFieldNames": ["Title", "Title2", "Text", "Href"]})
+              ads = api.call("ads", "get", {"SelectionCriteria": {"CampaignIds": [CAMPAIGN], "AdGroupIds": [GROUP]}, "FieldNames": ["Id", "CampaignId", "AdGroupId", "Type", "State", "Status"], "TextAdFieldNames": ["Title", "Title2", "Text", "Href"], "ResponsiveAdFieldNames": ["Titles", "Texts", "Href"]})
               return {"campaign": campaigns[0], "group": groups[0], "keywords": sorted(keywords, key=lambda k: k["Id"]), "ads": ads}
           
           
