@@ -1,8 +1,6 @@
 name: Remove business contact from WhatsApp ad
 on:
-  push:
-    branches: [main]
-    paths: ['.github/workflows/direct-test2-contact.yml']
+  workflow_dispatch:
 permissions: {}
 concurrency:
   group: direct-bounded-control
