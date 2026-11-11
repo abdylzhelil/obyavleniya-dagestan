@@ -1,0 +1,198 @@
+name: Prepare WhatsApp test 2 suspended
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/direct-test2-prepare.yml']
+permissions: {}
+concurrency:
+  group: direct-bounded-control
+  cancel-in-progress: false
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Apply fixed WhatsApp configuration without resuming
+        env:
+          YANDEX_DIRECT_TOKEN: ${{ secrets.YANDEX_DIRECT_TOKEN }}
+        shell: bash
+        run: |
+          python3 - <<'PYCONTROL'
+          """Bounded Direct operator; fixed campaign/group, explicit actions, auditable snapshots."""
+          import hashlib
+          import json
+          import os
+          import re
+          import sys
+          import urllib.error
+          import urllib.request
+          from datetime import date, datetime, timezone
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+          
+          CAMPAIGN, GROUP = 715775801, 5819958999
+          CONTROL_PATH = ".github/direct-control/request.json"
+          ALLOWED_NEGATIVES = {"05 ru в махачкале", "сколько стоит картошка в дагестане"}
+          ALLOWED_CALLS = {("campaigns", "get"), ("campaigns", "suspend"), ("campaigns", "update"), ("adgroups", "get"), ("keywords", "get"), ("keywords", "update"), ("ads", "get"), ("ads", "update")}
+          
+          
+          class ControlError(Exception):
+              pass
+          
+          
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self, req, fp, code, msg, headers, newurl):
+                  raise urllib.error.HTTPError(req.full_url, code, "Redirect refused", headers, fp)
+          
+          
+          class Direct:
+              def __init__(self, token, opener):
+                  self.token, self.opener = token, opener
+              def call(self, service, method, params):
+                  if (service, method) not in ALLOWED_CALLS:
+                      raise ControlError("API method forbidden")
+                  req = urllib.request.Request(f"https://api.direct.yandex.com/json/v501/{service}",
+                      data=json.dumps({"method": method, "params": params}).encode(), method="POST",
+                      headers={"Authorization": "Bearer " + self.token, "Content-Type": "application/json", "Accept-Language": "ru"})
+                  try:
+                      with self.opener.open(req, timeout=45) as response:
+                          raw = response.read(1024*1024+1)
+                      if len(raw) > 1024*1024:
+                          raise ControlError("Response too large")
+                      data = json.loads(raw)
+                  except urllib.error.HTTPError as error:
+                      raise ControlError("HTTP failure " + str(error.code)) from None
+                  except (urllib.error.URLError, OSError, ValueError):
+                      raise ControlError("API request failed; details suppressed") from None
+                  if not isinstance(data, dict) or "error" in data:
+                      code = data.get("error", {}).get("error_code") if isinstance(data, dict) else None
+                      raise ControlError("Direct API rejected request" + (" code " + str(code) if type(code) is int else ""))
+                  if not isinstance(data.get("result"), dict):
+                      raise ControlError("Missing API result")
+                  return data["result"]
+          
+          
+          def snapshot(api):
+              campaigns = api.call("campaigns", "get", {"SelectionCriteria": {"Ids": [CAMPAIGN]}, "FieldNames": ["Id", "State", "Status", "Type", "Name", "StartDate", "EndDate", "TimeTargeting"], "UnifiedCampaignFieldNames": ["TrackingParams", "CounterIds", "BiddingStrategy", "PriorityGoals", "Settings"]}).get("Campaigns", [])
+              groups = api.call("adgroups", "get", {"SelectionCriteria": {"CampaignIds": [CAMPAIGN], "Ids": [GROUP]}, "FieldNames": ["Id", "CampaignId", "Status", "RegionIds", "NegativeKeywords", "Type", "TrackingParams"]}).get("AdGroups", [])
+              result = api.call("keywords", "get", {"SelectionCriteria": {"CampaignIds": [CAMPAIGN], "AdGroupIds": [GROUP]},
+                  "FieldNames": ["Id", "AdGroupId", "CampaignId", "Keyword", "State", "Status"],
+                  "AutotargetingSettingsCategoriesFieldNames": ["Exact", "Narrow", "Alternative", "Accessory", "Broader"],
+                  "AutotargetingSettingsBrandOptionsFieldNames": ["WithoutBrands", "WithAdvertiserBrand", "WithCompetitorsBrand"]})
+              keywords = result.get("Keywords", [])
+              if len(campaigns) != 1 or campaigns[0].get("Id") != CAMPAIGN:
+                  raise ControlError("Campaign identity mismatch")
+              if len(groups) != 1 or groups[0].get("Id") != GROUP or groups[0].get("CampaignId") != CAMPAIGN:
+                  raise ControlError("Group identity mismatch")
+              if result.get("LimitedBy") or any(k.get("CampaignId") != CAMPAIGN or k.get("AdGroupId") != GROUP for k in keywords):
+                  raise ControlError("Keywords outside scope or incomplete")
+              ads = api.call("ads", "get", {"SelectionCriteria": {"CampaignIds": [CAMPAIGN], "AdGroupIds": [GROUP]}, "FieldNames": ["Id", "CampaignId", "AdGroupId", "Type", "State", "Status"], "TextAdFieldNames": ["Title", "Title2", "Text", "Href"], "ResponsiveAdFieldNames": ["Titles", "Texts", "Href"]})
+              return {"campaign": campaigns[0], "group": groups[0], "keywords": sorted(keywords, key=lambda k: k["Id"]), "ads": ads}
+          
+          
+          def revision(settings):
+              return hashlib.sha256(json.dumps(settings, sort_keys=True, ensure_ascii=False, separators=(",", ":")).encode()).hexdigest()
+          
+          
+          def main():
+              token = os.environ.get("YANDEX_DIRECT_TOKEN", "").strip()
+              record = {"captured_at_utc": datetime.now(timezone.utc).isoformat(), "applied": False, "verified": False, "operations": []}
+              out = Path("direct-control")
+              out.mkdir(exist_ok=True)
+              try:
+                  now = datetime.now(timezone.utc)
+                  issued = datetime.fromisoformat("2026-11-11T16:51:57.390688+00:00")
+                  if not 0 <= (now - issued).total_seconds() <= 900 or now.astimezone(ZoneInfo("Europe/Moscow")).date() != date(2026,11,11):
+                      raise ControlError("Expired one-time preparation; inspect again")
+                  if os.environ.get("GITHUB_RUN_ATTEMPT") != "1":
+                      raise ControlError("No blind retries; inspect current state")
+                  if not token:
+                      raise ControlError("Missing OAuth secret")
+                  api = Direct(token, urllib.request.build_opener(NoRedirect()))
+                  before = snapshot(api)
+                  record["before"] = before
+                  record["expected_revision"] = "a605559d40bd21d6f1de7918b3fc684ea91b8c3da79dddd4577cc9ded2b31a52"
+                  if revision(before) != record["expected_revision"]:
+                      raise ControlError("Settings changed since fresh inspection")
+                  def apply(service, method, params, ids, key="UpdateResults"):
+                      record["operations"].append({"service": service, "method": method, "params": params, "state": "attempted"})
+                      # Mark the uncertain interval before dispatch: a timeout can follow an applied write.
+                      record["applied"] = True
+                      result = api.call(service, method, params)
+                      record["operations"][-1]["result"] = result
+                      rows = result.get(key, [])
+                      if len(rows) != len(ids) or {r.get("Id") for r in rows} != set(ids) or any(r.get("Errors") for r in rows):
+                          raise ControlError("Partial or rejected operation; inspect before any retry")
+                      record["operations"][-1]["state"] = "accepted"
+                  if before["campaign"]["State"] != "SUSPENDED":
+                      apply("campaigns", "suspend", {"SelectionCriteria": {"Ids": [CAMPAIGN]}}, [CAMPAIGN], "SuspendResults")
+                  paused = snapshot(api)
+                  record["paused"] = paused
+                  if paused["campaign"]["State"] != "SUSPENDED":
+                      raise ControlError("Suspension not confirmed; no settings updated")
+                  budget = {"SpendLimit": 500000000, "StartDate": "2026-11-12", "EndDate": "2026-11-18", "AutoContinue": "NO"}
+                  tracking = "utm_source=yandex&utm_medium=cpc&utm_campaign=dagestan_whatsapp_test2_20261112&utm_content={ad_id}&utm_term={keyword}"
+                  strategy = {"Search": {"BiddingStrategyType": "WB_MAXIMUM_CLICKS", "WbMaximumClicks": {"CustomPeriodBudget": budget, "BudgetType": "CUSTOM_PERIOD_BUDGET"}}, "Network": {"BiddingStrategyType": "SERVING_OFF"}}
+                  apply("campaigns", "update", {"Campaigns": [{"Id": CAMPAIGN, "Name": "Объявления Дагестана — WhatsApp — тест 2", "StartDate": "2026-11-12", "EndDate": "2026-11-18", "UnifiedCampaign": {"BiddingStrategy": strategy, "TrackingParams": tracking, "PriorityGoals": {"Items": [{"GoalId": 668953269, "Value": 300000}]}, "Settings": [{"Option": "ENABLE_AREA_OF_INTEREST_TARGETING", "Value": "NO"}, {"Option": "ALTERNATIVE_TEXTS_ENABLED", "Value": "NO"}]}}]}, [CAMPAIGN])
+                  phrases = {58412964936: "группа объявлений Дагестан WhatsApp", 58412964937: "объявления Дагестан ватсап группа", 58412964938: "вступить в группу объявлений Дагестан", 58412964939: "разместить объявление Дагестан WhatsApp"}
+                  categories = {"Exact": "YES", "Narrow": "NO", "Alternative": "NO", "Accessory": "NO", "Broader": "NO"}
+                  updates = [{"Id": k, "Keyword": v} for k,v in phrases.items()] + [{"Id": 205819958999, "AutotargetingSettings": {"Categories": categories}}]
+                  apply("keywords", "update", {"Keywords": updates}, list(phrases) + [205819958999])
+                  ads = before["ads"].get("Ads", [])
+                  if len(ads) != 1 or ads[0]["Type"] != "RESPONSIVE_AD":
+                      raise ControlError("Unexpected ad inventory; no ad write")
+                  ad_id = ads[0]["Id"]
+                  titles = ["Объявления Дагестана в WhatsApp", "Вступайте в группу объявлений"]
+                  texts = ["Вступайте в WhatsApp-группу Дагестана. Объявления бесплатно по правилам.",
+                           "Размещайте обычные объявления бесплатно. Коммерческая реклама — платно."]
+                  href = "https://obyavleniya-dagestan.ru/group-whatsapp-2.html"
+                  apply("ads", "update", {"Ads": [{"Id": ad_id, "ResponsiveAd": {"Titles": titles, "Texts": texts, "Href": href}}]}, [ad_id])
+                  after = snapshot(api)
+                  record["after"] = after
+                  c = after["campaign"]; u = c["UnifiedCampaign"]; a = after["ads"]["Ads"][0]["ResponsiveAd"]
+                  got_phrases = {k["Id"]: k["Keyword"] for k in after["keywords"] if k["Id"] in phrases}
+                  auto = [k for k in after["keywords"] if k["Keyword"] == "---autotargeting"]
+                  checks = {
+                      "suspended": c["State"] == "SUSPENDED",
+                      "end_date": c["EndDate"] == "2026-11-18",
+                      "budget": u["BiddingStrategy"]["Search"]["WbMaximumClicks"]["CustomPeriodBudget"] == budget,
+                      "search_only": u["BiddingStrategy"]["Network"]["BiddingStrategyType"] == "SERVING_OFF",
+                      "tracking": u["TrackingParams"] == tracking,
+                      "counter_preserved": u["CounterIds"] == before["campaign"]["UnifiedCampaign"]["CounterIds"],
+                      "wa_goal_only": [g["GoalId"] for g in u["PriorityGoals"]["Items"]] == [668953269],
+                      "physical_region_only": any(x == {"Option":"ENABLE_AREA_OF_INTEREST_TARGETING","Value":"NO"} for x in u["Settings"]),
+                      "automatic_texts_off": any(x == {"Option":"ALTERNATIVE_TEXTS_ENABLED","Value":"NO"} for x in u["Settings"]),
+                      "region_preserved": after["group"]["RegionIds"] == [11010],
+                      "negatives_preserved": after["group"]["NegativeKeywords"] == before["group"]["NegativeKeywords"],
+                      "keywords": got_phrases == phrases,
+                      "autotargeting": len(auto) == 1 and auto[0]["AutotargetingSettings"]["Categories"] == categories,
+                      "href": a["Href"] == href,
+                      "titles": [x["Title"] for x in a["Titles"]] == titles,
+                      "texts": [x["Text"] for x in a["Texts"]] == texts,
+                      "schedule_preserved": c["TimeTargeting"] == before["campaign"]["TimeTargeting"]
+                  }
+                  record["checks"] = checks
+                  if not all(checks.values()):
+                      raise ControlError("Readback mismatch; keep suspended and inspect")
+                  record["verified"] = True
+                  record["status"] = "test2_prepared_suspended"
+              except Exception as error:
+                  record["status"] = "failed_inspect_before_retry"
+                  record["error"] = str(error).replace(token, "[REDACTED]") if token else "Missing secret"
+              data = json.dumps(record, ensure_ascii=False)
+              if token: data = data.replace(token, "[REDACTED]")
+              (out / "result.json").write_text(data, encoding="utf-8")
+              print(data)
+              return 0 if record["verified"] else 1
+          
+          
+          if __name__ == "__main__": sys.exit(main())
+          
+          PYCONTROL
+      - name: Save evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: direct-test2-prepare-${{ github.run_id }}
+          path: direct-control/
+          retention-days: 30
