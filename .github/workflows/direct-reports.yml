@@ -12,8 +12,6 @@ on:
         description: 'End date YYYY-MM-DD (defaults to elapsed test period)'
         required: false
         type: string
-  schedule:
-    - cron: '15 19 4-10 11 *'
   push:
     branches: [main]
     paths: ['.github/workflows/direct-reports.yml']
@@ -437,6 +435,7 @@ jobs:
           except (OSError,ValueError,KeyError):
               lines += ["Метрика недоступна; значения неизвестны."]
           text="\n".join(lines)+"\n"
+          print(text)
           root.mkdir(exist_ok=True)
           (root/"summary.md").write_text(text)
           with open(os.environ["GITHUB_STEP_SUMMARY"],"a") as out: out.write("\n"+text)
