@@ -2,9 +2,6 @@ name: WhatsApp test 2 preparation inspection
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths: ['.github/workflows/direct-test2-inspect.yml']
 
 permissions: {}
 
