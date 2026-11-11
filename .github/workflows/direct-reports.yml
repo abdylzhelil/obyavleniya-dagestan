@@ -270,8 +270,7 @@ jobs:
           COUNTER = "113403438"
           ENDPOINT = "https://api-metrika.yandex.net/stat/v1/data"
           FILTER = "ym:s:UTMSource=='yandex' AND ym:s:UTMMedium=='cpc' AND ym:s:UTMCampaign=='dagestan_members_search_v1'"
-          METRICS = ["ym:s:visits", "ym:s:users", "ym:s:bounceRate", "ym:s:pageDepth", "ym:s:avgVisitDurationSeconds",
-                     "ym:s:goal668953269reaches", "ym:s:goal668953269visits", "ym:s:goal668953627reaches", "ym:s:goal668953627visits"]
+          METRICS = ["ym:s:visits", "ym:s:users", "ym:s:goal668953269reaches", "ym:s:goal668953627reaches"]
           DIMENSIONS = {"overview": None, "daily": "ym:s:date", "devices": "ym:s:deviceCategory",
                         "regions": "ym:s:regionCountry,ym:s:regionArea,ym:s:regionCity",
                         "all_traffic": None, "observed_utm": "ym:s:UTMSource,ym:s:UTMMedium,ym:s:UTMCampaign"}
