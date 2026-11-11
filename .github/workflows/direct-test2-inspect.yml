@@ -245,3 +245,5 @@ jobs:
           path: direct-control/
           retention-days: 30
           if-no-files-found: warn
+
+# Fresh inspection after setup validation error, no mutation.
