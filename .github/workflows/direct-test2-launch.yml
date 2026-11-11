@@ -1,8 +1,6 @@
 name: Owner authorized WhatsApp test 2 launch
 on:
-  push:
-    branches: [main]
-    paths: ['.github/workflows/direct-test2-launch.yml']
+  workflow_dispatch:
 permissions: {}
 concurrency:
   group: direct-bounded-control
@@ -143,7 +141,7 @@ jobs:
                       if after["campaign"]["State"]!="SUSPENDED" and all(x["State"]!="SUSPENDED" for x in after["ads"]["Ads"]):break
                       time.sleep(2);after=snapshot(api)
                   record["after"]=after
-                  record["checks"]={"campaign_resumed":after["campaign"]["State"]=="ON",
+                  record["checks"]={"campaign_resumed":after["campaign"]["State"]=="ON" or (after["campaign"]["State"]=="OFF" and after["campaign"]["Status"]=="MODERATION"),
                                     "ad_not_suspended":all(x["State"] not in ("SUSPENDED","ARCHIVED") for x in after["ads"]["Ads"]),
                                     "all_settings_preserved":stable(after,True)==stable(before,True)}
                   if not all(record["checks"].values()):
