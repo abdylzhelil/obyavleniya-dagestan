@@ -275,9 +275,9 @@ jobs:
                         "regions": "ym:s:regionCountry,ym:s:regionArea,ym:s:regionCity",
                         "all_traffic": None, "observed_utm": "ym:s:UTMSource,ym:s:UTMMedium,ym:s:UTMCampaign"}
           DIAGNOSTIC_KEYS = {"all_traffic", "observed_utm"}
-          DIRECT_KEYS = {"direct_overview", "direct_daily"}
+          DIRECT_KEYS = {"direct_daily"}
           DIRECT_FILTER = "ym:s:<attribution>DirectClickOrder==715775801"
-          DIMENSIONS.update(direct_overview="ym:s:<attribution>DirectClickOrder", direct_daily="ym:s:date")
+          DIMENSIONS.update(direct_daily="ym:s:date")
           
           
           class NoRedirect(urllib.request.HTTPRedirectHandler):
@@ -450,7 +450,7 @@ jobs:
           try:
               metrika=json.loads((root/"metrika/status.json").read_text())
               lines += ["", "Метрика: "+metrika["status"]]
-              for key in ("direct_overview","overview"):
+              for key in ("direct_daily","overview"):
                   item=metrika.get("reports",{}).get(key,{})
                   if item.get("status")!="complete":
                       lines.append(key+": данные неполны/не получены.")
