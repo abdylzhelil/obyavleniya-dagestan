@@ -1,0 +1,534 @@
+name: WhatsApp test 2 read-only reports
+# Metrika read-only OAuth application: 40fbd9c24b874b4bacaa0883e57ca434
+
+on:
+  workflow_dispatch:
+    inputs:
+      date_from:
+        description: 'Start date YYYY-MM-DD (12-18 November 2026)'
+        required: false
+        type: string
+      date_to:
+        description: 'End date YYYY-MM-DD (defaults to elapsed test period)'
+        required: false
+        type: string
+
+permissions: {}
+
+concurrency:
+  group: direct-read-only-reports
+  cancel-in-progress: false
+
+jobs:
+  reports:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check authorized reporting window
+        id: window
+        env:
+          DIRECT_EVENT_NAME: ${{ github.event_name }}
+        shell: bash
+        run: |
+          python3 - <<'PYWINDOW'
+          import os
+          from datetime import date, datetime
+          from zoneinfo import ZoneInfo
+          
+          def allowed(event, today):
+              return event != "schedule" or date(2026,11,12) <= today <= date(2026,11,18)
+          
+          if __name__ == "__main__":
+              enabled=allowed(os.environ["DIRECT_EVENT_NAME"], datetime.now(ZoneInfo("Europe/Moscow")).date())
+              with open(os.environ["GITHUB_OUTPUT"],"a",encoding="utf-8") as handle:
+                  handle.write("enabled="+str(enabled).lower()+"\n")
+              print("Reporting window active" if enabled else "Scheduled API read skipped: outside approved test period")
+          PYWINDOW
+      - name: Export fixed campaign reports
+        if: steps.window.outputs.enabled == 'true'
+        env:
+          YANDEX_DIRECT_TOKEN: ${{ secrets.YANDEX_DIRECT_TOKEN }}
+          DIRECT_DATE_FROM: ${{ inputs.date_from }}
+          DIRECT_DATE_TO: ${{ inputs.date_to }}
+        shell: bash
+        run: |
+          python3 - <<'PYDIRECT'
+          """Fixed-campaign read-only Reports API export. Token never leaves request headers."""
+          import csv
+          import io
+          import json
+          import os
+          import re
+          import sys
+          import time
+          import urllib.error
+          import urllib.request
+          from datetime import date, datetime, timezone
+          from decimal import Decimal, InvalidOperation
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+          
+          CAMPAIGN = "715775801"
+          ENDPOINT = "https://api.direct.yandex.com/json/v5/reports"
+          START, END = date(2026, 11, 12), date(2026, 11, 18)
+          BASE = ["CampaignId", "Impressions", "Clicks", "Cost"]
+          SPECS = {
+              "totals": ("CAMPAIGN_PERFORMANCE_REPORT", BASE + ["Ctr", "AvgCpc"]),
+              "daily": ("CAMPAIGN_PERFORMANCE_REPORT", ["Date"] + BASE + ["Ctr", "AvgCpc"]),
+              "queries": ("SEARCH_QUERY_PERFORMANCE_REPORT", ["Date", "CampaignId", "AdGroupId", "Query", "Criterion", "CriterionType", "MatchType", "TargetingCategory", "MatchedKeyword", "Impressions", "Clicks", "Cost"]),
+              "devices": ("CUSTOM_REPORT", ["Date", "CampaignId", "AdNetworkType", "Device", "MobilePlatform", "Impressions", "Clicks", "Cost"]),
+              "regions": ("CUSTOM_REPORT", ["Date", "CampaignId", "LocationOfPresenceId", "LocationOfPresenceName", "Impressions", "Clicks", "Cost"]),
+              "placements": ("CUSTOM_REPORT", ["Date", "CampaignId", "AdNetworkType", "Placement", "Impressions", "Clicks", "Cost"]),
+              "goals": ("CAMPAIGN_PERFORMANCE_REPORT", ["Date"] + BASE + ["Sessions", "Conversions", "ConversionRate", "CostPerConversion"]),
+          }
+          
+          
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self, req, fp, code, msg, headers, newurl):
+                  raise urllib.error.HTTPError(req.full_url, code, "Redirect refused", headers, fp)
+          
+          
+          class ReportError(Exception):
+              pass
+          
+          
+          def dates(raw_start, raw_end, today):
+              first = date.fromisoformat(raw_start) if raw_start else START
+              last = date.fromisoformat(raw_end) if raw_end else min(today, END)
+              if not START <= first <= last <= min(today, END):
+                  raise ValueError("Dates must fall within the elapsed part of 12-18 November 2026.")
+              return first.isoformat(), last.isoformat()
+          
+          
+          def definition(key, first, last, run):
+              report_type, fields = SPECS[key]
+              params = {
+                  "SelectionCriteria": {"DateFrom": first, "DateTo": last,
+                                        "Filter": [{"Field": "CampaignId", "Operator": "EQUALS", "Values": [CAMPAIGN]}]},
+                  "FieldNames": fields,
+                  "ReportName": f"dagestan-{CAMPAIGN}-{run}-{key}-{first}-{last}",
+                  "ReportType": report_type, "DateRangeType": "CUSTOM_DATE", "Format": "TSV",
+                  "IncludeVAT": "NO", "IncludeDiscount": "NO",
+              }
+              if key == "goals":
+                  params.update(Goals=["668953269", "668953627"], AttributionModels=["AUTO"])
+              return {"params": params}
+          
+          
+          def safe(text, token):
+              return re.sub(r"[\x00-\x1f\x7f]", " ", str(text).replace(token, "[REDACTED]"))[:1000]
+          
+          
+          def fetch(payload, token, opener, deadline, sleep=time.sleep, clock=time.monotonic):
+              body = json.dumps(payload).encode()
+              request = urllib.request.Request(ENDPOINT, data=body, method="POST", headers={
+                  "Authorization": "Bearer " + token, "Content-Type": "application/json; charset=utf-8",
+                  "Accept-Language": "en", "processingMode": "auto", "returnMoneyInMicros": "false",
+                  "skipReportHeader": "true", "skipReportSummary": "true",
+              })
+              server_errors = 0
+              while clock() < deadline:
+                  try:
+                      with opener.open(request, timeout=45) as response:
+                          status, headers = response.status, response.headers
+                          data = response.read(5 * 1024 * 1024 + 1)
+                  except urllib.error.HTTPError as error:
+                      status, headers = error.code, error.headers
+                      data = error.read(16384) if error.fp else b""
+                  except (urllib.error.URLError, OSError, TimeoutError):
+                      raise ReportError("HTTPS connection failed; details suppressed") from None
+                  if status == 200:
+                      if len(data) > 5 * 1024 * 1024:
+                          raise ReportError("Report too large; export rejected")
+                      return data.decode("utf-8-sig").replace(token, "[REDACTED]")
+                  if status in (201, 202, 429) or (status == 500 and server_errors == 0):
+                      if status == 500:
+                          server_errors += 1
+                      try:
+                          wait = max(1, int(headers.get("retryIn", headers.get("Retry-After", "15"))))
+                      except (ValueError, TypeError):
+                          wait = 15
+                      if wait > 60 or clock() + wait >= deadline:
+                          raise ReportError("Report still queued; retry the workflow later")
+                      sleep(wait)
+                      continue
+                  code = detail = ""
+                  try:
+                      err = json.loads(data).get("error", {})
+                      code = str(err.get("error_code", ""))
+                      detail = safe(err.get("error_detail", err.get("error_string", "")), token)
+                  except (ValueError, TypeError, AttributeError):
+                      pass
+                  raise ReportError(safe(f"HTTP {status}; API code {code}; {detail}", token))
+              raise ReportError("Report deadline exceeded")
+          
+          
+          def parse(text, first, last):
+              reader = csv.DictReader(io.StringIO(text), delimiter="\t")
+              fields = reader.fieldnames or []
+              if not {"CampaignId", "Impressions", "Clicks", "Cost"}.issubset(fields):
+                  raise ReportError("Unexpected TSV columns")
+              rows = list(reader)
+              for row in rows:
+                  if None in row or any(value is None for value in row.values()):
+                      raise ReportError("Malformed TSV row")
+                  if row["CampaignId"] != CAMPAIGN:
+                      raise ReportError("Report contains a different campaign")
+                  if "Date" in row and not first <= row["Date"] <= last:
+                      raise ReportError("Report date is outside the requested period")
+                  for field in ("Impressions", "Clicks"):
+                      if row[field] != "--" and not re.fullmatch(r"\d+", row[field]):
+                          raise ReportError("Invalid count")
+                  if row["Cost"] != "--":
+                      try:
+                          value = Decimal(row["Cost"])
+                      except InvalidOperation:
+                          raise ReportError("Invalid cost") from None
+                      if not value.is_finite() or value < 0:
+                          raise ReportError("Invalid cost")
+              return fields, rows
+          
+          
+          def main():
+              token = os.environ.get("YANDEX_DIRECT_TOKEN", "").strip()
+              if not token or any(c.isspace() for c in token):
+                  print("FAIL: OAuth secret is missing or malformed")
+                  return 1
+              try:
+                  first, last = dates(os.environ.get("DIRECT_DATE_FROM", ""), os.environ.get("DIRECT_DATE_TO", ""), datetime.now(ZoneInfo("Europe/Moscow")).date())
+              except ValueError:
+                  print("FAIL: Invalid date range; use elapsed dates within 12-18 November 2026")
+                  return 1
+              run = re.sub(r"[^0-9-]", "", os.environ.get("GITHUB_RUN_ID", "0") + "-" + os.environ.get("GITHUB_RUN_ATTEMPT", "1"))
+              out = Path("direct-reports")
+              out.mkdir(exist_ok=True)
+              metadata = {"campaign_id": CAMPAIGN, "date_from": first, "date_to": last,
+                          "captured_at_utc": datetime.now(timezone.utc).isoformat(), "include_vat": False,
+                          "money_units": "account currency; API rounds to two decimals (not micros)",
+                          "report_timezone": "API account/report timezone; not independently read",
+                          "goals_are": "attributed website events, NOT verified group joins", "reports": {}}
+              opener = urllib.request.build_opener(NoRedirect())
+              global_deadline = time.monotonic() + 420
+              for key in SPECS:
+                  payload = definition(key, first, last, run)
+                  item = {"request": payload, "started_at_utc": datetime.now(timezone.utc).isoformat()}
+                  try:
+                      text = fetch(payload, token, opener, min(global_deadline, time.monotonic() + 100))
+                      fields, rows = parse(text, first, last)
+                      if key == "goals" and not {"Conversions_668953269_AUTO", "Conversions_668953627_AUTO"}.issubset(fields):
+                          raise ReportError("Expected separate goal columns were not returned")
+                      (out / f"{key}.tsv").write_text(text, encoding="utf-8")
+                      item.update(status="complete", columns=fields, rows=len(rows), data=rows)
+                      print(f"OK: {key}; rows={len(rows)}")
+                  except (ReportError, ValueError, TypeError, UnicodeError) as error:
+                      item.update(status="failed", error=safe(error, token))
+                      print(f"FAIL: {key}; details saved in metadata")
+                  item["finished_at_utc"] = datetime.now(timezone.utc).isoformat()
+                  metadata["reports"][key] = item
+              complete = all(item["status"] == "complete" for item in metadata["reports"].values())
+              metadata["complete"] = complete
+              metadata["coverage_notes"] = ["Query reports may omit impressions; absence is not zero.", "Summed rounded monetary rows may differ from aggregate report.", "Compare snapshots only with matching dates, VAT and attribution."]
+              (out / "metadata.json").write_text(json.dumps(metadata, ensure_ascii=False, indent=2).replace(token, "[REDACTED]") + "\n", encoding="utf-8")
+              summary = os.environ.get("GITHUB_STEP_SUMMARY")
+              if summary:
+                  lines = ["## Direct API reporting", f"Campaign: {CAMPAIGN}; period: {first} — {last}; excluding VAT.", "", "Report | Status | Rows", "--- | --- | ---"]
+                  lines += [f"{key} | {item['status']} | {item.get('rows', 'unknown')}" for key, item in metadata["reports"].items()]
+                  lines += ["", "Download the direct-reports artifact for TSV and metadata. Website goals are not actual group joins."]
+                  with open(summary, "a", encoding="utf-8") as handle:
+                      handle.write("\n".join(lines) + "\n")
+              return 0 if complete else 1
+          
+          
+          if __name__ == "__main__":
+              sys.exit(main())
+          PYDIRECT
+      - name: Read exact UTM Metrika funnel when authorized
+        if: always() && steps.window.outputs.enabled == 'true'
+        env:
+          YANDEX_METRIKA_TOKEN: ${{ secrets.YANDEX_METRIKA_TOKEN }}
+        shell: bash
+        run: |
+          python3 - <<'PYMETRIKA'
+          """Read only aggregated, exact-UTM campaign traffic from one Metrika counter."""
+          import json
+          import math
+          import os
+          import re
+          import sys
+          import time
+          import urllib.error
+          import urllib.parse
+          import urllib.request
+          from datetime import date, datetime, timezone
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+          
+          COUNTER = "113403438"
+          ENDPOINT = "https://api-metrika.yandex.net/stat/v1/data"
+          FILTER = "ym:s:UTMSource=='yandex' AND ym:s:UTMMedium=='cpc' AND ym:s:UTMCampaign=='dagestan_whatsapp_test2_20261112'"
+          METRICS = ["ym:s:visits", "ym:s:users", "ym:s:goal668953269reaches", "ym:s:goal668953627reaches"]
+          DIMENSIONS = {"overview": None, "daily": "ym:s:date", "devices": "ym:s:deviceCategory",
+                        "regions": "ym:s:regionCountry,ym:s:regionArea,ym:s:regionCity",
+                        "all_traffic": None, "observed_utm": "ym:s:UTMSource,ym:s:UTMMedium,ym:s:UTMCampaign"}
+          DIAGNOSTIC_KEYS = {"all_traffic", "observed_utm"}
+          DIRECT_KEYS = {"direct_daily"}
+          DIRECT_FILTER = "ym:s:<attribution>DirectClickOrder==715775801"
+          DIMENSIONS.update(direct_daily="ym:s:date")
+          
+          
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self, req, fp, code, msg, headers, newurl):
+                  raise urllib.error.HTTPError(req.full_url, code, "Redirect refused", headers, fp)
+          
+          
+          def open_report(opener, request, wait=time.sleep):
+              for attempt in range(3):
+                  try:
+                      return opener.open(request, timeout=30)
+                  except urllib.error.HTTPError as error:
+                      if error.code not in (429, 500, 502, 503, 504) or attempt == 2:
+                          raise
+                      retry=error.headers.get("Retry-After", "") if error.headers else ""
+                      delay=min(10, max(1, int(retry))) if retry.isdigit() else 2*(attempt+1)
+                      error.close()
+                      wait(delay)
+          
+          def api_error(error, token):
+              try:
+                  data=json.loads(error.read(8192).decode("utf-8", errors="replace"))
+                  result=[]
+                  for item in data.get("errors", [])[:3]:
+                      if isinstance(item,dict):
+                          result.append({k: str(item[k]).replace(token,"[REDACTED]")[:350]
+                                         for k in ("error_type","message") if k in item})
+                  return result
+              except (ValueError, OSError, TypeError):
+                  return []
+          
+          def params(first, last, dimension):
+              if not "2026-11-12" <= first <= last <= "2026-11-18":
+                  raise ValueError("Outside test period")
+              date.fromisoformat(first)
+              date.fromisoformat(last)
+              p = {"ids": COUNTER, "date1": first, "date2": last, "metrics": ",".join(METRICS),
+                   "filters": FILTER, "accuracy": "full", "limit": "1000", "offset": "1", "lang": "ru"}
+              if dimension:
+                  if dimension not in DIMENSIONS.values():
+                      raise ValueError("Unexpected dimension")
+                  p["dimensions"] = dimension
+              return p
+          
+          
+          def validate(data):
+              if not isinstance(data, dict) or "errors" in data:
+                  raise ValueError("API returned an error")
+              if "metrics" in data.get("query", {}) and data["query"]["metrics"] != METRICS:
+                  raise ValueError("API returned a different metric order")
+              totals = data.get("totals")
+              if not isinstance(totals, list) or len(totals) != len(METRICS):
+                  raise ValueError("Unexpected metric count")
+              for value in totals:
+                  if value is not None and (type(value) not in (float, int) or not math.isfinite(value)):
+                      raise ValueError("Unexpected metric value")
+              if not isinstance(data.get("data"), list):
+                  raise ValueError("Missing report rows")
+              return {"metrics": dict(zip(METRICS, totals)), "total_rows": data.get("total_rows"),
+                      "sampled": data.get("sampled"), "sample_share": data.get("sample_share"),
+                      "data_lag": data.get("data_lag"), "truncated": data.get("total_rows", 0) > 1000}
+          
+          
+          def request_params(key, first, last):
+              p = params(first, last, DIMENSIONS[key])
+              if key in DIAGNOSTIC_KEYS:
+                  p.pop("filters")
+              if key in DIRECT_KEYS:
+                  p["filters"] = DIRECT_FILTER
+                  p["attribution"] = "automatic"
+              return p
+          
+          
+          def main():
+              out = Path("direct-reports/metrika")
+              out.mkdir(parents=True, exist_ok=True)
+              result = {"counter_id": COUNTER, "filter": FILTER, "scope": "exact UTM campaign, aggregated visits only",
+                        "captured_at_utc": datetime.now(timezone.utc).isoformat(), "reports": {},
+                        "note": "Goals are button events after analytics consent, NOT actual group joins. Do not equate Metrika attribution with Direct AUTO."}
+              token = os.environ.get("YANDEX_METRIKA_TOKEN", "").strip()
+              if not token:
+                  result["status"] = "awaiting_read_only_metrika_secret"
+                  print("Metrika: awaiting YANDEX_METRIKA_TOKEN; no API request made")
+              else:
+                  if any(c.isspace() for c in token):
+                      result["status"] = "invalid_secret_format"
+                  else:
+                      parent = out.parent / "metadata.json"
+                      if not parent.exists():
+                          result["status"] = "missing_matching_direct_dates"
+                      else:
+                          direct = json.loads(parent.read_text())
+                          first, last = direct["date_from"], direct["date_to"]
+                          result.update(date_from=first, date_to=last)
+                          opener = urllib.request.build_opener(NoRedirect())
+                          try:
+                              req = urllib.request.Request("https://api-metrika.yandex.net/management/v1/counter/" + COUNTER,
+                                  headers={"Authorization": "OAuth " + token}, method="GET")
+                              with opener.open(req, timeout=45) as response:
+                                  raw = response.read(1024 * 1024 + 1)
+                              if len(raw) > 1024 * 1024:
+                                  raise ValueError("Counter metadata too large")
+                              counter = json.loads(raw)["counter"]
+                              if str(counter["id"]) != COUNTER:
+                                  raise ValueError("Counter identity mismatch")
+                              result["counter_meta"] = {k: counter.get(k) for k in ("id", "site", "time_zone_name", "time_zone_offset")}
+                              (out / "counter.json").write_text(json.dumps(result["counter_meta"], ensure_ascii=False, indent=2).replace(token, "[REDACTED]") + "\n", encoding="utf-8")
+                          except (urllib.error.URLError, OSError, ValueError, KeyError, TypeError):
+                              result["counter_meta"] = {"status": "not_verified"}
+                          for key, dimension in DIMENSIONS.items():
+                              item = {"request": request_params(key, first, last),
+                                      "traffic_scope": "direct_linked_campaign_automatic" if key in DIRECT_KEYS else ("all_counter_traffic_diagnostic_only" if key in DIAGNOSTIC_KEYS else "exact_utm_campaign")}
+                              try:
+                                  url = ENDPOINT + "?" + urllib.parse.urlencode(item["request"])
+                                  request = urllib.request.Request(url, headers={"Authorization": "OAuth " + token}, method="GET")
+                                  with open_report(opener, request) as response:
+                                      body = response.read(5 * 1024 * 1024 + 1)
+                                      if response.status != 200 or len(body) > 5 * 1024 * 1024:
+                                          raise ValueError("Unexpected response")
+                                  text = body.decode("utf-8-sig").replace(token, "[REDACTED]")
+                                  data = json.loads(text)
+                                  observation = validate(data)
+                                  item.update(status="partial" if observation["truncated"] else "complete", observation=observation)
+                                  (out / f"{key}.json").write_text(text, encoding="utf-8")
+                                  print(f"Metrika: {key}; {item['status']}")
+                              except urllib.error.HTTPError as error:
+                                  detail=api_error(error, token)
+                                  item.update(status="failed", http_status=error.code, api_errors=detail)
+                                  print(f"Metrika: {key}; HTTP {error.code}; "+json.dumps(detail,ensure_ascii=False))
+                              except (urllib.error.URLError, TimeoutError, OSError, ValueError, TypeError):
+                                  item.update(status="failed", error="Request or response validation failed; details suppressed")
+                                  print(f"Metrika: {key}; failed")
+                              result["reports"][key] = item
+                          result["status"] = "complete" if all(v["status"] == "complete" for v in result["reports"].values()) else "partial_or_failed"
+              (out / "status.json").write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+              summary = os.environ.get("GITHUB_STEP_SUMMARY")
+              if summary:
+                  with open(summary, "a", encoding="utf-8") as handle:
+                      handle.write("\n## Metrika campaign funnel\n\nStatus: " + result["status"] + "\n\nEvents are not verified Telegram/WhatsApp joins.\n")
+              return 0 if result["status"] in ("complete", "awaiting_read_only_metrika_secret") else 1
+          
+          
+          if __name__ == "__main__":
+              sys.exit(main())
+          PYMETRIKA
+      - name: Build summary without a language model
+        if: always() && steps.window.outputs.enabled == 'true'
+        shell: bash
+        run: |
+          python3 - <<'PYSUMMARY'
+          import json, os
+          from pathlib import Path
+          from decimal import Decimal
+          root=Path("direct-reports")
+          lines=["# Сводка теста 2: WhatsApp (500 ₽ нетто)", "", "Это сохранённый срез, не непрерывный контроль и не команда остановки.", ""]
+          try:
+              data=json.loads((root/"metadata.json").read_text())
+              assert str(data["campaign_id"])=="715775801" and data["include_vat"] is False
+              lines += ["Период: "+data["date_from"]+" — "+data["date_to"], "Срез UTC: "+data["captured_at_utc"], "", "| Дата | Показы | Клики | Расход без НДС |", "|---|---:|---:|---:|"]
+              for row in data["reports"]["daily"]["data"]:
+                  lines.append("| "+row["Date"]+" | "+row["Impressions"]+" | "+row["Clicks"]+" | "+row["Cost"]+" ₽ |")
+              total=data["reports"]["totals"]["data"]
+              assert len(total)==1
+              cost=Decimal(total[0]["Cost"])
+              lines += ["", "Всего: "+total[0]["Clicks"]+" кликов; "+str(cost)+" ₽ без НДС.", "До лимита 500 ₽: "+str(max(Decimal("0"),Decimal("500")-cost))+" ₽."]
+              if cost>=Decimal("500"): lines += ["**ЛИМИТ ДОСТИГНУТ: требуется проверить состояние кампании. Скрипт её не останавливал.**"]
+              elif cost>=Decimal("400"): lines += ["**Близко к лимиту: использовано не менее 80% бюджета.**"]
+          except (OSError,ValueError,KeyError,IndexError,AssertionError):
+              lines += ["**Отчёт Директа недоступен или неполон. Расход неизвестен, не ноль.**"]
+          try:
+              metrika=json.loads((root/"metrika/status.json").read_text())
+              lines += ["", "Метрика: "+metrika["status"]]
+              for key in ("direct_daily","overview"):
+                  item=metrika.get("reports",{}).get(key,{})
+                  if item.get("status")!="complete":
+                      lines.append(key+": данные неполны/не получены.")
+                      continue
+                  metrics=item["observation"]["metrics"]
+                  lines += [key+" (отдельный сегмент): визиты="+str(metrics["ym:s:visits"])+", WA-события="+str(metrics["ym:s:goal668953269reaches"])+", TG-события="+str(metrics["ym:s:goal668953627reaches"])]
+              lines += ["События кнопок — не вступления. Реальные вступления автоматически не подключены."]
+          except (OSError,ValueError,KeyError):
+              lines += ["Метрика недоступна; значения неизвестны."]
+          text="\n".join(lines)+"\n"
+          print(text)
+          root.mkdir(exist_ok=True)
+          (root/"summary.md").write_text(text)
+          with open(os.environ["GITHUB_STEP_SUMMARY"],"a") as out: out.write("\n"+text)
+          PYSUMMARY
+      - name: Deliver summary to owner Telegram
+        if: always() && steps.window.outputs.enabled == 'true' && github.event_name != 'push'
+        env:
+          TELEGRAM_REPORT_BOT_TOKEN: ${{ secrets.TELEGRAM_REPORT_BOT_TOKEN }}
+          TELEGRAM_REPORT_CHAT_ID: ${{ secrets.TELEGRAM_REPORT_CHAT_ID }}
+        shell: bash
+        run: |
+          python3 - <<'PYTELEGRAM'
+          import json, os, re, sys, urllib.request, urllib.error
+          from pathlib import Path
+          class DeliveryError(Exception): pass
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self, req, fp, code, msg, headers, newurl):
+                  raise DeliveryError("redirect_refused")
+          def deliver(token, chat, text, opener):
+              if not re.fullmatch(r"[0-9]+:[A-Za-z0-9_-]+", token) or not re.fullmatch(r"[1-9][0-9]*", chat):
+                  raise DeliveryError("invalid_configuration")
+              def call(method, payload):
+                  req=urllib.request.Request("https://api.telegram.org/bot"+token+"/"+method,
+                      data=json.dumps(payload).encode(),method="POST",headers={"Content-Type":"application/json"})
+                  try:
+                      with opener.open(req,timeout=20) as response:
+                          raw=response.read(1024*1024+1)
+                      if len(raw)>1024*1024: raise DeliveryError("response_too_large")
+                      result=json.loads(raw)
+                      if result.get("ok") is not True: raise DeliveryError("telegram_rejected")
+                      return result["result"]
+                  except urllib.error.HTTPError as error:
+                      raise DeliveryError("telegram_http_"+str(error.code)) from None
+                  except (urllib.error.URLError,TimeoutError,OSError,ValueError,KeyError):
+                      raise DeliveryError("request_failed_delivery_may_be_unknown") from None
+              me=call("getMe",{})
+              if me.get("username","").lower()!="statistics456_bot":
+                  raise DeliveryError("unexpected_bot")
+              target=call("getChat",{"chat_id":chat})
+              if target.get("type")!="private" or str(target.get("id"))!=chat:
+                  raise DeliveryError("recipient_must_be_configured_private_chat")
+              result=call("sendMessage",{"chat_id":chat,"text":text[:3500],"link_preview_options":{"is_disabled":True}})
+              if str(result.get("chat",{}).get("id"))!=chat:
+                  raise DeliveryError("recipient_response_mismatch")
+          def main():
+              token=os.environ.get("TELEGRAM_REPORT_BOT_TOKEN","").strip()
+              chat=os.environ.get("TELEGRAM_REPORT_CHAT_ID","").strip()
+              path=Path("direct-reports/summary.md")
+              if not token or not chat:
+                  print("Telegram: not configured; message not sent")
+                  return 0
+              if not path.is_file():
+                  print("Telegram: summary unavailable; message not sent")
+                  return 1
+              text=path.read_text()[:3100]+"\n\nПолный отчёт: https://github.com/abdylzhelil/obyavleniya-dagestan/actions/runs/"+os.environ["GITHUB_RUN_ID"]
+              try:
+                  deliver(token,chat,text,urllib.request.build_opener(NoRedirect()))
+                  print("Telegram: API confirmed message sent to configured private chat")
+                  return 0
+              except DeliveryError as error:
+                  print("Telegram: "+str(error)+"; no automatic resend")
+                  return 1
+          if __name__=="__main__":sys.exit(main())
+          PYTELEGRAM
+      - name: Save report evidence
+        if: always() && steps.window.outputs.enabled == 'true'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: direct-reports-${{ github.run_id }}-${{ github.run_attempt }}
+          path: direct-reports/
+          retention-days: 30
+          if-no-files-found: warn
+
+
