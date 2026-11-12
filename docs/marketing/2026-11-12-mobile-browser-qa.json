@@ -1,0 +1,197 @@
+{
+  "captured_at_utc": "2026-11-12T19:42:55.277Z",
+  "scope": "technical QA, not paid traffic; no yclid; no joining group",
+  "utm_campaign": "dagestan_measurement_qa_20261112",
+  "cases": [
+    {
+      "choice": "no_choice",
+      "http_status": 200,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "consent_notice": 1,
+      "analytics_requests_before_consent": 0,
+      "initial_cookie_accepted": false,
+      "initial_ym_function": false,
+      "cookie_accepted": false,
+      "ym_function": false,
+      "join_links": [
+        {
+          "url": "https://chat.whatsapp.com/EisxSK0qarkJzyrlt9v1fx",
+          "goal": "join_whatsapp"
+        },
+        {
+          "url": "https://chat.whatsapp.com/EisxSK0qarkJzyrlt9v1fx",
+          "goal": "join_whatsapp"
+        },
+        {
+          "url": "https://chat.whatsapp.com/EisxSK0qarkJzyrlt9v1fx",
+          "goal": "join_whatsapp"
+        }
+      ],
+      "goal_calls": [],
+      "analytics_requests": [],
+      "analytics_responses": [],
+      "invite_navigation_intercepted": true,
+      "page_error_names": []
+    },
+    {
+      "choice": "accepted",
+      "http_status": 200,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "consent_notice": 1,
+      "analytics_requests_before_consent": 0,
+      "initial_cookie_accepted": false,
+      "initial_ym_function": false,
+      "cookie_accepted": true,
+      "ym_function": true,
+      "join_links": [
+        {
+          "url": "https://chat.whatsapp.com/EisxSK0qarkJzyrlt9v1fx",
+          "goal": "join_whatsapp"
+        },
+        {
+          "url": "https://chat.whatsapp.com/EisxSK0qarkJzyrlt9v1fx",
+          "goal": "join_whatsapp"
+        },
+        {
+          "url": "https://chat.whatsapp.com/EisxSK0qarkJzyrlt9v1fx",
+          "goal": "join_whatsapp"
+        }
+      ],
+      "goal_calls": [
+        "join_whatsapp"
+      ],
+      "analytics_requests": [
+        {
+          "host": "mc.yandex.ru",
+          "path": "/metrika/tag.js",
+          "is_goal": false
+        },
+        {
+          "host": "mc.yandex.com",
+          "path": "/sync_cookie_image_check",
+          "is_goal": false
+        },
+        {
+          "host": "mc.yandex.com",
+          "path": "/metrika/advert.gif",
+          "is_goal": false
+        },
+        {
+          "host": "mc.yandex.ru",
+          "path": "/sync_cookie_image_start",
+          "is_goal": false
+        },
+        {
+          "host": "mc.yandex.com",
+          "path": "/sync_cookie_image_decide",
+          "is_goal": false
+        },
+        {
+          "host": "mc.yandex.com",
+          "path": "/watch/113403438",
+          "is_goal": false
+        },
+        {
+          "host": "mc.yandex.com",
+          "path": "/watch/113403438/1",
+          "is_goal": false
+        },
+        {
+          "host": "mc.yandex.com",
+          "path": "/sync_cookie_image_check_secondary",
+          "is_goal": false
+        },
+        {
+          "host": "mc.yandex.ru",
+          "path": "/sync_cookie_image_start_secondary",
+          "is_goal": false
+        },
+        {
+          "host": "mc.yandex.com",
+          "path": "/sync_cookie_image_decide_secondary",
+          "is_goal": false
+        },
+        {
+          "host": "mc.yandex.ru",
+          "path": "/sync_cookie_image_finish_secondary",
+          "is_goal": false
+        },
+        {
+          "host": "mc.yandex.com",
+          "path": "/watch/113403438",
+          "is_goal": false
+        }
+      ],
+      "analytics_responses": [
+        {
+          "host": "mc.yandex.ru",
+          "path": "/metrika/tag.js",
+          "status": 200
+        },
+        {
+          "host": "mc.yandex.com",
+          "path": "/sync_cookie_image_check",
+          "status": 302
+        },
+        {
+          "host": "mc.yandex.com",
+          "path": "/metrika/advert.gif",
+          "status": 200
+        },
+        {
+          "host": "mc.yandex.ru",
+          "path": "/sync_cookie_image_start",
+          "status": 302
+        },
+        {
+          "host": "mc.yandex.com",
+          "path": "/sync_cookie_image_decide",
+          "status": 200
+        },
+        {
+          "host": "mc.yandex.com",
+          "path": "/watch/113403438",
+          "status": 302
+        },
+        {
+          "host": "mc.yandex.com",
+          "path": "/watch/113403438/1",
+          "status": 200
+        },
+        {
+          "host": "mc.yandex.com",
+          "path": "/sync_cookie_image_check_secondary",
+          "status": 302
+        },
+        {
+          "host": "mc.yandex.ru",
+          "path": "/sync_cookie_image_start_secondary",
+          "status": 302
+        },
+        {
+          "host": "mc.yandex.com",
+          "path": "/sync_cookie_image_decide_secondary",
+          "status": 302
+        },
+        {
+          "host": "mc.yandex.ru",
+          "path": "/sync_cookie_image_finish_secondary",
+          "status": 200
+        },
+        {
+          "host": "mc.yandex.com",
+          "path": "/watch/113403438",
+          "status": 200
+        }
+      ],
+      "invite_navigation_intercepted": true,
+      "page_error_names": []
+    }
+  ]
+}
