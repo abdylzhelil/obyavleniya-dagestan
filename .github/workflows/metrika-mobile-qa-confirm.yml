@@ -1,0 +1,46 @@
+name: Confirm technical mobile QA in Metrika
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/metrika-mobile-qa-confirm.yml']
+permissions: {}
+jobs:
+  confirm:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Read aggregate technical QA segment only
+        env:
+          YANDEX_METRIKA_TOKEN: ${{ secrets.YANDEX_METRIKA_TOKEN }}
+        run: |
+          python3 - <<'PYQA'
+          import json,os,urllib.request,urllib.parse
+          from datetime import datetime,timezone
+          from pathlib import Path
+          token=os.environ.get("YANDEX_METRIKA_TOKEN","").strip()
+          if not token:raise SystemExit("Missing read-only Metrika secret")
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self,*args):raise RuntimeError("Redirect refused")
+          params={"ids":"113403438","date1":"2026-11-12","date2":"2026-11-12","metrics":"ym:s:visits,ym:s:goal668953269reaches",
+          "filters":"ym:s:UTMSource=='qa' AND ym:s:UTMMedium=='technical_check' AND ym:s:UTMCampaign=='dagestan_measurement_qa_20261112'","accuracy":"full","limit":"100","lang":"ru"}
+          record={"captured_at_utc":datetime.now(timezone.utc).isoformat(),"scope":"technical QA only; not advertising","counter_id":113403438,"request":params}
+          try:
+              req=urllib.request.Request("https://api-metrika.yandex.net/stat/v1/data?"+urllib.parse.urlencode(params),headers={"Authorization":"OAuth "+token})
+              with urllib.request.build_opener(NoRedirect()).open(req,timeout=45) as response:data=json.loads(response.read(1048576))
+              if "errors" in data or data.get("query",{}).get("metrics")!=["ym:s:visits","ym:s:goal668953269reaches"]:raise ValueError("Unexpected response")
+              record.update(status="complete",totals=data.get("totals"),sampled=data.get("sampled"),sample_share=data.get("sample_share"),data_lag=data.get("data_lag"),rows=data.get("total_rows"))
+          except Exception as e:
+              record.update(status="failed",error_type=type(e).__name__)
+          Path("mobile-qa").mkdir(exist_ok=True)
+          Path("mobile-qa/metrika-confirm.json").write_text(json.dumps(record,ensure_ascii=False,indent=2))
+          print("QA_METRIKA "+json.dumps(record,ensure_ascii=False))
+          if record["status"]!="complete":raise SystemExit(1)
+          
+          PYQA
+      - name: Save aggregate QA evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: metrika-qa-${{ github.run_id }}
+          path: mobile-qa/
+          retention-days: 30
