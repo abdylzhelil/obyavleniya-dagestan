@@ -1,0 +1,64 @@
+name: Mobile WhatsApp measurement QA
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/whatsapp-mobile-measurement-qa.yml']
+permissions: {}
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Install pinned browser testing library
+        run: npm install --prefix /tmp/dagestan-mobile-qa --ignore-scripts --no-audit --no-fund playwright@1.56.1
+      - name: Check consent and WhatsApp event using separate technical traffic
+        shell: bash
+        run: |
+          node <<'JSQA'
+          const { chromium } = require('/tmp/dagestan-mobile-qa/node_modules/playwright');
+          const fs=require('fs');
+          (async()=>{
+           const out={captured_at_utc:new Date().toISOString(),scope:'technical QA, not paid traffic; no yclid; no joining group',utm_campaign:'dagestan_measurement_qa_20261112',cases:[]};
+           const browser=await chromium.launch({executablePath:'/usr/bin/google-chrome',headless:true,args:['--no-sandbox']});
+           const url='https://obyavleniya-dagestan.ru/group-whatsapp-2.html?utm_source=qa&utm_medium=technical_check&utm_campaign=dagestan_measurement_qa_20261112';
+           try {
+            for(const choice of ['no_choice','accepted']){
+             const ctx=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
+             const page=await ctx.newPage();let requests=[],responses=[],blocked=0,errors=[];
+             ctx.on('request',r=>{try{let u=new URL(r.url());if(/(^|\.)mc\.yandex\./.test(u.hostname)){const data=r.url()+' '+(r.postData()||'');requests.push({host:u.hostname,path:u.pathname,is_goal:data.includes('join_whatsapp')});}}catch{}});
+             ctx.on('response',r=>{try{let u=new URL(r.url());if(/(^|\.)mc\.yandex\./.test(u.hostname))responses.push({host:u.hostname,path:u.pathname,status:r.status()});}catch{}});
+             page.on('pageerror',e=>errors.push(e.name));
+             await ctx.route('https://chat.whatsapp.com/**',async route=>{blocked++;await route.fulfill({status:200,contentType:'text/plain',body:'QA navigation intercepted; no group entry'});});
+             const nav=await page.goto(url,{waitUntil:'domcontentloaded',timeout:45000});
+             await page.waitForSelector('a[data-goal="join_whatsapp"]',{timeout:15000});
+             await page.waitForTimeout(2500);
+             const result={choice,http_status:nav.status(),viewport:{width:390,height:844},consent_notice:await page.locator('.cookie-notice').count(),analytics_requests_before_consent:requests.length,initial_cookie_accepted:await page.evaluate(()=>window.cookieAccepted===true),initial_ym_function:await page.evaluate(()=>typeof window.ym==='function')};
+             if(choice==='accepted'){
+              await Promise.all([page.waitForEvent('load'),page.getByRole('button',{name:'Принять',exact:true}).click()]);
+              await page.waitForTimeout(8000);
+             }
+             result.cookie_accepted=await page.evaluate(()=>window.cookieAccepted===true);
+             result.ym_function=await page.evaluate(()=>typeof window.ym==='function');
+             const joins=page.locator('a[data-goal="join_whatsapp"]');
+             result.join_links=await joins.evaluateAll(a=>a.map(x=>({url:x.href,goal:x.dataset.goal})));
+             await page.evaluate(()=>{window.__qaGoals=[];if(typeof window.ym==='function'){const old=window.ym;window.ym=function(...args){if(args[1]==='reachGoal')window.__qaGoals.push(args[2]);return old.apply(this,args)};}});
+             await joins.first().click({noWaitAfter:true});
+             await page.waitForTimeout(5500);
+             result.goal_calls=await page.evaluate(()=>window.__qaGoals);
+             result.analytics_requests=requests;
+             result.analytics_responses=responses;
+             result.invite_navigation_intercepted=blocked>0;
+             result.page_error_names=errors;
+             out.cases.push(result);await ctx.close();
+            }
+           }finally{await browser.close();fs.mkdirSync('mobile-qa',{recursive:true});fs.writeFileSync('mobile-qa/result.json',JSON.stringify(out,null,2));console.log('MOBILE_QA '+JSON.stringify(out));}
+          })().catch(e=>{console.log('MOBILE_QA_ERROR '+e.name+': '+String(e.message).split('\n')[0].replace(/https?:\/\/\S+/g,'[URL]'));process.exitCode=1;});
+          
+          JSQA
+      - name: Save aggregate diagnostic evidence only
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: mobile-qa-${{ github.run_id }}
+          path: mobile-qa/
+          retention-days: 30
