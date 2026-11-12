@@ -1,8 +1,6 @@
 name: Mobile WhatsApp measurement QA
 on:
-  push:
-    branches: [main]
-    paths: ['.github/workflows/whatsapp-mobile-measurement-qa.yml']
+  workflow_dispatch:
 permissions: {}
 jobs:
   qa:
