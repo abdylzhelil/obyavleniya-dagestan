@@ -1,8 +1,6 @@
 name: Nov12 narrow negative correction
 on:
-  push:
-    branches: [main]
-    paths: ['.github/workflows/direct-test2-nov12-negative.yml']
+  workflow_dispatch:
 permissions: {}
 concurrency:
   group: direct-bounded-control
@@ -117,7 +115,7 @@ jobs:
                   budget=before["campaign"]["UnifiedCampaign"]["BiddingStrategy"]["Search"]["WbMaximumClicks"]["CustomPeriodBudget"]
                   if budget!={"SpendLimit":500000000,"StartDate":"2026-11-12","EndDate":"2026-11-18","AutoContinue":"NO"}:raise ControlError("Wrong test budget or dates")
                   old=before["group"]["NegativeKeywords"]["Items"];phrase=record["phrase"]
-                  def norm(x):return " ".join(x.casefold().replace("!на","на").split())
+                  def norm(x):return " ".join(x.casefold().replace("!на","на").replace("!все","все").split())
                   if norm(phrase) in {norm(x) for x in old}:raise ControlError("Already present; do not repeat")
                   merged=old+[phrase]
                   record["request"]={"AdGroups":[{"Id":GROUP,"NegativeKeywords":{"Items":merged}}]}
