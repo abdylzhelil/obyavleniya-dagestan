@@ -247,3 +247,5 @@ jobs:
           if-no-files-found: warn
 
 # Fresh inspection after setup validation error, no mutation.
+
+# Read-only confirmation after Nov12 API canonical negative phrase; do not repeat mutation.
