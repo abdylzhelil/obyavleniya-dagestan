@@ -1,0 +1,900 @@
+{
+  "report_run_id": 43290772049,
+  "inspection_run_id": 43290775913,
+  "report_day_msk": "2026-11-12",
+  "direct": {
+    "campaign_id": "715775801",
+    "date_from": "2026-11-12",
+    "date_to": "2026-11-12",
+    "captured_at_utc": "2026-11-12T19:30:06.263114+00:00",
+    "include_vat": false,
+    "money_units": "account currency; API rounds to two decimals (not micros)",
+    "report_timezone": "API account/report timezone; not independently read",
+    "goals_are": "attributed website events, NOT verified group joins",
+    "reports": {
+      "totals": {
+        "request": {
+          "params": {
+            "SelectionCriteria": {
+              "DateFrom": "2026-11-12",
+              "DateTo": "2026-11-12",
+              "Filter": [
+                {
+                  "Field": "CampaignId",
+                  "Operator": "EQUALS",
+                  "Values": [
+                    "715775801"
+                  ]
+                }
+              ]
+            },
+            "FieldNames": [
+              "CampaignId",
+              "Impressions",
+              "Clicks",
+              "Cost",
+              "Ctr",
+              "AvgCpc"
+            ],
+            "ReportName": "dagestan-715775801-43290772049-1-totals-2026-11-12-2026-11-12",
+            "ReportType": "CAMPAIGN_PERFORMANCE_REPORT",
+            "DateRangeType": "CUSTOM_DATE",
+            "Format": "TSV",
+            "IncludeVAT": "NO",
+            "IncludeDiscount": "NO"
+          }
+        },
+        "started_at_utc": "2026-11-12T19:30:06.269623+00:00",
+        "status": "complete",
+        "columns": [
+          "CampaignId",
+          "Impressions",
+          "Clicks",
+          "Cost",
+          "Ctr",
+          "AvgCpc"
+        ],
+        "rows": 1,
+        "data": [
+          {
+            "CampaignId": "715775801",
+            "Impressions": "12",
+            "Clicks": "2",
+            "Cost": "10.11",
+            "Ctr": "16.67",
+            "AvgCpc": "5.05"
+          }
+        ],
+        "finished_at_utc": "2026-11-12T19:30:08.450078+00:00"
+      },
+      "daily": {
+        "request": {
+          "params": {
+            "SelectionCriteria": {
+              "DateFrom": "2026-11-12",
+              "DateTo": "2026-11-12",
+              "Filter": [
+                {
+                  "Field": "CampaignId",
+                  "Operator": "EQUALS",
+                  "Values": [
+                    "715775801"
+                  ]
+                }
+              ]
+            },
+            "FieldNames": [
+              "Date",
+              "CampaignId",
+              "Impressions",
+              "Clicks",
+              "Cost",
+              "Ctr",
+              "AvgCpc"
+            ],
+            "ReportName": "dagestan-715775801-43290772049-1-daily-2026-11-12-2026-11-12",
+            "ReportType": "CAMPAIGN_PERFORMANCE_REPORT",
+            "DateRangeType": "CUSTOM_DATE",
+            "Format": "TSV",
+            "IncludeVAT": "NO",
+            "IncludeDiscount": "NO"
+          }
+        },
+        "started_at_utc": "2026-11-12T19:30:08.450098+00:00",
+        "status": "complete",
+        "columns": [
+          "Date",
+          "CampaignId",
+          "Impressions",
+          "Clicks",
+          "Cost",
+          "Ctr",
+          "AvgCpc"
+        ],
+        "rows": 1,
+        "data": [
+          {
+            "Date": "2026-11-12",
+            "CampaignId": "715775801",
+            "Impressions": "13",
+            "Clicks": "2",
+            "Cost": "10.11",
+            "Ctr": "15.38",
+            "AvgCpc": "5.05"
+          }
+        ],
+        "finished_at_utc": "2026-11-12T19:30:09.714520+00:00"
+      },
+      "queries": {
+        "request": {
+          "params": {
+            "SelectionCriteria": {
+              "DateFrom": "2026-11-12",
+              "DateTo": "2026-11-12",
+              "Filter": [
+                {
+                  "Field": "CampaignId",
+                  "Operator": "EQUALS",
+                  "Values": [
+                    "715775801"
+                  ]
+                }
+              ]
+            },
+            "FieldNames": [
+              "Date",
+              "CampaignId",
+              "AdGroupId",
+              "Query",
+              "Criterion",
+              "CriterionType",
+              "MatchType",
+              "TargetingCategory",
+              "MatchedKeyword",
+              "Impressions",
+              "Clicks",
+              "Cost"
+            ],
+            "ReportName": "dagestan-715775801-43290772049-1-queries-2026-11-12-2026-11-12",
+            "ReportType": "SEARCH_QUERY_PERFORMANCE_REPORT",
+            "DateRangeType": "CUSTOM_DATE",
+            "Format": "TSV",
+            "IncludeVAT": "NO",
+            "IncludeDiscount": "NO"
+          }
+        },
+        "started_at_utc": "2026-11-12T19:30:09.714540+00:00",
+        "status": "complete",
+        "columns": [
+          "Date",
+          "CampaignId",
+          "AdGroupId",
+          "Query",
+          "Criterion",
+          "CriterionType",
+          "MatchType",
+          "TargetingCategory",
+          "MatchedKeyword",
+          "Impressions",
+          "Clicks",
+          "Cost"
+        ],
+        "rows": 11,
+        "data": [
+          {
+            "Date": "2026-11-12",
+            "CampaignId": "715775801",
+            "AdGroupId": "5819958999",
+            "Query": "барахолка для жителей махачкалы",
+            "Criterion": "---autotargeting",
+            "CriterionType": "AUTOTARGETING",
+            "MatchType": "NONE",
+            "TargetingCategory": "EXACT",
+            "MatchedKeyword": "",
+            "Impressions": "2",
+            "Clicks": "0",
+            "Cost": "0.00"
+          },
+          {
+            "Date": "2026-11-12",
+            "CampaignId": "715775801",
+            "AdGroupId": "5819958999",
+            "Query": "барахолка махачкалы",
+            "Criterion": "---autotargeting",
+            "CriterionType": "AUTOTARGETING",
+            "MatchType": "NONE",
+            "TargetingCategory": "EXACT",
+            "MatchedKeyword": "",
+            "Impressions": "1",
+            "Clicks": "0",
+            "Cost": "0.00"
+          },
+          {
+            "Date": "2026-11-12",
+            "CampaignId": "715775801",
+            "AdGroupId": "5819958999",
+            "Query": "барахолки в махачкале",
+            "Criterion": "---autotargeting",
+            "CriterionType": "AUTOTARGETING",
+            "MatchType": "NONE",
+            "TargetingCategory": "EXACT",
+            "MatchedKeyword": "",
+            "Impressions": "1",
+            "Clicks": "0",
+            "Cost": "0.00"
+          },
+          {
+            "Date": "2026-11-12",
+            "CampaignId": "715775801",
+            "AdGroupId": "5819958999",
+            "Query": "все объявления на авито в р дагестан",
+            "Criterion": "---autotargeting",
+            "CriterionType": "AUTOTARGETING",
+            "MatchType": "NONE",
+            "TargetingCategory": "EXACT",
+            "MatchedKeyword": "",
+            "Impressions": "1",
+            "Clicks": "1",
+            "Cost": "1.22"
+          },
+          {
+            "Date": "2026-11-12",
+            "CampaignId": "715775801",
+            "AdGroupId": "5819958999",
+            "Query": "группы в ватсапе для бьюти объявлений махачкала",
+            "Criterion": "группа объявлений Дагестан WhatsApp",
+            "CriterionType": "KEYWORD",
+            "MatchType": "SYNONYM",
+            "TargetingCategory": "ALTERNATIVE",
+            "MatchedKeyword": "",
+            "Impressions": "1",
+            "Clicks": "1",
+            "Cost": "8.89"
+          },
+          {
+            "Date": "2026-11-12",
+            "CampaignId": "715775801",
+            "AdGroupId": "5819958999",
+            "Query": "комьюнити в махачкале",
+            "Criterion": "---autotargeting",
+            "CriterionType": "AUTOTARGETING",
+            "MatchType": "NONE",
+            "TargetingCategory": "EXACT",
+            "MatchedKeyword": "",
+            "Impressions": "1",
+            "Clicks": "0",
+            "Cost": "0.00"
+          },
+          {
+            "Date": "2026-11-12",
+            "CampaignId": "715775801",
+            "AdGroupId": "5819958999",
+            "Query": "купи продай дербент",
+            "Criterion": "---autotargeting",
+            "CriterionType": "AUTOTARGETING",
+            "MatchType": "NONE",
+            "TargetingCategory": "EXACT",
+            "MatchedKeyword": "",
+            "Impressions": "1",
+            "Clicks": "0",
+            "Cost": "0.00"
+          },
+          {
+            "Date": "2026-11-12",
+            "CampaignId": "715775801",
+            "AdGroupId": "5819958999",
+            "Query": "купи продай махачкала",
+            "Criterion": "---autotargeting",
+            "CriterionType": "AUTOTARGETING",
+            "MatchType": "NONE",
+            "TargetingCategory": "EXACT",
+            "MatchedKeyword": "",
+            "Impressions": "1",
+            "Clicks": "0",
+            "Cost": "0.00"
+          },
+          {
+            "Date": "2026-11-12",
+            "CampaignId": "715775801",
+            "AdGroupId": "5819958999",
+            "Query": "паблика махачкала",
+            "Criterion": "---autotargeting",
+            "CriterionType": "AUTOTARGETING",
+            "MatchType": "NONE",
+            "TargetingCategory": "EXACT",
+            "MatchedKeyword": "",
+            "Impressions": "1",
+            "Clicks": "0",
+            "Cost": "0.00"
+          },
+          {
+            "Date": "2026-11-12",
+            "CampaignId": "715775801",
+            "AdGroupId": "5819958999",
+            "Query": "сайты махачкалы",
+            "Criterion": "---autotargeting",
+            "CriterionType": "AUTOTARGETING",
+            "MatchType": "NONE",
+            "TargetingCategory": "EXACT",
+            "MatchedKeyword": "",
+            "Impressions": "1",
+            "Clicks": "0",
+            "Cost": "0.00"
+          },
+          {
+            "Date": "2026-11-12",
+            "CampaignId": "715775801",
+            "AdGroupId": "5819958999",
+            "Query": "типичная колывань объявления в контакте",
+            "Criterion": "---autotargeting",
+            "CriterionType": "AUTOTARGETING",
+            "MatchType": "NONE",
+            "TargetingCategory": "EXACT",
+            "MatchedKeyword": "",
+            "Impressions": "1",
+            "Clicks": "0",
+            "Cost": "0.00"
+          }
+        ],
+        "finished_at_utc": "2026-11-12T19:30:13.836196+00:00"
+      },
+      "devices": {
+        "request": {
+          "params": {
+            "SelectionCriteria": {
+              "DateFrom": "2026-11-12",
+              "DateTo": "2026-11-12",
+              "Filter": [
+                {
+                  "Field": "CampaignId",
+                  "Operator": "EQUALS",
+                  "Values": [
+                    "715775801"
+                  ]
+                }
+              ]
+            },
+            "FieldNames": [
+              "Date",
+              "CampaignId",
+              "AdNetworkType",
+              "Device",
+              "MobilePlatform",
+              "Impressions",
+              "Clicks",
+              "Cost"
+            ],
+            "ReportName": "dagestan-715775801-43290772049-1-devices-2026-11-12-2026-11-12",
+            "ReportType": "CUSTOM_REPORT",
+            "DateRangeType": "CUSTOM_DATE",
+            "Format": "TSV",
+            "IncludeVAT": "NO",
+            "IncludeDiscount": "NO"
+          }
+        },
+        "started_at_utc": "2026-11-12T19:30:13.836214+00:00",
+        "status": "complete",
+        "columns": [
+          "Date",
+          "CampaignId",
+          "AdNetworkType",
+          "Device",
+          "MobilePlatform",
+          "Impressions",
+          "Clicks",
+          "Cost"
+        ],
+        "rows": 3,
+        "data": [
+          {
+            "Date": "2026-11-12",
+            "CampaignId": "715775801",
+            "AdNetworkType": "SEARCH",
+            "Device": "DESKTOP",
+            "MobilePlatform": "OTHER",
+            "Impressions": "1",
+            "Clicks": "0",
+            "Cost": "0.00"
+          },
+          {
+            "Date": "2026-11-12",
+            "CampaignId": "715775801",
+            "AdNetworkType": "SEARCH",
+            "Device": "MOBILE",
+            "MobilePlatform": "ANDROID",
+            "Impressions": "7",
+            "Clicks": "1",
+            "Cost": "1.22"
+          },
+          {
+            "Date": "2026-11-12",
+            "CampaignId": "715775801",
+            "AdNetworkType": "SEARCH",
+            "Device": "MOBILE",
+            "MobilePlatform": "IOS",
+            "Impressions": "4",
+            "Clicks": "1",
+            "Cost": "8.89"
+          }
+        ],
+        "finished_at_utc": "2026-11-12T19:30:15.637730+00:00"
+      },
+      "regions": {
+        "request": {
+          "params": {
+            "SelectionCriteria": {
+              "DateFrom": "2026-11-12",
+              "DateTo": "2026-11-12",
+              "Filter": [
+                {
+                  "Field": "CampaignId",
+                  "Operator": "EQUALS",
+                  "Values": [
+                    "715775801"
+                  ]
+                }
+              ]
+            },
+            "FieldNames": [
+              "Date",
+              "CampaignId",
+              "LocationOfPresenceId",
+              "LocationOfPresenceName",
+              "Impressions",
+              "Clicks",
+              "Cost"
+            ],
+            "ReportName": "dagestan-715775801-43290772049-1-regions-2026-11-12-2026-11-12",
+            "ReportType": "CUSTOM_REPORT",
+            "DateRangeType": "CUSTOM_DATE",
+            "Format": "TSV",
+            "IncludeVAT": "NO",
+            "IncludeDiscount": "NO"
+          }
+        },
+        "started_at_utc": "2026-11-12T19:30:15.637747+00:00",
+        "status": "complete",
+        "columns": [
+          "Date",
+          "CampaignId",
+          "LocationOfPresenceId",
+          "LocationOfPresenceName",
+          "Impressions",
+          "Clicks",
+          "Cost"
+        ],
+        "rows": 6,
+        "data": [
+          {
+            "Date": "2026-11-12",
+            "CampaignId": "715775801",
+            "LocationOfPresenceId": "11008",
+            "LocationOfPresenceName": "Kaspiysk",
+            "Impressions": "2",
+            "Clicks": "0",
+            "Cost": "0.00"
+          },
+          {
+            "Date": "2026-11-12",
+            "CampaignId": "715775801",
+            "LocationOfPresenceId": "100611",
+            "LocationOfPresenceName": "Kasumkent",
+            "Impressions": "1",
+            "Clicks": "0",
+            "Cost": "0.00"
+          },
+          {
+            "Date": "2026-11-12",
+            "CampaignId": "715775801",
+            "LocationOfPresenceId": "235",
+            "LocationOfPresenceName": "Magnitogorsk",
+            "Impressions": "1",
+            "Clicks": "1",
+            "Cost": "8.89"
+          },
+          {
+            "Date": "2026-11-12",
+            "CampaignId": "715775801",
+            "LocationOfPresenceId": "28",
+            "LocationOfPresenceName": "Makhachkala",
+            "Impressions": "7",
+            "Clicks": "0",
+            "Cost": "0.00"
+          },
+          {
+            "Date": "2026-11-12",
+            "CampaignId": "715775801",
+            "LocationOfPresenceId": "213",
+            "LocationOfPresenceName": "Moscow",
+            "Impressions": "0",
+            "Clicks": "1",
+            "Cost": "1.22"
+          },
+          {
+            "Date": "2026-11-12",
+            "CampaignId": "715775801",
+            "LocationOfPresenceId": "177888",
+            "LocationOfPresenceName": "Selo Kurmi rural settlement",
+            "Impressions": "1",
+            "Clicks": "0",
+            "Cost": "0.00"
+          }
+        ],
+        "finished_at_utc": "2026-11-12T19:30:17.434035+00:00"
+      },
+      "placements": {
+        "request": {
+          "params": {
+            "SelectionCriteria": {
+              "DateFrom": "2026-11-12",
+              "DateTo": "2026-11-12",
+              "Filter": [
+                {
+                  "Field": "CampaignId",
+                  "Operator": "EQUALS",
+                  "Values": [
+                    "715775801"
+                  ]
+                }
+              ]
+            },
+            "FieldNames": [
+              "Date",
+              "CampaignId",
+              "AdNetworkType",
+              "Placement",
+              "Impressions",
+              "Clicks",
+              "Cost"
+            ],
+            "ReportName": "dagestan-715775801-43290772049-1-placements-2026-11-12-2026-11-12",
+            "ReportType": "CUSTOM_REPORT",
+            "DateRangeType": "CUSTOM_DATE",
+            "Format": "TSV",
+            "IncludeVAT": "NO",
+            "IncludeDiscount": "NO"
+          }
+        },
+        "started_at_utc": "2026-11-12T19:30:17.434054+00:00",
+        "status": "complete",
+        "columns": [
+          "Date",
+          "CampaignId",
+          "AdNetworkType",
+          "Placement",
+          "Impressions",
+          "Clicks",
+          "Cost"
+        ],
+        "rows": 1,
+        "data": [
+          {
+            "Date": "2026-11-12",
+            "CampaignId": "715775801",
+            "AdNetworkType": "SEARCH",
+            "Placement": "Yandex",
+            "Impressions": "12",
+            "Clicks": "2",
+            "Cost": "10.11"
+          }
+        ],
+        "finished_at_utc": "2026-11-12T19:30:19.276833+00:00"
+      },
+      "goals": {
+        "request": {
+          "params": {
+            "SelectionCriteria": {
+              "DateFrom": "2026-11-12",
+              "DateTo": "2026-11-12",
+              "Filter": [
+                {
+                  "Field": "CampaignId",
+                  "Operator": "EQUALS",
+                  "Values": [
+                    "715775801"
+                  ]
+                }
+              ]
+            },
+            "FieldNames": [
+              "Date",
+              "CampaignId",
+              "Impressions",
+              "Clicks",
+              "Cost",
+              "Sessions",
+              "Conversions",
+              "ConversionRate",
+              "CostPerConversion"
+            ],
+            "ReportName": "dagestan-715775801-43290772049-1-goals-2026-11-12-2026-11-12",
+            "ReportType": "CAMPAIGN_PERFORMANCE_REPORT",
+            "DateRangeType": "CUSTOM_DATE",
+            "Format": "TSV",
+            "IncludeVAT": "NO",
+            "IncludeDiscount": "NO",
+            "Goals": [
+              "668953269",
+              "668953627"
+            ],
+            "AttributionModels": [
+              "AUTO"
+            ]
+          }
+        },
+        "started_at_utc": "2026-11-12T19:30:19.276854+00:00",
+        "status": "complete",
+        "columns": [
+          "Date",
+          "CampaignId",
+          "Impressions",
+          "Clicks",
+          "Cost",
+          "Sessions",
+          "Conversions_668953269_AUTO",
+          "Conversions_668953627_AUTO",
+          "ConversionRate_668953269_AUTO",
+          "ConversionRate_668953627_AUTO",
+          "CostPerConversion_668953269_AUTO",
+          "CostPerConversion_668953627_AUTO"
+        ],
+        "rows": 1,
+        "data": [
+          {
+            "Date": "2026-11-12",
+            "CampaignId": "715775801",
+            "Impressions": "12",
+            "Clicks": "2",
+            "Cost": "10.11",
+            "Sessions": "0",
+            "Conversions_668953269_AUTO": "--",
+            "Conversions_668953627_AUTO": "--",
+            "ConversionRate_668953269_AUTO": "--",
+            "ConversionRate_668953627_AUTO": "--",
+            "CostPerConversion_668953269_AUTO": "--",
+            "CostPerConversion_668953627_AUTO": "--"
+          }
+        ],
+        "finished_at_utc": "2026-11-12T19:30:20.694342+00:00"
+      }
+    },
+    "complete": true,
+    "coverage_notes": [
+      "Query reports may omit impressions; absence is not zero.",
+      "Summed rounded monetary rows may differ from aggregate report.",
+      "Compare snapshots only with matching dates, VAT and attribution."
+    ]
+  },
+  "metrika": {
+    "counter_id": "113403438",
+    "filter": "ym:s:UTMSource=='yandex' AND ym:s:UTMMedium=='cpc' AND ym:s:UTMCampaign=='dagestan_whatsapp_test2_20261112'",
+    "scope": "exact UTM campaign, aggregated visits only",
+    "captured_at_utc": "2026-11-12T19:30:20.785810+00:00",
+    "reports": {
+      "overview": {
+        "request": {
+          "ids": "113403438",
+          "date1": "2026-11-12",
+          "date2": "2026-11-12",
+          "metrics": "ym:s:visits,ym:s:users,ym:s:goal668953269reaches,ym:s:goal668953627reaches",
+          "filters": "ym:s:UTMSource=='yandex' AND ym:s:UTMMedium=='cpc' AND ym:s:UTMCampaign=='dagestan_whatsapp_test2_20261112'",
+          "accuracy": "full",
+          "limit": "1000",
+          "offset": "1",
+          "lang": "ru"
+        },
+        "traffic_scope": "exact_utm_campaign",
+        "status": "complete",
+        "observation": {
+          "metrics": {
+            "ym:s:visits": 0,
+            "ym:s:users": 0,
+            "ym:s:goal668953269reaches": 0,
+            "ym:s:goal668953627reaches": 0
+          },
+          "total_rows": 0,
+          "sampled": false,
+          "sample_share": 1,
+          "data_lag": 0,
+          "truncated": false
+        }
+      },
+      "daily": {
+        "request": {
+          "ids": "113403438",
+          "date1": "2026-11-12",
+          "date2": "2026-11-12",
+          "metrics": "ym:s:visits,ym:s:users,ym:s:goal668953269reaches,ym:s:goal668953627reaches",
+          "filters": "ym:s:UTMSource=='yandex' AND ym:s:UTMMedium=='cpc' AND ym:s:UTMCampaign=='dagestan_whatsapp_test2_20261112'",
+          "accuracy": "full",
+          "limit": "1000",
+          "offset": "1",
+          "lang": "ru",
+          "dimensions": "ym:s:date"
+        },
+        "traffic_scope": "exact_utm_campaign",
+        "status": "complete",
+        "observation": {
+          "metrics": {
+            "ym:s:visits": 0,
+            "ym:s:users": 0,
+            "ym:s:goal668953269reaches": 0,
+            "ym:s:goal668953627reaches": 0
+          },
+          "total_rows": 0,
+          "sampled": false,
+          "sample_share": 1,
+          "data_lag": 0,
+          "truncated": false
+        }
+      },
+      "devices": {
+        "request": {
+          "ids": "113403438",
+          "date1": "2026-11-12",
+          "date2": "2026-11-12",
+          "metrics": "ym:s:visits,ym:s:users,ym:s:goal668953269reaches,ym:s:goal668953627reaches",
+          "filters": "ym:s:UTMSource=='yandex' AND ym:s:UTMMedium=='cpc' AND ym:s:UTMCampaign=='dagestan_whatsapp_test2_20261112'",
+          "accuracy": "full",
+          "limit": "1000",
+          "offset": "1",
+          "lang": "ru",
+          "dimensions": "ym:s:deviceCategory"
+        },
+        "traffic_scope": "exact_utm_campaign",
+        "status": "complete",
+        "observation": {
+          "metrics": {
+            "ym:s:visits": 0,
+            "ym:s:users": 0,
+            "ym:s:goal668953269reaches": 0,
+            "ym:s:goal668953627reaches": 0
+          },
+          "total_rows": 0,
+          "sampled": false,
+          "sample_share": 1,
+          "data_lag": 0,
+          "truncated": false
+        }
+      },
+      "regions": {
+        "request": {
+          "ids": "113403438",
+          "date1": "2026-11-12",
+          "date2": "2026-11-12",
+          "metrics": "ym:s:visits,ym:s:users,ym:s:goal668953269reaches,ym:s:goal668953627reaches",
+          "filters": "ym:s:UTMSource=='yandex' AND ym:s:UTMMedium=='cpc' AND ym:s:UTMCampaign=='dagestan_whatsapp_test2_20261112'",
+          "accuracy": "full",
+          "limit": "1000",
+          "offset": "1",
+          "lang": "ru",
+          "dimensions": "ym:s:regionCountry,ym:s:regionArea,ym:s:regionCity"
+        },
+        "traffic_scope": "exact_utm_campaign",
+        "status": "complete",
+        "observation": {
+          "metrics": {
+            "ym:s:visits": 0,
+            "ym:s:users": 0,
+            "ym:s:goal668953269reaches": 0,
+            "ym:s:goal668953627reaches": 0
+          },
+          "total_rows": 0,
+          "sampled": false,
+          "sample_share": 1,
+          "data_lag": 0,
+          "truncated": false
+        }
+      },
+      "all_traffic": {
+        "request": {
+          "ids": "113403438",
+          "date1": "2026-11-12",
+          "date2": "2026-11-12",
+          "metrics": "ym:s:visits,ym:s:users,ym:s:goal668953269reaches,ym:s:goal668953627reaches",
+          "accuracy": "full",
+          "limit": "1000",
+          "offset": "1",
+          "lang": "ru"
+        },
+        "traffic_scope": "all_counter_traffic_diagnostic_only",
+        "status": "complete",
+        "observation": {
+          "metrics": {
+            "ym:s:visits": 2,
+            "ym:s:users": 1,
+            "ym:s:goal668953269reaches": 0,
+            "ym:s:goal668953627reaches": 0
+          },
+          "total_rows": 1,
+          "sampled": false,
+          "sample_share": 1,
+          "data_lag": 0,
+          "truncated": false
+        }
+      },
+      "observed_utm": {
+        "request": {
+          "ids": "113403438",
+          "date1": "2026-11-12",
+          "date2": "2026-11-12",
+          "metrics": "ym:s:visits,ym:s:users,ym:s:goal668953269reaches,ym:s:goal668953627reaches",
+          "accuracy": "full",
+          "limit": "1000",
+          "offset": "1",
+          "lang": "ru",
+          "dimensions": "ym:s:UTMSource,ym:s:UTMMedium,ym:s:UTMCampaign"
+        },
+        "traffic_scope": "all_counter_traffic_diagnostic_only",
+        "status": "complete",
+        "observation": {
+          "metrics": {
+            "ym:s:visits": 0,
+            "ym:s:users": 0,
+            "ym:s:goal668953269reaches": 0,
+            "ym:s:goal668953627reaches": 0
+          },
+          "total_rows": 0,
+          "sampled": false,
+          "sample_share": 1,
+          "data_lag": 0,
+          "truncated": false
+        }
+      },
+      "direct_daily": {
+        "request": {
+          "ids": "113403438",
+          "date1": "2026-11-12",
+          "date2": "2026-11-12",
+          "metrics": "ym:s:visits,ym:s:users,ym:s:goal668953269reaches,ym:s:goal668953627reaches",
+          "filters": "ym:s:<attribution>DirectClickOrder==715775801",
+          "accuracy": "full",
+          "limit": "1000",
+          "offset": "1",
+          "lang": "ru",
+          "dimensions": "ym:s:date",
+          "attribution": "automatic"
+        },
+        "traffic_scope": "direct_linked_campaign_automatic",
+        "status": "complete",
+        "observation": {
+          "metrics": {
+            "ym:s:visits": 0,
+            "ym:s:users": 0,
+            "ym:s:goal668953269reaches": 0,
+            "ym:s:goal668953627reaches": 0
+          },
+          "total_rows": 0,
+          "sampled": false,
+          "sample_share": 1,
+          "data_lag": 0,
+          "truncated": false
+        }
+      }
+    },
+    "note": "Goals are button events after analytics consent, NOT actual group joins. Do not equate Metrika attribution with Direct AUTO.",
+    "date_from": "2026-11-12",
+    "date_to": "2026-11-12",
+    "counter_meta": {
+      "id": 113403438,
+      "site": "obyavleniya-dagestan.ru",
+      "time_zone_name": "Europe/Moscow",
+      "time_zone_offset": 180
+    },
+    "status": "complete"
+  },
+  "owner_whatsapp": {
+    "baseline_date": "2026-11-11",
+    "baseline_members": 45,
+    "reported_on": "2026-11-12",
+    "report": "same count; no joins",
+    "members": 45,
+    "advertising_attribution": "not individually confirmed"
+  },
+  "notes": [
+    "daily impressions13 vs totals12: sequential API requests/statistics freshness difference; use daily row for day and aggregate totals for stage without adding them",
+    "Moscow and Magnitogorsk clicks are LocationOfPresence, not target-region settings",
+    "No sampled Metrika reports; sample_share1 data_lag0 do not imply complete consented tracking",
+    "No visitor identifiers stored"
+  ]
+}
