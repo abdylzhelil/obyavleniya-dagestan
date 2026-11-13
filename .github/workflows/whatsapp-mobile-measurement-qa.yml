@@ -1,6 +1,9 @@
-name: Mobile WhatsApp measurement QA
+name: Native WhatsApp measurement QA without ym wrapping
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/whatsapp-mobile-measurement-qa.yml']
 permissions: {}
 jobs:
   qa:
@@ -16,9 +19,9 @@ jobs:
           const { chromium } = require('/tmp/dagestan-mobile-qa/node_modules/playwright');
           const fs=require('fs');
           (async()=>{
-           const out={captured_at_utc:new Date().toISOString(),scope:'technical QA, not paid traffic; no yclid; no joining group',utm_campaign:'dagestan_measurement_qa_20261112',cases:[]};
+           const out={captured_at_utc:new Date().toISOString(),scope:'technical QA, not paid traffic; no yclid; no joining group',utm_campaign:'dagestan_native_qa_20261114',cases:[]};
            const browser=await chromium.launch({executablePath:'/usr/bin/google-chrome',headless:true,args:['--no-sandbox']});
-           const url='https://obyavleniya-dagestan.ru/group-whatsapp-2.html?utm_source=qa&utm_medium=technical_check&utm_campaign=dagestan_measurement_qa_20261112';
+           const url='https://obyavleniya-dagestan.ru/group-whatsapp-2.html?utm_source=qa&utm_medium=technical_check&utm_campaign=dagestan_native_qa_20261114';
            try {
             for(const choice of ['no_choice','accepted']){
              const ctx=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
@@ -39,10 +42,10 @@ jobs:
              result.ym_function=await page.evaluate(()=>typeof window.ym==='function');
              const joins=page.locator('a[data-goal="join_whatsapp"]');
              result.join_links=await joins.evaluateAll(a=>a.map(x=>({url:x.href,goal:x.dataset.goal})));
-             await page.evaluate(()=>{window.__qaGoals=[];if(typeof window.ym==='function'){const old=window.ym;window.ym=function(...args){if(args[1]==='reachGoal')window.__qaGoals.push(args[2]);return old.apply(this,args)};}});
+             await page.evaluate(()=>{window.__qaClicks=[];document.addEventListener("click",e=>{const a=e.target.closest("[data-goal]");if(a)window.__qaClicks.push(a.dataset.goal);},{capture:true});});
              await joins.first().click({noWaitAfter:true});
              await page.waitForTimeout(5500);
-             result.goal_calls=await page.evaluate(()=>window.__qaGoals);
+             result.clicked_goals=await page.evaluate(()=>window.__qaClicks); result.native_ym_unmodified=true;
              result.analytics_requests=requests;
              result.analytics_responses=responses;
              result.invite_navigation_intercepted=blocked>0;
