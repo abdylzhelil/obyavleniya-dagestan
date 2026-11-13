@@ -1,9 +1,6 @@
 name: Native WhatsApp measurement QA without ym wrapping
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths: ['.github/workflows/whatsapp-mobile-measurement-qa.yml']
 permissions: {}
 jobs:
   qa:
