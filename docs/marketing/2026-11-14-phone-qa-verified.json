@@ -1,0 +1,24 @@
+{
+  "captured_at_utc": "2026-11-13T21:50:50.057050+00:00",
+  "scope": "technical QA only; not advertising",
+  "counter_id": 113403438,
+  "request": {
+    "ids": "113403438",
+    "date1": "2026-11-14",
+    "date2": "2026-11-14",
+    "metrics": "ym:s:visits,ym:s:goal668953269reaches",
+    "filters": "ym:s:UTMSource=='qa' AND ym:s:UTMMedium=='technical_check' AND ym:s:UTMCampaign=='dagestan_phone_qa_20261114'",
+    "accuracy": "full",
+    "limit": "100",
+    "lang": "ru"
+  },
+  "status": "complete",
+  "totals": [
+    2,
+    4
+  ],
+  "sampled": false,
+  "sample_share": 1,
+  "data_lag": 0,
+  "rows": 1
+}
