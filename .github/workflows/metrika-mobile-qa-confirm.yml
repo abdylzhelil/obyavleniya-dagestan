@@ -1,6 +1,9 @@
 name: Confirm technical mobile QA in Metrika
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/metrika-mobile-qa-confirm.yml']
 permissions: {}
 jobs:
   confirm:
@@ -19,8 +22,8 @@ jobs:
           if not token:raise SystemExit("Missing read-only Metrika secret")
           class NoRedirect(urllib.request.HTTPRedirectHandler):
               def redirect_request(self,*args):raise RuntimeError("Redirect refused")
-          params={"ids":"113403438","date1":"2026-11-12","date2":"2026-11-12","metrics":"ym:s:visits,ym:s:goal668953269reaches",
-          "filters":"ym:s:UTMSource=='qa' AND ym:s:UTMMedium=='technical_check' AND ym:s:UTMCampaign=='dagestan_measurement_qa_20261112'","accuracy":"full","limit":"100","lang":"ru"}
+          params={"ids":"113403438","date1":"2026-11-14","date2":"2026-11-14","metrics":"ym:s:visits,ym:s:goal668953269reaches",
+          "filters":"ym:s:UTMSource=='qa' AND ym:s:UTMMedium=='technical_check' AND ym:s:UTMCampaign=='dagestan_native_qa_20261114'","accuracy":"full","limit":"100","lang":"ru"}
           record={"captured_at_utc":datetime.now(timezone.utc).isoformat(),"scope":"technical QA only; not advertising","counter_id":113403438,"request":params}
           try:
               req=urllib.request.Request("https://api-metrika.yandex.net/stat/v1/data?"+urllib.parse.urlencode(params),headers={"Authorization":"OAuth "+token})
