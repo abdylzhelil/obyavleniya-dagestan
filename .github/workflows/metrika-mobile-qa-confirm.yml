@@ -29,6 +29,13 @@ jobs:
               req=urllib.request.Request("https://api-metrika.yandex.net/stat/v1/data?"+urllib.parse.urlencode(params),headers={"Authorization":"OAuth "+token})
               with urllib.request.build_opener(NoRedirect()).open(req,timeout=45) as response:data=json.loads(response.read(1048576))
               if "errors" in data or data.get("query",{}).get("metrics")!=["ym:s:visits","ym:s:goal668953269reaches"]:raise ValueError("Unexpected response")
+              diag=urllib.request.Request("https://api-metrika.yandex.net/management/v1/counter/113403438/goals",headers={"Authorization":"OAuth "+token})
+              try:
+                  with urllib.request.build_opener(NoRedirect()).open(diag,timeout=30) as response:goals=json.loads(response.read(1048576)).get("goals",[])
+                  safe_goals=[{k:g.get(k) for k in ("id","name","type","conditions")} for g in goals if g.get("id") in (668953269,668953627)]
+                  print("QA_GOAL_DEFINITIONS "+json.dumps({"counter_id":113403438,"goals":safe_goals},ensure_ascii=False))
+              except Exception as diag_error:
+                  print("QA_GOAL_DEFINITIONS "+json.dumps({"status":"unavailable","error_type":type(diag_error).__name__}))
               record.update(status="complete",totals=data.get("totals"),sampled=data.get("sampled"),sample_share=data.get("sample_share"),data_lag=data.get("data_lag"),rows=data.get("total_rows"))
           except Exception as e:
               record.update(status="failed",error_type=type(e).__name__)
