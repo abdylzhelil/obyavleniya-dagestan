@@ -2,9 +2,6 @@ name: WhatsApp test 2 read-only reports
 # Metrika read-only OAuth application: 40fbd9c24b874b4bacaa0883e57ca434
 
 on:
-  push:
-    branches: [main]
-    paths: ['.github/workflows/direct-whatsapp-test2-reports.yml']
   workflow_dispatch:
     inputs:
       date_from:
@@ -51,8 +48,8 @@ jobs:
         if: steps.window.outputs.enabled == 'true'
         env:
           YANDEX_DIRECT_TOKEN: ${{ secrets.YANDEX_DIRECT_TOKEN }}
-          DIRECT_DATE_FROM: '2026-11-12'
-          DIRECT_DATE_TO: '2026-11-13'
+          DIRECT_DATE_FROM: ${{ inputs.date_from }}
+          DIRECT_DATE_TO: ${{ inputs.date_to }}
         shell: bash
         run: |
           python3 - <<'PYDIRECT'
@@ -525,21 +522,6 @@ jobs:
                   return 1
           if __name__=="__main__":sys.exit(main())
           PYTELEGRAM
-      - name: Log aggregate evidence for requested November 13 review
-        if: always() && steps.window.outputs.enabled == 'true'
-        run: |
-          python3 - <<'PYREVIEW'
-          import json
-          from pathlib import Path
-          root=Path("direct-reports")
-          for name,path in [("DIRECT",root/"metadata.json"),("METRIKA_STATUS",root/"metrika/status.json")]:
-              if path.is_file(): print("REVIEW_"+name+" "+json.dumps(json.loads(path.read_text()),ensure_ascii=False))
-          for key in ("overview","daily","devices","regions","all_traffic","direct_daily"):
-              path=root/"metrika"/(key+".json")
-              if path.is_file():
-                  data=json.loads(path.read_text())
-                  print("REVIEW_METRIKA_"+key+" "+json.dumps({k:data.get(k) for k in ("query","data","totals","total_rows","sampled","sample_share","data_lag")},ensure_ascii=False))
-          PYREVIEW
       - name: Save report evidence
         if: always() && steps.window.outputs.enabled == 'true'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
