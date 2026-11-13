@@ -1,0 +1,50 @@
+name: WhatsApp local keyword search-volume research
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/whatsapp-keyword-research.yml']
+permissions: {}
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Read preliminary search volume for fixed Dagestan phrase list
+        env:
+          YANDEX_DIRECT_TOKEN: ${{ secrets.YANDEX_DIRECT_TOKEN }}
+        run: |
+          python3 - <<'PYRESEARCH'
+          import json,os,urllib.request
+          from datetime import datetime,timezone
+          from pathlib import Path
+          token=os.environ.get("YANDEX_DIRECT_TOKEN","").strip()
+          record={"captured_at_utc":datetime.now(timezone.utc).isoformat(),"campaign_id":715775801,"group_id":5819958999,"scope":"read-only preliminary presence of search volume, not numeric frequency or guaranteed impressions","region_ids":[11010]}
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self,*args):raise RuntimeError("Redirect refused")
+          try:
+              if not token:raise ValueError("Missing OAuth secret")
+              payload={"method":"hasSearchVolume","params":{"SelectionCriteria":{"Keywords":["группа объявлений Дагестан WhatsApp","объявления Дагестан ватсап группа","вступить в группу объявлений Дагестан","разместить объявление Дагестан WhatsApp","группа объявлений махачкала ватсап","объявления махачкала WhatsApp","группа объявлений хасавюрт ватсап","барахолка дагестан ватсап","группа объявлений дербент ватсап","группа объявлений каспийск ватсап","барахолка махачкала ватсап","группа объявлений дагестан"],"RegionIds":[11010]},"FieldNames":["Keyword","RegionIds","AllDevices","MobilePhones","Tablets","Desktops"]}}
+              record["request"]=payload
+              request=urllib.request.Request("https://api.direct.yandex.com/json/v501/keywordsresearch",data=json.dumps(payload).encode(),method="POST",headers={"Authorization":"Bearer "+token,"Content-Type":"application/json","Accept-Language":"ru"})
+              with urllib.request.build_opener(NoRedirect()).open(request,timeout=45) as response:data=json.loads(response.read(1048576))
+              if "error" in data:
+                  e=data["error"];record["api_error"]={k:e.get(k) for k in ("error_code","error_string","error_detail")};raise ValueError("API rejected read-only request")
+              rows=data["result"]["HasSearchVolumeResults"]
+              if len(rows)!=len(payload["params"]["SelectionCriteria"]["Keywords"]):raise ValueError("Incomplete result")
+              record.update(status="complete",data=rows)
+          except Exception as e:record.update(status="failed",error_type=type(e).__name__)
+          text=json.dumps(record,ensure_ascii=False)
+          if token:text=text.replace(token,"[REDACTED]")
+          Path("keyword-research").mkdir(exist_ok=True)
+          Path("keyword-research/result.json").write_text(text)
+          print("KEYWORD_VOLUME "+text)
+          if record["status"]!="complete":raise SystemExit(1)
+          
+          PYRESEARCH
+      - name: Preserve research evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: local-keyword-research-${{ github.run_id }}
+          path: keyword-research/
+          retention-days: 30
