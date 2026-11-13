@@ -1,0 +1,164 @@
+{
+  "captured_at_utc": "2026-11-13T21:19:32.826027+00:00",
+  "campaign_id": 715775801,
+  "group_id": 5819958999,
+  "scope": "read-only preliminary presence of search volume, not numeric frequency or guaranteed impressions",
+  "region_ids": [
+    11010
+  ],
+  "request": {
+    "method": "hasSearchVolume",
+    "params": {
+      "SelectionCriteria": {
+        "Keywords": [
+          "группа объявлений Дагестан WhatsApp",
+          "объявления Дагестан ватсап группа",
+          "вступить в группу объявлений Дагестан",
+          "разместить объявление Дагестан WhatsApp",
+          "группа объявлений махачкала ватсап",
+          "объявления махачкала WhatsApp",
+          "группа объявлений хасавюрт ватсап",
+          "барахолка дагестан ватсап",
+          "группа объявлений дербент ватсап",
+          "группа объявлений каспийск ватсап",
+          "барахолка махачкала ватсап",
+          "группа объявлений дагестан"
+        ],
+        "RegionIds": [
+          11010
+        ]
+      },
+      "FieldNames": [
+        "Keyword",
+        "RegionIds",
+        "AllDevices",
+        "MobilePhones",
+        "Tablets",
+        "Desktops"
+      ]
+    }
+  },
+  "status": "complete",
+  "data": [
+    {
+      "Keyword": "группа объявлений Дагестан WhatsApp",
+      "RegionIds": [
+        11010
+      ],
+      "AllDevices": "NO",
+      "MobilePhones": "NO",
+      "Tablets": "NO",
+      "Desktops": "NO"
+    },
+    {
+      "Keyword": "объявления Дагестан ватсап группа",
+      "RegionIds": [
+        11010
+      ],
+      "AllDevices": "YES",
+      "MobilePhones": "YES",
+      "Tablets": "NO",
+      "Desktops": "NO"
+    },
+    {
+      "Keyword": "вступить в группу объявлений Дагестан",
+      "RegionIds": [
+        11010
+      ],
+      "AllDevices": "NO",
+      "MobilePhones": "NO",
+      "Tablets": "NO",
+      "Desktops": "NO"
+    },
+    {
+      "Keyword": "разместить объявление Дагестан WhatsApp",
+      "RegionIds": [
+        11010
+      ],
+      "AllDevices": "NO",
+      "MobilePhones": "NO",
+      "Tablets": "NO",
+      "Desktops": "NO"
+    },
+    {
+      "Keyword": "группа объявлений махачкала ватсап",
+      "RegionIds": [
+        11010
+      ],
+      "AllDevices": "NO",
+      "MobilePhones": "NO",
+      "Tablets": "NO",
+      "Desktops": "NO"
+    },
+    {
+      "Keyword": "объявления махачкала WhatsApp",
+      "RegionIds": [
+        11010
+      ],
+      "AllDevices": "NO",
+      "MobilePhones": "NO",
+      "Tablets": "NO",
+      "Desktops": "NO"
+    },
+    {
+      "Keyword": "группа объявлений хасавюрт ватсап",
+      "RegionIds": [
+        11010
+      ],
+      "AllDevices": "NO",
+      "MobilePhones": "NO",
+      "Tablets": "NO",
+      "Desktops": "NO"
+    },
+    {
+      "Keyword": "барахолка дагестан ватсап",
+      "RegionIds": [
+        11010
+      ],
+      "AllDevices": "YES",
+      "MobilePhones": "YES",
+      "Tablets": "NO",
+      "Desktops": "NO"
+    },
+    {
+      "Keyword": "группа объявлений дербент ватсап",
+      "RegionIds": [
+        11010
+      ],
+      "AllDevices": "NO",
+      "MobilePhones": "NO",
+      "Tablets": "NO",
+      "Desktops": "NO"
+    },
+    {
+      "Keyword": "группа объявлений каспийск ватсап",
+      "RegionIds": [
+        11010
+      ],
+      "AllDevices": "NO",
+      "MobilePhones": "NO",
+      "Tablets": "NO",
+      "Desktops": "NO"
+    },
+    {
+      "Keyword": "барахолка махачкала ватсап",
+      "RegionIds": [
+        11010
+      ],
+      "AllDevices": "YES",
+      "MobilePhones": "YES",
+      "Tablets": "NO",
+      "Desktops": "NO"
+    },
+    {
+      "Keyword": "группа объявлений дагестан",
+      "RegionIds": [
+        11010
+      ],
+      "AllDevices": "YES",
+      "MobilePhones": "YES",
+      "Tablets": "NO",
+      "Desktops": "NO"
+    }
+  ]
+}
