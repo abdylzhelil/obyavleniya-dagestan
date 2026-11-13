@@ -1,6 +1,9 @@
 name: Confirm technical mobile QA in Metrika
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/metrika-mobile-qa-confirm.yml']
 permissions: {}
 jobs:
   confirm:
