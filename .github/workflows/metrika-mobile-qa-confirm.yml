@@ -45,3 +45,5 @@ jobs:
           name: metrika-qa-${{ github.run_id }}
           path: mobile-qa/
           retention-days: 30
+
+# Second read of same native QA segment after processing; no additional browser clicks.
