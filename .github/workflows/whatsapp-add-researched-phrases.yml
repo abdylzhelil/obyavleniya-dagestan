@@ -1,8 +1,6 @@
 name: Add two researched WhatsApp local phrases
 on:
-  push:
-    branches: [main]
-    paths: ['.github/workflows/whatsapp-add-researched-phrases.yml']
+  workflow_dispatch:
 permissions: {}
 concurrency:
   group: direct-bounded-control
