@@ -1,0 +1,9 @@
+{
+  "captured_at_utc": "2026-11-14T09:13:37.065879+00:00",
+  "operation": "AccountManagement.Get",
+  "scope": "read-only balance; no financial operation; only aggregate Amount and Currency saved",
+  "status": "complete",
+  "amount": "478.75",
+  "currency": "RUB",
+  "money_units": "account currency, not micros"
+}
