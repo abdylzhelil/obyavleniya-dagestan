@@ -1,0 +1,112 @@
+{
+  "captured_at_utc": "2026-11-14T14:24:25.186Z",
+  "source_revision": "dc3ef45d4855ba5905b7da196c158e41946d170e",
+  "scope": "actual published pages; analytics blocked",
+  "cases": [
+    {
+      "page": "index.html",
+      "width": 1440,
+      "reduced": "no-preference",
+      "toggle": true,
+      "keyboard": true,
+      "no_overflow": true,
+      "three_synced_hits": true,
+      "card_wraparound": true,
+      "point_ripples": true,
+      "twelve_points_synced": true,
+      "errors": []
+    },
+    {
+      "page": "index.html",
+      "width": 1440,
+      "reduced": "reduce",
+      "toggle": true,
+      "keyboard": true,
+      "no_overflow": true,
+      "three_synced_hits": true,
+      "card_wraparound": true,
+      "point_ripples": true,
+      "twelve_points_synced": true,
+      "errors": []
+    },
+    {
+      "page": "index.html",
+      "width": 390,
+      "reduced": "no-preference",
+      "toggle": true,
+      "keyboard": true,
+      "no_overflow": true,
+      "three_synced_hits": true,
+      "card_wraparound": true,
+      "point_ripples": true,
+      "twelve_points_synced": true,
+      "errors": []
+    },
+    {
+      "page": "index.html",
+      "width": 390,
+      "reduced": "reduce",
+      "toggle": true,
+      "keyboard": true,
+      "no_overflow": true,
+      "three_synced_hits": true,
+      "card_wraparound": true,
+      "point_ripples": true,
+      "twelve_points_synced": true,
+      "errors": []
+    },
+    {
+      "page": "bot-crm.html",
+      "width": 1440,
+      "reduced": "no-preference",
+      "toggle": true,
+      "keyboard": true,
+      "no_overflow": true,
+      "three_synced_hits": true,
+      "card_wraparound": true,
+      "point_ripples": true,
+      "twelve_points_synced": true,
+      "errors": []
+    },
+    {
+      "page": "bot-crm.html",
+      "width": 1440,
+      "reduced": "reduce",
+      "toggle": true,
+      "keyboard": true,
+      "no_overflow": true,
+      "three_synced_hits": true,
+      "card_wraparound": true,
+      "point_ripples": true,
+      "twelve_points_synced": true,
+      "errors": []
+    },
+    {
+      "page": "bot-crm.html",
+      "width": 390,
+      "reduced": "no-preference",
+      "toggle": true,
+      "keyboard": true,
+      "no_overflow": true,
+      "three_synced_hits": true,
+      "card_wraparound": true,
+      "point_ripples": true,
+      "twelve_points_synced": true,
+      "errors": []
+    },
+    {
+      "page": "bot-crm.html",
+      "width": 390,
+      "reduced": "reduce",
+      "toggle": true,
+      "keyboard": true,
+      "no_overflow": true,
+      "three_synced_hits": true,
+      "card_wraparound": true,
+      "point_ripples": true,
+      "twelve_points_synced": true,
+      "errors": []
+    }
+  ],
+  "status": "passed"
+}

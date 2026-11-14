@@ -1,9 +1,6 @@
 name: Verify published synchronized radar
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - ".github/workflows/radar-sync-live.yml"
 permissions: {}
 jobs:
   review:
