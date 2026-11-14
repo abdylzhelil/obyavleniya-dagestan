@@ -1,0 +1,80 @@
+{
+  "baseline_run": 43581959145,
+  "baseline": [
+    {
+      "reduced_motion": "no-preference",
+      "radar": {
+        "name": "leadSearchSweep",
+        "state": "running",
+        "transform": "matrix(0.954584, 0.297941, -0.297941, 0.954584, 0, 0)"
+      },
+      "transform_changed": true,
+      "button_hidden": false,
+      "paused": false,
+      "errors": []
+    },
+    {
+      "reduced_motion": "reduce",
+      "radar": {
+        "name": "none",
+        "state": "running",
+        "transform": "matrix(0.707107, 0.707107, -0.707107, 0.707107, 0, 0)"
+      },
+      "transform_changed": false,
+      "button_hidden": true,
+      "paused": true,
+      "errors": []
+    }
+  ],
+  "review_run": 43582795633,
+  "review": {
+    "captured_at_utc": "2026-11-14T09:55:20.279Z",
+    "source_revision": "a1af47322f67a0e8c0583371df29c25155c872ba",
+    "scope": "proposed patch only; main site unmodified; analytics blocked",
+    "cases": [
+      {
+        "width": 1440,
+        "reduced_motion": "no-preference",
+        "initial_animation": true,
+        "manual_toggle_and_keyboard": true,
+        "no_download_links": true,
+        "no_overflow": true,
+        "offscreen_pause": true,
+        "errors": []
+      },
+      {
+        "width": 1440,
+        "reduced_motion": "reduce",
+        "initial_animation": false,
+        "manual_toggle_and_keyboard": true,
+        "no_download_links": true,
+        "no_overflow": true,
+        "offscreen_pause": true,
+        "errors": []
+      },
+      {
+        "width": 390,
+        "reduced_motion": "no-preference",
+        "initial_animation": true,
+        "manual_toggle_and_keyboard": true,
+        "no_download_links": true,
+        "no_overflow": true,
+        "offscreen_pause": true,
+        "errors": []
+      },
+      {
+        "width": 390,
+        "reduced_motion": "reduce",
+        "initial_animation": false,
+        "manual_toggle_and_keyboard": true,
+        "no_download_links": true,
+        "no_overflow": true,
+        "offscreen_pause": true,
+        "errors": []
+      }
+    ],
+    "legacy_avatar_url_redirected": true,
+    "crm_manual_motion": true,
+    "status": "passed"
+  }
+}
