@@ -1,0 +1,28 @@
+name: Desktop motion baseline inspection
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/site-motion-review.yml']
+permissions: {}
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Install pinned browser test library
+        run: npm install --prefix /tmp/site-review --ignore-scripts --no-audit --no-fund playwright@1.56.1
+      - name: Inspect live desktop motion without analytics consent
+        run: |
+          node <<'JSREVIEW'
+          const {chromium}=require('/tmp/site-review/node_modules/playwright');const fs=require('fs');
+          (async()=>{const b=await chromium.launch({executablePath:'/usr/bin/google-chrome',headless:true,args:['--no-sandbox']});const out=[];
+          try{for(const reduced of ['no-preference','reduce']){const ctx=await b.newContext({viewport:{width:1440,height:1000},reducedMotion:reduced});await ctx.route(/https:\/\/mc\.yandex\./,r=>r.abort());const p=await ctx.newPage();let errors=[];p.on('pageerror',e=>errors.push(e.name));await p.goto('https://obyavleniya-dagestan.ru/',{waitUntil:'load',timeout:45000});await p.locator('#home-radar').scrollIntoViewIfNeeded();await p.waitForTimeout(500);const a=await p.locator('.lead-radar-beam').evaluate(e=>({name:getComputedStyle(e).animationName,state:getComputedStyle(e).animationPlayState,transform:getComputedStyle(e).transform}));await p.waitForTimeout(1200);const z=await p.locator('.lead-radar-beam').evaluate(e=>getComputedStyle(e).transform);out.push({reduced_motion:reduced,radar:a,transform_changed:a.transform!==z,button_hidden:await p.locator('[data-motion-for="home-radar"]').evaluate(e=>e.hidden),paused:await p.locator('#home-radar').evaluate(e=>e.classList.contains('demo-motion-paused')),errors});await ctx.close();}}finally{await b.close();fs.mkdirSync('site-review',{recursive:true});fs.writeFileSync('site-review/baseline.json',JSON.stringify(out,null,2));console.log('MOTION_BASELINE '+JSON.stringify(out));}})().catch(e=>{console.log('MOTION_ERROR '+e.name+': '+e.message.split('\n')[0]);process.exitCode=1});
+          
+          JSREVIEW
+      - name: Save diagnostic evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: desktop-motion-baseline-${{ github.run_id }}
+          path: site-review/
+          retention-days: 30
