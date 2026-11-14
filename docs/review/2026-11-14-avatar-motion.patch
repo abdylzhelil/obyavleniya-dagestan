@@ -227,9 +227,18 @@ index a797c9b..061216b 100644
 + [data-motion-demo].demo-motion-enabled .a3{animation-delay:2.2s;}
 +}
 diff --git a/bot-crm.html b/bot-crm.html
-index a1f4297..64e4fc9 100644
+index a1f4297..ccf381e 100644
 --- a/bot-crm.html
 +++ b/bot-crm.html
+@@ -41,7 +41,7 @@
+ </script>
+ <!-- /Яндекс Метрика -->
+ <link rel="stylesheet" href="fonts.css">
+-<link rel="stylesheet" href="bot.css?v=20261024">
++<link rel="stylesheet" href="bot.css?v=20261114">
+ <script type="application/ld+json">
+ {
+  "@context": "https://schema.org",
 @@ -122,7 +122,7 @@
   ]
  }
