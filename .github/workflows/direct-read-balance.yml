@@ -1,8 +1,6 @@
 name: Read shared account balance
 on:
-  push:
-    branches: [main]
-    paths: ['.github/workflows/direct-read-balance.yml']
+  workflow_dispatch:
 permissions: {}
 jobs:
   read:
