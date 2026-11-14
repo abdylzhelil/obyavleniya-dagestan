@@ -2,9 +2,6 @@ name: WhatsApp test 2 read-only reports
 # Metrika read-only OAuth application: 40fbd9c24b874b4bacaa0883e57ca434
 
 on:
-  push:
-    branches: [main]
-    paths: ['.github/workflows/direct-whatsapp-test2-reports.yml']
   workflow_dispatch:
     inputs:
       date_from:
@@ -51,8 +48,8 @@ jobs:
         if: steps.window.outputs.enabled == 'true'
         env:
           YANDEX_DIRECT_TOKEN: ${{ secrets.YANDEX_DIRECT_TOKEN }}
-          DIRECT_DATE_FROM: '2026-11-12'
-          DIRECT_DATE_TO: '2026-11-14'
+          DIRECT_DATE_FROM: ${{ inputs.date_from }}
+          DIRECT_DATE_TO: ${{ inputs.date_to }}
         shell: bash
         run: |
           python3 - <<'PYDIRECT'
@@ -274,9 +271,9 @@ jobs:
                         "regions": "ym:s:regionCountry,ym:s:regionArea,ym:s:regionCity",
                         "all_traffic": None, "observed_utm": "ym:s:UTMSource,ym:s:UTMMedium,ym:s:UTMCampaign"}
           DIAGNOSTIC_KEYS = {"all_traffic", "observed_utm"}
-          DIRECT_KEYS = {"direct_daily", "direct_excluding_qa", "direct_qa_overlap"}
+          DIRECT_KEYS = {"direct_daily"}
           DIRECT_FILTER = "ym:s:<attribution>DirectClickOrder==715775801"
-          DIMENSIONS.update(direct_daily="ym:s:date", direct_excluding_qa="ym:s:date", direct_qa_overlap="ym:s:date", paid_terms="ym:s:date,ym:s:UTMTerm")
+          DIMENSIONS.update(direct_daily="ym:s:date")
           
           
           class NoRedirect(urllib.request.HTTPRedirectHandler):
@@ -347,10 +344,6 @@ jobs:
               if key in DIRECT_KEYS:
                   p["filters"] = DIRECT_FILTER
                   p["attribution"] = "automatic"
-              if key == "direct_excluding_qa":
-                  p["filters"] += " AND ym:s:UTMSource!='qa'"
-              if key == "direct_qa_overlap":
-                  p["filters"] += " AND ym:s:UTMSource=='qa'"
               return p
           
           
@@ -529,21 +522,6 @@ jobs:
                   return 1
           if __name__=="__main__":sys.exit(main())
           PYTELEGRAM
-      - name: Log aggregate attribution evidence excluding visitor identifiers
-        if: always() && steps.window.outputs.enabled == 'true'
-        run: |
-          python3 - <<'PYREVIEW'
-          import json
-          from pathlib import Path
-          root=Path("direct-reports")
-          for name,path in [("DIRECT",root/"metadata.json"),("METRIKA_STATUS",root/"metrika/status.json")]:
-              if path.is_file():print("JOIN_REVIEW_"+name+" "+json.dumps(json.loads(path.read_text()),ensure_ascii=False))
-          for key in ("daily","paid_terms","direct_daily","direct_excluding_qa","direct_qa_overlap"):
-              path=root/"metrika"/(key+".json")
-              if path.is_file():
-                  data=json.loads(path.read_text())
-                  print("JOIN_REVIEW_"+key+" "+json.dumps({k:data.get(k) for k in ("query","data","totals","sampled","sample_share","data_lag","total_rows")},ensure_ascii=False))
-          PYREVIEW
       - name: Save report evidence
         if: always() && steps.window.outputs.enabled == 'true'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
