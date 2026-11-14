@@ -55,7 +55,7 @@ jobs:
            await p.goto(origin+'/bot-crm.html',{waitUntil:'domcontentloaded',timeout:45000});await p.locator('#client-radar').scrollIntoViewIfNeeded();await p.waitForTimeout(300);const control=p.locator('[data-motion-for="client-radar"]');assert(await control.isVisible(),'CRM reduced-motion control visible');assert(!await changed(p,'#client-radar .sweep'),'CRM respects reduced default');await control.click();assert(await changed(p,'#client-radar .sweep'),'CRM radar opt-in works');out.crm_manual_motion=true;await c.close();
            out.status='passed';
            }finally{await b.close();fs.writeFileSync('site-review/result.json',JSON.stringify(out,null,2));console.log('MOTION_REVIEW '+JSON.stringify(out));}
-          })().catch(e=>{console.log('MOTION_ERROR '+e.name+': '+e.message.split('\n')[0]);process.exitCode=1});
+          })().catch(e=>{console.log('MOTION_ERROR '+e.name+': '+e.message.slice(0,1600));process.exitCode=1});
           
           JSREVIEW
       - name: Save diagnostic evidence
@@ -65,3 +65,5 @@ jobs:
           name: desktop-motion-baseline-${{ github.run_id }}
           path: site-review/
           retention-days: 30
+
+# Recheck CRM hit testing after decorative overlay correction.
