@@ -1,0 +1,18 @@
+{
+  "recorded_at_utc": "2026-11-14 20:47:41 UTC",
+  "source": "owner explicit reply in chat",
+  "group": "WhatsApp same group test2",
+  "campaign_id": 715775801,
+  "test_period": "2026-11-12/2026-11-18",
+  "previous_confirmed_member_count": 45,
+  "current_confirmed_member_count": 46,
+  "confirmed_advertising_joins_by_owner": 1,
+  "is_new_additional_join": false,
+  "clarifies_previous_accepted_request": true,
+  "owner_statement": "46 +1 с рекламной компании точно, он искал группу кизилюртовского района немного не наш ца но он остался в группе",
+  "intent": "seeking Kizilyurt district group",
+  "retained_according_to_owner": true,
+  "attribution_basis": "owner confirmation; not automatic visitor-level proof",
+  "request_submitted_at": "unknown",
+  "note": "Do not add this report to earlier accepted request as a second join; do not equate WA button event with join"
+}
