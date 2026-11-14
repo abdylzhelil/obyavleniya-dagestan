@@ -1,0 +1,252 @@
+{
+  "captured_at_utc": "2026-11-14T20:42:23.848979+00:00",
+  "campaign_id": 715775801,
+  "group_id": 5819958999,
+  "scope": "read-only preliminary presence of search volume, not numeric frequency or guaranteed impressions",
+  "region_ids": [
+    11010
+  ],
+  "request": {
+    "method": "hasSearchVolume",
+    "params": {
+      "SelectionCriteria": {
+        "Keywords": [
+          "группа объявлений дагестан",
+          "объявления махачкала группа",
+          "барахолка дагестан группа",
+          "куплю продам дагестан группа",
+          "группа купи продай дагестан",
+          "барахолка хасавюрт ватсап",
+          "барахолка дербент ватсап",
+          "барахолка каспийск ватсап",
+          "группа объявлений кизилюрт",
+          "объявления кизилюрт ватсап",
+          "ватсап группа дагестан объявления",
+          "группы ватсап махачкала объявления",
+          "бесплатные объявления дагестан группа",
+          "подать объявление дагестан группа",
+          "купить продать махачкала группа",
+          "барахолка махачкала группа",
+          "куплю продам махачкала ватсап",
+          "группа объявлений хасавюрт",
+          "группа объявлений дербент",
+          "группа объявлений каспийск"
+        ],
+        "RegionIds": [
+          11010
+        ]
+      },
+      "FieldNames": [
+        "Keyword",
+        "RegionIds",
+        "AllDevices",
+        "MobilePhones",
+        "Tablets",
+        "Desktops"
+      ]
+    }
+  },
+  "status": "complete",
+  "data": [
+    {
+      "Keyword": "группа объявлений дагестан",
+      "RegionIds": [
+        11010
+      ],
+      "AllDevices": "YES",
+      "MobilePhones": "YES",
+      "Tablets": "NO",
+      "Desktops": "NO"
+    },
+    {
+      "Keyword": "объявления махачкала группа",
+      "RegionIds": [
+        11010
+      ],
+      "AllDevices": "YES",
+      "MobilePhones": "YES",
+      "Tablets": "NO",
+      "Desktops": "NO"
+    },
+    {
+      "Keyword": "барахолка дагестан группа",
+      "RegionIds": [
+        11010
+      ],
+      "AllDevices": "NO",
+      "MobilePhones": "NO",
+      "Tablets": "NO",
+      "Desktops": "NO"
+    },
+    {
+      "Keyword": "куплю продам дагестан группа",
+      "RegionIds": [
+        11010
+      ],
+      "AllDevices": "YES",
+      "MobilePhones": "YES",
+      "Tablets": "NO",
+      "Desktops": "NO"
+    },
+    {
+      "Keyword": "группа купи продай дагестан",
+      "RegionIds": [
+        11010
+      ],
+      "AllDevices": "YES",
+      "MobilePhones": "YES",
+      "Tablets": "NO",
+      "Desktops": "NO"
+    },
+    {
+      "Keyword": "барахолка хасавюрт ватсап",
+      "RegionIds": [
+        11010
+      ],
+      "AllDevices": "NO",
+      "MobilePhones": "NO",
+      "Tablets": "NO",
+      "Desktops": "NO"
+    },
+    {
+      "Keyword": "барахолка дербент ватсап",
+      "RegionIds": [
+        11010
+      ],
+      "AllDevices": "NO",
+      "MobilePhones": "NO",
+      "Tablets": "NO",
+      "Desktops": "NO"
+    },
+    {
+      "Keyword": "барахолка каспийск ватсап",
+      "RegionIds": [
+        11010
+      ],
+      "AllDevices": "NO",
+      "MobilePhones": "NO",
+      "Tablets": "NO",
+      "Desktops": "NO"
+    },
+    {
+      "Keyword": "группа объявлений кизилюрт",
+      "RegionIds": [
+        11010
+      ],
+      "AllDevices": "NO",
+      "MobilePhones": "NO",
+      "Tablets": "NO",
+      "Desktops": "NO"
+    },
+    {
+      "Keyword": "объявления кизилюрт ватсап",
+      "RegionIds": [
+        11010
+      ],
+      "AllDevices": "NO",
+      "MobilePhones": "NO",
+      "Tablets": "NO",
+      "Desktops": "NO"
+    },
+    {
+      "Keyword": "ватсап группа дагестан объявления",
+      "RegionIds": [
+        11010
+      ],
+      "AllDevices": "YES",
+      "MobilePhones": "YES",
+      "Tablets": "NO",
+      "Desktops": "NO"
+    },
+    {
+      "Keyword": "группы ватсап махачкала объявления",
+      "RegionIds": [
+        11010
+      ],
+      "AllDevices": "NO",
+      "MobilePhones": "NO",
+      "Tablets": "NO",
+      "Desktops": "NO"
+    },
+    {
+      "Keyword": "бесплатные объявления дагестан группа",
+      "RegionIds": [
+        11010
+      ],
+      "AllDevices": "YES",
+      "MobilePhones": "YES",
+      "Tablets": "NO",
+      "Desktops": "NO"
+    },
+    {
+      "Keyword": "подать объявление дагестан группа",
+      "RegionIds": [
+        11010
+      ],
+      "AllDevices": "NO",
+      "MobilePhones": "NO",
+      "Tablets": "NO",
+      "Desktops": "NO"
+    },
+    {
+      "Keyword": "купить продать махачкала группа",
+      "RegionIds": [
+        11010
+      ],
+      "AllDevices": "YES",
+      "MobilePhones": "YES",
+      "Tablets": "NO",
+      "Desktops": "NO"
+    },
+    {
+      "Keyword": "барахолка махачкала группа",
+      "RegionIds": [
+        11010
+      ],
+      "AllDevices": "YES",
+      "MobilePhones": "YES",
+      "Tablets": "NO",
+      "Desktops": "NO"
+    },
+    {
+      "Keyword": "куплю продам махачкала ватсап",
+      "RegionIds": [
+        11010
+      ],
+      "AllDevices": "NO",
+      "MobilePhones": "NO",
+      "Tablets": "NO",
+      "Desktops": "NO"
+    },
+    {
+      "Keyword": "группа объявлений хасавюрт",
+      "RegionIds": [
+        11010
+      ],
+      "AllDevices": "YES",
+      "MobilePhones": "YES",
+      "Tablets": "NO",
+      "Desktops": "NO"
+    },
+    {
+      "Keyword": "группа объявлений дербент",
+      "RegionIds": [
+        11010
+      ],
+      "AllDevices": "NO",
+      "MobilePhones": "NO",
+      "Tablets": "NO",
+      "Desktops": "NO"
+    },
+    {
+      "Keyword": "группа объявлений каспийск",
+      "RegionIds": [
+        11010
+      ],
+      "AllDevices": "NO",
+      "MobilePhones": "NO",
+      "Tablets": "NO",
+      "Desktops": "NO"
+    }
+  ]
+}
