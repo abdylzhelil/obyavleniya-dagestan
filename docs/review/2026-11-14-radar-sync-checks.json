@@ -1,0 +1,104 @@
+{
+  "captured_at_utc": "2026-11-14T14:08:59.905Z",
+  "source_revision": "ebb1225e59ba03c19cc24d1adbbb6ee415f4111a",
+  "scope": "proposed only; live source unchanged; analytics blocked",
+  "cases": [
+    {
+      "page": "index.html",
+      "width": 1440,
+      "reduced": "no-preference",
+      "toggle": true,
+      "keyboard": true,
+      "no_overflow": true,
+      "three_synced_hits": true,
+      "card_wraparound": true,
+      "point_ripples": true,
+      "errors": []
+    },
+    {
+      "page": "index.html",
+      "width": 1440,
+      "reduced": "reduce",
+      "toggle": true,
+      "keyboard": true,
+      "no_overflow": true,
+      "three_synced_hits": true,
+      "card_wraparound": true,
+      "point_ripples": true,
+      "errors": []
+    },
+    {
+      "page": "index.html",
+      "width": 390,
+      "reduced": "no-preference",
+      "toggle": true,
+      "keyboard": true,
+      "no_overflow": true,
+      "three_synced_hits": true,
+      "card_wraparound": true,
+      "point_ripples": true,
+      "errors": []
+    },
+    {
+      "page": "index.html",
+      "width": 390,
+      "reduced": "reduce",
+      "toggle": true,
+      "keyboard": true,
+      "no_overflow": true,
+      "three_synced_hits": true,
+      "card_wraparound": true,
+      "point_ripples": true,
+      "errors": []
+    },
+    {
+      "page": "bot-crm.html",
+      "width": 1440,
+      "reduced": "no-preference",
+      "toggle": true,
+      "keyboard": true,
+      "no_overflow": true,
+      "three_synced_hits": true,
+      "card_wraparound": true,
+      "point_ripples": true,
+      "errors": []
+    },
+    {
+      "page": "bot-crm.html",
+      "width": 1440,
+      "reduced": "reduce",
+      "toggle": true,
+      "keyboard": true,
+      "no_overflow": true,
+      "three_synced_hits": true,
+      "card_wraparound": true,
+      "point_ripples": true,
+      "errors": []
+    },
+    {
+      "page": "bot-crm.html",
+      "width": 390,
+      "reduced": "no-preference",
+      "toggle": true,
+      "keyboard": true,
+      "no_overflow": true,
+      "three_synced_hits": true,
+      "card_wraparound": true,
+      "point_ripples": true,
+      "errors": []
+    },
+    {
+      "page": "bot-crm.html",
+      "width": 390,
+      "reduced": "reduce",
+      "toggle": true,
+      "keyboard": true,
+      "no_overflow": true,
+      "three_synced_hits": true,
+      "card_wraparound": true,
+      "point_ripples": true,
+      "errors": []
+    }
+  ],
+  "status": "passed"
+}

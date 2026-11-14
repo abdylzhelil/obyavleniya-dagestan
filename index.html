@@ -144,6 +144,7 @@
 <link rel="stylesheet" href="demo-motion.css?v=20261114">
 <link rel="stylesheet" href="community-offers.css">
 <link rel="stylesheet" href="platform-prices.css">
+<link rel="stylesheet" href="radar-v2.css?v=20261114b">
 </head>
 <body class="rd-home">
 
@@ -256,13 +257,28 @@
           <span class="bot-ava bot-ava-radar" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 12l6-6"/></svg></span>
           <div><h3>КлиентРадар</h3><span class="bot-sub">Заявки от клиентов</span></div>
         </div>
-        <div class="lead-radar-demo" id="home-radar" data-motion-demo>
-  <div class="lead-radar-top"><span class="lead-radar-label">Поиск заявок <span>Демо</span></span><button class="motion-toggle lead-radar-pause" type="button" data-motion-for="home-radar" data-motion-compact aria-pressed="false" aria-label="Приостановить анимацию поиска заявок">Пауза</button></div>
-  <div class="lead-radar-stage" aria-hidden="true">
-    <div class="lead-radar-scope"><svg viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="54"/><circle cx="60" cy="60" r="36"/><circle cx="60" cy="60" r="18"/><path d="M60 6v108M6 60h108"/><circle class="lead-radar-center" cx="60" cy="60" r="3"/></svg><span class="lead-radar-beam"></span><i class="lead-radar-point point-one"></i><i class="lead-radar-point point-two"></i><i class="lead-radar-point point-three"></i><i class="lead-radar-point point-four"></i><i class="lead-radar-point point-five"></i><i class="lead-radar-point point-six"></i></div>
-    <div class="lead-radar-result"><div class="lead-radar-request"><span class="lead-radar-location">Махачкала · Услуги</span><strong>Нужен электрик</strong><span class="lead-radar-excerpt">Коротит розетка. Кто может помочь?</span></div><div class="lead-radar-found"><svg viewBox="0 0 16 16" fill="none"><path d="m4 8 2.5 2.5L12 5"/></svg>Заявка найдена</div></div>
+        <div class="kr-demo" id="home-radar" data-motion-demo>
+  <div class="kr-toolbar"><span class="kr-brand"><i></i>КлиентРадар <small>ДЕМО</small></span><button type="button" class="motion-toggle kr-toggle" data-motion-for="home-radar" data-motion-compact aria-pressed="false">Пауза</button></div>
+  <div class="kr-canvas" aria-hidden="true">
+    <div class="kr-coordinate kr-coordinate-top">ПОИСК ПО НИШЕ И ГОРОДУ</div>
+    <svg class="kr-scope" viewBox="0 0 320 320" fill="none">
+      <defs>
+        <radialGradient id="home-radar-depth"><stop stop-color="#163e4a"/><stop offset="1" stop-color="#091c29"/></radialGradient>
+        <linearGradient id="home-radar-trail" x1="76" y1="76" x2="160" y2="20" gradientUnits="userSpaceOnUse"><stop stop-color="#70e2df" stop-opacity="0"/><stop offset="1" stop-color="#70e2df" stop-opacity=".22"/></linearGradient>
+      </defs>
+      <circle cx="160" cy="160" r="139" fill="url(#home-radar-depth)" stroke="#72b2bc" stroke-opacity=".2"/>
+      <g stroke="#74bdc5" stroke-opacity=".14"><circle cx="160" cy="160" r="105"/><circle cx="160" cy="160" r="70"/><circle cx="160" cy="160" r="35"/><path d="M160 21v278M21 160h278"/></g>
+      <g stroke="#9bd9df" stroke-opacity=".4"><path d="M160 14v6M160 300v6M14 160h6M300 160h6M57 57l4 4M259 259l4 4M57 263l4-4M259 61l4-4"/></g>
+      <g class="kr-scan"><path d="M160 160L61.7 61.7A139 139 0 0 1 160 21Z" fill="url(#home-radar-trail)"/><path d="M160 160V21" stroke="#86ece4" stroke-opacity=".75" stroke-width="1.1"/></g>
+      <g class="kr-signal" style="--kr-hit:2s;--kr-x:250.93px;--kr-y:107.5px"><circle class="kr-echo" cx="250.93" cy="107.5" r="7" stroke="#8aeee0"/><circle class="kr-target" cx="250.93" cy="107.5" r="3.5" fill="#b0fff0"/></g>
+      <g class="kr-signal" style="--kr-hit:6s;--kr-x:160px;--kr-y:265px"><circle class="kr-echo" cx="160" cy="265" r="7" stroke="#8aeee0"/><circle class="kr-target" cx="160" cy="265" r="3.5" fill="#b0fff0"/></g>
+      <g class="kr-signal" style="--kr-hit:10s;--kr-x:69.07px;--kr-y:107.5px"><circle class="kr-echo" cx="69.07" cy="107.5" r="7" stroke="#8aeee0"/><circle class="kr-target" cx="69.07" cy="107.5" r="3.5" fill="#b0fff0"/></g>
+      <circle cx="160" cy="160" r="8" fill="#79e6df" fill-opacity=".12"/><circle cx="160" cy="160" r="2.5" fill="#a2efe5"/>
+    </svg>
+    <span class="kr-map-label">ДАГЕСТАН</span>
+    <div class="kr-lead"><span class="kr-lead-icon"><svg viewBox="0 0 24 24"><path d="M6 5h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-7l-5 3v-3H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"/><path d="M8 9h8M8 13h5"/></svg></span><span class="kr-cards"><span class="kr-lead-copy kr-card-one"><small>Махачкала · Услуги</small><strong>Нужен электрик</strong><span>Кто поможет заменить розетку?</span></span><span class="kr-lead-copy kr-card-two"><small>Каспийск · Ремонт</small><strong>Ищу мастера по ремонту</strong><span>Нужно покрасить стены в комнате.</span></span><span class="kr-lead-copy kr-card-three"><small>Дербент · Фото</small><strong>Нужен фотограф</strong><span>Ищем фотографа на семейную съёмку.</span></span></span><span class="kr-check">✓</span></div>
   </div>
-  <p class="lead-radar-caption">Пример поиска. Найденную заявку можно вести в CRM.</p>
+  <div class="kr-footer"><span><i></i>Поиск → заявка → ваш ответ</span><small>Пример работы</small></div>
 </div><p>Находит людей, которым нужна ваша услуга, в открытых группах, присылает заявки и помогает вести клиентов в CRM.</p>
         <ul class="bot-tags"><li>Заявки</li><li>CRM</li><li>Ниши и город</li><li>Каталог групп</li></ul>
         <div class="bot-actions">

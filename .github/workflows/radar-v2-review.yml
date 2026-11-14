@@ -1,9 +1,6 @@
 name: Review redesigned ClientRadar
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - ".github/workflows/radar-v2-review.yml"
 permissions: {}
 jobs:
   review:
