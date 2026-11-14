@@ -1,6 +1,9 @@
 name: Verify published synchronized radar
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/radar-sync-live.yml"
 permissions: {}
 jobs:
   review:
@@ -17,7 +20,7 @@ jobs:
           const assert=(x,m)=>{if(!x)throw Error(m)};
           (async()=>{
             const root=path.resolve('review');fs.mkdirSync(root,{recursive:true});
-            for(let n=0;n<24;n++){const res=await fetch('https://obyavleniya-dagestan.ru/?radar_verify='+Date.now());const html=await res.text();if(html.includes('kr-cards'))break;if(n===23)throw Error('Published HTML not ready');await new Promise(r=>setTimeout(r,5000));}
+            for(let n=0;n<24;n++){const res=await fetch('https://obyavleniya-dagestan.ru/?radar_verify='+Date.now());const html=await res.text();if(html.includes('data-radar-points="12"'))break;if(n===23)throw Error('Published HTML not ready');await new Promise(r=>setTimeout(r,5000));}
             const b=await chromium.launch({executablePath:'/usr/bin/google-chrome',headless:true,args:['--no-sandbox']});
             const out={captured_at_utc:new Date().toISOString(),source_revision:process.env.GITHUB_SHA,scope:'actual published pages; analytics blocked',cases:[]};
             try{
@@ -25,11 +28,11 @@ jobs:
                 const c=await b.newContext({viewport:{width,height:1000},reducedMotion:reduced});
                 await c.route('**/*',async route=>{const u=new URL(route.request().url());if(/(^|\.)mc\.yandex\./.test(u.hostname)||/\.(mp4|webm)(\?|$)/.test(u.href))return route.abort();return route.continue();});
                 const p=await c.newPage(),errors=[];p.on('pageerror',e=>errors.push(e.message));
-                await p.goto('https://obyavleniya-dagestan.ru/'+page+'?radar_verify=20261114sync',{waitUntil:'domcontentloaded',timeout:45000});
+                await p.goto('https://obyavleniya-dagestan.ru/'+page+'?radar_verify=20261114dots12',{waitUntil:'domcontentloaded',timeout:45000});
                 const decline=p.getByRole('button',{name:'Отказаться',exact:true});if(await decline.count())await Promise.all([p.waitForEvent('load'),decline.click()]);
                 const demo=p.locator('.kr-demo');await demo.scrollIntoViewIfNeeded();await p.waitForTimeout(250);
                 const changed=async()=>{const first=await demo.locator('.kr-scan').evaluate(e=>getComputedStyle(e).transform);await p.waitForTimeout(350);return first!==await demo.locator('.kr-scan').evaluate(e=>getComputedStyle(e).transform)};
-                const toggle=demo.locator('button');assert(await toggle.isVisible(),'Control visible');
+                assert(await demo.locator('.kr-target').count()===12,'Twelve radar targets');const toggle=demo.locator('button');assert(await toggle.isVisible(),'Control visible');
                 assert(await changed()===(reduced==='no-preference'),'Initial motion preference');
                 if(reduced==='reduce'){await toggle.click();assert(await changed(),'Reduced opt-in');}
                 await toggle.click();await p.waitForTimeout(200);console.log('PAUSE_DEBUG '+JSON.stringify(await demo.evaluate(e=>({classes:e.className,button:e.querySelector('button').outerHTML,scan:getComputedStyle(e.querySelector('.kr-scan')).animationPlayState,animations:e.querySelector('.kr-scan').getAnimations().map(a=>({name:a.animationName,state:a.playState}))}))));assert(!await changed(),'Pause');await toggle.focus();await p.keyboard.press('Space');assert(await changed(),'Keyboard resume');
@@ -50,11 +53,13 @@ jobs:
                   const actual=await demo.locator('.kr-scan').evaluate(e=>{const m=new DOMMatrix(getComputedStyle(e).transform);return (Math.atan2(m.b,m.a)*180/Math.PI+360)%360});
                   assert(Math.abs(actual-(angle+1.5))<.3,'Beam angle and detection agree');
                 }
+                const signals=await demo.locator('.kr-signal').evaluateAll(es=>es.map(e=>Number(e.style.getPropertyValue('--kr-hit').replace('s',''))));
+                for(let i=0;i<signals.length;i++){await seek(signals[i]*1000+50);assert(await demo.locator('.kr-target').nth(i).evaluate(e=>Number(getComputedStyle(e).opacity)>.9),'Each new point pulses at its beam hit');}
                 if(page==='bot-crm.html'&&width===1440&&reduced==='no-preference'){
                   await demo.locator('.kr-scan,.kr-target,.kr-echo,.kr-lead-copy,.kr-check').evaluateAll(es=>es.forEach(e=>e.getAnimations().forEach(a=>{a.pause();a.currentTime=3200;})));
                   const shot=await demo.screenshot({type:'jpeg',quality:82});fs.writeFileSync(path.join(root,'radar-v2.jpg'),shot);console.log('RADAR_IMAGE '+shot.toString('base64'));
                 }
-                out.cases.push({page,width,reduced,toggle:true,keyboard:true,no_overflow:true,three_synced_hits:true,card_wraparound:true,point_ripples:true,errors});await c.close();
+                out.cases.push({page,width,reduced,toggle:true,keyboard:true,no_overflow:true,three_synced_hits:true,card_wraparound:true,point_ripples:true,twelve_points_synced:true,errors});await c.close();
               }
               out.status='passed';
             }finally{await b.close();fs.writeFileSync(path.join(root,'result.json'),JSON.stringify(out,null,2));console.log('RADAR_RESULT '+JSON.stringify(out));}
