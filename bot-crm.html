@@ -41,7 +41,7 @@
 </script>
 <!-- /Яндекс Метрика -->
 <link rel="stylesheet" href="fonts.css">
-<link rel="stylesheet" href="bot.css?v=20261024">
+<link rel="stylesheet" href="bot.css?v=20261114">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -122,7 +122,7 @@
  ]
 }
 </script>
-<link rel="stylesheet" href="demo-motion.css">
+<link rel="stylesheet" href="demo-motion.css?v=20261114">
 </head>
 <body class="theme-radar">
 <a class="skip-link" href="#main">К содержимому</a>
@@ -202,7 +202,6 @@ function snd(v){return v.closest('.vidbox').querySelector('.snd');}
 vs.forEach(function(v){var b=snd(v);function tg(){var on=v.muted;vs.forEach(function(o){if(o!==v){o.muted=true;snd(o).textContent='🔊 Включить звук';}});v.muted=!on;if(on){v.volume=1;v.controls=true;var p=v.play();if(p&&p.catch)p.catch(function(){v.controls=true;});}else{v.controls=false;}b.textContent=on?'🔇 Выключить звук':'🔊 Включить звук';}b.addEventListener('click',tg);v.addEventListener('click',tg);});
 if(rm||!('IntersectionObserver' in window))return;
 var io=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;if(e.isIntersecting){var p=v.play();if(p&&p.catch)p.catch(function(){});}else{v.pause();}});},{threshold:.35});vs.forEach(function(v){io.observe(v);});})();</script>
-<script src="demo-motion.js" defer></script>
+<script src="demo-motion.js?v=20261114" defer></script>
 </body>
 </html>
-

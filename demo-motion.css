@@ -21,9 +21,26 @@
 .rd-home .bot-card>.motion-toggle{align-self:flex-start;}
 .rd-home .mini-feed{display:grid;}
 @media(prefers-reduced-motion:reduce){
- .radar-demo .sweep,.radar-demo .rd-blip,.radar-demo .rd-ping{animation:none!important;}
- .radar-demo .rd-blip{opacity:.85;}.radar-demo .rd-ping{opacity:0;}
+ .radar-demo:not(.demo-motion-enabled) .sweep,.radar-demo:not(.demo-motion-enabled) .rd-blip,.radar-demo:not(.demo-motion-enabled) .rd-ping{animation:none!important;}
+ .radar-demo:not(.demo-motion-enabled) .rd-blip{opacity:.85;}.radar-demo:not(.demo-motion-enabled) .rd-ping{opacity:0;}
 }
+
+/* bot.css also disables every animation for reduced motion.
+   Opt in only this radar's named animations; leave play-state to visibility/pause. */
+@media(prefers-reduced-motion:reduce){
+ .radar-demo.demo-motion-enabled .sweep,
+ .radar-demo.demo-motion-enabled .rd-blip,
+ .radar-demo.demo-motion-enabled .rd-ping{
+  animation-duration:8s!important;
+  animation-timing-function:linear!important;
+  animation-iteration-count:infinite!important;
+  animation-delay:var(--hit,0s)!important;
+ }
+ .radar-demo.demo-motion-enabled .sweep{animation-name:clientRadarSweep!important;}
+ .radar-demo.demo-motion-enabled .rd-blip{animation-name:clientRadarHit!important;}
+ .radar-demo.demo-motion-enabled .rd-ping{animation-name:clientRadarPing!important;}
+}
+
 
 /* Homepage lead-search illustration: restrained scanner + one readable request. */
 .lead-radar-demo{width:100%;margin:4px 0 6px;border:1px solid #54809844;border-radius:14px;background:radial-gradient(ellipse at 0 65%,#163c5140,transparent 72%),#0a1c24;overflow:hidden;color:#ddecf4;}
@@ -59,10 +76,20 @@
 @keyframes leadSearchResult{0%,12%,91%,100%{transform:translateY(3px);border-color:#81aec332;box-shadow:0 8px 20px #00000012;}18%,72%{transform:translateY(0);border-color:#90cde17a;box-shadow:0 8px 24px #00000020,0 0 18px #60bad00b;}}
 @keyframes leadSearchFound{0%,14%,92%,100%{opacity:.4;transform:translateY(2px);}22%,78%{opacity:1;transform:translateY(0);}}
 @media(max-width:380px){.lead-radar-stage{grid-template-columns:70px minmax(0,1fr);gap:10px;padding:18px 12px 12px;}.lead-radar-request{padding:10px 8px;}.lead-radar-request strong{font-size:12px;}.lead-radar-top{padding-left:12px;padding-right:10px;}.lead-radar-label{gap:6px;font-size:11px;}}
-@media(prefers-reduced-motion:reduce){.lead-radar-demo *{animation:none!important;}.lead-radar-point,.lead-radar-found{opacity:1;}.lead-radar-beam{transform:rotate(45deg);}}
+@media(prefers-reduced-motion:reduce){.lead-radar-demo:not(.demo-motion-enabled) *{animation:none!important;}.lead-radar-demo:not(.demo-motion-enabled) .lead-radar-point,.lead-radar-demo:not(.demo-motion-enabled) .lead-radar-found{opacity:1;}.lead-radar-demo:not(.demo-motion-enabled) .lead-radar-beam{transform:rotate(45deg);}}
 
 /* A precise beam edge and a single response ripple keep the sequence legible. */
 .lead-radar-beam::after{content:"";position:absolute;left:50%;bottom:50%;height:50%;width:1px;background:linear-gradient(transparent,#b5e7f373);transform-origin:center bottom;}
 .lead-radar-point.point-one::after{content:"";position:absolute;inset:-4px;border:1px solid #9fdbea;border-radius:50%;opacity:0;animation:leadSearchRipple 9s ease-out infinite;animation-delay:-7.758s;}
 @keyframes leadSearchRipple{0%{opacity:.7;transform:scale(.6);}15%{opacity:0;transform:scale(2);}100%{opacity:0;transform:scale(2);}}
-@media(prefers-reduced-motion:reduce){.lead-radar-beam::after{opacity:.5;}.lead-radar-point.point-one::after{animation:none!important;opacity:0;}}
+@media(prefers-reduced-motion:reduce){.lead-radar-demo:not(.demo-motion-enabled) .lead-radar-beam::after{opacity:.5;}.lead-radar-demo:not(.demo-motion-enabled) .lead-radar-point.point-one::after{animation:none!important;opacity:0;}}
+
+/* A visitor may explicitly start an individual demo even with reduced motion.
+   Keep the system preference as the default; other page motion stays disabled. */
+@media(prefers-reduced-motion:reduce){
+ [data-motion-demo].demo-motion-enabled .mf2{animation:mf2in 9s ease-in-out infinite;}
+ [data-motion-demo].demo-motion-enabled .mf2-spam span{animation:mf2strike 9s ease-in-out infinite;animation-delay:.7s;}
+ [data-motion-demo].demo-motion-enabled .mf2-spam u{animation:mf2tag 9s ease-in-out infinite;animation-delay:.7s;}
+ [data-motion-demo].demo-motion-enabled .a2{animation-delay:.7s;}
+ [data-motion-demo].demo-motion-enabled .a3{animation-delay:2.2s;}
+}
