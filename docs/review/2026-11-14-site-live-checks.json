@@ -1,0 +1,50 @@
+{
+  "captured_at_utc": "2026-11-14T10:05:53.580Z",
+  "source_revision": "2ece087bf4f0fe2fc2a4a3a0e3488bc009a5c827",
+  "scope": "actual published website; analytics blocked",
+  "cases": [
+    {
+      "width": 1440,
+      "reduced_motion": "no-preference",
+      "initial_animation": true,
+      "manual_toggle_and_keyboard": true,
+      "no_download_links": true,
+      "no_overflow": true,
+      "offscreen_pause": true,
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "reduced_motion": "reduce",
+      "initial_animation": false,
+      "manual_toggle_and_keyboard": true,
+      "no_download_links": true,
+      "no_overflow": true,
+      "offscreen_pause": true,
+      "errors": []
+    },
+    {
+      "width": 390,
+      "reduced_motion": "no-preference",
+      "initial_animation": true,
+      "manual_toggle_and_keyboard": true,
+      "no_download_links": true,
+      "no_overflow": true,
+      "offscreen_pause": true,
+      "errors": []
+    },
+    {
+      "width": 390,
+      "reduced_motion": "reduce",
+      "initial_animation": false,
+      "manual_toggle_and_keyboard": true,
+      "no_download_links": true,
+      "no_overflow": true,
+      "offscreen_pause": true,
+      "errors": []
+    }
+  ],
+  "legacy_avatar_url_redirected": true,
+  "crm_manual_motion": true,
+  "status": "passed"
+}

@@ -1,9 +1,6 @@
 name: Verify published avatar and motion changes
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - ".github/workflows/site-live-verify.yml"
 permissions: {}
 jobs:
   review:
