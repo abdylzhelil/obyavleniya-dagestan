@@ -2,6 +2,9 @@ name: WhatsApp test 2 read-only reports
 # Metrika read-only OAuth application: 40fbd9c24b874b4bacaa0883e57ca434
 
 on:
+  push:
+    paths:
+      - ".github/workflows/direct-whatsapp-test2-reports.yml"
   workflow_dispatch:
     inputs:
       date_from:
@@ -462,6 +465,19 @@ jobs:
           (root/"summary.md").write_text(text)
           with open(os.environ["GITHUB_STEP_SUMMARY"],"a") as out: out.write("\n"+text)
           PYSUMMARY
+      - name: Record aggregated evidence for audit
+        if: always() && steps.window.outputs.enabled == 'true'
+        run: |
+          python3 - <<'PYEVIDENCE'
+          import json
+          from pathlib import Path
+          r=Path('direct-reports')
+          out={}
+          for name in ['metadata.json','metrika/status.json','metrika/daily.json','metrika/direct_daily.json','metrika/observed_utm.json']:
+              p=r/name
+              if p.exists():out[name]=json.loads(p.read_text())
+          print('AUDIT_EVIDENCE '+json.dumps(out,ensure_ascii=False))
+          PYEVIDENCE
       - name: Deliver summary to owner Telegram
         if: always() && steps.window.outputs.enabled == 'true' && github.event_name != 'push'
         env:

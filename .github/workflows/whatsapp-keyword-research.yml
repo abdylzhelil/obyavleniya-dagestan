@@ -1,6 +1,9 @@
 name: WhatsApp local keyword search-volume research
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/whatsapp-keyword-research.yml"
 permissions: {}
 jobs:
   research:
@@ -21,7 +24,7 @@ jobs:
               def redirect_request(self,*args):raise RuntimeError("Redirect refused")
           try:
               if not token:raise ValueError("Missing OAuth secret")
-              payload={"method":"hasSearchVolume","params":{"SelectionCriteria":{"Keywords":["группа объявлений Дагестан WhatsApp","объявления Дагестан ватсап группа","вступить в группу объявлений Дагестан","разместить объявление Дагестан WhatsApp","группа объявлений махачкала ватсап","объявления махачкала WhatsApp","группа объявлений хасавюрт ватсап","барахолка дагестан ватсап","группа объявлений дербент ватсап","группа объявлений каспийск ватсап","барахолка махачкала ватсап","группа объявлений дагестан"],"RegionIds":[11010]},"FieldNames":["Keyword","RegionIds","AllDevices","MobilePhones","Tablets","Desktops"]}}
+              payload={"method":"hasSearchVolume","params":{"SelectionCriteria":{"Keywords":["группа объявлений дагестан","объявления махачкала группа","барахолка дагестан группа","куплю продам дагестан группа","группа купи продай дагестан","барахолка хасавюрт ватсап","барахолка дербент ватсап","барахолка каспийск ватсап","группа объявлений кизилюрт","объявления кизилюрт ватсап","ватсап группа дагестан объявления","группы ватсап махачкала объявления","бесплатные объявления дагестан группа","подать объявление дагестан группа","купить продать махачкала группа","барахолка махачкала группа","куплю продам махачкала ватсап","группа объявлений хасавюрт","группа объявлений дербент","группа объявлений каспийск"],"RegionIds":[11010]},"FieldNames":["Keyword","RegionIds","AllDevices","MobilePhones","Tablets","Desktops"]}}
               record["request"]=payload
               request=urllib.request.Request("https://api.direct.yandex.com/json/v501/keywordsresearch",data=json.dumps(payload).encode(),method="POST",headers={"Authorization":"Bearer "+token,"Content-Type":"application/json","Accept-Language":"ru"})
               with urllib.request.build_opener(NoRedirect()).open(request,timeout=45) as response:data=json.loads(response.read(1048576))
