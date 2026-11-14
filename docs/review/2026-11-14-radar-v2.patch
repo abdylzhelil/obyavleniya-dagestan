@@ -1,0 +1,211 @@
+--- a/index.html
++++ b/index.html
+@@ -144,6 +144,7 @@
+ <link rel="stylesheet" href="demo-motion.css?v=20261114">
+ <link rel="stylesheet" href="community-offers.css">
+ <link rel="stylesheet" href="platform-prices.css">
++<link rel="stylesheet" href="radar-v2.css?v=20261114b">
+ </head>
+ <body class="rd-home">
+ 
+@@ -256,13 +257,28 @@
+           <span class="bot-ava bot-ava-radar" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 12l6-6"/></svg></span>
+           <div><h3>КлиентРадар</h3><span class="bot-sub">Заявки от клиентов</span></div>
+         </div>
+-        <div class="lead-radar-demo" id="home-radar" data-motion-demo>
+-  <div class="lead-radar-top"><span class="lead-radar-label">Поиск заявок <span>Демо</span></span><button class="motion-toggle lead-radar-pause" type="button" data-motion-for="home-radar" data-motion-compact aria-pressed="false" aria-label="Приостановить анимацию поиска заявок">Пауза</button></div>
+-  <div class="lead-radar-stage" aria-hidden="true">
+-    <div class="lead-radar-scope"><svg viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="54"/><circle cx="60" cy="60" r="36"/><circle cx="60" cy="60" r="18"/><path d="M60 6v108M6 60h108"/><circle class="lead-radar-center" cx="60" cy="60" r="3"/></svg><span class="lead-radar-beam"></span><i class="lead-radar-point point-one"></i><i class="lead-radar-point point-two"></i><i class="lead-radar-point point-three"></i><i class="lead-radar-point point-four"></i><i class="lead-radar-point point-five"></i><i class="lead-radar-point point-six"></i></div>
+-    <div class="lead-radar-result"><div class="lead-radar-request"><span class="lead-radar-location">Махачкала · Услуги</span><strong>Нужен электрик</strong><span class="lead-radar-excerpt">Коротит розетка. Кто может помочь?</span></div><div class="lead-radar-found"><svg viewBox="0 0 16 16" fill="none"><path d="m4 8 2.5 2.5L12 5"/></svg>Заявка найдена</div></div>
+-  </div>
+-  <p class="lead-radar-caption">Пример поиска. Найденную заявку можно вести в CRM.</p>
++        <div class="kr-demo" id="home-radar" data-motion-demo>
++  <div class="kr-toolbar"><span class="kr-brand"><i></i>КлиентРадар <small>ДЕМО</small></span><button type="button" class="motion-toggle kr-toggle" data-motion-for="home-radar" data-motion-compact aria-pressed="false">Пауза</button></div>
++  <div class="kr-canvas" aria-hidden="true">
++    <div class="kr-coordinate kr-coordinate-top">ПОИСК ПО НИШЕ И ГОРОДУ</div>
++    <svg class="kr-scope" viewBox="0 0 320 320" fill="none">
++      <defs>
++        <radialGradient id="home-radar-depth"><stop stop-color="#163e4a"/><stop offset="1" stop-color="#091c29"/></radialGradient>
++        <linearGradient id="home-radar-trail" x1="76" y1="76" x2="160" y2="20" gradientUnits="userSpaceOnUse"><stop stop-color="#70e2df" stop-opacity="0"/><stop offset="1" stop-color="#70e2df" stop-opacity=".22"/></linearGradient>
++      </defs>
++      <circle cx="160" cy="160" r="139" fill="url(#home-radar-depth)" stroke="#72b2bc" stroke-opacity=".2"/>
++      <g stroke="#74bdc5" stroke-opacity=".14"><circle cx="160" cy="160" r="105"/><circle cx="160" cy="160" r="70"/><circle cx="160" cy="160" r="35"/><path d="M160 21v278M21 160h278"/></g>
++      <g stroke="#9bd9df" stroke-opacity=".4"><path d="M160 14v6M160 300v6M14 160h6M300 160h6M57 57l4 4M259 259l4 4M57 263l4-4M259 61l4-4"/></g>
++      <g class="kr-scan"><path d="M160 160L61.7 61.7A139 139 0 0 1 160 21Z" fill="url(#home-radar-trail)"/><path d="M160 160V21" stroke="#86ece4" stroke-opacity=".75" stroke-width="1.1"/></g>
++      <g fill="#a9d0d5" opacity=".32"><circle cx="99" cy="102" r="2"/><circle cx="107" cy="217" r="2"/><circle cx="209" cy="232" r="2"/><circle cx="249" cy="168" r="2"/></g>
++      <circle class="kr-echo" cx="251" cy="108" r="9" stroke="#8aeee0"/>
++      <circle class="kr-target" cx="251" cy="108" r="4" fill="#b0fff0"/>
++      <circle cx="160" cy="160" r="8" fill="#79e6df" fill-opacity=".12"/><circle cx="160" cy="160" r="2.5" fill="#a2efe5"/>
++    </svg>
++    <span class="kr-map-label">ДАГЕСТАН</span>
++    <div class="kr-lead"><span class="kr-lead-icon"><svg viewBox="0 0 24 24"><path d="M6 5h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-7l-5 3v-3H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"/><path d="M8 9h8M8 13h5"/></svg></span><span class="kr-lead-copy"><small>Махачкала · Услуги</small><strong>Нужен электрик</strong><span>Кто поможет заменить розетку?</span></span><span class="kr-check">✓</span></div>
++  </div>
++  <div class="kr-footer"><span><i></i>Поиск → заявка → ваш ответ</span><small>Пример работы</small></div>
+ </div><p>Находит людей, которым нужна ваша услуга, в открытых группах, присылает заявки и помогает вести клиентов в CRM.</p>
+         <ul class="bot-tags"><li>Заявки</li><li>CRM</li><li>Ниши и город</li><li>Каталог групп</li></ul>
+         <div class="bot-actions">
+--- a/bot-crm.html
++++ b/bot-crm.html
+@@ -123,6 +123,7 @@
+ }
+ </script>
+ <link rel="stylesheet" href="demo-motion.css?v=20261114">
++<link rel="stylesheet" href="radar-v2.css?v=20261114b">
+ </head>
+ <body class="theme-radar">
+ <a class="skip-link" href="#main">К содержимому</a>
+@@ -148,17 +149,29 @@
+     <p class="hero-note"><b>Бесплатно:</b> до 5 заявок в день с задержкой 30 минут. Новым — 3 дня 💎 бесплатно. Выберите нишу и город — бот сразу покажет подходящие заявки за последние сутки, если они были.</p>
+     <ul class="hero-points"><li>📍 Сначала заявки из Дагестана</li><li>⚠️ Подсказывает о возможных схемах</li><li>🎁 3 дня полного тарифа бесплатно</li></ul>
+   </div>
+-  <div class="hero-visual"><div class="radar-demo " id="client-radar" data-motion-demo>
+- <div class="radar"><svg viewBox="0 0 200 200" role="img" aria-label="Пример поиска заявок: луч радара подсвечивает найденные цели"><defs><radialGradient id="client-radar-bg"><stop stop-color="#193c54"/><stop offset="1" stop-color="#081d2d"/></radialGradient><linearGradient id="client-radar-beam" x1="0" x2="1"><stop stop-color="#4cc3ff" stop-opacity="0"/><stop offset="1" stop-color="#4cc3ff" stop-opacity=".38"/></linearGradient></defs>
+- <circle cx="100" cy="100" r="97" fill="url(#client-radar-bg)"/>
+- <g class="radar-ticks"><path d="M100.00 9.00L100.00 4.00"/><path d="M123.55 12.10L124.85 7.27"/><path d="M145.50 21.19L148.00 16.86"/><path d="M164.35 35.65L167.88 32.12"/><path d="M178.81 54.50L183.14 52.00"/><path d="M187.90 76.45L192.73 75.15"/><path d="M191.00 100.00L196.00 100.00"/><path d="M187.90 123.55L192.73 124.85"/><path d="M178.81 145.50L183.14 148.00"/><path d="M164.35 164.35L167.88 167.88"/><path d="M145.50 178.81L148.00 183.14"/><path d="M123.55 187.90L124.85 192.73"/><path d="M100.00 191.00L100.00 196.00"/><path d="M76.45 187.90L75.15 192.73"/><path d="M54.50 178.81L52.00 183.14"/><path d="M35.65 164.35L32.12 167.88"/><path d="M21.19 145.50L16.86 148.00"/><path d="M12.10 123.55L7.27 124.85"/><path d="M9.00 100.00L4.00 100.00"/><path d="M12.10 76.45L7.27 75.15"/><path d="M21.19 54.50L16.86 52.00"/><path d="M35.65 35.65L32.12 32.12"/><path d="M54.50 21.19L52.00 16.86"/><path d="M76.45 12.10L75.15 7.27"/></g><circle class="ring" cx="100" cy="100" r="96"/><circle class="ring" cx="100" cy="100" r="70"/><circle class="ring" cx="100" cy="100" r="43"/><circle class="ring" cx="100" cy="100" r="18"/>
+- <path class="radar-cross" d="M100 5v190M5 100h190"/>
+- <g class="sweep"><path d="M100 100L26.5 38.3A96 96 0 0 1 100 4Z" fill="url(#client-radar-beam)"/><path d="M100 100V4" stroke="#8ddfff" stroke-width="1.2"/></g>
+- <g class="radar-target" style="--hit:-7.28653s"><circle class="rd-ping" cx="132" cy="49" r="5"/><circle class="rd-blip" cx="132" cy="49" r="3.3"/></g><g class="radar-target" style="--hit:-6.17001s"><circle class="rd-ping" cx="167" cy="91" r="5"/><circle class="rd-blip" cx="167" cy="91" r="3.3"/></g><g class="radar-target" style="--hit:-4.61884s"><circle class="rd-ping" cx="128" cy="153" r="5"/><circle class="rd-blip" cx="128" cy="153" r="3.3"/></g><g class="radar-target" style="--hit:-2.83343s"><circle class="rd-ping" cx="57" cy="133" r="5"/><circle class="rd-blip" cx="57" cy="133" r="3.3"/></g><g class="radar-target" style="--hit:-0.96560s"><circle class="rd-ping" cx="64" cy="62" r="5"/><circle class="rd-blip" cx="64" cy="62" r="3.3"/></g><circle cx="100" cy="100" r="4" fill="#b9edff"/>
+- </svg></div>
+- <p class="radar-demo-caption">Пример поиска заявок</p>
+- <button type="button" class="motion-toggle" data-motion-for="client-radar" aria-pressed="false">Приостановить анимацию</button>
+- </div></div>
++  <div class="hero-visual"><div class="kr-demo" id="client-radar" data-motion-demo>
++  <div class="kr-toolbar"><span class="kr-brand"><i></i>КлиентРадар <small>ДЕМО</small></span><button type="button" class="motion-toggle kr-toggle" data-motion-for="client-radar" data-motion-compact aria-pressed="false">Пауза</button></div>
++  <div class="kr-canvas" aria-hidden="true">
++    <div class="kr-coordinate kr-coordinate-top">ПОИСК ПО НИШЕ И ГОРОДУ</div>
++    <svg class="kr-scope" viewBox="0 0 320 320" fill="none">
++      <defs>
++        <radialGradient id="client-radar-depth"><stop stop-color="#163e4a"/><stop offset="1" stop-color="#091c29"/></radialGradient>
++        <linearGradient id="client-radar-trail" x1="76" y1="76" x2="160" y2="20" gradientUnits="userSpaceOnUse"><stop stop-color="#70e2df" stop-opacity="0"/><stop offset="1" stop-color="#70e2df" stop-opacity=".22"/></linearGradient>
++      </defs>
++      <circle cx="160" cy="160" r="139" fill="url(#client-radar-depth)" stroke="#72b2bc" stroke-opacity=".2"/>
++      <g stroke="#74bdc5" stroke-opacity=".14"><circle cx="160" cy="160" r="105"/><circle cx="160" cy="160" r="70"/><circle cx="160" cy="160" r="35"/><path d="M160 21v278M21 160h278"/></g>
++      <g stroke="#9bd9df" stroke-opacity=".4"><path d="M160 14v6M160 300v6M14 160h6M300 160h6M57 57l4 4M259 259l4 4M57 263l4-4M259 61l4-4"/></g>
++      <g class="kr-scan"><path d="M160 160L61.7 61.7A139 139 0 0 1 160 21Z" fill="url(#client-radar-trail)"/><path d="M160 160V21" stroke="#86ece4" stroke-opacity=".75" stroke-width="1.1"/></g>
++      <g fill="#a9d0d5" opacity=".32"><circle cx="99" cy="102" r="2"/><circle cx="107" cy="217" r="2"/><circle cx="209" cy="232" r="2"/><circle cx="249" cy="168" r="2"/></g>
++      <circle class="kr-echo" cx="251" cy="108" r="9" stroke="#8aeee0"/>
++      <circle class="kr-target" cx="251" cy="108" r="4" fill="#b0fff0"/>
++      <circle cx="160" cy="160" r="8" fill="#79e6df" fill-opacity=".12"/><circle cx="160" cy="160" r="2.5" fill="#a2efe5"/>
++    </svg>
++    <span class="kr-map-label">ДАГЕСТАН</span>
++    <div class="kr-lead"><span class="kr-lead-icon"><svg viewBox="0 0 24 24"><path d="M6 5h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-7l-5 3v-3H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"/><path d="M8 9h8M8 13h5"/></svg></span><span class="kr-lead-copy"><small>Махачкала · Услуги</small><strong>Нужен электрик</strong><span>Кто поможет заменить розетку?</span></span><span class="kr-check">✓</span></div>
++  </div>
++  <div class="kr-footer"><span><i></i>Поиск → заявка → ваш ответ</span><small>Пример работы</small></div>
++</div></div>
+ </div></section>
+ <section id="start"><div class="wrap">
+   <div class="sh-plain"><div class="sec-head rv"><div class="eyebrow">Как это работает</div><h2>Три шага до первых заявок</h2></div></div>
+--- a/scripts/templates/client-radar.html
++++ b/scripts/templates/client-radar.html
+@@ -1,11 +1,23 @@
+-<div class="radar-demo " id="client-radar" data-motion-demo>
+- <div class="radar"><svg viewBox="0 0 200 200" role="img" aria-label="Пример поиска заявок: луч радара подсвечивает найденные цели"><defs><radialGradient id="client-radar-bg"><stop stop-color="#193c54"/><stop offset="1" stop-color="#081d2d"/></radialGradient><linearGradient id="client-radar-beam" x1="0" x2="1"><stop stop-color="#4cc3ff" stop-opacity="0"/><stop offset="1" stop-color="#4cc3ff" stop-opacity=".38"/></linearGradient></defs>
+- <circle cx="100" cy="100" r="97" fill="url(#client-radar-bg)"/>
+- <g class="radar-ticks"><path d="M100.00 9.00L100.00 4.00"/><path d="M123.55 12.10L124.85 7.27"/><path d="M145.50 21.19L148.00 16.86"/><path d="M164.35 35.65L167.88 32.12"/><path d="M178.81 54.50L183.14 52.00"/><path d="M187.90 76.45L192.73 75.15"/><path d="M191.00 100.00L196.00 100.00"/><path d="M187.90 123.55L192.73 124.85"/><path d="M178.81 145.50L183.14 148.00"/><path d="M164.35 164.35L167.88 167.88"/><path d="M145.50 178.81L148.00 183.14"/><path d="M123.55 187.90L124.85 192.73"/><path d="M100.00 191.00L100.00 196.00"/><path d="M76.45 187.90L75.15 192.73"/><path d="M54.50 178.81L52.00 183.14"/><path d="M35.65 164.35L32.12 167.88"/><path d="M21.19 145.50L16.86 148.00"/><path d="M12.10 123.55L7.27 124.85"/><path d="M9.00 100.00L4.00 100.00"/><path d="M12.10 76.45L7.27 75.15"/><path d="M21.19 54.50L16.86 52.00"/><path d="M35.65 35.65L32.12 32.12"/><path d="M54.50 21.19L52.00 16.86"/><path d="M76.45 12.10L75.15 7.27"/></g><circle class="ring" cx="100" cy="100" r="96"/><circle class="ring" cx="100" cy="100" r="70"/><circle class="ring" cx="100" cy="100" r="43"/><circle class="ring" cx="100" cy="100" r="18"/>
+- <path class="radar-cross" d="M100 5v190M5 100h190"/>
+- <g class="sweep"><path d="M100 100L26.5 38.3A96 96 0 0 1 100 4Z" fill="url(#client-radar-beam)"/><path d="M100 100V4" stroke="#8ddfff" stroke-width="1.2"/></g>
+- <g class="radar-target" style="--hit:-7.28653s"><circle class="rd-ping" cx="132" cy="49" r="5"/><circle class="rd-blip" cx="132" cy="49" r="3.3"/></g><g class="radar-target" style="--hit:-6.17001s"><circle class="rd-ping" cx="167" cy="91" r="5"/><circle class="rd-blip" cx="167" cy="91" r="3.3"/></g><g class="radar-target" style="--hit:-4.61884s"><circle class="rd-ping" cx="128" cy="153" r="5"/><circle class="rd-blip" cx="128" cy="153" r="3.3"/></g><g class="radar-target" style="--hit:-2.83343s"><circle class="rd-ping" cx="57" cy="133" r="5"/><circle class="rd-blip" cx="57" cy="133" r="3.3"/></g><g class="radar-target" style="--hit:-0.96560s"><circle class="rd-ping" cx="64" cy="62" r="5"/><circle class="rd-blip" cx="64" cy="62" r="3.3"/></g><circle cx="100" cy="100" r="4" fill="#b9edff"/>
+- </svg></div>
+- <p class="radar-demo-caption">Пример поиска заявок</p>
+- <button type="button" class="motion-toggle" data-motion-for="client-radar" aria-pressed="false">Приостановить анимацию</button>
+- </div>
++<div class="kr-demo" id="client-radar" data-motion-demo>
++  <div class="kr-toolbar"><span class="kr-brand"><i></i>КлиентРадар <small>ДЕМО</small></span><button type="button" class="motion-toggle kr-toggle" data-motion-for="client-radar" data-motion-compact aria-pressed="false">Пауза</button></div>
++  <div class="kr-canvas" aria-hidden="true">
++    <div class="kr-coordinate kr-coordinate-top">ПОИСК ПО НИШЕ И ГОРОДУ</div>
++    <svg class="kr-scope" viewBox="0 0 320 320" fill="none">
++      <defs>
++        <radialGradient id="client-radar-depth"><stop stop-color="#163e4a"/><stop offset="1" stop-color="#091c29"/></radialGradient>
++        <linearGradient id="client-radar-trail" x1="76" y1="76" x2="160" y2="20" gradientUnits="userSpaceOnUse"><stop stop-color="#70e2df" stop-opacity="0"/><stop offset="1" stop-color="#70e2df" stop-opacity=".22"/></linearGradient>
++      </defs>
++      <circle cx="160" cy="160" r="139" fill="url(#client-radar-depth)" stroke="#72b2bc" stroke-opacity=".2"/>
++      <g stroke="#74bdc5" stroke-opacity=".14"><circle cx="160" cy="160" r="105"/><circle cx="160" cy="160" r="70"/><circle cx="160" cy="160" r="35"/><path d="M160 21v278M21 160h278"/></g>
++      <g stroke="#9bd9df" stroke-opacity=".4"><path d="M160 14v6M160 300v6M14 160h6M300 160h6M57 57l4 4M259 259l4 4M57 263l4-4M259 61l4-4"/></g>
++      <g class="kr-scan"><path d="M160 160L61.7 61.7A139 139 0 0 1 160 21Z" fill="url(#client-radar-trail)"/><path d="M160 160V21" stroke="#86ece4" stroke-opacity=".75" stroke-width="1.1"/></g>
++      <g fill="#a9d0d5" opacity=".32"><circle cx="99" cy="102" r="2"/><circle cx="107" cy="217" r="2"/><circle cx="209" cy="232" r="2"/><circle cx="249" cy="168" r="2"/></g>
++      <circle class="kr-echo" cx="251" cy="108" r="9" stroke="#8aeee0"/>
++      <circle class="kr-target" cx="251" cy="108" r="4" fill="#b0fff0"/>
++      <circle cx="160" cy="160" r="8" fill="#79e6df" fill-opacity=".12"/><circle cx="160" cy="160" r="2.5" fill="#a2efe5"/>
++    </svg>
++    <span class="kr-map-label">ДАГЕСТАН</span>
++    <div class="kr-lead"><span class="kr-lead-icon"><svg viewBox="0 0 24 24"><path d="M6 5h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-7l-5 3v-3H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"/><path d="M8 9h8M8 13h5"/></svg></span><span class="kr-lead-copy"><small>Махачкала · Услуги</small><strong>Нужен электрик</strong><span>Кто поможет заменить розетку?</span></span><span class="kr-check">✓</span></div>
++  </div>
++  <div class="kr-footer"><span><i></i>Поиск → заявка → ваш ответ</span><small>Пример работы</small></div>
++</div>
+--- /dev/null
++++ b/radar-v2.css
+@@ -0,0 +1,47 @@
++/* Shared ClientRadar demo: one visual language on home and product pages. */
++.kr-demo{--kr-line:#83cbd627;--kr-ink:#e5f3f6;box-sizing:border-box;isolation:isolate;width:100%;max-width:460px;min-width:0;border:1px solid var(--kr-line);border-radius:24px;background:linear-gradient(145deg,#102632,#081720 80%);box-shadow:0 24px 64px #020b1238,inset 0 1px #ffffff09;color:var(--kr-ink);font-family:inherit;overflow:hidden;text-align:left;}
++.kr-demo *{box-sizing:border-box;}
++.kr-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 20px;border-bottom:1px solid var(--kr-line);}
++.kr-brand{display:flex;gap:8px;align-items:center;font-size:12px;font-weight:600;letter-spacing:.01em;white-space:nowrap;}
++.kr-brand i,.kr-footer i{width:5px;height:5px;background:#94e5d4;border-radius:50%;display:inline-block;flex-shrink:0;}
++.kr-brand small{font-size:8px;font-weight:500;letter-spacing:.12em;color:#9cb5c0;border:1px solid #83cbd630;padding:3px 5px;border-radius:4px;}
++.kr-demo .kr-toggle{position:relative;z-index:2;min-width:62px;min-height:44px;margin:0;padding:7px 8px;border:0;border-radius:8px;background:transparent;color:#b6ced6;font:inherit;font-size:11px;cursor:pointer;}
++.kr-demo .kr-toggle:hover{color:#efffff;background:#82c7ca0d;}
++.kr-demo .kr-toggle:focus-visible{outline:2px solid #a5eddf;outline-offset:1px;}
++.kr-canvas{position:relative;padding:12px 20px 21px;overflow:hidden;background:radial-gradient(ellipse at 50% 34%,#246b7620,transparent 68%);}
++.kr-coordinate{font-size:8px;letter-spacing:.19em;color:#90adb9;text-align:center;padding-top:8px;}
++.kr-scope{display:block;width:min(100%,304px);height:auto;aspect-ratio:1;margin:0 auto;}
++.kr-scan{transform-origin:160px 160px;transform-box:view-box;}
++.kr-map-label{position:absolute;left:50%;top:52%;transform:translateX(-50%);font-size:7px;letter-spacing:.24em;color:#8fb4be99;pointer-events:none;}
++.kr-lead{position:relative;display:flex;align-items:center;gap:12px;max-width:350px;margin:-29px auto 0;padding:16px;border:1px solid #99d9dd3b;border-radius:14px;background:linear-gradient(120deg,#203d49f5,#132d39fa);box-shadow:0 12px 26px #020b1240,inset 0 1px #ffffff06;}
++.kr-lead-icon{width:36px;height:40px;display:grid;place-items:center;background:#83d8d40e;border:1px solid #83d8d41f;border-radius:10px;flex-shrink:0;}
++.kr-lead-icon svg{width:20px;height:20px;fill:none;stroke:#9be0d9;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;}
++.kr-lead-copy{display:flex;flex-direction:column;min-width:0;gap:5px;}
++.kr-lead-copy small{font-size:9px;line-height:1.5;color:#a8c7cf;}
++.kr-lead-copy strong{font-size:14px;line-height:1.4;font-weight:600;color:#eef9fb;}
++.kr-lead-copy>span{font-size:10px;line-height:1.6;color:#b9cfd6;}
++.kr-check{margin-left:auto;align-self:flex-start;display:grid;place-items:center;min-width:19px;height:19px;border:1px solid #9be6d73d;background:#9be6d70a;border-radius:50%;font-size:11px;color:#b6eddf;}
++.kr-footer{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:14px 20px;border-top:1px solid var(--kr-line);font-size:9px;line-height:1.5;color:#b0cad2;}
++.kr-footer>span{display:flex;align-items:center;gap:7px;}
++.kr-footer small{font-size:8px;color:#88a5b1;white-space:nowrap;}
++/* Explicit longhands avoid the product page's global reduced-motion reset.
++   Play state remains independent so pause / hidden tab / offscreen work. */
++.kr-demo .kr-scan,.kr-demo .kr-target,.kr-demo .kr-echo,.kr-demo .kr-lead{animation-duration:12s!important;animation-iteration-count:infinite!important;animation-delay:0s!important;animation-direction:normal!important;animation-fill-mode:both!important;}
++.kr-demo .kr-scan{animation-name:krScan!important;animation-timing-function:linear!important;}
++.kr-demo .kr-target{animation-name:krTarget!important;animation-timing-function:ease-out!important;}
++.kr-demo .kr-echo{animation-name:krEcho!important;animation-timing-function:ease-out!important;transform-origin:251px 108px;transform-box:view-box;}
++.kr-demo .kr-lead{animation-name:krLead!important;animation-timing-function:ease-in-out!important;}
++.kr-demo.demo-motion-paused *{animation-play-state:paused!important;}
++@keyframes krScan{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
++@keyframes krTarget{0%,13%{opacity:.25}17%,27%{opacity:1}50%,100%{opacity:.35}}
++@keyframes krEcho{0%,15%{opacity:0;transform:scale(.65)}17%{opacity:.65;transform:scale(.8)}31%,100%{opacity:0;transform:scale(2.1)}}
++@keyframes krLead{0%,13%,100%{opacity:.55;transform:translateY(4px);border-color:#99d9dd26}22%,74%{opacity:1;transform:translateY(0);border-color:#99d9dd55}90%{opacity:.55;transform:translateY(4px);border-color:#99d9dd26}}
++@media(prefers-reduced-motion:reduce){.kr-demo:not(.demo-motion-enabled) .kr-scan,.kr-demo:not(.demo-motion-enabled) .kr-target,.kr-demo:not(.demo-motion-enabled) .kr-echo,.kr-demo:not(.demo-motion-enabled) .kr-lead{animation-name:none!important;}.kr-demo:not(.demo-motion-enabled) .kr-scan{transform:rotate(60deg)}.kr-demo:not(.demo-motion-enabled) .kr-echo{opacity:0}}
++.hero-visual>.kr-demo{margin-inline:auto;}
++.rd-home .bot-card>.kr-demo{max-width:none;margin:4px 0 6px;border-radius:18px;box-shadow:none;}
++.rd-home .bot-card>.kr-demo .kr-scope{max-width:220px;}
++.rd-home .bot-card>.kr-demo .kr-toolbar{padding:5px 14px;}
++.rd-home .bot-card>.kr-demo .kr-canvas{padding:10px 14px 15px;}
++.rd-home .bot-card>.kr-demo .kr-lead{padding:12px;gap:10px;margin-top:-20px;}
++.rd-home .bot-card>.kr-demo .kr-footer{padding:12px 14px;}
++@media(max-width:380px){.kr-toolbar{padding-inline:12px;gap:4px}.kr-brand{font-size:11px;gap:6px}.kr-canvas{padding-inline:12px}.kr-footer{padding-inline:12px;gap:5px}.kr-footer small{font-size:7px}.kr-lead{padding:12px;gap:9px}.kr-lead-copy strong{font-size:13px}.kr-lead-copy>span{font-size:9px}}
+--- /dev/null
++++ b/scripts/sync_radar.py
+@@ -0,0 +1,24 @@
++"""Refresh both radar instances from the canonical template, without rebuilding page copy."""
++from pathlib import Path
++import re
++
++root = Path(__file__).resolve().parent.parent
++template = (root / "scripts/templates/client-radar.html").read_text().strip()
++for name, demo_id in (("index.html", "home-radar"), ("bot-crm.html", "client-radar")):
++    page = root / name
++    text = page.read_text()
++    # Balanced div parser: the component contains nested cards and controls.
++    marker = '<div class="kr-demo" id="' + demo_id + '"'
++    start = text.index(marker)
++    depth = 0
++    end = None
++    for tag in re.finditer(r"</?div\b[^>]*>", text[start:]):
++        depth += -1 if tag.group().startswith("</") else 1
++        if depth == 0:
++            end = start + tag.end()
++            break
++    if end is None:
++        raise ValueError("Unclosed radar component: " + name)
++    text = text[:start] + template.replace("client-radar", demo_id) + text[end:]
++    page.write_text(text)
++print("Updated home and CRM radar from the same template")

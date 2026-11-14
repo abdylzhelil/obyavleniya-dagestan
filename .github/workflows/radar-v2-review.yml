@@ -1,0 +1,63 @@
+name: Review redesigned ClientRadar
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/radar-v2-review.yml"
+permissions: {}
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Install pinned browser library
+        run: npm install --prefix /tmp/radar-review --ignore-scripts --no-audit --no-fund playwright@1.56.1
+      - name: Preview and test proposed component only
+        run: |
+          node <<'JS'
+          const {chromium}=require('/tmp/radar-review/node_modules/playwright');
+          const fs=require('fs'),cp=require('child_process'),path=require('path');
+          const assert=(x,m)=>{if(!x)throw Error(m)};
+          (async()=>{
+            const root=path.resolve('review');fs.mkdirSync(root,{recursive:true});
+            const files=['index.html','bot-crm.html','scripts/templates/client-radar.html','demo-motion.js','docs/review/2026-11-14-radar-v2.patch'];
+            for(const f of files){const r=await fetch('https://raw.githubusercontent.com/abdylzhelil/obyavleniya-dagestan/'+process.env.GITHUB_SHA+'/'+f);assert(r.ok,'Fetch '+f);const p=path.join(root,f);fs.mkdirSync(path.dirname(p),{recursive:true});fs.writeFileSync(p,Buffer.from(await r.arrayBuffer()));}
+            cp.execFileSync('git',['apply','--check','docs/review/2026-11-14-radar-v2.patch'],{cwd:root});
+            cp.execFileSync('git',['apply','docs/review/2026-11-14-radar-v2.patch'],{cwd:root});
+            const css=fs.readFileSync(path.join(root,'radar-v2.css'),'utf8'),html=fs.readFileSync(path.join(root,'scripts/templates/client-radar.html'),'utf8'),motion=fs.readFileSync(path.join(root,'demo-motion.js'),'utf8');
+            fs.writeFileSync(path.join(root,'preview.html'),'<!doctype html><html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Новый КлиентРадар — предпросмотр</title><style>body{margin:0;background:#08141d;color:#e5f3f6;font-family:system-ui,sans-serif;padding:32px 18px}main{max-width:960px;margin:auto}h1{font-size:28px;margin:0 0 12px}p{color:#a8c1ca;line-height:1.6}.grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}.card h2{font-size:14px;color:#a8c1ca;font-weight:500;margin:24px 0 16px}@media(max-width:650px){.grid{grid-template-columns:1fr}}'+css+'</style><main><h1>КлиентРадар</h1><p>Новый вариант анимации. Это пример, не реальные заявки.</p><div class="grid"><section class="card"><h2>На странице бота</h2>'+html+'</section><section class="card rd-home"><h2>На главной</h2><article class="bot-card">'+html.replaceAll('client-radar','home-radar')+'</article></section></div></main><script>'+motion+'</script></html>');
+            const b=await chromium.launch({executablePath:'/usr/bin/google-chrome',headless:true,args:['--no-sandbox']});
+            const out={captured_at_utc:new Date().toISOString(),source_revision:process.env.GITHUB_SHA,scope:'proposed only; live source unchanged; analytics blocked',cases:[]};
+            try{
+              for(const page of ['index.html','bot-crm.html'])for(const width of [1440,390])for(const reduced of ['no-preference','reduce']){
+                const c=await b.newContext({viewport:{width,height:1000},reducedMotion:reduced});
+                await c.route('**/*',async route=>{const u=new URL(route.request().url());if(/(^|\.)mc\.yandex\./.test(u.hostname)||/\.(mp4|webm)(\?|$)/.test(u.href))return route.abort();const rel=u.pathname==='/'?'index.html':u.pathname.slice(1);if(u.origin==='https://obyavleniya-dagestan.ru'&&['index.html','bot-crm.html','radar-v2.css','demo-motion.js'].includes(rel)){return route.fulfill({body:fs.readFileSync(path.join(root,rel)),contentType:(rel.endsWith('.html')?'text/html':rel.endsWith('.css')?'text/css':'application/javascript')+'; charset=utf-8'});}return route.continue();});
+                const p=await c.newPage(),errors=[];p.on('pageerror',e=>errors.push(e.message));
+                await p.goto('https://obyavleniya-dagestan.ru/'+page,{waitUntil:'domcontentloaded',timeout:45000});
+                const decline=p.getByRole('button',{name:'Отказаться',exact:true});if(await decline.count())await Promise.all([p.waitForEvent('load'),decline.click()]);
+                const demo=p.locator('.kr-demo');await demo.scrollIntoViewIfNeeded();await p.waitForTimeout(250);
+                const changed=async()=>{const first=await demo.locator('.kr-scan').evaluate(e=>getComputedStyle(e).transform);await p.waitForTimeout(350);return first!==await demo.locator('.kr-scan').evaluate(e=>getComputedStyle(e).transform)};
+                const toggle=demo.locator('button');assert(await toggle.isVisible(),'Control visible');
+                assert(await changed()===(reduced==='no-preference'),'Initial motion preference');
+                if(reduced==='reduce'){await toggle.click();assert(await changed(),'Reduced opt-in');}
+                await toggle.click();assert(!await changed(),'Pause');await toggle.focus();await p.keyboard.press('Space');assert(await changed(),'Keyboard resume');
+                assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'No horizontal overflow');
+                const box=await demo.boundingBox();assert(box.x>=0&&box.x+box.width<=width+1,'Demo within viewport');
+                assert(errors.length===0,'Page errors '+errors.join(','));
+                if(page==='bot-crm.html'&&width===1440&&reduced==='no-preference'){
+                  await demo.locator('.kr-scan,.kr-target,.kr-echo,.kr-lead').evaluateAll(es=>es.forEach(e=>e.getAnimations().forEach(a=>{a.pause();a.currentTime=3200;})));
+                  const shot=await demo.screenshot({type:'jpeg',quality:82});fs.writeFileSync(path.join(root,'radar-v2.jpg'),shot);console.log('RADAR_IMAGE '+shot.toString('base64'));
+                }
+                out.cases.push({page,width,reduced,toggle:true,keyboard:true,no_overflow:true,errors});await c.close();
+              }
+              out.status='passed';
+            }finally{await b.close();fs.writeFileSync(path.join(root,'result.json'),JSON.stringify(out,null,2));console.log('RADAR_RESULT '+JSON.stringify(out));}
+          })().catch(e=>{console.log('RADAR_ERROR '+e.stack);process.exitCode=1});
+          JS
+      - name: Save preview and checks
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: radar-v2-review-${{ github.run_id }}
+          path: review/
+          retention-days: 30
