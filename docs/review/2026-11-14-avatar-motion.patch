@@ -1,0 +1,231 @@
+diff --git a/index.html b/index.html
+index 74e1f4e..6340404 100644
+--- a/index.html
++++ b/index.html
+@@ -141,7 +141,7 @@
+ <link rel="stylesheet" href="style.css">
+ <link rel="stylesheet" href="redesign.css">
+ <link rel="preload" href="assets/brand/hero.webp" as="image">
+-<link rel="stylesheet" href="demo-motion.css">
++<link rel="stylesheet" href="demo-motion.css?v=20261114">
+ <link rel="stylesheet" href="community-offers.css">
+ <link rel="stylesheet" href="platform-prices.css">
+ </head>
+@@ -332,13 +332,12 @@
+       </div>
+     </div>
+     <nav class="footer-cats" aria-label="Категории объявлений"><span>Категории:</span><a href="avto-dagestan.html">Автомобили</a><a href="nedvizhimost-dagestan.html">Недвижимость</a><a href="tehnika-dagestan.html">Техника</a><a href="odezhda-dagestan.html">Одежда</a><a href="uslugi-dagestan.html">Услуги</a><a href="rabota-dagestan.html">Работа</a><a href="tovary-dagestan.html">Товары</a><a href="raznoe-dagestan.html">Разное</a></nav>
+-    <div class="footer-bottom">© ОБЪЯВЛЕНИЯ ДАГЕСТАНА · <a href="privacy.html">Политика конфиденциальности</a> · <a href="brand-assets.html">Аватары групп</a></div>
++    <div class="footer-bottom">© ОБЪЯВЛЕНИЯ ДАГЕСТАНА · <a href="privacy.html">Политика конфиденциальности</a></div>
+   </div>
+ </footer>
+ 
+ <script src="script.js" defer></script>
+ <script src="page.js" defer></script>
+-<script src="demo-motion.js" defer></script>
++<script src="demo-motion.js?v=20261114" defer></script>
+ </body>
+ </html>
+-
+diff --git a/brand-assets.html b/brand-assets.html
+index 5c8f94e..aa40361 100644
+--- a/brand-assets.html
++++ b/brand-assets.html
+@@ -1,49 +1,13 @@
+-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><title>Новые аватары групп — Объявления Дагестана</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="redesign.css"><link rel="stylesheet" href="site-pages.css">
+-</head><body class="rd-page brand-assets-page">
+-<a class="skip-link" href="#main">К содержимому</a><header>
+-  <div class="wrap topbar">
+-    <a class="brand-mark" href="index.html">
+-      <span class="logo-badge"><img src="assets/brand/whatsapp.webp" alt="Логотип «Объявления Дагестана»" width="34" height="34"></span>
+-      <span class="brand">ОБЪЯВЛЕНИЯ ДАГЕСТАНА</span>
+-    </a>
+-    <nav class="nav-links rd-nav" id="site-nav" aria-label="Разделы сайта">
+- <div class="rd-nav-heading">Разделы сайта</div>
+- <a class="rd-nav-home" href="index.html">Главная</a>
+- <a href="index.html#groups">Наши группы</a>
+- <details class="rd-nav-section"><summary>Категории</summary><div class="rd-nav-sub"><a href="avto-dagestan.html">Автомобили</a><a href="nedvizhimost-dagestan.html">Недвижимость</a><a href="tehnika-dagestan.html">Техника</a><a href="odezhda-dagestan.html">Одежда</a><a href="uslugi-dagestan.html">Услуги</a><a href="rabota-dagestan.html">Работа</a><a href="tovary-dagestan.html">Товары</a><a href="raznoe-dagestan.html">Разное</a></div></details>
+- <a href="reklama.html">Реклама и цены</a>
+- <details class="rd-nav-section"><summary>Наши боты</summary><div class="rd-nav-sub"><a href="bot-moderation.html">Modexa — модерация групп</a><a href="bot-crm.html">КлиентРадар — заявки и CRM</a></div></details>
+- <a href="index.html#rules">Правила</a><a href="index.html#faq">Вопросы и ответы</a><a href="#contact">Контакты</a>
+- </nav>
+-    <button class="menu-toggle" type="button" aria-label="Меню" aria-expanded="false" aria-controls="site-nav"><svg aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-menu"></use></svg></button>
+-  </div>
+-  <div class="flag-stripe" aria-hidden="true"><span class="g1"></span><span class="g2"></span><span class="g3"></span></div>
+-</header>
+-
+-<main id="main"><section><div class="wrap"><a href="index.html">← На главную</a><div class="section-head" style="margin-top:32px"><div><div class="eyebrow">Новый образ сообщества</div><h1>Аватары Telegram и WhatsApp</h1></div></div><p style="margin-bottom:28px;max-width:650px">Готовые изображения с названием «ОБЪЯВЛЕНИЯ ДАГЕСТАНА» для оформления групп. Скачайте квадратный оригинал и установите его в настройках нужной группы. Круглый вид ниже показывает, как аватар будет выглядеть в приложении.</p><div class="group-grid"><article class="group-card" style="padding:24px"><img src="assets/brand/telegram.webp" alt="Новый аватар Telegram с эмблемой гор" width="1024" height="1024" style="width:100%;height:auto;border-radius:50%;margin-bottom:24px"><h2 style="font-size:28px;margin-bottom:16px">Telegram</h2><a class="btn btn-block btn-tg" href="assets/brand/telegram.png" download="Obyavleniya-Dagestana-telegram.png">Скачать аватар PNG ↓</a></article><article class="group-card" style="padding:24px"><img src="assets/brand/whatsapp.webp" alt="Новый аватар WhatsApp с эмблемой гор" width="1024" height="1024" style="width:100%;height:auto;border-radius:50%;margin-bottom:24px"><h2 style="font-size:28px;margin-bottom:16px">WhatsApp</h2><a class="btn btn-block btn-wa" href="assets/brand/whatsapp.png" download="Obyavleniya-Dagestana-whatsapp.png">Скачать аватар PNG ↓</a></article></div><p style="margin-top:24px;color:var(--ink-soft)">Иллюстрации созданы для оформления проекта. Аватары внутри Telegram и WhatsApp автоматически не менялись.</p></div></section></main>
+-<footer id="contact">
+-  <div class="wrap">
+-    <div class="footer-grid">
+-      <div>
+-        <div class="brand-mark"><span class="logo-badge"><img src="assets/brand/whatsapp.webp" alt="" width="34" height="34"></span><span class="brand">ОБЪЯВЛЕНИЯ ДАГЕСТАНА</span></div>
+-        <div class="footer-tag">Покупка • Продажа • Услуги • Работа</div>
+-      </div>
+-      <nav class="footer-links" aria-label="Ссылки в подвале">
+-        <a href="index.html">Главная</a>
+-        <a href="index.html#groups">Наши группы</a>
+-        <a href="index.html#rules">Правила</a>
+-        <a href="index.html#advertising">Реклама</a>
+-        <a href="bot-moderation.html">Modexa</a>
+-        <a href="bot-crm.html">КлиентРадар</a>
+-        <a href="#contact" data-contact="telegram" data-goal="ad_contact_telegram">Контакты</a>
+-      </nav>
+-      <div class="footer-ctas">
+-        <a class="btn btn-wa btn-sm" href="index.html#groups" data-join="whatsapp" data-goal="join_whatsapp">WhatsApp</a>
+-        <a class="btn btn-tg btn-sm" href="index.html#groups" data-join="telegram" data-goal="join_telegram">Telegram</a>
+-      </div>
+-    </div>
+-    <nav class="footer-cats" aria-label="Категории объявлений"><span>Категории:</span><a href="avto-dagestan.html">Автомобили</a><a href="nedvizhimost-dagestan.html">Недвижимость</a><a href="tehnika-dagestan.html">Техника</a><a href="odezhda-dagestan.html">Одежда</a><a href="uslugi-dagestan.html">Услуги</a><a href="rabota-dagestan.html">Работа</a><a href="tovary-dagestan.html">Товары</a><a href="raznoe-dagestan.html">Разное</a></nav>
+-    <div class="footer-bottom">© ОБЪЯВЛЕНИЯ ДАГЕСТАНА · <a href="privacy.html">Политика конфиденциальности</a></div>
+-  </div>
+-</footer><script src="script.js" defer></script>
+-</body></html>
+\ No newline at end of file
++<!doctype html>
++<html lang="ru">
++<head>
++<meta charset="utf-8">
++<meta name="viewport" content="width=device-width, initial-scale=1">
++<meta name="robots" content="noindex">
++<meta http-equiv="refresh" content="0;url=index.html#groups">
++<title>Наши группы — Объявления Дагестана</title>
++</head>
++<body>
++<p><a href="index.html#groups">Перейти к нашим группам</a></p>
++</body>
++</html>
+diff --git a/demo-motion.js b/demo-motion.js
+index 664591c..9406c9e 100644
+--- a/demo-motion.js
++++ b/demo-motion.js
+@@ -1,12 +1,58 @@
+-/* Pause decorative motion offscreen, in hidden tabs, or at the user's request. */
+-(function(){
+- const reduce=window.matchMedia('(prefers-reduced-motion: reduce)');
+- const demos=[...document.querySelectorAll('[data-motion-demo]')].map(function(node){
+-  return {node:node,button:document.querySelector('[data-motion-for="'+node.id+'"]'),visible:false,paused:false};
+- });
+- function update(d){d.node.classList.toggle('demo-motion-paused',!d.visible||d.paused||document.hidden||reduce.matches);if(d.button){d.button.hidden=reduce.matches;d.button.setAttribute('aria-pressed',String(d.paused));d.button.setAttribute('aria-label',d.paused?'Продолжить анимацию':'Приостановить анимацию');d.button.textContent=d.button.hasAttribute('data-motion-compact')?(d.paused?'Продолжить':'Пауза'):(d.paused?'Продолжить анимацию':'Приостановить анимацию');}}
+- const io='IntersectionObserver' in window?new IntersectionObserver(function(entries){entries.forEach(function(e){const d=demos.find(x=>x.node===e.target);d.visible=e.isIntersecting;update(d);});},{threshold:.1}):null;
+- demos.forEach(function(d){if(d.button)d.button.addEventListener('click',function(){d.paused=!d.paused;update(d);});if(io)io.observe(d.node);else d.visible=true;update(d);});
+- document.addEventListener('visibilitychange',function(){demos.forEach(update);});
+- if(reduce.addEventListener)reduce.addEventListener('change',function(){demos.forEach(update);});
++/* Pause decorative demos offscreen or in hidden tabs.
++   Respect reduced motion by default and allow an explicit per-demo opt-in. */
++(function () {
++  const reduce = typeof window.matchMedia === "function"
++    ? window.matchMedia("(prefers-reduced-motion: reduce)") : { matches: false };
++  const demos = Array.from(document.querySelectorAll("[data-motion-demo]")).map(function (node) {
++    return {
++      node: node,
++      button: document.querySelector('[data-motion-for="' + node.id + '"]'),
++      visible: false,
++      choice: null
++    };
++  });
++
++  function enabled(demo) {
++    return demo.choice === null ? !reduce.matches : demo.choice;
++  }
++
++  function update(demo) {
++    const play = enabled(demo);
++    demo.node.classList.toggle("demo-motion-enabled", reduce.matches && play);
++    demo.node.classList.toggle("demo-motion-paused", !demo.visible || !play || document.hidden);
++    if (!demo.button) return;
++    const label = play ? "Приостановить анимацию"
++      : (reduce.matches ? "Включить анимацию" : "Продолжить анимацию");
++    demo.button.hidden = false;
++    demo.button.setAttribute("aria-pressed", String(!play));
++    demo.button.setAttribute("aria-label", label);
++    demo.button.textContent = demo.button.hasAttribute("data-motion-compact")
++      ? (play ? "Пауза" : (reduce.matches ? "Включить" : "Продолжить")) : label;
++  }
++
++  const observer = "IntersectionObserver" in window ? new IntersectionObserver(function (entries) {
++    entries.forEach(function (entry) {
++      const demo = demos.find(function (item) { return item.node === entry.target; });
++      if (!demo) return;
++      demo.visible = entry.isIntersecting;
++      update(demo);
++    });
++  }, { threshold: 0.1 }) : null;
++
++  demos.forEach(function (demo) {
++    if (demo.button) demo.button.addEventListener("click", function () {
++      demo.choice = !enabled(demo);
++      update(demo);
++    });
++    if (observer) observer.observe(demo.node);
++    else demo.visible = true;
++    update(demo);
++  });
++
++  document.addEventListener("visibilitychange", function () { demos.forEach(update); });
++  function preferenceChanged() {
++    demos.forEach(function (demo) { demo.choice = null; update(demo); });
++  }
++  if (reduce.addEventListener) reduce.addEventListener("change", preferenceChanged);
++  else if (reduce.addListener) reduce.addListener(preferenceChanged);
+ })();
+diff --git a/demo-motion.css b/demo-motion.css
+index a797c9b..aeb06c4 100644
+--- a/demo-motion.css
++++ b/demo-motion.css
+@@ -21,8 +21,8 @@
+ .rd-home .bot-card>.motion-toggle{align-self:flex-start;}
+ .rd-home .mini-feed{display:grid;}
+ @media(prefers-reduced-motion:reduce){
+- .radar-demo .sweep,.radar-demo .rd-blip,.radar-demo .rd-ping{animation:none!important;}
+- .radar-demo .rd-blip{opacity:.85;}.radar-demo .rd-ping{opacity:0;}
++ .radar-demo:not(.demo-motion-enabled) .sweep,.radar-demo:not(.demo-motion-enabled) .rd-blip,.radar-demo:not(.demo-motion-enabled) .rd-ping{animation:none!important;}
++ .radar-demo:not(.demo-motion-enabled) .rd-blip{opacity:.85;}.radar-demo:not(.demo-motion-enabled) .rd-ping{opacity:0;}
+ }
+ 
+ /* Homepage lead-search illustration: restrained scanner + one readable request. */
+@@ -59,10 +59,20 @@
+ @keyframes leadSearchResult{0%,12%,91%,100%{transform:translateY(3px);border-color:#81aec332;box-shadow:0 8px 20px #00000012;}18%,72%{transform:translateY(0);border-color:#90cde17a;box-shadow:0 8px 24px #00000020,0 0 18px #60bad00b;}}
+ @keyframes leadSearchFound{0%,14%,92%,100%{opacity:.4;transform:translateY(2px);}22%,78%{opacity:1;transform:translateY(0);}}
+ @media(max-width:380px){.lead-radar-stage{grid-template-columns:70px minmax(0,1fr);gap:10px;padding:18px 12px 12px;}.lead-radar-request{padding:10px 8px;}.lead-radar-request strong{font-size:12px;}.lead-radar-top{padding-left:12px;padding-right:10px;}.lead-radar-label{gap:6px;font-size:11px;}}
+-@media(prefers-reduced-motion:reduce){.lead-radar-demo *{animation:none!important;}.lead-radar-point,.lead-radar-found{opacity:1;}.lead-radar-beam{transform:rotate(45deg);}}
++@media(prefers-reduced-motion:reduce){.lead-radar-demo:not(.demo-motion-enabled) *{animation:none!important;}.lead-radar-demo:not(.demo-motion-enabled) .lead-radar-point,.lead-radar-demo:not(.demo-motion-enabled) .lead-radar-found{opacity:1;}.lead-radar-demo:not(.demo-motion-enabled) .lead-radar-beam{transform:rotate(45deg);}}
+ 
+ /* A precise beam edge and a single response ripple keep the sequence legible. */
+ .lead-radar-beam::after{content:"";position:absolute;left:50%;bottom:50%;height:50%;width:1px;background:linear-gradient(transparent,#b5e7f373);transform-origin:center bottom;}
+ .lead-radar-point.point-one::after{content:"";position:absolute;inset:-4px;border:1px solid #9fdbea;border-radius:50%;opacity:0;animation:leadSearchRipple 9s ease-out infinite;animation-delay:-7.758s;}
+ @keyframes leadSearchRipple{0%{opacity:.7;transform:scale(.6);}15%{opacity:0;transform:scale(2);}100%{opacity:0;transform:scale(2);}}
+-@media(prefers-reduced-motion:reduce){.lead-radar-beam::after{opacity:.5;}.lead-radar-point.point-one::after{animation:none!important;opacity:0;}}
++@media(prefers-reduced-motion:reduce){.lead-radar-demo:not(.demo-motion-enabled) .lead-radar-beam::after{opacity:.5;}.lead-radar-demo:not(.demo-motion-enabled) .lead-radar-point.point-one::after{animation:none!important;opacity:0;}}
++
++/* A visitor may explicitly start an individual demo even with reduced motion.
++   Keep the system preference as the default; other page motion stays disabled. */
++@media(prefers-reduced-motion:reduce){
++ [data-motion-demo].demo-motion-enabled .mf2{animation:mf2in 9s ease-in-out infinite;}
++ [data-motion-demo].demo-motion-enabled .mf2-spam span{animation:mf2strike 9s ease-in-out infinite;animation-delay:.7s;}
++ [data-motion-demo].demo-motion-enabled .mf2-spam u{animation:mf2tag 9s ease-in-out infinite;animation-delay:.7s;}
++ [data-motion-demo].demo-motion-enabled .a2{animation-delay:.7s;}
++ [data-motion-demo].demo-motion-enabled .a3{animation-delay:2.2s;}
++}
+diff --git a/bot-crm.html b/bot-crm.html
+index a1f4297..64e4fc9 100644
+--- a/bot-crm.html
++++ b/bot-crm.html
+@@ -122,7 +122,7 @@
+  ]
+ }
+ </script>
+-<link rel="stylesheet" href="demo-motion.css">
++<link rel="stylesheet" href="demo-motion.css?v=20261114">
+ </head>
+ <body class="theme-radar">
+ <a class="skip-link" href="#main">К содержимому</a>
+@@ -202,7 +202,6 @@ function snd(v){return v.closest('.vidbox').querySelector('.snd');}
+ vs.forEach(function(v){var b=snd(v);function tg(){var on=v.muted;vs.forEach(function(o){if(o!==v){o.muted=true;snd(o).textContent='🔊 Включить звук';}});v.muted=!on;if(on){v.volume=1;v.controls=true;var p=v.play();if(p&&p.catch)p.catch(function(){v.controls=true;});}else{v.controls=false;}b.textContent=on?'🔇 Выключить звук':'🔊 Включить звук';}b.addEventListener('click',tg);v.addEventListener('click',tg);});
+ if(rm||!('IntersectionObserver' in window))return;
+ var io=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;if(e.isIntersecting){var p=v.play();if(p&&p.catch)p.catch(function(){});}else{v.pause();}});},{threshold:.35});vs.forEach(function(v){io.observe(v);});})();</script>
+-<script src="demo-motion.js" defer></script>
++<script src="demo-motion.js?v=20261114" defer></script>
+ </body>
+ </html>
+-
