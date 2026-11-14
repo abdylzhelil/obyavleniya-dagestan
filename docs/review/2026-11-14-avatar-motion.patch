@@ -229,3 +229,16 @@ index a1f4297..64e4fc9 100644
  </body>
  </html>
 -
+diff --git a/bot.css b/bot.css
+index efab17a..6c5e67d 100644
+--- a/bot.css
++++ b/bot.css
+@@ -58,7 +58,7 @@ body::before{content:""; position:fixed; inset:0; z-index:-1; pointer-events:non
+ .hero-note{margin-top:18px; font-size:14px; color:var(--faint);}
+ .hero-note b{color:var(--accent); font-weight:700;}
+ .hero-visual{position:relative; display:flex; justify-content:center;}
+-.hero-visual::before{content:""; position:absolute; width:80%; aspect-ratio:1; top:8%; border-radius:50%; background:radial-gradient(closest-side,var(--glow),transparent 70%); filter:blur(10px);}
++.hero-visual::before{content:""; position:absolute; width:80%; aspect-ratio:1; top:8%; border-radius:50%; background:radial-gradient(closest-side,var(--glow),transparent 70%); filter:blur(10px); pointer-events:none;}
+ .phone{position:relative; width:min(300px,100%); border-radius:38px; padding:9px; background:linear-gradient(160deg,#1c3a30,#0a1814); border:1px solid var(--line); box-shadow:0 30px 70px -20px rgba(0,0,0,.8), 0 0 60px -20px var(--glow);}
+ .phone img{border-radius:30px; width:100%; height:auto;}
+ .radar{position:relative; width:min(340px,86%); aspect-ratio:1;}
