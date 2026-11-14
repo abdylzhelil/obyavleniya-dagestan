@@ -27,7 +27,7 @@ jobs:
            try{
            for(const width of [1440,390])for(const reduced of ['no-preference','reduce']){
             const c=await context(width,reduced),p=await c.newPage();let errors=[];p.on('pageerror',e=>errors.push(e.name));
-            await p.goto(origin+'/',{waitUntil:'domcontentloaded',timeout:45000});await p.waitForSelector('#home-radar');
+            await p.goto(origin+'/?verify=20261114-published',{waitUntil:'domcontentloaded',timeout:45000});await p.waitForSelector('#home-radar');
             const decline=p.getByRole('button',{name:'Отказаться',exact:true});if(await decline.count())await Promise.all([p.waitForEvent('load'),decline.click()]);
             await p.locator('#home-radar').scrollIntoViewIfNeeded();await p.waitForTimeout(300);
             const button=p.locator('[data-motion-for="home-radar"]');
