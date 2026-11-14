@@ -1,4 +1,4 @@
-name: Desktop motion baseline inspection
+name: Proposed avatar and motion patch review
 on:
   push:
     branches: [main]
@@ -11,12 +11,51 @@ jobs:
     steps:
       - name: Install pinned browser test library
         run: npm install --prefix /tmp/site-review --ignore-scripts --no-audit --no-fund playwright@1.56.1
-      - name: Inspect live desktop motion without analytics consent
+      - name: Test proposed patch without publishing the main site
         run: |
           node <<'JSREVIEW'
-          const {chromium}=require('/tmp/site-review/node_modules/playwright');const fs=require('fs');
-          (async()=>{const b=await chromium.launch({executablePath:'/usr/bin/google-chrome',headless:true,args:['--no-sandbox']});const out=[];
-          try{for(const reduced of ['no-preference','reduce']){const ctx=await b.newContext({viewport:{width:1440,height:1000},reducedMotion:reduced});await ctx.route(/https:\/\/mc\.yandex\./,r=>r.abort());const p=await ctx.newPage();let errors=[];p.on('pageerror',e=>errors.push(e.name));await p.goto('https://obyavleniya-dagestan.ru/',{waitUntil:'load',timeout:45000});await p.locator('#home-radar').scrollIntoViewIfNeeded();await p.waitForTimeout(500);const a=await p.locator('.lead-radar-beam').evaluate(e=>({name:getComputedStyle(e).animationName,state:getComputedStyle(e).animationPlayState,transform:getComputedStyle(e).transform}));await p.waitForTimeout(1200);const z=await p.locator('.lead-radar-beam').evaluate(e=>getComputedStyle(e).transform);out.push({reduced_motion:reduced,radar:a,transform_changed:a.transform!==z,button_hidden:await p.locator('[data-motion-for="home-radar"]').evaluate(e=>e.hidden),paused:await p.locator('#home-radar').evaluate(e=>e.classList.contains('demo-motion-paused')),errors});await ctx.close();}}finally{await b.close();fs.mkdirSync('site-review',{recursive:true});fs.writeFileSync('site-review/baseline.json',JSON.stringify(out,null,2));console.log('MOTION_BASELINE '+JSON.stringify(out));}})().catch(e=>{console.log('MOTION_ERROR '+e.name+': '+e.message.split('\n')[0]);process.exitCode=1});
+          const {chromium}=require('/tmp/site-review/node_modules/playwright');const fs=require('fs'),path=require('path'),cp=require('child_process');
+          function assert(ok,message){if(!ok)throw new Error(message)}
+          (async()=>{
+           const root=path.resolve('site-review/preview');fs.mkdirSync(root,{recursive:true});
+           const sha=process.env.GITHUB_SHA,origin='https://obyavleniya-dagestan.ru';
+           const files=['index.html','brand-assets.html','demo-motion.js','demo-motion.css','bot-crm.html','style.css','redesign.css','fonts.css','site-pages.css','page.js','script.js','consent.js','bot.css','community-offers.css','platform-prices.css'];
+           for(const f of [...files,'docs/review/2026-11-14-avatar-motion.patch']){
+            const response=await fetch('https://raw.githubusercontent.com/abdylzhelil/obyavleniya-dagestan/'+sha+'/'+f);
+            assert(response.ok,'Source file unavailable: '+f);const p=path.join(root,f);fs.mkdirSync(path.dirname(p),{recursive:true});fs.writeFileSync(p,Buffer.from(await response.arrayBuffer()));
+           }
+           cp.execFileSync('git',['apply','--check','docs/review/2026-11-14-avatar-motion.patch'],{cwd:root});
+           cp.execFileSync('git',['apply','docs/review/2026-11-14-avatar-motion.patch'],{cwd:root});
+           const out={captured_at_utc:new Date().toISOString(),source_revision:sha,scope:'proposed patch only; main site unmodified; analytics blocked',cases:[]};
+           const b=await chromium.launch({executablePath:'/usr/bin/google-chrome',headless:true,args:['--no-sandbox']});
+           async function context(width,reduced){const c=await b.newContext({viewport:{width,height:1000},isMobile:width<800,hasTouch:width<800,reducedMotion:reduced});await c.route('**/*',async r=>{const u=new URL(r.request().url());if(/(^|\.)mc\.yandex\./.test(u.hostname)||/\.(mp4|webm)(\?|$)/.test(u.href))return r.abort();if(u.origin===origin){const rel=u.pathname==='/'?'index.html':u.pathname.slice(1);if(files.includes(rel)){let type=rel.endsWith('.js')?'application/javascript':rel.endsWith('.css')?'text/css':'text/html';return r.fulfill({body:fs.readFileSync(path.join(root,rel)),contentType:type+'; charset=utf-8'});}}return r.continue();});return c;}
+           async function changed(p,sel){const a=await p.locator(sel).evaluate(e=>getComputedStyle(e).transform);await p.waitForTimeout(800);return a!==await p.locator(sel).evaluate(e=>getComputedStyle(e).transform);}
+           try{
+           for(const width of [1440,390])for(const reduced of ['no-preference','reduce']){
+            const c=await context(width,reduced),p=await c.newPage();let errors=[];p.on('pageerror',e=>errors.push(e.name));
+            await p.goto(origin+'/',{waitUntil:'domcontentloaded',timeout:45000});await p.waitForSelector('#home-radar');
+            const decline=p.getByRole('button',{name:'Отказаться',exact:true});if(await decline.count())await Promise.all([p.waitForEvent('load'),decline.click()]);
+            await p.locator('#home-radar').scrollIntoViewIfNeeded();await p.waitForTimeout(300);
+            const button=p.locator('[data-motion-for="home-radar"]');
+            assert(await button.isVisible(),'Motion control must stay available');
+            const initial=await changed(p,'.lead-radar-beam');assert(initial===(reduced==='no-preference'),'Initial motion must respect OS preference');
+            if(reduced==='reduce'){assert((await button.textContent()).includes('Включить'),'Reduced-motion opt-in label');await button.click();assert(await changed(p,'.lead-radar-beam'),'Explicit opt-in starts radar');assert(await p.evaluate(()=>matchMedia('(prefers-reduced-motion: reduce)').matches),'Global OS preference preserved');}
+            await button.click();await p.waitForTimeout(150);assert(!await changed(p,'.lead-radar-beam'),'Pause stops radar');assert(await button.getAttribute('aria-pressed')==='true','Pause state accessible');
+            await button.focus();await p.keyboard.press('Space');await p.waitForTimeout(150);assert(await changed(p,'.lead-radar-beam'),'Keyboard can resume radar');
+            const mod=p.locator('[data-motion-for="modexa-preview"]');await mod.scrollIntoViewIfNeeded();if(reduced==='reduce'){await mod.click();assert(await p.locator('#modexa-preview .mf2').first().evaluate(e=>getComputedStyle(e).animationName==='mf2in'),'Modexa opt-in restores animation');}
+            assert(await p.locator('a[href="brand-assets.html"]').count()===0,'Avatar gallery link removed');
+            assert(await p.locator('a[download]').count()===0,'No avatar download affordance on home');
+            assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'No horizontal overflow');
+            if(width===1440&&reduced==='reduce'){await p.emulateMedia({reducedMotion:'no-preference'});await p.emulateMedia({reducedMotion:'reduce'});await p.waitForTimeout(200);await p.locator('.bot-grid').scrollIntoViewIfNeeded();const shot=await p.locator('.bot-grid').screenshot({type:'jpeg',quality:72});fs.writeFileSync('site-review/motion-preview.jpg',shot);console.log('REVIEW_IMAGE '+shot.toString('base64'));}
+            await p.evaluate(()=>scrollTo(0,0));await p.waitForTimeout(350);assert(await p.locator('#home-radar').evaluate(e=>e.classList.contains('demo-motion-paused')),'Offscreen demo pauses');
+            assert(errors.length===0,'No page script errors');
+            out.cases.push({width,reduced_motion:reduced,initial_animation:initial,manual_toggle_and_keyboard:true,no_download_links:true,no_overflow:true,offscreen_pause:true,errors});await c.close();
+           }
+           const c=await context(1440,'reduce'),p=await c.newPage();await p.goto(origin+'/brand-assets.html',{waitUntil:'domcontentloaded',timeout:45000});await p.waitForURL('**/index.html#groups',{timeout:10000});assert(await p.locator('a[download]').count()===0,'Legacy URL cannot expose download buttons');out.legacy_avatar_url_redirected=true;
+           await p.goto(origin+'/bot-crm.html',{waitUntil:'domcontentloaded',timeout:45000});await p.locator('#client-radar').scrollIntoViewIfNeeded();await p.waitForTimeout(300);const control=p.locator('[data-motion-for="client-radar"]');assert(await control.isVisible(),'CRM reduced-motion control visible');assert(!await changed(p,'#client-radar .sweep'),'CRM respects reduced default');await control.click();assert(await changed(p,'#client-radar .sweep'),'CRM radar opt-in works');out.crm_manual_motion=true;await c.close();
+           out.status='passed';
+           }finally{await b.close();fs.writeFileSync('site-review/result.json',JSON.stringify(out,null,2));console.log('MOTION_REVIEW '+JSON.stringify(out));}
+          })().catch(e=>{console.log('MOTION_ERROR '+e.name+': '+e.message.split('\n')[0]);process.exitCode=1});
           
           JSREVIEW
       - name: Save diagnostic evidence
