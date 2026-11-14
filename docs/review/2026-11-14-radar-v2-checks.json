@@ -1,0 +1,80 @@
+{
+  "captured_at_utc": "2026-11-14T14:00:19.924Z",
+  "source_revision": "686174102e9fa88a3d0425b4b735bf0d3f100a9e",
+  "scope": "proposed only; live source unchanged; analytics blocked",
+  "cases": [
+    {
+      "page": "index.html",
+      "width": 1440,
+      "reduced": "no-preference",
+      "toggle": true,
+      "keyboard": true,
+      "no_overflow": true,
+      "errors": []
+    },
+    {
+      "page": "index.html",
+      "width": 1440,
+      "reduced": "reduce",
+      "toggle": true,
+      "keyboard": true,
+      "no_overflow": true,
+      "errors": []
+    },
+    {
+      "page": "index.html",
+      "width": 390,
+      "reduced": "no-preference",
+      "toggle": true,
+      "keyboard": true,
+      "no_overflow": true,
+      "errors": []
+    },
+    {
+      "page": "index.html",
+      "width": 390,
+      "reduced": "reduce",
+      "toggle": true,
+      "keyboard": true,
+      "no_overflow": true,
+      "errors": []
+    },
+    {
+      "page": "bot-crm.html",
+      "width": 1440,
+      "reduced": "no-preference",
+      "toggle": true,
+      "keyboard": true,
+      "no_overflow": true,
+      "errors": []
+    },
+    {
+      "page": "bot-crm.html",
+      "width": 1440,
+      "reduced": "reduce",
+      "toggle": true,
+      "keyboard": true,
+      "no_overflow": true,
+      "errors": []
+    },
+    {
+      "page": "bot-crm.html",
+      "width": 390,
+      "reduced": "no-preference",
+      "toggle": true,
+      "keyboard": true,
+      "no_overflow": true,
+      "errors": []
+    },
+    {
+      "page": "bot-crm.html",
+      "width": 390,
+      "reduced": "reduce",
+      "toggle": true,
+      "keyboard": true,
+      "no_overflow": true,
+      "errors": []
+    }
+  ],
+  "status": "passed"
+}
