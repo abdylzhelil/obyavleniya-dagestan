@@ -40,7 +40,7 @@ jobs:
                 const toggle=demo.locator('button');assert(await toggle.isVisible(),'Control visible');
                 assert(await changed()===(reduced==='no-preference'),'Initial motion preference');
                 if(reduced==='reduce'){await toggle.click();assert(await changed(),'Reduced opt-in');}
-                await toggle.click();assert(!await changed(),'Pause');await toggle.focus();await p.keyboard.press('Space');assert(await changed(),'Keyboard resume');
+                await toggle.click();await p.waitForTimeout(200);console.log('PAUSE_DEBUG '+JSON.stringify(await demo.evaluate(e=>({classes:e.className,button:e.querySelector('button').outerHTML,scan:getComputedStyle(e.querySelector('.kr-scan')).animationPlayState,animations:e.querySelector('.kr-scan').getAnimations().map(a=>({name:a.animationName,state:a.playState}))}))));assert(!await changed(),'Pause');await toggle.focus();await p.keyboard.press('Space');assert(await changed(),'Keyboard resume');
                 assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'No horizontal overflow');
                 const box=await demo.boundingBox();assert(box.x>=0&&box.x+box.width<=width+1,'Demo within viewport');
                 assert(errors.length===0,'Page errors '+errors.join(','));
