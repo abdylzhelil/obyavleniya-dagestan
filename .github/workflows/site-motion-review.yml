@@ -1,8 +1,6 @@
 name: Proposed avatar and motion patch review
 on:
-  push:
-    branches: [main]
-    paths: ['.github/workflows/site-motion-review.yml']
+  workflow_dispatch:
 permissions: {}
 jobs:
   review:
