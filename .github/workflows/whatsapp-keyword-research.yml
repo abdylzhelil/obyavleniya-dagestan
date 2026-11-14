@@ -1,9 +1,6 @@
 name: WhatsApp local keyword search-volume research
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - ".github/workflows/whatsapp-keyword-research.yml"
 permissions: {}
 jobs:
   research:

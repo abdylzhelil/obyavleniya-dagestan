@@ -1,9 +1,6 @@
 name: Expand group-intent phrases for Nov15 within fixed test budget
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - ".github/workflows/whatsapp-expand-group-phrases.yml"
 permissions: {}
 concurrency:
   group: direct-bounded-control
