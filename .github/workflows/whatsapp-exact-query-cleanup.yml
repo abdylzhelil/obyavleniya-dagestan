@@ -1,9 +1,6 @@
 name: Apply five exact navigation negatives Nov16
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - ".github/workflows/whatsapp-exact-query-cleanup.yml"
 permissions: {}
 concurrency:
   group: direct-bounded-control
