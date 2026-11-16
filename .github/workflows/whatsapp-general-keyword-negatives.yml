@@ -1,9 +1,6 @@
 name: Restrict Avito navigation on one general keyword Nov17
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - ".github/workflows/whatsapp-general-keyword-negatives.yml"
 permissions: {}
 concurrency:
   group: direct-bounded-control
