@@ -1,9 +1,6 @@
 name: Retry queued Nov16 search-query report only
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - ".github/workflows/direct-nov16-query-retry.yml"
 permissions: {}
 jobs:
   query:
