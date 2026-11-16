@@ -1,0 +1,182 @@
+name: Retry queued Nov16 search-query report only
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/direct-nov16-query-retry.yml"
+permissions: {}
+jobs:
+  query:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Read the same queued report without changing its request or report name
+        env:
+          YANDEX_DIRECT_TOKEN: ${{ secrets.YANDEX_DIRECT_TOKEN }}
+        run: |
+          python3 - <<'PYRETRY'
+          """Fixed-campaign read-only Reports API export. Token never leaves request headers."""
+          import csv
+          import io
+          import json
+          import os
+          import re
+          import sys
+          import time
+          import urllib.error
+          import urllib.request
+          from datetime import date, datetime, timezone
+          from decimal import Decimal, InvalidOperation
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+          
+          CAMPAIGN = "715775801"
+          ENDPOINT = "https://api.direct.yandex.com/json/v5/reports"
+          START, END = date(2026, 11, 12), date(2026, 11, 18)
+          BASE = ["CampaignId", "Impressions", "Clicks", "Cost"]
+          SPECS = {
+              "totals": ("CAMPAIGN_PERFORMANCE_REPORT", BASE + ["Ctr", "AvgCpc"]),
+              "daily": ("CAMPAIGN_PERFORMANCE_REPORT", ["Date"] + BASE + ["Ctr", "AvgCpc"]),
+              "queries": ("SEARCH_QUERY_PERFORMANCE_REPORT", ["Date", "CampaignId", "AdGroupId", "Query", "Criterion", "CriterionType", "MatchType", "TargetingCategory", "MatchedKeyword", "Impressions", "Clicks", "Cost"]),
+              "devices": ("CUSTOM_REPORT", ["Date", "CampaignId", "AdNetworkType", "Device", "MobilePlatform", "Impressions", "Clicks", "Cost"]),
+              "regions": ("CUSTOM_REPORT", ["Date", "CampaignId", "LocationOfPresenceId", "LocationOfPresenceName", "Impressions", "Clicks", "Cost"]),
+              "placements": ("CUSTOM_REPORT", ["Date", "CampaignId", "AdNetworkType", "Placement", "Impressions", "Clicks", "Cost"]),
+              "goals": ("CAMPAIGN_PERFORMANCE_REPORT", ["Date"] + BASE + ["Sessions", "Conversions", "ConversionRate", "CostPerConversion"]),
+          }
+          
+          
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self, req, fp, code, msg, headers, newurl):
+                  raise urllib.error.HTTPError(req.full_url, code, "Redirect refused", headers, fp)
+          
+          
+          class ReportError(Exception):
+              pass
+          
+          
+          def dates(raw_start, raw_end, today):
+              first = date.fromisoformat(raw_start) if raw_start else START
+              last = date.fromisoformat(raw_end) if raw_end else min(today, END)
+              if not START <= first <= last <= min(today, END):
+                  raise ValueError("Dates must fall within the elapsed part of 12-18 November 2026.")
+              return first.isoformat(), last.isoformat()
+          
+          
+          def definition(key, first, last, run):
+              report_type, fields = SPECS[key]
+              params = {
+                  "SelectionCriteria": {"DateFrom": first, "DateTo": last,
+                                        "Filter": [{"Field": "CampaignId", "Operator": "EQUALS", "Values": [CAMPAIGN]}]},
+                  "FieldNames": fields,
+                  "ReportName": f"dagestan-{CAMPAIGN}-{run}-{key}-{first}-{last}",
+                  "ReportType": report_type, "DateRangeType": "CUSTOM_DATE", "Format": "TSV",
+                  "IncludeVAT": "NO", "IncludeDiscount": "NO",
+              }
+              if key == "goals":
+                  params.update(Goals=["668953269", "668953627"], AttributionModels=["AUTO"])
+              return {"params": params}
+          
+          
+          def safe(text, token):
+              return re.sub(r"[\x00-\x1f\x7f]", " ", str(text).replace(token, "[REDACTED]"))[:1000]
+          
+          
+          def fetch(payload, token, opener, deadline, sleep=time.sleep, clock=time.monotonic):
+              body = json.dumps(payload).encode()
+              request = urllib.request.Request(ENDPOINT, data=body, method="POST", headers={
+                  "Authorization": "Bearer " + token, "Content-Type": "application/json; charset=utf-8",
+                  "Accept-Language": "en", "processingMode": "auto", "returnMoneyInMicros": "false",
+                  "skipReportHeader": "true", "skipReportSummary": "true",
+              })
+              server_errors = 0
+              while clock() < deadline:
+                  try:
+                      with opener.open(request, timeout=45) as response:
+                          status, headers = response.status, response.headers
+                          data = response.read(5 * 1024 * 1024 + 1)
+                  except urllib.error.HTTPError as error:
+                      status, headers = error.code, error.headers
+                      data = error.read(16384) if error.fp else b""
+                  except (urllib.error.URLError, OSError, TimeoutError):
+                      raise ReportError("HTTPS connection failed; details suppressed") from None
+                  if status == 200:
+                      if len(data) > 5 * 1024 * 1024:
+                          raise ReportError("Report too large; export rejected")
+                      return data.decode("utf-8-sig").replace(token, "[REDACTED]")
+                  if status in (201, 202, 429) or (status == 500 and server_errors == 0):
+                      if status == 500:
+                          server_errors += 1
+                      try:
+                          wait = max(1, int(headers.get("retryIn", headers.get("Retry-After", "15"))))
+                      except (ValueError, TypeError):
+                          wait = 15
+                      if wait > 60 or clock() + wait >= deadline:
+                          raise ReportError("Report still queued; retry the workflow later")
+                      sleep(wait)
+                      continue
+                  code = detail = ""
+                  try:
+                      err = json.loads(data).get("error", {})
+                      code = str(err.get("error_code", ""))
+                      detail = safe(err.get("error_detail", err.get("error_string", "")), token)
+                  except (ValueError, TypeError, AttributeError):
+                      pass
+                  raise ReportError(safe(f"HTTP {status}; API code {code}; {detail}", token))
+              raise ReportError("Report deadline exceeded")
+          
+          
+          def parse(text, first, last):
+              reader = csv.DictReader(io.StringIO(text), delimiter="\t")
+              fields = reader.fieldnames or []
+              if not {"CampaignId", "Impressions", "Clicks", "Cost"}.issubset(fields):
+                  raise ReportError("Unexpected TSV columns")
+              rows = list(reader)
+              for row in rows:
+                  if None in row or any(value is None for value in row.values()):
+                      raise ReportError("Malformed TSV row")
+                  if row["CampaignId"] != CAMPAIGN:
+                      raise ReportError("Report contains a different campaign")
+                  if "Date" in row and not first <= row["Date"] <= last:
+                      raise ReportError("Report date is outside the requested period")
+                  for field in ("Impressions", "Clicks"):
+                      if row[field] != "--" and not re.fullmatch(r"\d+", row[field]):
+                          raise ReportError("Invalid count")
+                  if row["Cost"] != "--":
+                      try:
+                          value = Decimal(row["Cost"])
+                      except InvalidOperation:
+                          raise ReportError("Invalid cost") from None
+                      if not value.is_finite() or value < 0:
+                          raise ReportError("Invalid cost")
+              return fields, rows
+          
+          
+          
+          def main():
+              token=os.environ.get("YANDEX_DIRECT_TOKEN","").strip()
+              if not token:raise SystemExit("Missing runner secret")
+              first,last="2026-11-12","2026-11-16"
+              payload=definition("queries",first,last,"43964629322-1")
+              item={"request":payload,"started_at_utc":datetime.now(timezone.utc).isoformat(),"retries_original_run":43964629322}
+              out=Path("query-retry");out.mkdir(exist_ok=True)
+              try:
+                  text=fetch(payload,token,urllib.request.build_opener(NoRedirect()),time.monotonic()+180)
+                  fields,rows=parse(text,first,last)
+                  (out/"queries.tsv").write_text(text)
+                  item.update(status="complete",columns=fields,rows=len(rows),data=rows)
+              except Exception as e:item.update(status="failed",error=safe(str(e),token))
+              item["finished_at_utc"]=datetime.now(timezone.utc).isoformat()
+              data=json.dumps(item,ensure_ascii=False).replace(token,"[REDACTED]")
+              (out/"result.json").write_text(data)
+              print("QUERY_RETRY "+data)
+              return 0 if item["status"]=="complete" else 1
+          if __name__=="__main__":sys.exit(main())
+          
+          PYRETRY
+      - name: Preserve retry evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: query-retry-${{ github.run_id }}
+          path: query-retry/
+          retention-days: 30
