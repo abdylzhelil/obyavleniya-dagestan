@@ -2,9 +2,6 @@ name: WhatsApp test 2 read-only reports
 # Metrika read-only OAuth application: 40fbd9c24b874b4bacaa0883e57ca434
 
 on:
-  push:
-    paths:
-      - ".github/workflows/direct-whatsapp-test2-reports.yml"
   workflow_dispatch:
     inputs:
       date_from:
@@ -52,7 +49,7 @@ jobs:
         env:
           YANDEX_DIRECT_TOKEN: ${{ secrets.YANDEX_DIRECT_TOKEN }}
           DIRECT_DATE_FROM: ${{ inputs.date_from }}
-          DIRECT_DATE_TO: '2026-11-15'
+          DIRECT_DATE_TO: ${{ inputs.date_to }}
         shell: bash
         run: |
           python3 - <<'PYDIRECT'

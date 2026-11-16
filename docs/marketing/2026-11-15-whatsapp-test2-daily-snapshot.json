@@ -1,0 +1,3176 @@
+{
+  "report_run_id": 43820136828,
+  "artifact_id": 14204440949,
+  "report_day_msk": "2026-11-15",
+  "evidence": {
+    "metadata.json": {
+      "campaign_id": "715775801",
+      "date_from": "2026-11-12",
+      "date_to": "2026-11-15",
+      "captured_at_utc": "2026-11-16T06:55:39.654692+00:00",
+      "include_vat": false,
+      "money_units": "account currency; API rounds to two decimals (not micros)",
+      "report_timezone": "API account/report timezone; not independently read",
+      "goals_are": "attributed website events, NOT verified group joins",
+      "reports": {
+        "totals": {
+          "request": {
+            "params": {
+              "SelectionCriteria": {
+                "DateFrom": "2026-11-12",
+                "DateTo": "2026-11-15",
+                "Filter": [
+                  {
+                    "Field": "CampaignId",
+                    "Operator": "EQUALS",
+                    "Values": [
+                      "715775801"
+                    ]
+                  }
+                ]
+              },
+              "FieldNames": [
+                "CampaignId",
+                "Impressions",
+                "Clicks",
+                "Cost",
+                "Ctr",
+                "AvgCpc"
+              ],
+              "ReportName": "dagestan-715775801-43820136828-1-totals-2026-11-12-2026-11-15",
+              "ReportType": "CAMPAIGN_PERFORMANCE_REPORT",
+              "DateRangeType": "CUSTOM_DATE",
+              "Format": "TSV",
+              "IncludeVAT": "NO",
+              "IncludeDiscount": "NO"
+            }
+          },
+          "started_at_utc": "2026-11-16T06:55:39.661320+00:00",
+          "status": "complete",
+          "columns": [
+            "CampaignId",
+            "Impressions",
+            "Clicks",
+            "Cost",
+            "Ctr",
+            "AvgCpc"
+          ],
+          "rows": 1,
+          "data": [
+            {
+              "CampaignId": "715775801",
+              "Impressions": "440",
+              "Clicks": "16",
+              "Cost": "75.44",
+              "Ctr": "3.64",
+              "AvgCpc": "4.72"
+            }
+          ],
+          "finished_at_utc": "2026-11-16T06:55:41.285482+00:00"
+        },
+        "daily": {
+          "request": {
+            "params": {
+              "SelectionCriteria": {
+                "DateFrom": "2026-11-12",
+                "DateTo": "2026-11-15",
+                "Filter": [
+                  {
+                    "Field": "CampaignId",
+                    "Operator": "EQUALS",
+                    "Values": [
+                      "715775801"
+                    ]
+                  }
+                ]
+              },
+              "FieldNames": [
+                "Date",
+                "CampaignId",
+                "Impressions",
+                "Clicks",
+                "Cost",
+                "Ctr",
+                "AvgCpc"
+              ],
+              "ReportName": "dagestan-715775801-43820136828-1-daily-2026-11-12-2026-11-15",
+              "ReportType": "CAMPAIGN_PERFORMANCE_REPORT",
+              "DateRangeType": "CUSTOM_DATE",
+              "Format": "TSV",
+              "IncludeVAT": "NO",
+              "IncludeDiscount": "NO"
+            }
+          },
+          "started_at_utc": "2026-11-16T06:55:41.285512+00:00",
+          "status": "complete",
+          "columns": [
+            "Date",
+            "CampaignId",
+            "Impressions",
+            "Clicks",
+            "Cost",
+            "Ctr",
+            "AvgCpc"
+          ],
+          "rows": 4,
+          "data": [
+            {
+              "Date": "2026-11-12",
+              "CampaignId": "715775801",
+              "Impressions": "15",
+              "Clicks": "2",
+              "Cost": "10.11",
+              "Ctr": "13.33",
+              "AvgCpc": "5.05"
+            },
+            {
+              "Date": "2026-11-13",
+              "CampaignId": "715775801",
+              "Impressions": "5",
+              "Clicks": "0",
+              "Cost": "0.00",
+              "Ctr": "0.00",
+              "AvgCpc": "--"
+            },
+            {
+              "Date": "2026-11-14",
+              "CampaignId": "715775801",
+              "Impressions": "12",
+              "Clicks": "2",
+              "Cost": "25.15",
+              "Ctr": "16.67",
+              "AvgCpc": "12.57"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "Impressions": "408",
+              "Clicks": "12",
+              "Cost": "40.19",
+              "Ctr": "2.94",
+              "AvgCpc": "3.35"
+            }
+          ],
+          "finished_at_utc": "2026-11-16T06:55:42.464460+00:00"
+        },
+        "queries": {
+          "request": {
+            "params": {
+              "SelectionCriteria": {
+                "DateFrom": "2026-11-12",
+                "DateTo": "2026-11-15",
+                "Filter": [
+                  {
+                    "Field": "CampaignId",
+                    "Operator": "EQUALS",
+                    "Values": [
+                      "715775801"
+                    ]
+                  }
+                ]
+              },
+              "FieldNames": [
+                "Date",
+                "CampaignId",
+                "AdGroupId",
+                "Query",
+                "Criterion",
+                "CriterionType",
+                "MatchType",
+                "TargetingCategory",
+                "MatchedKeyword",
+                "Impressions",
+                "Clicks",
+                "Cost"
+              ],
+              "ReportName": "dagestan-715775801-43820136828-1-queries-2026-11-12-2026-11-15",
+              "ReportType": "SEARCH_QUERY_PERFORMANCE_REPORT",
+              "DateRangeType": "CUSTOM_DATE",
+              "Format": "TSV",
+              "IncludeVAT": "NO",
+              "IncludeDiscount": "NO"
+            }
+          },
+          "started_at_utc": "2026-11-16T06:55:42.464484+00:00",
+          "status": "complete",
+          "columns": [
+            "Date",
+            "CampaignId",
+            "AdGroupId",
+            "Query",
+            "Criterion",
+            "CriterionType",
+            "MatchType",
+            "TargetingCategory",
+            "MatchedKeyword",
+            "Impressions",
+            "Clicks",
+            "Cost"
+          ],
+          "rows": 79,
+          "data": [
+            {
+              "Date": "2026-11-12",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "барахолка в махачкале",
+              "Criterion": "---autotargeting",
+              "CriterionType": "AUTOTARGETING",
+              "MatchType": "NONE",
+              "TargetingCategory": "EXACT",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-12",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "барахолка для жителей махачкалы",
+              "Criterion": "---autotargeting",
+              "CriterionType": "AUTOTARGETING",
+              "MatchType": "NONE",
+              "TargetingCategory": "EXACT",
+              "MatchedKeyword": "",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-12",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "барахолка махачкалы",
+              "Criterion": "---autotargeting",
+              "CriterionType": "AUTOTARGETING",
+              "MatchType": "NONE",
+              "TargetingCategory": "EXACT",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-12",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "барахолки в махачкале",
+              "Criterion": "---autotargeting",
+              "CriterionType": "AUTOTARGETING",
+              "MatchType": "NONE",
+              "TargetingCategory": "EXACT",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-12",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "все объявления на авито в р дагестан",
+              "Criterion": "---autotargeting",
+              "CriterionType": "AUTOTARGETING",
+              "MatchType": "NONE",
+              "TargetingCategory": "EXACT",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "1",
+              "Cost": "1.22"
+            },
+            {
+              "Date": "2026-11-12",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "группы в ватсапе для бьюти объявлений махачкала",
+              "Criterion": "группа объявлений Дагестан WhatsApp",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "1",
+              "Cost": "8.89"
+            },
+            {
+              "Date": "2026-11-12",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "комьюнити в махачкале",
+              "Criterion": "---autotargeting",
+              "CriterionType": "AUTOTARGETING",
+              "MatchType": "NONE",
+              "TargetingCategory": "EXACT",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-12",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "купи продай дербент",
+              "Criterion": "---autotargeting",
+              "CriterionType": "AUTOTARGETING",
+              "MatchType": "NONE",
+              "TargetingCategory": "EXACT",
+              "MatchedKeyword": "",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-12",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "купи продай махачкала",
+              "Criterion": "---autotargeting",
+              "CriterionType": "AUTOTARGETING",
+              "MatchType": "NONE",
+              "TargetingCategory": "EXACT",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-12",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "паблика махачкала",
+              "Criterion": "---autotargeting",
+              "CriterionType": "AUTOTARGETING",
+              "MatchType": "NONE",
+              "TargetingCategory": "EXACT",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-12",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "сайты махачкалы",
+              "Criterion": "---autotargeting",
+              "CriterionType": "AUTOTARGETING",
+              "MatchType": "NONE",
+              "TargetingCategory": "EXACT",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-12",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "типичная колывань объявления в контакте",
+              "Criterion": "---autotargeting",
+              "CriterionType": "AUTOTARGETING",
+              "MatchType": "NONE",
+              "TargetingCategory": "EXACT",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-13",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "барахолка для жителей хасавюрт а",
+              "Criterion": "---autotargeting",
+              "CriterionType": "AUTOTARGETING",
+              "MatchType": "NONE",
+              "TargetingCategory": "EXACT",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-13",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "группа объявлений в махачкале",
+              "Criterion": "---autotargeting",
+              "CriterionType": "AUTOTARGETING",
+              "MatchType": "NONE",
+              "TargetingCategory": "EXACT",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-13",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "паблик махачкала",
+              "Criterion": "---autotargeting",
+              "CriterionType": "AUTOTARGETING",
+              "MatchType": "NONE",
+              "TargetingCategory": "EXACT",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-13",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "паблика махачкала",
+              "Criterion": "---autotargeting",
+              "CriterionType": "AUTOTARGETING",
+              "MatchType": "NONE",
+              "TargetingCategory": "EXACT",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-14",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "барахолка махачкала",
+              "Criterion": "---autotargeting",
+              "CriterionType": "AUTOTARGETING",
+              "MatchType": "NONE",
+              "TargetingCategory": "EXACT",
+              "MatchedKeyword": "",
+              "Impressions": "4",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-14",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "где можно продать вещи кроме авито",
+              "Criterion": "---autotargeting",
+              "CriterionType": "AUTOTARGETING",
+              "MatchType": "NONE",
+              "TargetingCategory": "EXACT",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-14",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "группа в кизилюрте купи продать",
+              "Criterion": "---autotargeting",
+              "CriterionType": "AUTOTARGETING",
+              "MatchType": "NONE",
+              "TargetingCategory": "EXACT",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "1",
+              "Cost": "11.81"
+            },
+            {
+              "Date": "2026-11-14",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "купи продай кизляр группа ватсап",
+              "Criterion": "группа объявлений Дагестан WhatsApp",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-14",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "петровское объявления",
+              "Criterion": "---autotargeting",
+              "CriterionType": "AUTOTARGETING",
+              "MatchType": "NONE",
+              "TargetingCategory": "EXACT",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-14",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "продажа авто махачкала ватсап",
+              "Criterion": "барахолка махачкала ватсап",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "NARROW",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "1",
+              "Cost": "13.33"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "avito махачкала",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "tank 300 авито махачкала",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "NARROW",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авита дагестан",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авита дагестан купить квартиру",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "NARROW",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авита махачкала",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито бабаюрт",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "3",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито буйнакск",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "8",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито дагестан",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "48",
+              "Clicks": "1",
+              "Cost": "4.12"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито дагестан каспийск",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито дагестан касумкент",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито дагестанские огни",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито дагестанские огни квартиры купить",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "NARROW",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито дербент",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "33",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито избербаш",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "5",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито каспийск",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "22",
+              "Clicks": "1",
+              "Cost": "7.16"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито каспийск махачкала",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито кизилюрт",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито кизляр",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "6",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито кизляр группа",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "2",
+              "Clicks": "1",
+              "Cost": "7.46"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито кизляр дагестан",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито кизляр купить участок земли",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "NARROW",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито махачкала",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "192",
+              "Clicks": "2",
+              "Cost": "1.93"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито махачкала 16 айфон",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "NARROW",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито махачкала алмазная",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито махачкала большие тазы",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "NARROW",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито махачкала вузовское озеро",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито махачкала недвижимость",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "NARROW",
+              "MatchedKeyword": "",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито махачкала недвижимость квартиры купить",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "NARROW",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито махачкала недвижимость квартиры купить без посредников",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "NARROW",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито махачкала недвижимость участки земельные",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "NARROW",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито махачкала объявления",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "EXACT",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито махачкале",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито официальный сайт махачкала",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "4",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито ру дагестан",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "1",
+              "Cost": "1.67"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито сдается квартиры в махачкале",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "NARROW",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито хасавюрт",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито хасавюрт",
+              "Criterion": "группа объявлений хасавюрт",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "14",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "группа ватсап авито махачкала",
+              "Criterion": "объявления махачкала группа",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "группы на вацап на авито по дагестану",
+              "Criterion": "группа объявлений Дагестан WhatsApp",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "3",
+              "Clicks": "3",
+              "Cost": "8.16"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "доска объявлений нового поколения",
+              "Criterion": "---autotargeting",
+              "CriterionType": "AUTOTARGETING",
+              "MatchType": "NONE",
+              "TargetingCategory": "EXACT",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "1",
+              "Cost": "2.05"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "доска объявлений хунзахский район",
+              "Criterion": "---autotargeting",
+              "CriterionType": "AUTOTARGETING",
+              "MatchType": "NONE",
+              "TargetingCategory": "EXACT",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "доска объявлений хунзахский район продажа",
+              "Criterion": "---autotargeting",
+              "CriterionType": "AUTOTARGETING",
+              "MatchType": "NONE",
+              "TargetingCategory": "EXACT",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "1",
+              "Cost": "4.40"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "кизляр авито",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "купить дом в махачкале без посредников от хозяина недорого с фото свежие объявления на авито",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "NARROW",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "купить земельный участок в дербенте на авито",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "NARROW",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "купить квартиру в махачкале на авито свежие объявления",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "NARROW",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "мой дербент все объявления",
+              "Criterion": "---autotargeting",
+              "CriterionType": "AUTOTARGETING",
+              "MatchType": "NONE",
+              "TargetingCategory": "EXACT",
+              "MatchedKeyword": "",
+              "Impressions": "3",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "объявление",
+              "Criterion": "---autotargeting",
+              "CriterionType": "AUTOTARGETING",
+              "MatchType": "NONE",
+              "TargetingCategory": "EXACT",
+              "MatchedKeyword": "",
+              "Impressions": "4",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "объявления дагестан",
+              "Criterion": "---autotargeting",
+              "CriterionType": "AUTOTARGETING",
+              "MatchType": "NONE",
+              "TargetingCategory": "EXACT",
+              "MatchedKeyword": "",
+              "Impressions": "3",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "петровское объявления",
+              "Criterion": "---autotargeting",
+              "CriterionType": "AUTOTARGETING",
+              "MatchType": "NONE",
+              "TargetingCategory": "EXACT",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "продажа гидропрпс авита дагестан",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "NARROW",
+              "MatchedKeyword": "",
+              "Impressions": "3",
+              "Clicks": "1",
+              "Cost": "3.22"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "продажа на авито в республике дагестан",
+              "Criterion": "---autotargeting",
+              "CriterionType": "AUTOTARGETING",
+              "MatchType": "NONE",
+              "TargetingCategory": "EXACT",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "сайт объявлений",
+              "Criterion": "---autotargeting",
+              "CriterionType": "AUTOTARGETING",
+              "MatchType": "NONE",
+              "TargetingCategory": "EXACT",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "скупка металлолома в махачкале авито",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "NARROW",
+              "MatchedKeyword": "",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "снять квартиру в махачкале на авито",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "NARROW",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "юла дагестан",
+              "Criterion": "группа объявлений дагестан",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "3",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "юла махачкала",
+              "Criterion": "объявления махачкала группа",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "3",
+              "Clicks": "0",
+              "Cost": "0.00"
+            }
+          ],
+          "finished_at_utc": "2026-11-16T06:55:45.939671+00:00"
+        },
+        "devices": {
+          "request": {
+            "params": {
+              "SelectionCriteria": {
+                "DateFrom": "2026-11-12",
+                "DateTo": "2026-11-15",
+                "Filter": [
+                  {
+                    "Field": "CampaignId",
+                    "Operator": "EQUALS",
+                    "Values": [
+                      "715775801"
+                    ]
+                  }
+                ]
+              },
+              "FieldNames": [
+                "Date",
+                "CampaignId",
+                "AdNetworkType",
+                "Device",
+                "MobilePlatform",
+                "Impressions",
+                "Clicks",
+                "Cost"
+              ],
+              "ReportName": "dagestan-715775801-43820136828-1-devices-2026-11-12-2026-11-15",
+              "ReportType": "CUSTOM_REPORT",
+              "DateRangeType": "CUSTOM_DATE",
+              "Format": "TSV",
+              "IncludeVAT": "NO",
+              "IncludeDiscount": "NO"
+            }
+          },
+          "started_at_utc": "2026-11-16T06:55:45.939695+00:00",
+          "status": "complete",
+          "columns": [
+            "Date",
+            "CampaignId",
+            "AdNetworkType",
+            "Device",
+            "MobilePlatform",
+            "Impressions",
+            "Clicks",
+            "Cost"
+          ],
+          "rows": 15,
+          "data": [
+            {
+              "Date": "2026-11-12",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "DESKTOP",
+              "MobilePlatform": "OTHER",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-12",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "MOBILE",
+              "MobilePlatform": "ANDROID",
+              "Impressions": "10",
+              "Clicks": "1",
+              "Cost": "1.22"
+            },
+            {
+              "Date": "2026-11-12",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "MOBILE",
+              "MobilePlatform": "IOS",
+              "Impressions": "4",
+              "Clicks": "1",
+              "Cost": "8.89"
+            },
+            {
+              "Date": "2026-11-13",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "MOBILE",
+              "MobilePlatform": "ANDROID",
+              "Impressions": "3",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-13",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "MOBILE",
+              "MobilePlatform": "IOS",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-14",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "DESKTOP",
+              "MobilePlatform": "OTHER",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-14",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "MOBILE",
+              "MobilePlatform": "ANDROID",
+              "Impressions": "4",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-14",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "MOBILE",
+              "MobilePlatform": "IOS",
+              "Impressions": "7",
+              "Clicks": "2",
+              "Cost": "25.15"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "DESKTOP",
+              "MobilePlatform": "OTHER",
+              "Impressions": "75",
+              "Clicks": "3",
+              "Cost": "7.85"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "MOBILE",
+              "MobilePlatform": "ANDROID",
+              "Impressions": "162",
+              "Clicks": "6",
+              "Cost": "26.01"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "MOBILE",
+              "MobilePlatform": "IOS",
+              "Impressions": "154",
+              "Clicks": "1",
+              "Cost": "4.40"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "SMART_TV",
+              "MobilePlatform": "ANDROID",
+              "Impressions": "5",
+              "Clicks": "2",
+              "Cost": "1.93"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "SMART_TV",
+              "MobilePlatform": "OTHER",
+              "Impressions": "5",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "TABLET",
+              "MobilePlatform": "ANDROID",
+              "Impressions": "6",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "TABLET",
+              "MobilePlatform": "IOS",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            }
+          ],
+          "finished_at_utc": "2026-11-16T06:55:47.357503+00:00"
+        },
+        "regions": {
+          "request": {
+            "params": {
+              "SelectionCriteria": {
+                "DateFrom": "2026-11-12",
+                "DateTo": "2026-11-15",
+                "Filter": [
+                  {
+                    "Field": "CampaignId",
+                    "Operator": "EQUALS",
+                    "Values": [
+                      "715775801"
+                    ]
+                  }
+                ]
+              },
+              "FieldNames": [
+                "Date",
+                "CampaignId",
+                "LocationOfPresenceId",
+                "LocationOfPresenceName",
+                "Impressions",
+                "Clicks",
+                "Cost"
+              ],
+              "ReportName": "dagestan-715775801-43820136828-1-regions-2026-11-12-2026-11-15",
+              "ReportType": "CUSTOM_REPORT",
+              "DateRangeType": "CUSTOM_DATE",
+              "Format": "TSV",
+              "IncludeVAT": "NO",
+              "IncludeDiscount": "NO"
+            }
+          },
+          "started_at_utc": "2026-11-16T06:55:47.357527+00:00",
+          "status": "complete",
+          "columns": [
+            "Date",
+            "CampaignId",
+            "LocationOfPresenceId",
+            "LocationOfPresenceName",
+            "Impressions",
+            "Clicks",
+            "Cost"
+          ],
+          "rows": 90,
+          "data": [
+            {
+              "Date": "2026-11-12",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "11008",
+              "LocationOfPresenceName": "Kaspiysk",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-12",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "100611",
+              "LocationOfPresenceName": "Kasumkent",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-12",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "235",
+              "LocationOfPresenceName": "Magnitogorsk",
+              "Impressions": "1",
+              "Clicks": "1",
+              "Cost": "8.89"
+            },
+            {
+              "Date": "2026-11-12",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "28",
+              "LocationOfPresenceName": "Makhachkala",
+              "Impressions": "8",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-12",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "213",
+              "LocationOfPresenceName": "Moscow",
+              "Impressions": "1",
+              "Clicks": "1",
+              "Cost": "1.22"
+            },
+            {
+              "Date": "2026-11-12",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "177888",
+              "LocationOfPresenceName": "Selo Kurmi rural settlement",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-13",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "21732",
+              "LocationOfPresenceName": "Dagestanskie Ogni",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-13",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "11008",
+              "LocationOfPresenceName": "Kaspiysk",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-13",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "11011",
+              "LocationOfPresenceName": "Khasavurt",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-13",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "28",
+              "LocationOfPresenceName": "Makhachkala",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-13",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "20617",
+              "LocationOfPresenceName": "Minyar",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-14",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "99319",
+              "LocationOfPresenceName": "Gunib District",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-14",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "21521",
+              "LocationOfPresenceName": "Izberbash",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-14",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "11009",
+              "LocationOfPresenceName": "Kizlyar",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-14",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "28",
+              "LocationOfPresenceName": "Makhachkala",
+              "Impressions": "7",
+              "Clicks": "1",
+              "Cost": "13.33"
+            },
+            {
+              "Date": "2026-11-14",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "178419",
+              "LocationOfPresenceName": "Stal'sky sel'sovet",
+              "Impressions": "1",
+              "Clicks": "1",
+              "Cost": "11.81"
+            },
+            {
+              "Date": "2026-11-14",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "20001",
+              "LocationOfPresenceName": "not specified",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "100590",
+              "LocationOfPresenceName": "Akhti",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "101818",
+              "LocationOfPresenceName": "Aksay",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "99311",
+              "LocationOfPresenceName": "Akushinskiy District",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "101817",
+              "LocationOfPresenceName": "Alburikent",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "178467",
+              "LocationOfPresenceName": "Aleksandriysky sel'sovet",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "191",
+              "LocationOfPresenceName": "Bryansk",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "11006",
+              "LocationOfPresenceName": "Buynaksk",
+              "Impressions": "14",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "99316",
+              "LocationOfPresenceName": "Buynaksk District",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "21732",
+              "LocationOfPresenceName": "Dagestanskie Ogni",
+              "Impressions": "3",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "11007",
+              "LocationOfPresenceName": "Derbent",
+              "Impressions": "25",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "99321",
+              "LocationOfPresenceName": "Derbent District",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "100575",
+              "LocationOfPresenceName": "Elkhotovo",
+              "Impressions": "4",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "100593",
+              "LocationOfPresenceName": "Gergebil",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "1106",
+              "LocationOfPresenceName": "Grozniy",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "994",
+              "LocationOfPresenceName": "India",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "21521",
+              "LocationOfPresenceName": "Izberbash",
+              "Impressions": "4",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "100589",
+              "LocationOfPresenceName": "Karata",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "179686",
+              "LocationOfPresenceName": "Karchagsky sel'sovet",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "11008",
+              "LocationOfPresenceName": "Kaspiysk",
+              "Impressions": "27",
+              "Clicks": "1",
+              "Cost": "7.16"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "100611",
+              "LocationOfPresenceName": "Kasumkent",
+              "Impressions": "3",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "100600",
+              "LocationOfPresenceName": "Kayakent",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "145834",
+              "LocationOfPresenceName": "Khamamatyurt",
+              "Impressions": "3",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "11011",
+              "LocationOfPresenceName": "Khasavurt",
+              "Impressions": "13",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "178081",
+              "LocationOfPresenceName": "Khazarsky sel'sovet",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "21519",
+              "LocationOfPresenceName": "Kizilyurt",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "11009",
+              "LocationOfPresenceName": "Kizlyar",
+              "Impressions": "12",
+              "Clicks": "1",
+              "Cost": "7.46"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "178479",
+              "LocationOfPresenceName": "Kizlyarsky sel'sovet",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "35",
+              "LocationOfPresenceName": "Krasnodar",
+              "Impressions": "7",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "177993",
+              "LocationOfPresenceName": "Kudaginsky sel'sovet",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "99332",
+              "LocationOfPresenceName": "Lakskiy District",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "118590",
+              "LocationOfPresenceName": "Leninaul",
+              "Impressions": "1",
+              "Clicks": "1",
+              "Cost": "2.05"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "121902",
+              "LocationOfPresenceName": "Leninkent",
+              "Impressions": "4",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "20676",
+              "LocationOfPresenceName": "Lyantor",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "28",
+              "LocationOfPresenceName": "Makhachkala",
+              "Impressions": "199",
+              "Clicks": "8",
+              "Cost": "21.84"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "10097",
+              "LocationOfPresenceName": "Malaysia",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "118741",
+              "LocationOfPresenceName": "Mamedkala",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "213",
+              "LocationOfPresenceName": "Moscow",
+              "Impressions": "4",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "177806",
+              "LocationOfPresenceName": "Muninsky sel'sovet",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "23",
+              "LocationOfPresenceName": "Murmansk",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "100657",
+              "LocationOfPresenceName": "Nachalovo",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "974",
+              "LocationOfPresenceName": "Nahodka",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "1092",
+              "LocationOfPresenceName": "Nazran",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "11311",
+              "LocationOfPresenceName": "Norilsk",
+              "Impressions": "2",
+              "Clicks": "1",
+              "Cost": "1.67"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "237",
+              "LocationOfPresenceName": "Novokuznetsk",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "100607",
+              "LocationOfPresenceName": "Novolakskoe",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "65",
+              "LocationOfPresenceName": "Novosibirsk",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "215991",
+              "LocationOfPresenceName": "Novyj Hushet",
+              "Impressions": "4",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "180013",
+              "LocationOfPresenceName": "Pokrovsky sel'sovet",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "977",
+              "LocationOfPresenceName": "Republic of Crimea",
+              "Impressions": "7",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "99337",
+              "LocationOfPresenceName": "Rutul District",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "2",
+              "LocationOfPresenceName": "Saint Petersburg",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "177835",
+              "LocationOfPresenceName": "Selo Kafyr-Kumukh rural settlement",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "178254",
+              "LocationOfPresenceName": "Selo Kalininaul rural settlement",
+              "Impressions": "4",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "178404",
+              "LocationOfPresenceName": "Selo Kul'zeb rural settlement",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "177659",
+              "LocationOfPresenceName": "Selo Lyuksemburg rural settlement",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "179977",
+              "LocationOfPresenceName": "Selo Mutsalaul rural settlement",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "178852",
+              "LocationOfPresenceName": "Selo Nizhneye Chugli rural settlement",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "215984",
+              "LocationOfPresenceName": "Semender",
+              "Impressions": "4",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "215989",
+              "LocationOfPresenceName": "Shamhal-Termen",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "36",
+              "LocationOfPresenceName": "Stavropol",
+              "Impressions": "3",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "11069",
+              "LocationOfPresenceName": "Stavropol Krai",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "120098",
+              "LocationOfPresenceName": "Sulak",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "21702",
+              "LocationOfPresenceName": "Sunzha",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "973",
+              "LocationOfPresenceName": "Surgut",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "121918",
+              "LocationOfPresenceName": "Tarki",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "20255",
+              "LocationOfPresenceName": "Tarko-Sale",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "178076",
+              "LocationOfPresenceName": "Tatlyarsky sel'sovet",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "10338",
+              "LocationOfPresenceName": "Termez",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "100614",
+              "LocationOfPresenceName": "Tlyarata",
+              "Impressions": "3",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "177936",
+              "LocationOfPresenceName": "Tsilitlinsky sel'sovet",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "100596",
+              "LocationOfPresenceName": "Urkarakh",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "178414",
+              "LocationOfPresenceName": "Zubutli-Miatlinsky sel'sovet",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "20001",
+              "LocationOfPresenceName": "not specified",
+              "Impressions": "3",
+              "Clicks": "0",
+              "Cost": "0.00"
+            }
+          ],
+          "finished_at_utc": "2026-11-16T06:55:48.762710+00:00"
+        },
+        "placements": {
+          "request": {
+            "params": {
+              "SelectionCriteria": {
+                "DateFrom": "2026-11-12",
+                "DateTo": "2026-11-15",
+                "Filter": [
+                  {
+                    "Field": "CampaignId",
+                    "Operator": "EQUALS",
+                    "Values": [
+                      "715775801"
+                    ]
+                  }
+                ]
+              },
+              "FieldNames": [
+                "Date",
+                "CampaignId",
+                "AdNetworkType",
+                "Placement",
+                "Impressions",
+                "Clicks",
+                "Cost"
+              ],
+              "ReportName": "dagestan-715775801-43820136828-1-placements-2026-11-12-2026-11-15",
+              "ReportType": "CUSTOM_REPORT",
+              "DateRangeType": "CUSTOM_DATE",
+              "Format": "TSV",
+              "IncludeVAT": "NO",
+              "IncludeDiscount": "NO"
+            }
+          },
+          "started_at_utc": "2026-11-16T06:55:48.762733+00:00",
+          "status": "complete",
+          "columns": [
+            "Date",
+            "CampaignId",
+            "AdNetworkType",
+            "Placement",
+            "Impressions",
+            "Clicks",
+            "Cost"
+          ],
+          "rows": 6,
+          "data": [
+            {
+              "Date": "2026-11-12",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Placement": "Yandex",
+              "Impressions": "15",
+              "Clicks": "2",
+              "Cost": "10.11"
+            },
+            {
+              "Date": "2026-11-13",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Placement": "Yandex",
+              "Impressions": "5",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-14",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Placement": "Yandex",
+              "Impressions": "12",
+              "Clicks": "2",
+              "Cost": "25.15"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Placement": "images.yandex.ru",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Placement": "m.images.yandex.ru",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Placement": "Yandex",
+              "Impressions": "405",
+              "Clicks": "12",
+              "Cost": "40.19"
+            }
+          ],
+          "finished_at_utc": "2026-11-16T06:55:50.131253+00:00"
+        },
+        "goals": {
+          "request": {
+            "params": {
+              "SelectionCriteria": {
+                "DateFrom": "2026-11-12",
+                "DateTo": "2026-11-15",
+                "Filter": [
+                  {
+                    "Field": "CampaignId",
+                    "Operator": "EQUALS",
+                    "Values": [
+                      "715775801"
+                    ]
+                  }
+                ]
+              },
+              "FieldNames": [
+                "Date",
+                "CampaignId",
+                "Impressions",
+                "Clicks",
+                "Cost",
+                "Sessions",
+                "Conversions",
+                "ConversionRate",
+                "CostPerConversion"
+              ],
+              "ReportName": "dagestan-715775801-43820136828-1-goals-2026-11-12-2026-11-15",
+              "ReportType": "CAMPAIGN_PERFORMANCE_REPORT",
+              "DateRangeType": "CUSTOM_DATE",
+              "Format": "TSV",
+              "IncludeVAT": "NO",
+              "IncludeDiscount": "NO",
+              "Goals": [
+                "668953269",
+                "668953627"
+              ],
+              "AttributionModels": [
+                "AUTO"
+              ]
+            }
+          },
+          "started_at_utc": "2026-11-16T06:55:50.131277+00:00",
+          "status": "complete",
+          "columns": [
+            "Date",
+            "CampaignId",
+            "Impressions",
+            "Clicks",
+            "Cost",
+            "Sessions",
+            "Conversions_668953269_AUTO",
+            "Conversions_668953627_AUTO",
+            "ConversionRate_668953269_AUTO",
+            "ConversionRate_668953627_AUTO",
+            "CostPerConversion_668953269_AUTO",
+            "CostPerConversion_668953627_AUTO"
+          ],
+          "rows": 4,
+          "data": [
+            {
+              "Date": "2026-11-12",
+              "CampaignId": "715775801",
+              "Impressions": "15",
+              "Clicks": "2",
+              "Cost": "10.11",
+              "Sessions": "0",
+              "Conversions_668953269_AUTO": "--",
+              "Conversions_668953627_AUTO": "--",
+              "ConversionRate_668953269_AUTO": "--",
+              "ConversionRate_668953627_AUTO": "--",
+              "CostPerConversion_668953269_AUTO": "--",
+              "CostPerConversion_668953627_AUTO": "--"
+            },
+            {
+              "Date": "2026-11-13",
+              "CampaignId": "715775801",
+              "Impressions": "5",
+              "Clicks": "0",
+              "Cost": "0.00",
+              "Sessions": "0",
+              "Conversions_668953269_AUTO": "--",
+              "Conversions_668953627_AUTO": "--",
+              "ConversionRate_668953269_AUTO": "--",
+              "ConversionRate_668953627_AUTO": "--",
+              "CostPerConversion_668953269_AUTO": "--",
+              "CostPerConversion_668953627_AUTO": "--"
+            },
+            {
+              "Date": "2026-11-14",
+              "CampaignId": "715775801",
+              "Impressions": "12",
+              "Clicks": "2",
+              "Cost": "25.15",
+              "Sessions": "1",
+              "Conversions_668953269_AUTO": "1",
+              "Conversions_668953627_AUTO": "--",
+              "ConversionRate_668953269_AUTO": "50.00",
+              "ConversionRate_668953627_AUTO": "--",
+              "CostPerConversion_668953269_AUTO": "25.15",
+              "CostPerConversion_668953627_AUTO": "--"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "Impressions": "408",
+              "Clicks": "12",
+              "Cost": "40.19",
+              "Sessions": "5",
+              "Conversions_668953269_AUTO": "3",
+              "Conversions_668953627_AUTO": "--",
+              "ConversionRate_668953269_AUTO": "25.00",
+              "ConversionRate_668953627_AUTO": "--",
+              "CostPerConversion_668953269_AUTO": "13.40",
+              "CostPerConversion_668953627_AUTO": "--"
+            }
+          ],
+          "finished_at_utc": "2026-11-16T06:55:51.846561+00:00"
+        }
+      },
+      "complete": true,
+      "coverage_notes": [
+        "Query reports may omit impressions; absence is not zero.",
+        "Summed rounded monetary rows may differ from aggregate report.",
+        "Compare snapshots only with matching dates, VAT and attribution."
+      ]
+    },
+    "metrika/status.json": {
+      "counter_id": "113403438",
+      "filter": "ym:s:UTMSource=='yandex' AND ym:s:UTMMedium=='cpc' AND ym:s:UTMCampaign=='dagestan_whatsapp_test2_20261112'",
+      "scope": "exact UTM campaign, aggregated visits only",
+      "captured_at_utc": "2026-11-16T06:55:51.951465+00:00",
+      "reports": {
+        "overview": {
+          "request": {
+            "ids": "113403438",
+            "date1": "2026-11-12",
+            "date2": "2026-11-15",
+            "metrics": "ym:s:visits,ym:s:users,ym:s:goal668953269reaches,ym:s:goal668953627reaches",
+            "filters": "ym:s:UTMSource=='yandex' AND ym:s:UTMMedium=='cpc' AND ym:s:UTMCampaign=='dagestan_whatsapp_test2_20261112'",
+            "accuracy": "full",
+            "limit": "1000",
+            "offset": "1",
+            "lang": "ru"
+          },
+          "traffic_scope": "exact_utm_campaign",
+          "status": "complete",
+          "observation": {
+            "metrics": {
+              "ym:s:visits": 6,
+              "ym:s:users": 5,
+              "ym:s:goal668953269reaches": 10,
+              "ym:s:goal668953627reaches": 0
+            },
+            "total_rows": 1,
+            "sampled": false,
+            "sample_share": 1,
+            "data_lag": 0,
+            "truncated": false
+          }
+        },
+        "daily": {
+          "request": {
+            "ids": "113403438",
+            "date1": "2026-11-12",
+            "date2": "2026-11-15",
+            "metrics": "ym:s:visits,ym:s:users,ym:s:goal668953269reaches,ym:s:goal668953627reaches",
+            "filters": "ym:s:UTMSource=='yandex' AND ym:s:UTMMedium=='cpc' AND ym:s:UTMCampaign=='dagestan_whatsapp_test2_20261112'",
+            "accuracy": "full",
+            "limit": "1000",
+            "offset": "1",
+            "lang": "ru",
+            "dimensions": "ym:s:date"
+          },
+          "traffic_scope": "exact_utm_campaign",
+          "status": "complete",
+          "observation": {
+            "metrics": {
+              "ym:s:visits": 6,
+              "ym:s:users": 5,
+              "ym:s:goal668953269reaches": 10,
+              "ym:s:goal668953627reaches": 0
+            },
+            "total_rows": 2,
+            "sampled": false,
+            "sample_share": 1,
+            "data_lag": 0,
+            "truncated": false
+          }
+        },
+        "devices": {
+          "request": {
+            "ids": "113403438",
+            "date1": "2026-11-12",
+            "date2": "2026-11-15",
+            "metrics": "ym:s:visits,ym:s:users,ym:s:goal668953269reaches,ym:s:goal668953627reaches",
+            "filters": "ym:s:UTMSource=='yandex' AND ym:s:UTMMedium=='cpc' AND ym:s:UTMCampaign=='dagestan_whatsapp_test2_20261112'",
+            "accuracy": "full",
+            "limit": "1000",
+            "offset": "1",
+            "lang": "ru",
+            "dimensions": "ym:s:deviceCategory"
+          },
+          "traffic_scope": "exact_utm_campaign",
+          "status": "complete",
+          "observation": {
+            "metrics": {
+              "ym:s:visits": 6,
+              "ym:s:users": 5,
+              "ym:s:goal668953269reaches": 10,
+              "ym:s:goal668953627reaches": 0
+            },
+            "total_rows": 2,
+            "sampled": false,
+            "sample_share": 1,
+            "data_lag": 0,
+            "truncated": false
+          }
+        },
+        "regions": {
+          "request": {
+            "ids": "113403438",
+            "date1": "2026-11-12",
+            "date2": "2026-11-15",
+            "metrics": "ym:s:visits,ym:s:users,ym:s:goal668953269reaches,ym:s:goal668953627reaches",
+            "filters": "ym:s:UTMSource=='yandex' AND ym:s:UTMMedium=='cpc' AND ym:s:UTMCampaign=='dagestan_whatsapp_test2_20261112'",
+            "accuracy": "full",
+            "limit": "1000",
+            "offset": "1",
+            "lang": "ru",
+            "dimensions": "ym:s:regionCountry,ym:s:regionArea,ym:s:regionCity"
+          },
+          "traffic_scope": "exact_utm_campaign",
+          "status": "complete",
+          "observation": {
+            "metrics": {
+              "ym:s:visits": 6,
+              "ym:s:users": 5,
+              "ym:s:goal668953269reaches": 10,
+              "ym:s:goal668953627reaches": 0
+            },
+            "total_rows": 2,
+            "sampled": false,
+            "sample_share": 1,
+            "data_lag": 0,
+            "truncated": false
+          }
+        },
+        "all_traffic": {
+          "request": {
+            "ids": "113403438",
+            "date1": "2026-11-12",
+            "date2": "2026-11-15",
+            "metrics": "ym:s:visits,ym:s:users,ym:s:goal668953269reaches,ym:s:goal668953627reaches",
+            "accuracy": "full",
+            "limit": "1000",
+            "offset": "1",
+            "lang": "ru"
+          },
+          "traffic_scope": "all_counter_traffic_diagnostic_only",
+          "status": "complete",
+          "observation": {
+            "metrics": {
+              "ym:s:visits": 21,
+              "ym:s:users": 12,
+              "ym:s:goal668953269reaches": 17,
+              "ym:s:goal668953627reaches": 0
+            },
+            "total_rows": 1,
+            "sampled": false,
+            "sample_share": 1,
+            "data_lag": 0,
+            "truncated": false
+          }
+        },
+        "observed_utm": {
+          "request": {
+            "ids": "113403438",
+            "date1": "2026-11-12",
+            "date2": "2026-11-15",
+            "metrics": "ym:s:visits,ym:s:users,ym:s:goal668953269reaches,ym:s:goal668953627reaches",
+            "accuracy": "full",
+            "limit": "1000",
+            "offset": "1",
+            "lang": "ru",
+            "dimensions": "ym:s:UTMSource,ym:s:UTMMedium,ym:s:UTMCampaign"
+          },
+          "traffic_scope": "all_counter_traffic_diagnostic_only",
+          "status": "complete",
+          "observation": {
+            "metrics": {
+              "ym:s:visits": 12,
+              "ym:s:users": 9,
+              "ym:s:goal668953269reaches": 16,
+              "ym:s:goal668953627reaches": 0
+            },
+            "total_rows": 4,
+            "sampled": false,
+            "sample_share": 1,
+            "data_lag": 0,
+            "truncated": false
+          }
+        },
+        "direct_daily": {
+          "request": {
+            "ids": "113403438",
+            "date1": "2026-11-12",
+            "date2": "2026-11-15",
+            "metrics": "ym:s:visits,ym:s:users,ym:s:goal668953269reaches,ym:s:goal668953627reaches",
+            "filters": "ym:s:<attribution>DirectClickOrder==715775801",
+            "accuracy": "full",
+            "limit": "1000",
+            "offset": "1",
+            "lang": "ru",
+            "dimensions": "ym:s:date",
+            "attribution": "automatic"
+          },
+          "traffic_scope": "direct_linked_campaign_automatic",
+          "status": "complete",
+          "observation": {
+            "metrics": {
+              "ym:s:visits": 6,
+              "ym:s:users": 5,
+              "ym:s:goal668953269reaches": 10,
+              "ym:s:goal668953627reaches": 0
+            },
+            "total_rows": 2,
+            "sampled": false,
+            "sample_share": 1,
+            "data_lag": 0,
+            "truncated": false
+          }
+        }
+      },
+      "note": "Goals are button events after analytics consent, NOT actual group joins. Do not equate Metrika attribution with Direct AUTO.",
+      "date_from": "2026-11-12",
+      "date_to": "2026-11-15",
+      "counter_meta": {
+        "id": 113403438,
+        "site": "obyavleniya-dagestan.ru",
+        "time_zone_name": "Europe/Moscow",
+        "time_zone_offset": 180
+      },
+      "status": "complete"
+    },
+    "metrika/daily.json": {
+      "query": {
+        "ids": [
+          113403438
+        ],
+        "dimensions": [
+          "ym:s:date"
+        ],
+        "metrics": [
+          "ym:s:visits",
+          "ym:s:users",
+          "ym:s:goal668953269reaches",
+          "ym:s:goal668953627reaches"
+        ],
+        "sort": [
+          "-ym:s:visits"
+        ],
+        "date1": "2026-11-12",
+        "date2": "2026-11-15",
+        "filters": "ym:s:UTMSource=='yandex' AND ym:s:UTMMedium=='cpc' AND ym:s:UTMCampaign=='dagestan_whatsapp_test2_20261112'",
+        "limit": 1000,
+        "offset": 1,
+        "group": "Week",
+        "benchmarks_version": "1793577600000",
+        "benchmarks_sub_industry": "false",
+        "auto_group_size": "1",
+        "exp_bucket_size": "100",
+        "attr_name": "",
+        "funnel_window": "",
+        "benchmarks_quantile": "50",
+        "time_interval": "1SECOND",
+        "intervals": "1",
+        "quantile": "50",
+        "offline_window": "21",
+        "attribution": "CROSS_DEVICE_LAST_SIGNIFICANT",
+        "currency": "RUB",
+        "benchmarks_attribution": "Automatic",
+        "adfox_event_id": "0",
+        "funnel_pattern": ""
+      },
+      "data": [
+        {
+          "dimensions": [
+            {
+              "name": "2026-11-15"
+            }
+          ],
+          "metrics": [
+            5,
+            4,
+            9,
+            0
+          ]
+        },
+        {
+          "dimensions": [
+            {
+              "name": "2026-11-14"
+            }
+          ],
+          "metrics": [
+            1,
+            1,
+            1,
+            0
+          ]
+        }
+      ],
+      "total_rows": 2,
+      "total_rows_rounded": false,
+      "sampled": false,
+      "contains_sensitive_data": false,
+      "sample_share": 1,
+      "sample_size": 21,
+      "sample_space": 21,
+      "data_lag": 0,
+      "totals": [
+        6,
+        5,
+        10,
+        0
+      ],
+      "min": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "max": [
+        5,
+        4,
+        9,
+        0
+      ]
+    },
+    "metrika/direct_daily.json": {
+      "query": {
+        "ids": [
+          113403438
+        ],
+        "dimensions": [
+          "ym:s:date"
+        ],
+        "metrics": [
+          "ym:s:visits",
+          "ym:s:users",
+          "ym:s:goal668953269reaches",
+          "ym:s:goal668953627reaches"
+        ],
+        "sort": [
+          "-ym:s:visits"
+        ],
+        "date1": "2026-11-12",
+        "date2": "2026-11-15",
+        "filters": "ym:s:automaticDirectClickOrder==715775801",
+        "limit": 1000,
+        "offset": 1,
+        "attribution": "automatic",
+        "group": "Week",
+        "benchmarks_version": "1793577600000",
+        "benchmarks_sub_industry": "false",
+        "auto_group_size": "1",
+        "exp_bucket_size": "100",
+        "attr_name": "",
+        "funnel_window": "",
+        "benchmarks_quantile": "50",
+        "time_interval": "1SECOND",
+        "intervals": "1",
+        "quantile": "50",
+        "offline_window": "21",
+        "currency": "RUB",
+        "benchmarks_attribution": "Automatic",
+        "adfox_event_id": "0",
+        "funnel_pattern": ""
+      },
+      "data": [
+        {
+          "dimensions": [
+            {
+              "name": "2026-11-15"
+            }
+          ],
+          "metrics": [
+            5,
+            4,
+            9,
+            0
+          ]
+        },
+        {
+          "dimensions": [
+            {
+              "name": "2026-11-14"
+            }
+          ],
+          "metrics": [
+            1,
+            1,
+            1,
+            0
+          ]
+        }
+      ],
+      "total_rows": 2,
+      "total_rows_rounded": false,
+      "sampled": false,
+      "contains_sensitive_data": false,
+      "sample_share": 1,
+      "sample_size": 21,
+      "sample_space": 21,
+      "data_lag": 0,
+      "totals": [
+        6,
+        5,
+        10,
+        0
+      ],
+      "min": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "max": [
+        5,
+        4,
+        9,
+        0
+      ]
+    },
+    "metrika/observed_utm.json": {
+      "query": {
+        "ids": [
+          113403438
+        ],
+        "dimensions": [
+          "ym:s:UTMSource",
+          "ym:s:UTMMedium",
+          "ym:s:UTMCampaign"
+        ],
+        "metrics": [
+          "ym:s:visits",
+          "ym:s:users",
+          "ym:s:goal668953269reaches",
+          "ym:s:goal668953627reaches"
+        ],
+        "sort": [
+          "-ym:s:visits"
+        ],
+        "date1": "2026-11-12",
+        "date2": "2026-11-15",
+        "limit": 1000,
+        "offset": 1,
+        "group": "Week",
+        "benchmarks_version": "1793577600000",
+        "benchmarks_sub_industry": "false",
+        "auto_group_size": "1",
+        "exp_bucket_size": "100",
+        "attr_name": "",
+        "funnel_window": "",
+        "benchmarks_quantile": "50",
+        "time_interval": "1SECOND",
+        "intervals": "1",
+        "quantile": "50",
+        "offline_window": "21",
+        "attribution": "CROSS_DEVICE_LAST_SIGNIFICANT",
+        "currency": "RUB",
+        "benchmarks_attribution": "Automatic",
+        "adfox_event_id": "0",
+        "funnel_pattern": ""
+      },
+      "data": [
+        {
+          "dimensions": [
+            {
+              "name": "yandex"
+            },
+            {
+              "name": "cpc"
+            },
+            {
+              "name": "dagestan_whatsapp_test2_20261112"
+            }
+          ],
+          "metrics": [
+            6,
+            5,
+            10,
+            0
+          ]
+        },
+        {
+          "dimensions": [
+            {
+              "name": "qa"
+            },
+            {
+              "name": "technical_check"
+            },
+            {
+              "name": "dagestan_phone_qa_20261114"
+            }
+          ],
+          "metrics": [
+            4,
+            2,
+            5,
+            0
+          ]
+        },
+        {
+          "dimensions": [
+            {
+              "name": "qa"
+            },
+            {
+              "name": "technical_check"
+            },
+            {
+              "name": "dagestan_measurement_qa_20261112"
+            }
+          ],
+          "metrics": [
+            1,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "dimensions": [
+            {
+              "name": "qa"
+            },
+            {
+              "name": "technical_check"
+            },
+            {
+              "name": "dagestan_native_qa_20261114"
+            }
+          ],
+          "metrics": [
+            1,
+            1,
+            1,
+            0
+          ]
+        }
+      ],
+      "total_rows": 4,
+      "total_rows_rounded": false,
+      "sampled": false,
+      "contains_sensitive_data": false,
+      "sample_share": 1,
+      "sample_size": 21,
+      "sample_space": 21,
+      "data_lag": 0,
+      "totals": [
+        12,
+        9,
+        16,
+        0
+      ],
+      "min": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "max": [
+        6,
+        5,
+        10,
+        0
+      ]
+    }
+  },
+  "owner_report": {
+    "reported_on": "2026-11-16",
+    "previous_member_count": 46,
+    "current_member_count": 46,
+    "reported_joins": "several, exact count unknown",
+    "reported_departures": "present, exact count unknown",
+    "net_change_since_previous_count": 0,
+    "advertising_source_for_yesterday_joins": "not individually confirmed",
+    "note": "Do not equate repeated WA button events, gross joins, net growth or retention."
+  }
+}
