@@ -1,9 +1,6 @@
 name: Nov17 minimal online query diagnostic
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - ".github/workflows/direct-nov17-query-online.yml"
 permissions: {}
 jobs:
   read:
