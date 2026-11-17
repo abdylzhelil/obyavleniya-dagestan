@@ -1,0 +1,57 @@
+name: Nov17 minimal online query diagnostic
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/direct-nov17-query-online.yml"
+permissions: {}
+jobs:
+  read:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Single read-only online request with bounded timeout
+        env:
+          YANDEX_DIRECT_TOKEN: ${{ secrets.YANDEX_DIRECT_TOKEN }}
+        run: |
+          python3 - <<'PY'
+          import os,json,csv,io,urllib.request,urllib.error
+          from datetime import datetime,timezone
+          from pathlib import Path
+          token=os.environ.get('YANDEX_DIRECT_TOKEN','').strip()
+          fields=['Date','CampaignId','Query','Criterion','CriterionType','Impressions','Clicks','Cost']
+          p={'SelectionCriteria':{'DateFrom':'2026-11-17','DateTo':'2026-11-17','Filter':[{'Field':'CampaignId','Operator':'EQUALS','Values':['715775801']}]},'FieldNames':fields,'ReportName':'dagestan-nov17-minimal-online-'+os.environ['GITHUB_RUN_ID'],'ReportType':'SEARCH_QUERY_PERFORMANCE_REPORT','DateRangeType':'CUSTOM_DATE','Format':'TSV','IncludeVAT':'NO','IncludeDiscount':'NO'}
+          r={'captured_at_utc':datetime.now(timezone.utc).isoformat(),'request':{'params':p},'processing_mode':'online','status':'failed'}
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self,*args):raise ValueError('Redirect refused')
+          out=Path('query-online');out.mkdir(exist_ok=True)
+          try:
+              if not token:raise ValueError('Missing runner secret')
+              req=urllib.request.Request('https://api.direct.yandex.com/json/v5/reports',data=json.dumps({'params':p}).encode(),method='POST',headers={'Authorization':'Bearer '+token,'Content-Type':'application/json','processingMode':'online','returnMoneyInMicros':'false','skipReportHeader':'true','skipReportSummary':'true','Accept-Language':'en'})
+              with urllib.request.build_opener(NoRedirect()).open(req,timeout=45) as response:
+                  status=response.status;body=response.read(5*1024*1024+1)
+              if status!=200 or len(body)>5*1024*1024:raise ValueError('Unexpected response status or size')
+              text=body.decode('utf-8-sig').replace(token,'[REDACTED]')
+              reader=csv.DictReader(io.StringIO(text),delimiter='\t');rows=list(reader)
+              if set(reader.fieldnames or [])!=set(fields):raise ValueError('Wrong columns')
+              if any(x.get('CampaignId')!='715775801' or x.get('Date')!='2026-11-17' or None in x for x in rows):raise ValueError('Wrong scope or malformed row')
+              (out/'queries.tsv').write_text(text)
+              r.update(status='complete',columns=reader.fieldnames,rows=len(rows),data=rows)
+          except urllib.error.HTTPError as e:
+              r['http_status']=e.code
+              try:r['api_error']=json.loads(e.read(8192)).get('error',{})
+              except Exception:pass
+          except Exception as e:r['error_type']=type(e).__name__
+          text=json.dumps(r,ensure_ascii=False)
+          if token:text=text.replace(token,'[REDACTED]')
+          (out/'result.json').write_text(text)
+          print('ONLINE_QUERY '+text)
+          if r['status']!='complete':raise SystemExit(1)
+          PY
+      - name: Save diagnostic artifact
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: nov17-query-online-${{ github.run_id }}
+          path: query-online/
+          retention-days: 30
