@@ -1,9 +1,6 @@
 name: Add exact Khasavyurt navigation exclusion for Nov18
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - ".github/workflows/whatsapp-khasavyurt-exact-negative.yml"
 permissions: {}
 concurrency:
   group: direct-bounded-control
