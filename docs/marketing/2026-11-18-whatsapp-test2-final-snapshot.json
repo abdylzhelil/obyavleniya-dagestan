@@ -1,0 +1,3698 @@
+{
+  "report_run_id": 44507075036,
+  "inspection_run_id": 44507075035,
+  "artifact_id": 14518934121,
+  "scope": "final completed test12-18 November2026; queries18Novonly",
+  "evidence": {
+    "metadata.json": {
+      "campaign_id": "715775801",
+      "date_from": "2026-11-12",
+      "date_to": "2026-11-18",
+      "captured_at_utc": "2026-11-19T10:35:30.075452+00:00",
+      "include_vat": false,
+      "money_units": "account currency; API rounds to two decimals (not micros)",
+      "report_timezone": "API account/report timezone; not independently read",
+      "goals_are": "attributed website events, NOT verified group joins",
+      "reports": {
+        "totals": {
+          "request": {
+            "params": {
+              "SelectionCriteria": {
+                "DateFrom": "2026-11-12",
+                "DateTo": "2026-11-18",
+                "Filter": [
+                  {
+                    "Field": "CampaignId",
+                    "Operator": "EQUALS",
+                    "Values": [
+                      "715775801"
+                    ]
+                  }
+                ]
+              },
+              "FieldNames": [
+                "CampaignId",
+                "Impressions",
+                "Clicks",
+                "Cost",
+                "Ctr",
+                "AvgCpc"
+              ],
+              "ReportName": "dagestan-715775801-44507075036-1-totals-2026-11-12-2026-11-18",
+              "ReportType": "CAMPAIGN_PERFORMANCE_REPORT",
+              "DateRangeType": "CUSTOM_DATE",
+              "Format": "TSV",
+              "IncludeVAT": "NO",
+              "IncludeDiscount": "NO"
+            }
+          },
+          "started_at_utc": "2026-11-19T10:35:30.082196+00:00",
+          "status": "complete",
+          "columns": [
+            "CampaignId",
+            "Impressions",
+            "Clicks",
+            "Cost",
+            "Ctr",
+            "AvgCpc"
+          ],
+          "rows": 1,
+          "data": [
+            {
+              "CampaignId": "715775801",
+              "Impressions": "950",
+              "Clicks": "43",
+              "Cost": "286.01",
+              "Ctr": "4.53",
+              "AvgCpc": "6.65"
+            }
+          ],
+          "finished_at_utc": "2026-11-19T10:35:32.606198+00:00"
+        },
+        "daily": {
+          "request": {
+            "params": {
+              "SelectionCriteria": {
+                "DateFrom": "2026-11-12",
+                "DateTo": "2026-11-18",
+                "Filter": [
+                  {
+                    "Field": "CampaignId",
+                    "Operator": "EQUALS",
+                    "Values": [
+                      "715775801"
+                    ]
+                  }
+                ]
+              },
+              "FieldNames": [
+                "Date",
+                "CampaignId",
+                "Impressions",
+                "Clicks",
+                "Cost",
+                "Ctr",
+                "AvgCpc"
+              ],
+              "ReportName": "dagestan-715775801-44507075036-1-daily-2026-11-12-2026-11-18",
+              "ReportType": "CAMPAIGN_PERFORMANCE_REPORT",
+              "DateRangeType": "CUSTOM_DATE",
+              "Format": "TSV",
+              "IncludeVAT": "NO",
+              "IncludeDiscount": "NO"
+            }
+          },
+          "started_at_utc": "2026-11-19T10:35:32.606250+00:00",
+          "status": "complete",
+          "columns": [
+            "Date",
+            "CampaignId",
+            "Impressions",
+            "Clicks",
+            "Cost",
+            "Ctr",
+            "AvgCpc"
+          ],
+          "rows": 7,
+          "data": [
+            {
+              "Date": "2026-11-12",
+              "CampaignId": "715775801",
+              "Impressions": "15",
+              "Clicks": "2",
+              "Cost": "10.11",
+              "Ctr": "13.33",
+              "AvgCpc": "5.05"
+            },
+            {
+              "Date": "2026-11-13",
+              "CampaignId": "715775801",
+              "Impressions": "5",
+              "Clicks": "0",
+              "Cost": "0.00",
+              "Ctr": "0.00",
+              "AvgCpc": "--"
+            },
+            {
+              "Date": "2026-11-14",
+              "CampaignId": "715775801",
+              "Impressions": "12",
+              "Clicks": "2",
+              "Cost": "25.15",
+              "Ctr": "16.67",
+              "AvgCpc": "12.57"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "Impressions": "408",
+              "Clicks": "12",
+              "Cost": "40.19",
+              "Ctr": "2.94",
+              "AvgCpc": "3.35"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "Impressions": "353",
+              "Clicks": "15",
+              "Cost": "84.59",
+              "Ctr": "4.25",
+              "AvgCpc": "5.64"
+            },
+            {
+              "Date": "2026-11-17",
+              "CampaignId": "715775801",
+              "Impressions": "104",
+              "Clicks": "4",
+              "Cost": "43.12",
+              "Ctr": "3.85",
+              "AvgCpc": "10.78"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "Impressions": "53",
+              "Clicks": "8",
+              "Cost": "82.86",
+              "Ctr": "15.09",
+              "AvgCpc": "10.36"
+            }
+          ],
+          "finished_at_utc": "2026-11-19T10:35:34.383383+00:00"
+        },
+        "queries": {
+          "request": {
+            "params": {
+              "SelectionCriteria": {
+                "DateFrom": "2026-11-18",
+                "DateTo": "2026-11-18",
+                "Filter": [
+                  {
+                    "Field": "CampaignId",
+                    "Operator": "EQUALS",
+                    "Values": [
+                      "715775801"
+                    ]
+                  }
+                ]
+              },
+              "FieldNames": [
+                "Date",
+                "CampaignId",
+                "AdGroupId",
+                "Query",
+                "Criterion",
+                "CriterionType",
+                "MatchType",
+                "TargetingCategory",
+                "MatchedKeyword",
+                "Impressions",
+                "Clicks",
+                "Cost"
+              ],
+              "ReportName": "dagestan-715775801-44507075036-1-queries-2026-11-12-2026-11-18",
+              "ReportType": "SEARCH_QUERY_PERFORMANCE_REPORT",
+              "DateRangeType": "CUSTOM_DATE",
+              "Format": "TSV",
+              "IncludeVAT": "NO",
+              "IncludeDiscount": "NO"
+            }
+          },
+          "started_at_utc": "2026-11-19T10:35:34.383409+00:00",
+          "status": "complete",
+          "columns": [
+            "Date",
+            "CampaignId",
+            "AdGroupId",
+            "Query",
+            "Criterion",
+            "CriterionType",
+            "MatchType",
+            "TargetingCategory",
+            "MatchedKeyword",
+            "Impressions",
+            "Clicks",
+            "Cost"
+          ],
+          "rows": 23,
+          "data": [
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито махачкала столы стулья",
+              "Criterion": "объявления махачкала группа",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "NARROW",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито махачкала услуги",
+              "Criterion": "---autotargeting",
+              "CriterionType": "AUTOTARGETING",
+              "MatchType": "NONE",
+              "TargetingCategory": "EXACT",
+              "MatchedKeyword": "",
+              "Impressions": "3",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито мебель бу хасавюрт",
+              "Criterion": "группа объявлений хасавюрт",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "NARROW",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "1",
+              "Cost": "1.62"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито продажа домов в хасавюрте",
+              "Criterion": "группа объявлений хасавюрт",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "NARROW",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито ру хасавюрт",
+              "Criterion": "группа объявлений хасавюрт",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито хасавюрт аренда квартир",
+              "Criterion": "группа объявлений хасавюрт",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "NARROW",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито хасавюрт купить диван сафари",
+              "Criterion": "группа объявлений хасавюрт",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "NARROW",
+              "MatchedKeyword": "",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито хасавюрт купить квартиру",
+              "Criterion": "группа объявлений хасавюрт",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "NARROW",
+              "MatchedKeyword": "",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито хасавюрт отдам бесплатно",
+              "Criterion": "группа объявлений хасавюрт",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "NARROW",
+              "MatchedKeyword": "",
+              "Impressions": "3",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "авито хасавюрт снять квартиру",
+              "Criterion": "группа объявлений хасавюрт",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "NARROW",
+              "MatchedKeyword": "",
+              "Impressions": "8",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "барахолка махачкала",
+              "Criterion": "---autotargeting",
+              "CriterionType": "AUTOTARGETING",
+              "MatchType": "NONE",
+              "TargetingCategory": "EXACT",
+              "MatchedKeyword": "",
+              "Impressions": "3",
+              "Clicks": "2",
+              "Cost": "24.92"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "вито дагестан",
+              "Criterion": "группа объявлений дагестан -авито -avito -авита",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "выставить объявление",
+              "Criterion": "---autotargeting",
+              "CriterionType": "AUTOTARGETING",
+              "MatchType": "NONE",
+              "TargetingCategory": "EXACT",
+              "MatchedKeyword": "",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "группа ватсап купи продай старую одежду в дагестане",
+              "Criterion": "куплю продам дагестан группа",
+              "CriterionType": "KEYWORD",
+              "MatchType": "KEYWORD",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "3",
+              "Clicks": "1",
+              "Cost": "12.43"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "группа ватсапе с объявлением работой в махачкале",
+              "Criterion": "объявления Дагестан ватсап группа",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "1",
+              "Cost": "15.40"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "квартира в хасавюрте авито",
+              "Criterion": "группа объявлений хасавюрт",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "NARROW",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "купи продай дагестан",
+              "Criterion": "---autotargeting",
+              "CriterionType": "AUTOTARGETING",
+              "MatchType": "NONE",
+              "TargetingCategory": "EXACT",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "1",
+              "Cost": "14.29"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "купить дом в хасавюрте на авито без посредников недорого",
+              "Criterion": "группа объявлений хасавюрт",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "NARROW",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "объявление",
+              "Criterion": "---autotargeting",
+              "CriterionType": "AUTOTARGETING",
+              "MatchType": "NONE",
+              "TargetingCategory": "EXACT",
+              "MatchedKeyword": "",
+              "Impressions": "3",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "объявления махачкала",
+              "Criterion": "---autotargeting",
+              "CriterionType": "AUTOTARGETING",
+              "MatchType": "NONE",
+              "TargetingCategory": "EXACT",
+              "MatchedKeyword": "",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "объявления обливская",
+              "Criterion": "---autotargeting",
+              "CriterionType": "AUTOTARGETING",
+              "MatchType": "NONE",
+              "TargetingCategory": "EXACT",
+              "MatchedKeyword": "",
+              "Impressions": "4",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "циан махачкала",
+              "Criterion": "группа объявлений дагестан -авито -avito -авита",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "3",
+              "Clicks": "1",
+              "Cost": "8.71"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "AdGroupId": "5819958999",
+              "Query": "юла махачкала",
+              "Criterion": "объявления махачкала группа",
+              "CriterionType": "KEYWORD",
+              "MatchType": "SYNONYM",
+              "TargetingCategory": "ALTERNATIVE",
+              "MatchedKeyword": "",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            }
+          ],
+          "finished_at_utc": "2026-11-19T10:35:49.848337+00:00"
+        },
+        "devices": {
+          "request": {
+            "params": {
+              "SelectionCriteria": {
+                "DateFrom": "2026-11-12",
+                "DateTo": "2026-11-18",
+                "Filter": [
+                  {
+                    "Field": "CampaignId",
+                    "Operator": "EQUALS",
+                    "Values": [
+                      "715775801"
+                    ]
+                  }
+                ]
+              },
+              "FieldNames": [
+                "Date",
+                "CampaignId",
+                "AdNetworkType",
+                "Device",
+                "MobilePlatform",
+                "Impressions",
+                "Clicks",
+                "Cost"
+              ],
+              "ReportName": "dagestan-715775801-44507075036-1-devices-2026-11-12-2026-11-18",
+              "ReportType": "CUSTOM_REPORT",
+              "DateRangeType": "CUSTOM_DATE",
+              "Format": "TSV",
+              "IncludeVAT": "NO",
+              "IncludeDiscount": "NO"
+            }
+          },
+          "started_at_utc": "2026-11-19T10:35:49.848350+00:00",
+          "status": "complete",
+          "columns": [
+            "Date",
+            "CampaignId",
+            "AdNetworkType",
+            "Device",
+            "MobilePlatform",
+            "Impressions",
+            "Clicks",
+            "Cost"
+          ],
+          "rows": 28,
+          "data": [
+            {
+              "Date": "2026-11-12",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "DESKTOP",
+              "MobilePlatform": "OTHER",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-12",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "MOBILE",
+              "MobilePlatform": "ANDROID",
+              "Impressions": "10",
+              "Clicks": "1",
+              "Cost": "1.22"
+            },
+            {
+              "Date": "2026-11-12",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "MOBILE",
+              "MobilePlatform": "IOS",
+              "Impressions": "4",
+              "Clicks": "1",
+              "Cost": "8.89"
+            },
+            {
+              "Date": "2026-11-13",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "MOBILE",
+              "MobilePlatform": "ANDROID",
+              "Impressions": "3",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-13",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "MOBILE",
+              "MobilePlatform": "IOS",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-14",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "DESKTOP",
+              "MobilePlatform": "OTHER",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-14",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "MOBILE",
+              "MobilePlatform": "ANDROID",
+              "Impressions": "4",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-14",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "MOBILE",
+              "MobilePlatform": "IOS",
+              "Impressions": "7",
+              "Clicks": "2",
+              "Cost": "25.15"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "DESKTOP",
+              "MobilePlatform": "OTHER",
+              "Impressions": "75",
+              "Clicks": "3",
+              "Cost": "7.85"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "MOBILE",
+              "MobilePlatform": "ANDROID",
+              "Impressions": "162",
+              "Clicks": "6",
+              "Cost": "26.01"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "MOBILE",
+              "MobilePlatform": "IOS",
+              "Impressions": "154",
+              "Clicks": "1",
+              "Cost": "4.40"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "SMART_TV",
+              "MobilePlatform": "ANDROID",
+              "Impressions": "5",
+              "Clicks": "2",
+              "Cost": "1.93"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "SMART_TV",
+              "MobilePlatform": "OTHER",
+              "Impressions": "5",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "TABLET",
+              "MobilePlatform": "ANDROID",
+              "Impressions": "6",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "TABLET",
+              "MobilePlatform": "IOS",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "DESKTOP",
+              "MobilePlatform": "OTHER",
+              "Impressions": "96",
+              "Clicks": "6",
+              "Cost": "22.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "MOBILE",
+              "MobilePlatform": "ANDROID",
+              "Impressions": "178",
+              "Clicks": "7",
+              "Cost": "44.04"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "MOBILE",
+              "MobilePlatform": "IOS",
+              "Impressions": "75",
+              "Clicks": "2",
+              "Cost": "18.55"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "TABLET",
+              "MobilePlatform": "ANDROID",
+              "Impressions": "4",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-17",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "DESKTOP",
+              "MobilePlatform": "OTHER",
+              "Impressions": "24",
+              "Clicks": "1",
+              "Cost": "9.06"
+            },
+            {
+              "Date": "2026-11-17",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "MOBILE",
+              "MobilePlatform": "ANDROID",
+              "Impressions": "51",
+              "Clicks": "2",
+              "Cost": "14.93"
+            },
+            {
+              "Date": "2026-11-17",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "MOBILE",
+              "MobilePlatform": "IOS",
+              "Impressions": "27",
+              "Clicks": "1",
+              "Cost": "19.13"
+            },
+            {
+              "Date": "2026-11-17",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "SMART_TV",
+              "MobilePlatform": "ANDROID",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-17",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "TABLET",
+              "MobilePlatform": "ANDROID",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "DESKTOP",
+              "MobilePlatform": "OTHER",
+              "Impressions": "8",
+              "Clicks": "2",
+              "Cost": "10.33"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "MOBILE",
+              "MobilePlatform": "ANDROID",
+              "Impressions": "27",
+              "Clicks": "3",
+              "Cost": "39.35"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "MOBILE",
+              "MobilePlatform": "IOS",
+              "Impressions": "16",
+              "Clicks": "3",
+              "Cost": "33.18"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Device": "TABLET",
+              "MobilePlatform": "ANDROID",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            }
+          ],
+          "finished_at_utc": "2026-11-19T10:35:52.026622+00:00"
+        },
+        "regions": {
+          "request": {
+            "params": {
+              "SelectionCriteria": {
+                "DateFrom": "2026-11-12",
+                "DateTo": "2026-11-18",
+                "Filter": [
+                  {
+                    "Field": "CampaignId",
+                    "Operator": "EQUALS",
+                    "Values": [
+                      "715775801"
+                    ]
+                  }
+                ]
+              },
+              "FieldNames": [
+                "Date",
+                "CampaignId",
+                "LocationOfPresenceId",
+                "LocationOfPresenceName",
+                "Impressions",
+                "Clicks",
+                "Cost"
+              ],
+              "ReportName": "dagestan-715775801-44507075036-1-regions-2026-11-12-2026-11-18",
+              "ReportType": "CUSTOM_REPORT",
+              "DateRangeType": "CUSTOM_DATE",
+              "Format": "TSV",
+              "IncludeVAT": "NO",
+              "IncludeDiscount": "NO"
+            }
+          },
+          "started_at_utc": "2026-11-19T10:35:52.026640+00:00",
+          "status": "complete",
+          "columns": [
+            "Date",
+            "CampaignId",
+            "LocationOfPresenceId",
+            "LocationOfPresenceName",
+            "Impressions",
+            "Clicks",
+            "Cost"
+          ],
+          "rows": 193,
+          "data": [
+            {
+              "Date": "2026-11-12",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "11008",
+              "LocationOfPresenceName": "Kaspiysk",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-12",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "100611",
+              "LocationOfPresenceName": "Kasumkent",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-12",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "235",
+              "LocationOfPresenceName": "Magnitogorsk",
+              "Impressions": "1",
+              "Clicks": "1",
+              "Cost": "8.89"
+            },
+            {
+              "Date": "2026-11-12",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "28",
+              "LocationOfPresenceName": "Makhachkala",
+              "Impressions": "8",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-12",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "213",
+              "LocationOfPresenceName": "Moscow",
+              "Impressions": "1",
+              "Clicks": "1",
+              "Cost": "1.22"
+            },
+            {
+              "Date": "2026-11-12",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "177888",
+              "LocationOfPresenceName": "Selo Kurmi rural settlement",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-13",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "21732",
+              "LocationOfPresenceName": "Dagestanskie Ogni",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-13",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "11008",
+              "LocationOfPresenceName": "Kaspiysk",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-13",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "11011",
+              "LocationOfPresenceName": "Khasavurt",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-13",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "28",
+              "LocationOfPresenceName": "Makhachkala",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-13",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "20617",
+              "LocationOfPresenceName": "Minyar",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-14",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "99319",
+              "LocationOfPresenceName": "Gunib District",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-14",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "21521",
+              "LocationOfPresenceName": "Izberbash",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-14",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "11009",
+              "LocationOfPresenceName": "Kizlyar",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-14",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "28",
+              "LocationOfPresenceName": "Makhachkala",
+              "Impressions": "7",
+              "Clicks": "1",
+              "Cost": "13.33"
+            },
+            {
+              "Date": "2026-11-14",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "178419",
+              "LocationOfPresenceName": "Stal'sky sel'sovet",
+              "Impressions": "1",
+              "Clicks": "1",
+              "Cost": "11.81"
+            },
+            {
+              "Date": "2026-11-14",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "20001",
+              "LocationOfPresenceName": "not specified",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "100590",
+              "LocationOfPresenceName": "Akhti",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "101818",
+              "LocationOfPresenceName": "Aksay",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "99311",
+              "LocationOfPresenceName": "Akushinskiy District",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "101817",
+              "LocationOfPresenceName": "Alburikent",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "178467",
+              "LocationOfPresenceName": "Aleksandriysky sel'sovet",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "191",
+              "LocationOfPresenceName": "Bryansk",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "11006",
+              "LocationOfPresenceName": "Buynaksk",
+              "Impressions": "14",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "99316",
+              "LocationOfPresenceName": "Buynaksk District",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "21732",
+              "LocationOfPresenceName": "Dagestanskie Ogni",
+              "Impressions": "3",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "11007",
+              "LocationOfPresenceName": "Derbent",
+              "Impressions": "25",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "99321",
+              "LocationOfPresenceName": "Derbent District",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "100575",
+              "LocationOfPresenceName": "Elkhotovo",
+              "Impressions": "4",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "100593",
+              "LocationOfPresenceName": "Gergebil",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "1106",
+              "LocationOfPresenceName": "Grozniy",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "994",
+              "LocationOfPresenceName": "India",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "21521",
+              "LocationOfPresenceName": "Izberbash",
+              "Impressions": "4",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "100589",
+              "LocationOfPresenceName": "Karata",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "179686",
+              "LocationOfPresenceName": "Karchagsky sel'sovet",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "11008",
+              "LocationOfPresenceName": "Kaspiysk",
+              "Impressions": "27",
+              "Clicks": "1",
+              "Cost": "7.16"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "100611",
+              "LocationOfPresenceName": "Kasumkent",
+              "Impressions": "3",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "100600",
+              "LocationOfPresenceName": "Kayakent",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "145834",
+              "LocationOfPresenceName": "Khamamatyurt",
+              "Impressions": "3",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "11011",
+              "LocationOfPresenceName": "Khasavurt",
+              "Impressions": "13",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "178081",
+              "LocationOfPresenceName": "Khazarsky sel'sovet",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "21519",
+              "LocationOfPresenceName": "Kizilyurt",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "11009",
+              "LocationOfPresenceName": "Kizlyar",
+              "Impressions": "12",
+              "Clicks": "1",
+              "Cost": "7.46"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "178479",
+              "LocationOfPresenceName": "Kizlyarsky sel'sovet",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "35",
+              "LocationOfPresenceName": "Krasnodar",
+              "Impressions": "7",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "177993",
+              "LocationOfPresenceName": "Kudaginsky sel'sovet",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "99332",
+              "LocationOfPresenceName": "Lakskiy District",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "118590",
+              "LocationOfPresenceName": "Leninaul",
+              "Impressions": "1",
+              "Clicks": "1",
+              "Cost": "2.05"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "121902",
+              "LocationOfPresenceName": "Leninkent",
+              "Impressions": "4",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "20676",
+              "LocationOfPresenceName": "Lyantor",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "28",
+              "LocationOfPresenceName": "Makhachkala",
+              "Impressions": "199",
+              "Clicks": "8",
+              "Cost": "21.84"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "10097",
+              "LocationOfPresenceName": "Malaysia",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "118741",
+              "LocationOfPresenceName": "Mamedkala",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "213",
+              "LocationOfPresenceName": "Moscow",
+              "Impressions": "4",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "177806",
+              "LocationOfPresenceName": "Muninsky sel'sovet",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "23",
+              "LocationOfPresenceName": "Murmansk",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "100657",
+              "LocationOfPresenceName": "Nachalovo",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "974",
+              "LocationOfPresenceName": "Nahodka",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "1092",
+              "LocationOfPresenceName": "Nazran",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "11311",
+              "LocationOfPresenceName": "Norilsk",
+              "Impressions": "2",
+              "Clicks": "1",
+              "Cost": "1.67"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "237",
+              "LocationOfPresenceName": "Novokuznetsk",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "100607",
+              "LocationOfPresenceName": "Novolakskoe",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "65",
+              "LocationOfPresenceName": "Novosibirsk",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "215991",
+              "LocationOfPresenceName": "Novyj Hushet",
+              "Impressions": "4",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "180013",
+              "LocationOfPresenceName": "Pokrovsky sel'sovet",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "977",
+              "LocationOfPresenceName": "Republic of Crimea",
+              "Impressions": "7",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "99337",
+              "LocationOfPresenceName": "Rutul District",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "2",
+              "LocationOfPresenceName": "Saint Petersburg",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "177835",
+              "LocationOfPresenceName": "Selo Kafyr-Kumukh rural settlement",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "178254",
+              "LocationOfPresenceName": "Selo Kalininaul rural settlement",
+              "Impressions": "4",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "178404",
+              "LocationOfPresenceName": "Selo Kul'zeb rural settlement",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "177659",
+              "LocationOfPresenceName": "Selo Lyuksemburg rural settlement",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "179977",
+              "LocationOfPresenceName": "Selo Mutsalaul rural settlement",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "178852",
+              "LocationOfPresenceName": "Selo Nizhneye Chugli rural settlement",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "215984",
+              "LocationOfPresenceName": "Semender",
+              "Impressions": "4",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "215989",
+              "LocationOfPresenceName": "Shamhal-Termen",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "36",
+              "LocationOfPresenceName": "Stavropol",
+              "Impressions": "3",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "11069",
+              "LocationOfPresenceName": "Stavropol Krai",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "120098",
+              "LocationOfPresenceName": "Sulak",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "21702",
+              "LocationOfPresenceName": "Sunzha",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "973",
+              "LocationOfPresenceName": "Surgut",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "121918",
+              "LocationOfPresenceName": "Tarki",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "20255",
+              "LocationOfPresenceName": "Tarko-Sale",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "178076",
+              "LocationOfPresenceName": "Tatlyarsky sel'sovet",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "10338",
+              "LocationOfPresenceName": "Termez",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "100614",
+              "LocationOfPresenceName": "Tlyarata",
+              "Impressions": "3",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "177936",
+              "LocationOfPresenceName": "Tsilitlinsky sel'sovet",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "100596",
+              "LocationOfPresenceName": "Urkarakh",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "178414",
+              "LocationOfPresenceName": "Zubutli-Miatlinsky sel'sovet",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "20001",
+              "LocationOfPresenceName": "not specified",
+              "Impressions": "3",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "100590",
+              "LocationOfPresenceName": "Akhti",
+              "Impressions": "2",
+              "Clicks": "1",
+              "Cost": "4.23"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "101818",
+              "LocationOfPresenceName": "Aksay",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "100591",
+              "LocationOfPresenceName": "Babayurt",
+              "Impressions": "3",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "180002",
+              "LocationOfPresenceName": "Batayurtovsky sel'sovet",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "101819",
+              "LocationOfPresenceName": "Belidji",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "128128",
+              "LocationOfPresenceName": "Bolshezadoevskoe",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "179730",
+              "LocationOfPresenceName": "Borzoyskoye rural settlement",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "11006",
+              "LocationOfPresenceName": "Buynaksk",
+              "Impressions": "18",
+              "Clicks": "1",
+              "Cost": "5.10"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "21732",
+              "LocationOfPresenceName": "Dagestanskie Ogni",
+              "Impressions": "6",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "11007",
+              "LocationOfPresenceName": "Derbent",
+              "Impressions": "50",
+              "Clicks": "1",
+              "Cost": "7.19"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "100575",
+              "LocationOfPresenceName": "Elkhotovo",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "10758",
+              "LocationOfPresenceName": "Himki",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "21521",
+              "LocationOfPresenceName": "Izberbash",
+              "Impressions": "11",
+              "Clicks": "1",
+              "Cost": "5.79"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "44",
+              "LocationOfPresenceName": "Izhevsk",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "100589",
+              "LocationOfPresenceName": "Karata",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "178866",
+              "LocationOfPresenceName": "Karlabkinsky sel'sovet",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "11008",
+              "LocationOfPresenceName": "Kaspiysk",
+              "Impressions": "5",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "100611",
+              "LocationOfPresenceName": "Kasumkent",
+              "Impressions": "9",
+              "Clicks": "3",
+              "Cost": "16.18"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "177858",
+              "LocationOfPresenceName": "Khalimbekaul'sky sel'sovet",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "57",
+              "LocationOfPresenceName": "Khanty-Mansiysk",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "11011",
+              "LocationOfPresenceName": "Khasavurt",
+              "Impressions": "28",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "179762",
+              "LocationOfPresenceName": "Khuriksky sel'sovet",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "101825",
+              "LocationOfPresenceName": "Kishpek",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "21519",
+              "LocationOfPresenceName": "Kizilyurt",
+              "Impressions": "2",
+              "Clicks": "1",
+              "Cost": "14.32"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "11009",
+              "LocationOfPresenceName": "Kizlyar",
+              "Impressions": "9",
+              "Clicks": "1",
+              "Cost": "2.62"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "35",
+              "LocationOfPresenceName": "Krasnodar",
+              "Impressions": "4",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "177993",
+              "LocationOfPresenceName": "Kudaginsky sel'sovet",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "121902",
+              "LocationOfPresenceName": "Leninkent",
+              "Impressions": "4",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "100605",
+              "LocationOfPresenceName": "Levashi",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "20676",
+              "LocationOfPresenceName": "Lyantor",
+              "Impressions": "7",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "28",
+              "LocationOfPresenceName": "Makhachkala",
+              "Impressions": "115",
+              "Clicks": "5",
+              "Cost": "27.78"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "118741",
+              "LocationOfPresenceName": "Mamedkala",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "213",
+              "LocationOfPresenceName": "Moscow",
+              "Impressions": "10",
+              "Clicks": "1",
+              "Cost": "1.38"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "30",
+              "LocationOfPresenceName": "Nalchik",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "20173",
+              "LocationOfPresenceName": "Nartkala",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "1092",
+              "LocationOfPresenceName": "Nazran",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "179022",
+              "LocationOfPresenceName": "Novokulinsky sel'sovet",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "215991",
+              "LocationOfPresenceName": "Novyj Hushet",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "11186",
+              "LocationOfPresenceName": "Nyagan",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "10745",
+              "LocationOfPresenceName": "Orehovo-Zuevo",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "39",
+              "LocationOfPresenceName": "Rostov-na-Donu",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "178909",
+              "LocationOfPresenceName": "Selo Filya rural settlement",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "177835",
+              "LocationOfPresenceName": "Selo Kafyr-Kumukh rural settlement",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "178403",
+              "LocationOfPresenceName": "Selo Komsomol'skoye rural settlement",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "177840",
+              "LocationOfPresenceName": "Selo Nizhneye Kazanishche rural settlement",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "177837",
+              "LocationOfPresenceName": "Selo Nizhny Dzhengutay rural settlement",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "178376",
+              "LocationOfPresenceName": "Selo Pervomayskoye rural settlement",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "179782",
+              "LocationOfPresenceName": "Selo Razdol'ye rural settlement",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "178055",
+              "LocationOfPresenceName": "Selo Sabnova rural settlement",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "179989",
+              "LocationOfPresenceName": "Selo Solnechnoye rural settlement",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "179995",
+              "LocationOfPresenceName": "Selo Toturbiykala rural settlement",
+              "Impressions": "4",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "10898",
+              "LocationOfPresenceName": "Severomorsk",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "36",
+              "LocationOfPresenceName": "Stavropol",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "21702",
+              "LocationOfPresenceName": "Sunzha",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "973",
+              "LocationOfPresenceName": "Surgut",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "20255",
+              "LocationOfPresenceName": "Tarko-Sale",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "10338",
+              "LocationOfPresenceName": "Termez",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "177676",
+              "LocationOfPresenceName": "Turshunaysky sel'sovet",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "128145",
+              "LocationOfPresenceName": "Tyube",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "167060",
+              "LocationOfPresenceName": "Uvarovshchinsky sel'sovet",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "33",
+              "LocationOfPresenceName": "Vladikavkaz",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "38",
+              "LocationOfPresenceName": "Volgograd",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "178700",
+              "LocationOfPresenceName": "Zmeyskoye rural settlement",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "178414",
+              "LocationOfPresenceName": "Zubutli-Miatlinsky sel'sovet",
+              "Impressions": "3",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "20001",
+              "LocationOfPresenceName": "not specified",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-17",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "101818",
+              "LocationOfPresenceName": "Aksay",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-17",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "37",
+              "LocationOfPresenceName": "Astrahan",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-17",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "21732",
+              "LocationOfPresenceName": "Dagestanskie Ogni",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-17",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "11007",
+              "LocationOfPresenceName": "Derbent",
+              "Impressions": "4",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-17",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "179684",
+              "LocationOfPresenceName": "Gereykhanovsky sel'sovet",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-17",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "11008",
+              "LocationOfPresenceName": "Kaspiysk",
+              "Impressions": "4",
+              "Clicks": "1",
+              "Cost": "11.60"
+            },
+            {
+              "Date": "2026-11-17",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "101557",
+              "LocationOfPresenceName": "Khadzhalmahi",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-17",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "11011",
+              "LocationOfPresenceName": "Khasavurt",
+              "Impressions": "45",
+              "Clicks": "1",
+              "Cost": "9.06"
+            },
+            {
+              "Date": "2026-11-17",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "178482",
+              "LocationOfPresenceName": "Krasnoarmeysky sel'sovet",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-17",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "35",
+              "LocationOfPresenceName": "Krasnodar",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-17",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "180423",
+              "LocationOfPresenceName": "Kvanadinsky sel'sovet",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-17",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "121902",
+              "LocationOfPresenceName": "Leninkent",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-17",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "28",
+              "LocationOfPresenceName": "Makhachkala",
+              "Impressions": "31",
+              "Clicks": "2",
+              "Cost": "22.46"
+            },
+            {
+              "Date": "2026-11-17",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "213",
+              "LocationOfPresenceName": "Moscow",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-17",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "11184",
+              "LocationOfPresenceName": "Nefteugansk",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-17",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "11067",
+              "LocationOfPresenceName": "Pyatigorsk",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-17",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "51",
+              "LocationOfPresenceName": "Samara",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-17",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "178883",
+              "LocationOfPresenceName": "Selo Manaskent rural settlement",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-17",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "179995",
+              "LocationOfPresenceName": "Selo Toturbiykala rural settlement",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-17",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "99341",
+              "LocationOfPresenceName": "Tarumovskiy District",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-17",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "20001",
+              "LocationOfPresenceName": "not specified",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "37",
+              "LocationOfPresenceName": "Astrahan",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "11006",
+              "LocationOfPresenceName": "Buynaksk",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "11007",
+              "LocationOfPresenceName": "Derbent",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "20210",
+              "LocationOfPresenceName": "Gryazi",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "11011",
+              "LocationOfPresenceName": "Khasavurt",
+              "Impressions": "15",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "35",
+              "LocationOfPresenceName": "Krasnodar",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "62",
+              "LocationOfPresenceName": "Krasnoyarsk",
+              "Impressions": "1",
+              "Clicks": "1",
+              "Cost": "14.29"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "28",
+              "LocationOfPresenceName": "Makhachkala",
+              "Impressions": "17",
+              "Clicks": "5",
+              "Cost": "54.52"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "30",
+              "LocationOfPresenceName": "Nalchik",
+              "Impressions": "1",
+              "Clicks": "1",
+              "Cost": "1.62"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "11230",
+              "LocationOfPresenceName": "Noviy Urengoy",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "100607",
+              "LocationOfPresenceName": "Novolakskoe",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "2",
+              "LocationOfPresenceName": "Saint Petersburg",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "177842",
+              "LocationOfPresenceName": "Selo Chirkey rural settlement",
+              "Impressions": "3",
+              "Clicks": "1",
+              "Cost": "12.43"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "177387",
+              "LocationOfPresenceName": "Selo Mugi rural settlement",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "128231",
+              "LocationOfPresenceName": "Shamilkala",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "177617",
+              "LocationOfPresenceName": "Tad-Magitlinsky sel'sovet",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "LocationOfPresenceId": "75",
+              "LocationOfPresenceName": "Vladivostok",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            }
+          ],
+          "finished_at_utc": "2026-11-19T10:35:54.082629+00:00"
+        },
+        "placements": {
+          "request": {
+            "params": {
+              "SelectionCriteria": {
+                "DateFrom": "2026-11-12",
+                "DateTo": "2026-11-18",
+                "Filter": [
+                  {
+                    "Field": "CampaignId",
+                    "Operator": "EQUALS",
+                    "Values": [
+                      "715775801"
+                    ]
+                  }
+                ]
+              },
+              "FieldNames": [
+                "Date",
+                "CampaignId",
+                "AdNetworkType",
+                "Placement",
+                "Impressions",
+                "Clicks",
+                "Cost"
+              ],
+              "ReportName": "dagestan-715775801-44507075036-1-placements-2026-11-12-2026-11-18",
+              "ReportType": "CUSTOM_REPORT",
+              "DateRangeType": "CUSTOM_DATE",
+              "Format": "TSV",
+              "IncludeVAT": "NO",
+              "IncludeDiscount": "NO"
+            }
+          },
+          "started_at_utc": "2026-11-19T10:35:54.082646+00:00",
+          "status": "complete",
+          "columns": [
+            "Date",
+            "CampaignId",
+            "AdNetworkType",
+            "Placement",
+            "Impressions",
+            "Clicks",
+            "Cost"
+          ],
+          "rows": 12,
+          "data": [
+            {
+              "Date": "2026-11-12",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Placement": "Yandex",
+              "Impressions": "15",
+              "Clicks": "2",
+              "Cost": "10.11"
+            },
+            {
+              "Date": "2026-11-13",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Placement": "Yandex",
+              "Impressions": "5",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-14",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Placement": "Yandex",
+              "Impressions": "12",
+              "Clicks": "2",
+              "Cost": "25.15"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Placement": "images.yandex.ru",
+              "Impressions": "2",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Placement": "m.images.yandex.ru",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Placement": "Yandex",
+              "Impressions": "405",
+              "Clicks": "12",
+              "Cost": "40.19"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Placement": "images.yandex.ru",
+              "Impressions": "1",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Placement": "m.images.yandex.ru",
+              "Impressions": "3",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Placement": "Yandex",
+              "Impressions": "349",
+              "Clicks": "15",
+              "Cost": "84.59"
+            },
+            {
+              "Date": "2026-11-17",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Placement": "m.images.yandex.ru",
+              "Impressions": "4",
+              "Clicks": "0",
+              "Cost": "0.00"
+            },
+            {
+              "Date": "2026-11-17",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Placement": "Yandex",
+              "Impressions": "100",
+              "Clicks": "4",
+              "Cost": "43.12"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "AdNetworkType": "SEARCH",
+              "Placement": "Yandex",
+              "Impressions": "53",
+              "Clicks": "8",
+              "Cost": "82.86"
+            }
+          ],
+          "finished_at_utc": "2026-11-19T10:35:55.757460+00:00"
+        },
+        "goals": {
+          "request": {
+            "params": {
+              "SelectionCriteria": {
+                "DateFrom": "2026-11-12",
+                "DateTo": "2026-11-18",
+                "Filter": [
+                  {
+                    "Field": "CampaignId",
+                    "Operator": "EQUALS",
+                    "Values": [
+                      "715775801"
+                    ]
+                  }
+                ]
+              },
+              "FieldNames": [
+                "Date",
+                "CampaignId",
+                "Impressions",
+                "Clicks",
+                "Cost",
+                "Sessions",
+                "Conversions",
+                "ConversionRate",
+                "CostPerConversion"
+              ],
+              "ReportName": "dagestan-715775801-44507075036-1-goals-2026-11-12-2026-11-18",
+              "ReportType": "CAMPAIGN_PERFORMANCE_REPORT",
+              "DateRangeType": "CUSTOM_DATE",
+              "Format": "TSV",
+              "IncludeVAT": "NO",
+              "IncludeDiscount": "NO",
+              "Goals": [
+                "668953269",
+                "668953627"
+              ],
+              "AttributionModels": [
+                "AUTO"
+              ]
+            }
+          },
+          "started_at_utc": "2026-11-19T10:35:55.757487+00:00",
+          "status": "complete",
+          "columns": [
+            "Date",
+            "CampaignId",
+            "Impressions",
+            "Clicks",
+            "Cost",
+            "Sessions",
+            "Conversions_668953269_AUTO",
+            "Conversions_668953627_AUTO",
+            "ConversionRate_668953269_AUTO",
+            "ConversionRate_668953627_AUTO",
+            "CostPerConversion_668953269_AUTO",
+            "CostPerConversion_668953627_AUTO"
+          ],
+          "rows": 7,
+          "data": [
+            {
+              "Date": "2026-11-12",
+              "CampaignId": "715775801",
+              "Impressions": "15",
+              "Clicks": "2",
+              "Cost": "10.11",
+              "Sessions": "0",
+              "Conversions_668953269_AUTO": "--",
+              "Conversions_668953627_AUTO": "--",
+              "ConversionRate_668953269_AUTO": "--",
+              "ConversionRate_668953627_AUTO": "--",
+              "CostPerConversion_668953269_AUTO": "--",
+              "CostPerConversion_668953627_AUTO": "--"
+            },
+            {
+              "Date": "2026-11-13",
+              "CampaignId": "715775801",
+              "Impressions": "5",
+              "Clicks": "0",
+              "Cost": "0.00",
+              "Sessions": "0",
+              "Conversions_668953269_AUTO": "--",
+              "Conversions_668953627_AUTO": "--",
+              "ConversionRate_668953269_AUTO": "--",
+              "ConversionRate_668953627_AUTO": "--",
+              "CostPerConversion_668953269_AUTO": "--",
+              "CostPerConversion_668953627_AUTO": "--"
+            },
+            {
+              "Date": "2026-11-14",
+              "CampaignId": "715775801",
+              "Impressions": "12",
+              "Clicks": "2",
+              "Cost": "25.15",
+              "Sessions": "1",
+              "Conversions_668953269_AUTO": "1",
+              "Conversions_668953627_AUTO": "--",
+              "ConversionRate_668953269_AUTO": "50.00",
+              "ConversionRate_668953627_AUTO": "--",
+              "CostPerConversion_668953269_AUTO": "25.15",
+              "CostPerConversion_668953627_AUTO": "--"
+            },
+            {
+              "Date": "2026-11-15",
+              "CampaignId": "715775801",
+              "Impressions": "408",
+              "Clicks": "12",
+              "Cost": "40.19",
+              "Sessions": "5",
+              "Conversions_668953269_AUTO": "3",
+              "Conversions_668953627_AUTO": "--",
+              "ConversionRate_668953269_AUTO": "25.00",
+              "ConversionRate_668953627_AUTO": "--",
+              "CostPerConversion_668953269_AUTO": "13.40",
+              "CostPerConversion_668953627_AUTO": "--"
+            },
+            {
+              "Date": "2026-11-16",
+              "CampaignId": "715775801",
+              "Impressions": "353",
+              "Clicks": "15",
+              "Cost": "84.59",
+              "Sessions": "2",
+              "Conversions_668953269_AUTO": "2",
+              "Conversions_668953627_AUTO": "--",
+              "ConversionRate_668953269_AUTO": "13.33",
+              "ConversionRate_668953627_AUTO": "--",
+              "CostPerConversion_668953269_AUTO": "42.29",
+              "CostPerConversion_668953627_AUTO": "--"
+            },
+            {
+              "Date": "2026-11-17",
+              "CampaignId": "715775801",
+              "Impressions": "104",
+              "Clicks": "4",
+              "Cost": "43.12",
+              "Sessions": "0",
+              "Conversions_668953269_AUTO": "--",
+              "Conversions_668953627_AUTO": "--",
+              "ConversionRate_668953269_AUTO": "--",
+              "ConversionRate_668953627_AUTO": "--",
+              "CostPerConversion_668953269_AUTO": "--",
+              "CostPerConversion_668953627_AUTO": "--"
+            },
+            {
+              "Date": "2026-11-18",
+              "CampaignId": "715775801",
+              "Impressions": "53",
+              "Clicks": "8",
+              "Cost": "82.86",
+              "Sessions": "0",
+              "Conversions_668953269_AUTO": "--",
+              "Conversions_668953627_AUTO": "--",
+              "ConversionRate_668953269_AUTO": "--",
+              "ConversionRate_668953627_AUTO": "--",
+              "CostPerConversion_668953269_AUTO": "--",
+              "CostPerConversion_668953627_AUTO": "--"
+            }
+          ],
+          "finished_at_utc": "2026-11-19T10:35:57.842905+00:00"
+        }
+      },
+      "complete": true,
+      "coverage_notes": [
+        "Query reports may omit impressions; absence is not zero.",
+        "Summed rounded monetary rows may differ from aggregate report.",
+        "Compare snapshots only with matching dates, VAT and attribution."
+      ]
+    },
+    "metrika/status.json": {
+      "counter_id": "113403438",
+      "filter": "ym:s:UTMSource=='yandex' AND ym:s:UTMMedium=='cpc' AND ym:s:UTMCampaign=='dagestan_whatsapp_test2_20261112'",
+      "scope": "exact UTM campaign, aggregated visits only",
+      "captured_at_utc": "2026-11-19T10:35:57.935682+00:00",
+      "reports": {
+        "overview": {
+          "request": {
+            "ids": "113403438",
+            "date1": "2026-11-12",
+            "date2": "2026-11-18",
+            "metrics": "ym:s:visits,ym:s:users,ym:s:goal668953269reaches,ym:s:goal668953627reaches",
+            "filters": "ym:s:UTMSource=='yandex' AND ym:s:UTMMedium=='cpc' AND ym:s:UTMCampaign=='dagestan_whatsapp_test2_20261112'",
+            "accuracy": "full",
+            "limit": "1000",
+            "offset": "1",
+            "lang": "ru"
+          },
+          "traffic_scope": "exact_utm_campaign",
+          "status": "complete",
+          "observation": {
+            "metrics": {
+              "ym:s:visits": 9,
+              "ym:s:users": 8,
+              "ym:s:goal668953269reaches": 14,
+              "ym:s:goal668953627reaches": 0
+            },
+            "total_rows": 1,
+            "sampled": false,
+            "sample_share": 1,
+            "data_lag": 0,
+            "truncated": false
+          }
+        },
+        "daily": {
+          "request": {
+            "ids": "113403438",
+            "date1": "2026-11-12",
+            "date2": "2026-11-18",
+            "metrics": "ym:s:visits,ym:s:users,ym:s:goal668953269reaches,ym:s:goal668953627reaches",
+            "filters": "ym:s:UTMSource=='yandex' AND ym:s:UTMMedium=='cpc' AND ym:s:UTMCampaign=='dagestan_whatsapp_test2_20261112'",
+            "accuracy": "full",
+            "limit": "1000",
+            "offset": "1",
+            "lang": "ru",
+            "dimensions": "ym:s:date"
+          },
+          "traffic_scope": "exact_utm_campaign",
+          "status": "complete",
+          "observation": {
+            "metrics": {
+              "ym:s:visits": 9,
+              "ym:s:users": 8,
+              "ym:s:goal668953269reaches": 14,
+              "ym:s:goal668953627reaches": 0
+            },
+            "total_rows": 3,
+            "sampled": false,
+            "sample_share": 1,
+            "data_lag": 0,
+            "truncated": false
+          }
+        },
+        "devices": {
+          "request": {
+            "ids": "113403438",
+            "date1": "2026-11-12",
+            "date2": "2026-11-18",
+            "metrics": "ym:s:visits,ym:s:users,ym:s:goal668953269reaches,ym:s:goal668953627reaches",
+            "filters": "ym:s:UTMSource=='yandex' AND ym:s:UTMMedium=='cpc' AND ym:s:UTMCampaign=='dagestan_whatsapp_test2_20261112'",
+            "accuracy": "full",
+            "limit": "1000",
+            "offset": "1",
+            "lang": "ru",
+            "dimensions": "ym:s:deviceCategory"
+          },
+          "traffic_scope": "exact_utm_campaign",
+          "status": "complete",
+          "observation": {
+            "metrics": {
+              "ym:s:visits": 9,
+              "ym:s:users": 8,
+              "ym:s:goal668953269reaches": 14,
+              "ym:s:goal668953627reaches": 0
+            },
+            "total_rows": 2,
+            "sampled": false,
+            "sample_share": 1,
+            "data_lag": 0,
+            "truncated": false
+          }
+        },
+        "regions": {
+          "request": {
+            "ids": "113403438",
+            "date1": "2026-11-12",
+            "date2": "2026-11-18",
+            "metrics": "ym:s:visits,ym:s:users,ym:s:goal668953269reaches,ym:s:goal668953627reaches",
+            "filters": "ym:s:UTMSource=='yandex' AND ym:s:UTMMedium=='cpc' AND ym:s:UTMCampaign=='dagestan_whatsapp_test2_20261112'",
+            "accuracy": "full",
+            "limit": "1000",
+            "offset": "1",
+            "lang": "ru",
+            "dimensions": "ym:s:regionCountry,ym:s:regionArea,ym:s:regionCity"
+          },
+          "traffic_scope": "exact_utm_campaign",
+          "status": "complete",
+          "observation": {
+            "metrics": {
+              "ym:s:visits": 9,
+              "ym:s:users": 8,
+              "ym:s:goal668953269reaches": 14,
+              "ym:s:goal668953627reaches": 0
+            },
+            "total_rows": 4,
+            "sampled": false,
+            "sample_share": 1,
+            "data_lag": 0,
+            "truncated": false
+          }
+        },
+        "all_traffic": {
+          "request": {
+            "ids": "113403438",
+            "date1": "2026-11-12",
+            "date2": "2026-11-18",
+            "metrics": "ym:s:visits,ym:s:users,ym:s:goal668953269reaches,ym:s:goal668953627reaches",
+            "accuracy": "full",
+            "limit": "1000",
+            "offset": "1",
+            "lang": "ru"
+          },
+          "traffic_scope": "all_counter_traffic_diagnostic_only",
+          "status": "complete",
+          "observation": {
+            "metrics": {
+              "ym:s:visits": 25,
+              "ym:s:users": 15,
+              "ym:s:goal668953269reaches": 21,
+              "ym:s:goal668953627reaches": 0
+            },
+            "total_rows": 1,
+            "sampled": false,
+            "sample_share": 1,
+            "data_lag": 0,
+            "truncated": false
+          }
+        },
+        "observed_utm": {
+          "request": {
+            "ids": "113403438",
+            "date1": "2026-11-12",
+            "date2": "2026-11-18",
+            "metrics": "ym:s:visits,ym:s:users,ym:s:goal668953269reaches,ym:s:goal668953627reaches",
+            "accuracy": "full",
+            "limit": "1000",
+            "offset": "1",
+            "lang": "ru",
+            "dimensions": "ym:s:UTMSource,ym:s:UTMMedium,ym:s:UTMCampaign"
+          },
+          "traffic_scope": "all_counter_traffic_diagnostic_only",
+          "status": "complete",
+          "observation": {
+            "metrics": {
+              "ym:s:visits": 15,
+              "ym:s:users": 12,
+              "ym:s:goal668953269reaches": 20,
+              "ym:s:goal668953627reaches": 0
+            },
+            "total_rows": 4,
+            "sampled": false,
+            "sample_share": 1,
+            "data_lag": 0,
+            "truncated": false
+          }
+        },
+        "direct_daily": {
+          "request": {
+            "ids": "113403438",
+            "date1": "2026-11-12",
+            "date2": "2026-11-18",
+            "metrics": "ym:s:visits,ym:s:users,ym:s:goal668953269reaches,ym:s:goal668953627reaches",
+            "filters": "ym:s:<attribution>DirectClickOrder==715775801",
+            "accuracy": "full",
+            "limit": "1000",
+            "offset": "1",
+            "lang": "ru",
+            "dimensions": "ym:s:date",
+            "attribution": "automatic"
+          },
+          "traffic_scope": "direct_linked_campaign_automatic",
+          "status": "complete",
+          "observation": {
+            "metrics": {
+              "ym:s:visits": 8,
+              "ym:s:users": 7,
+              "ym:s:goal668953269reaches": 14,
+              "ym:s:goal668953627reaches": 0
+            },
+            "total_rows": 3,
+            "sampled": false,
+            "sample_share": 1,
+            "data_lag": 0,
+            "truncated": false
+          }
+        }
+      },
+      "note": "Goals are button events after analytics consent, NOT actual group joins. Do not equate Metrika attribution with Direct AUTO.",
+      "date_from": "2026-11-12",
+      "date_to": "2026-11-18",
+      "counter_meta": {
+        "id": 113403438,
+        "site": "obyavleniya-dagestan.ru",
+        "time_zone_name": "Europe/Moscow",
+        "time_zone_offset": 180
+      },
+      "status": "complete"
+    },
+    "metrika/daily.json": {
+      "query": {
+        "ids": [
+          113403438
+        ],
+        "dimensions": [
+          "ym:s:date"
+        ],
+        "metrics": [
+          "ym:s:visits",
+          "ym:s:users",
+          "ym:s:goal668953269reaches",
+          "ym:s:goal668953627reaches"
+        ],
+        "sort": [
+          "-ym:s:visits"
+        ],
+        "date1": "2026-11-12",
+        "date2": "2026-11-18",
+        "filters": "ym:s:UTMSource=='yandex' AND ym:s:UTMMedium=='cpc' AND ym:s:UTMCampaign=='dagestan_whatsapp_test2_20261112'",
+        "limit": 1000,
+        "offset": 1,
+        "group": "Week",
+        "benchmarks_version": "1794182400000",
+        "benchmarks_sub_industry": "false",
+        "auto_group_size": "1",
+        "exp_bucket_size": "100",
+        "attr_name": "",
+        "funnel_window": "",
+        "benchmarks_quantile": "50",
+        "time_interval": "1SECOND",
+        "intervals": "1",
+        "quantile": "50",
+        "offline_window": "21",
+        "attribution": "CROSS_DEVICE_LAST_SIGNIFICANT",
+        "currency": "RUB",
+        "benchmarks_attribution": "Automatic",
+        "adfox_event_id": "0",
+        "funnel_pattern": ""
+      },
+      "data": [
+        {
+          "dimensions": [
+            {
+              "name": "2026-11-15"
+            }
+          ],
+          "metrics": [
+            5,
+            4,
+            9,
+            0
+          ]
+        },
+        {
+          "dimensions": [
+            {
+              "name": "2026-11-16"
+            }
+          ],
+          "metrics": [
+            3,
+            3,
+            4,
+            0
+          ]
+        },
+        {
+          "dimensions": [
+            {
+              "name": "2026-11-14"
+            }
+          ],
+          "metrics": [
+            1,
+            1,
+            1,
+            0
+          ]
+        }
+      ],
+      "total_rows": 3,
+      "total_rows_rounded": false,
+      "sampled": false,
+      "contains_sensitive_data": false,
+      "sample_share": 1,
+      "sample_size": 25,
+      "sample_space": 25,
+      "data_lag": 0,
+      "totals": [
+        9,
+        8,
+        14,
+        0
+      ],
+      "min": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "max": [
+        5,
+        4,
+        9,
+        0
+      ]
+    },
+    "metrika/direct_daily.json": {
+      "query": {
+        "ids": [
+          113403438
+        ],
+        "dimensions": [
+          "ym:s:date"
+        ],
+        "metrics": [
+          "ym:s:visits",
+          "ym:s:users",
+          "ym:s:goal668953269reaches",
+          "ym:s:goal668953627reaches"
+        ],
+        "sort": [
+          "-ym:s:visits"
+        ],
+        "date1": "2026-11-12",
+        "date2": "2026-11-18",
+        "filters": "ym:s:automaticDirectClickOrder==715775801",
+        "limit": 1000,
+        "offset": 1,
+        "attribution": "automatic",
+        "group": "Week",
+        "benchmarks_version": "1794182400000",
+        "benchmarks_sub_industry": "false",
+        "auto_group_size": "1",
+        "exp_bucket_size": "100",
+        "attr_name": "",
+        "funnel_window": "",
+        "benchmarks_quantile": "50",
+        "time_interval": "1SECOND",
+        "intervals": "1",
+        "quantile": "50",
+        "offline_window": "21",
+        "currency": "RUB",
+        "benchmarks_attribution": "Automatic",
+        "adfox_event_id": "0",
+        "funnel_pattern": ""
+      },
+      "data": [
+        {
+          "dimensions": [
+            {
+              "name": "2026-11-15"
+            }
+          ],
+          "metrics": [
+            5,
+            4,
+            9,
+            0
+          ]
+        },
+        {
+          "dimensions": [
+            {
+              "name": "2026-11-16"
+            }
+          ],
+          "metrics": [
+            2,
+            2,
+            4,
+            0
+          ]
+        },
+        {
+          "dimensions": [
+            {
+              "name": "2026-11-14"
+            }
+          ],
+          "metrics": [
+            1,
+            1,
+            1,
+            0
+          ]
+        }
+      ],
+      "total_rows": 3,
+      "total_rows_rounded": false,
+      "sampled": false,
+      "contains_sensitive_data": false,
+      "sample_share": 1,
+      "sample_size": 25,
+      "sample_space": 25,
+      "data_lag": 0,
+      "totals": [
+        8,
+        7,
+        14,
+        0
+      ],
+      "min": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "max": [
+        5,
+        4,
+        9,
+        0
+      ]
+    },
+    "metrika/observed_utm.json": {
+      "query": {
+        "ids": [
+          113403438
+        ],
+        "dimensions": [
+          "ym:s:UTMSource",
+          "ym:s:UTMMedium",
+          "ym:s:UTMCampaign"
+        ],
+        "metrics": [
+          "ym:s:visits",
+          "ym:s:users",
+          "ym:s:goal668953269reaches",
+          "ym:s:goal668953627reaches"
+        ],
+        "sort": [
+          "-ym:s:visits"
+        ],
+        "date1": "2026-11-12",
+        "date2": "2026-11-18",
+        "limit": 1000,
+        "offset": 1,
+        "group": "Week",
+        "benchmarks_version": "1794182400000",
+        "benchmarks_sub_industry": "false",
+        "auto_group_size": "1",
+        "exp_bucket_size": "100",
+        "attr_name": "",
+        "funnel_window": "",
+        "benchmarks_quantile": "50",
+        "time_interval": "1SECOND",
+        "intervals": "1",
+        "quantile": "50",
+        "offline_window": "21",
+        "attribution": "CROSS_DEVICE_LAST_SIGNIFICANT",
+        "currency": "RUB",
+        "benchmarks_attribution": "Automatic",
+        "adfox_event_id": "0",
+        "funnel_pattern": ""
+      },
+      "data": [
+        {
+          "dimensions": [
+            {
+              "name": "yandex"
+            },
+            {
+              "name": "cpc"
+            },
+            {
+              "name": "dagestan_whatsapp_test2_20261112"
+            }
+          ],
+          "metrics": [
+            9,
+            8,
+            14,
+            0
+          ]
+        },
+        {
+          "dimensions": [
+            {
+              "name": "qa"
+            },
+            {
+              "name": "technical_check"
+            },
+            {
+              "name": "dagestan_phone_qa_20261114"
+            }
+          ],
+          "metrics": [
+            4,
+            2,
+            5,
+            0
+          ]
+        },
+        {
+          "dimensions": [
+            {
+              "name": "qa"
+            },
+            {
+              "name": "technical_check"
+            },
+            {
+              "name": "dagestan_measurement_qa_20261112"
+            }
+          ],
+          "metrics": [
+            1,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "dimensions": [
+            {
+              "name": "qa"
+            },
+            {
+              "name": "technical_check"
+            },
+            {
+              "name": "dagestan_native_qa_20261114"
+            }
+          ],
+          "metrics": [
+            1,
+            1,
+            1,
+            0
+          ]
+        }
+      ],
+      "total_rows": 4,
+      "total_rows_rounded": false,
+      "sampled": false,
+      "contains_sensitive_data": false,
+      "sample_share": 1,
+      "sample_size": 25,
+      "sample_space": 25,
+      "data_lag": 0,
+      "totals": [
+        15,
+        12,
+        20,
+        0
+      ],
+      "min": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "max": [
+        9,
+        8,
+        14,
+        0
+      ]
+    }
+  },
+  "campaign_status": {
+    "Id": 715775801,
+    "Name": "Объявления Дагестана — WhatsApp — тест 2",
+    "StartDate": "2026-11-12",
+    "Type": "UNIFIED_CAMPAIGN",
+    "Status": "ACCEPTED",
+    "State": "ENDED",
+    "StatusClarification": "Кампания закончилась 18.11.2026",
+    "EndDate": "2026-11-18",
+    "UnifiedCampaign": {
+      "BiddingStrategy": {
+        "Search": {
+          "BiddingStrategyType": "WB_MAXIMUM_CLICKS",
+          "WbMaximumClicks": {
+            "CustomPeriodBudget": {
+              "SpendLimit": 500000000,
+              "StartDate": "2026-11-12",
+              "EndDate": "2026-11-18",
+              "AutoContinue": "NO"
+            },
+            "BudgetType": "CUSTOM_PERIOD_BUDGET",
+            "BidCeiling": null
+          }
+        },
+        "Network": {
+          "BiddingStrategyType": "SERVING_OFF"
+        }
+      },
+      "Settings": [
+        {
+          "Option": "ADD_METRICA_TAG",
+          "Value": "NO"
+        },
+        {
+          "Option": "ADD_TO_FAVORITES",
+          "Value": "NO"
+        },
+        {
+          "Option": "CAMPAIGN_EXACT_PHRASE_MATCHING_ENABLED",
+          "Value": "NO"
+        },
+        {
+          "Option": "ALTERNATIVE_TEXTS_ENABLED",
+          "Value": "NO"
+        },
+        {
+          "Option": "AUTO_ASSETS_ENABLED",
+          "Value": "NO"
+        },
+        {
+          "Option": "ENABLE_AREA_OF_INTEREST_TARGETING",
+          "Value": "YES"
+        },
+        {
+          "Option": "ENABLE_COMPANY_INFO",
+          "Value": "YES"
+        },
+        {
+          "Option": "ENABLE_SITE_MONITORING",
+          "Value": "NO"
+        },
+        {
+          "Option": "REQUIRE_SERVICING",
+          "Value": "NO"
+        },
+        {
+          "Option": "SHARED_ACCOUNT_ENABLED",
+          "Value": "YES"
+        }
+      ],
+      "TrackingParams": "utm_source=yandex&utm_medium=cpc&utm_campaign=dagestan_whatsapp_test2_20261112&utm_content={ad_id}&utm_term={keyword}",
+      "PriorityGoals": {
+        "Items": [
+          {
+            "GoalId": 668953269,
+            "Value": 300000,
+            "IsMetrikaSourceOfValue": "NO"
+          }
+        ]
+      },
+      "CounterIds": {
+        "Items": [
+          113403438
+        ]
+      }
+    },
+    "TimeTargeting": {
+      "HolidaysSchedule": null,
+      "Schedule": {
+        "Items": [
+          "1,0,0,0,0,0,0,0,0,100,100,100,100,100,100,100,100,100,100,100,100,100,100,0,0",
+          "2,0,0,0,0,0,0,0,0,100,100,100,100,100,100,100,100,100,100,100,100,100,100,0,0",
+          "3,0,0,0,0,0,0,0,0,100,100,100,100,100,100,100,100,100,100,100,100,100,100,0,0",
+          "4,0,0,0,0,0,0,0,0,100,100,100,100,100,100,100,100,100,100,100,100,100,100,0,0",
+          "5,0,0,0,0,0,0,0,0,100,100,100,100,100,100,100,100,100,100,100,100,100,100,0,0",
+          "6,0,0,0,0,0,0,0,0,100,100,100,100,100,100,100,100,100,100,100,100,100,100,0,0",
+          "7,0,0,0,0,0,0,0,0,100,100,100,100,100,100,100,100,100,100,100,100,100,100,0,0"
+        ]
+      },
+      "ConsiderWorkingWeekends": "YES"
+    }
+  },
+  "owner_latest_known": {
+    "reported_on": "2026-11-17",
+    "members": 46,
+    "test_initial_members": 45,
+    "current_members_19Nov": "awaiting owner reply",
+    "gross_joins_and_departures": "incomplete; do not treat net change as ad joins"
+  }
+}

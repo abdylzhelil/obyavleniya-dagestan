@@ -2,9 +2,6 @@ name: WhatsApp test 2 read-only reports
 # Metrika read-only OAuth application: 40fbd9c24b874b4bacaa0883e57ca434
 
 on:
-  push:
-    paths:
-      - ".github/workflows/direct-whatsapp-test2-reports.yml"
   workflow_dispatch:
     inputs:
       date_from:
@@ -52,7 +49,7 @@ jobs:
         env:
           YANDEX_DIRECT_TOKEN: ${{ secrets.YANDEX_DIRECT_TOKEN }}
           DIRECT_DATE_FROM: ${{ inputs.date_from }}
-          DIRECT_DATE_TO: '2026-11-18'
+          DIRECT_DATE_TO: ${{ inputs.date_to }}
         shell: bash
         run: |
           python3 - <<'PYDIRECT'
@@ -113,8 +110,6 @@ jobs:
                   "ReportType": report_type, "DateRangeType": "CUSTOM_DATE", "Format": "TSV",
                   "IncludeVAT": "NO", "IncludeDiscount": "NO",
               }
-              if key == "queries":
-                  params["SelectionCriteria"]["DateFrom"] = last
               if key == "goals":
                   params.update(Goals=["668953269", "668953627"], AttributionModels=["AUTO"])
               return {"params": params}
@@ -218,7 +213,7 @@ jobs:
                   payload = definition(key, first, last, run)
                   item = {"request": payload, "started_at_utc": datetime.now(timezone.utc).isoformat()}
                   try:
-                      text = fetch(payload, token, opener, min(global_deadline, time.monotonic() + (20 if key == 'queries' else 100)))
+                      text = fetch(payload, token, opener, min(global_deadline, time.monotonic() + 100))
                       fields, rows = parse(text, first, last)
                       if key == "goals" and not {"Conversions_668953269_AUTO", "Conversions_668953627_AUTO"}.issubset(fields):
                           raise ReportError("Expected separate goal columns were not returned")
